@@ -3,11 +3,11 @@
   <title>Leo2011的博客</title>
   
   <subtitle>许许多多的平凡加在一起，就成了不平凡。</subtitle>
-  <link href="https://worke2011.github.io/atom.xml" rel="self"/>
+  <link href="https://leo2011.netlify.app/atom.xml" rel="self"/>
   
-  <link href="https://worke2011.github.io/"/>
+  <link href="https://leo2011.netlify.app/"/>
   <updated>2024-02-16T14:27:11.766Z</updated>
-  <id>https://worke2011.github.io/</id>
+  <id>https://leo2011.netlify.app/</id>
   
   <author>
     <name>Leo2011</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>PythonGUI图形化界面详解</title>
-    <link href="https://worke2011.github.io/2024/01/01/pythongui-tu-xing-hua-jie-mian-xiang-jie/"/>
-    <id>https://worke2011.github.io/2024/01/01/pythongui-tu-xing-hua-jie-mian-xiang-jie/</id>
+    <link href="https://leo2011.netlify.app/2024/01/01/pythongui-tu-xing-hua-jie-mian-xiang-jie/"/>
+    <id>https://leo2011.netlify.app/2024/01/01/pythongui-tu-xing-hua-jie-mian-xiang-jie/</id>
     <published>2024-01-01T07:56:32.000Z</published>
     <updated>2024-02-16T14:27:11.766Z</updated>
     
@@ -35,14 +35,14 @@
     
     
     
-    <category term="Python" scheme="https://worke2011.github.io/tags/Python/"/>
+    <category term="Python" scheme="https://leo2011.netlify.app/%E6%A0%87%E7%AD%BE/Python/"/>
     
   </entry>
   
   <entry>
     <title>Python环境安装与配置</title>
-    <link href="https://worke2011.github.io/2024/01/01/python-huan-jing-an-zhuang-yu-pei-zhi/"/>
-    <id>https://worke2011.github.io/2024/01/01/python-huan-jing-an-zhuang-yu-pei-zhi/</id>
+    <link href="https://leo2011.netlify.app/2024/01/01/python-huan-jing-an-zhuang-yu-pei-zhi/"/>
+    <id>https://leo2011.netlify.app/2024/01/01/python-huan-jing-an-zhuang-yu-pei-zhi/</id>
     <published>2024-01-01T07:55:02.000Z</published>
     <updated>2024-02-16T14:07:45.206Z</updated>
     
@@ -58,14 +58,14 @@
     
     
     
-    <category term="Python" scheme="https://worke2011.github.io/tags/Python/"/>
+    <category term="Python" scheme="https://leo2011.netlify.app/%E6%A0%87%E7%AD%BE/Python/"/>
     
   </entry>
   
   <entry>
     <title>关于三目运算符，你需要知道的所有</title>
-    <link href="https://worke2011.github.io/2024/01/01/guan-yu-san-mu-yun-suan-fu-ni-xu-yao-zhi-dao-de-suo-you/"/>
-    <id>https://worke2011.github.io/2024/01/01/guan-yu-san-mu-yun-suan-fu-ni-xu-yao-zhi-dao-de-suo-you/</id>
+    <link href="https://leo2011.netlify.app/2024/01/01/guan-yu-san-mu-yun-suan-fu-ni-xu-yao-zhi-dao-de-suo-you/"/>
+    <id>https://leo2011.netlify.app/2024/01/01/guan-yu-san-mu-yun-suan-fu-ni-xu-yao-zhi-dao-de-suo-you/</id>
     <published>2024-01-01T07:52:41.000Z</published>
     <updated>2024-02-16T13:37:25.112Z</updated>
     
@@ -86,17 +86,17 @@
     
     
     
-    <category term="“你需要知道的所有”系列" scheme="https://worke2011.github.io/categories/%E2%80%9C%E4%BD%A0%E9%9C%80%E8%A6%81%E7%9F%A5%E9%81%93%E7%9A%84%E6%89%80%E6%9C%89%E2%80%9D%E7%B3%BB%E5%88%97/"/>
+    <category term="“你需要知道的所有”系列" scheme="https://leo2011.netlify.app/categories/%E2%80%9C%E4%BD%A0%E9%9C%80%E8%A6%81%E7%9F%A5%E9%81%93%E7%9A%84%E6%89%80%E6%9C%89%E2%80%9D%E7%B3%BB%E5%88%97/"/>
     
     
-    <category term="C艹" scheme="https://worke2011.github.io/tags/C%E8%89%B9/"/>
+    <category term="C艹" scheme="https://leo2011.netlify.app/%E6%A0%87%E7%AD%BE/C%E8%89%B9/"/>
     
   </entry>
   
   <entry>
     <title>关于__int128和short，你需要知道的所有</title>
-    <link href="https://worke2011.github.io/2024/01/01/guan-yu-int128-he-short-ni-xu-yao-zhi-dao-de-suo-you/"/>
-    <id>https://worke2011.github.io/2024/01/01/guan-yu-int128-he-short-ni-xu-yao-zhi-dao-de-suo-you/</id>
+    <link href="https://leo2011.netlify.app/2024/01/01/guan-yu-int128-he-short-ni-xu-yao-zhi-dao-de-suo-you/"/>
+    <id>https://leo2011.netlify.app/2024/01/01/guan-yu-int128-he-short-ni-xu-yao-zhi-dao-de-suo-you/</id>
     <published>2024-01-01T07:48:18.000Z</published>
     <updated>2024-02-17T03:12:39.282Z</updated>
     
@@ -113,17 +113,17 @@
     
     
     
-    <category term="“你需要知道的所有”系列" scheme="https://worke2011.github.io/categories/%E2%80%9C%E4%BD%A0%E9%9C%80%E8%A6%81%E7%9F%A5%E9%81%93%E7%9A%84%E6%89%80%E6%9C%89%E2%80%9D%E7%B3%BB%E5%88%97/"/>
+    <category term="“你需要知道的所有”系列" scheme="https://leo2011.netlify.app/categories/%E2%80%9C%E4%BD%A0%E9%9C%80%E8%A6%81%E7%9F%A5%E9%81%93%E7%9A%84%E6%89%80%E6%9C%89%E2%80%9D%E7%B3%BB%E5%88%97/"/>
     
     
-    <category term="C艹" scheme="https://worke2011.github.io/tags/C%E8%89%B9/"/>
+    <category term="C艹" scheme="https://leo2011.netlify.app/%E6%A0%87%E7%AD%BE/C%E8%89%B9/"/>
     
   </entry>
   
   <entry>
     <title>关于auto，你须要知道的所有</title>
-    <link href="https://worke2011.github.io/2024/01/01/guan-yu-auto-ni-xu-yao-zhi-dao-de-suo-you/"/>
-    <id>https://worke2011.github.io/2024/01/01/guan-yu-auto-ni-xu-yao-zhi-dao-de-suo-you/</id>
+    <link href="https://leo2011.netlify.app/2024/01/01/guan-yu-auto-ni-xu-yao-zhi-dao-de-suo-you/"/>
+    <id>https://leo2011.netlify.app/2024/01/01/guan-yu-auto-ni-xu-yao-zhi-dao-de-suo-you/</id>
     <published>2024-01-01T07:38:34.000Z</published>
     <updated>2024-02-16T13:37:20.681Z</updated>
     
@@ -140,17 +140,17 @@
     
     
     
-    <category term="“你需要知道的所有”系列" scheme="https://worke2011.github.io/categories/%E2%80%9C%E4%BD%A0%E9%9C%80%E8%A6%81%E7%9F%A5%E9%81%93%E7%9A%84%E6%89%80%E6%9C%89%E2%80%9D%E7%B3%BB%E5%88%97/"/>
+    <category term="“你需要知道的所有”系列" scheme="https://leo2011.netlify.app/categories/%E2%80%9C%E4%BD%A0%E9%9C%80%E8%A6%81%E7%9F%A5%E9%81%93%E7%9A%84%E6%89%80%E6%9C%89%E2%80%9D%E7%B3%BB%E5%88%97/"/>
     
     
-    <category term="C艹" scheme="https://worke2011.github.io/tags/C%E8%89%B9/"/>
+    <category term="C艹" scheme="https://leo2011.netlify.app/%E6%A0%87%E7%AD%BE/C%E8%89%B9/"/>
     
   </entry>
   
   <entry>
     <title>关于switch，你须要知道的所有</title>
-    <link href="https://worke2011.github.io/2024/01/01/guan-yu-switch-ni-xu-yao-zhi-dao-de-suo-you/"/>
-    <id>https://worke2011.github.io/2024/01/01/guan-yu-switch-ni-xu-yao-zhi-dao-de-suo-you/</id>
+    <link href="https://leo2011.netlify.app/2024/01/01/guan-yu-switch-ni-xu-yao-zhi-dao-de-suo-you/"/>
+    <id>https://leo2011.netlify.app/2024/01/01/guan-yu-switch-ni-xu-yao-zhi-dao-de-suo-you/</id>
     <published>2024-01-01T07:38:13.000Z</published>
     <updated>2024-02-16T13:37:22.698Z</updated>
     
@@ -167,17 +167,17 @@
     
     
     
-    <category term="“你需要知道的所有”系列" scheme="https://worke2011.github.io/categories/%E2%80%9C%E4%BD%A0%E9%9C%80%E8%A6%81%E7%9F%A5%E9%81%93%E7%9A%84%E6%89%80%E6%9C%89%E2%80%9D%E7%B3%BB%E5%88%97/"/>
+    <category term="“你需要知道的所有”系列" scheme="https://leo2011.netlify.app/categories/%E2%80%9C%E4%BD%A0%E9%9C%80%E8%A6%81%E7%9F%A5%E9%81%93%E7%9A%84%E6%89%80%E6%9C%89%E2%80%9D%E7%B3%BB%E5%88%97/"/>
     
     
-    <category term="C艹" scheme="https://worke2011.github.io/tags/C%E8%89%B9/"/>
+    <category term="C艹" scheme="https://leo2011.netlify.app/%E6%A0%87%E7%AD%BE/C%E8%89%B9/"/>
     
   </entry>
   
   <entry>
     <title>关于类，你须要知道的所有</title>
-    <link href="https://worke2011.github.io/2024/01/01/guan-yu-lei-ni-xu-yao-zhi-dao-de-suo-you/"/>
-    <id>https://worke2011.github.io/2024/01/01/guan-yu-lei-ni-xu-yao-zhi-dao-de-suo-you/</id>
+    <link href="https://leo2011.netlify.app/2024/01/01/guan-yu-lei-ni-xu-yao-zhi-dao-de-suo-you/"/>
+    <id>https://leo2011.netlify.app/2024/01/01/guan-yu-lei-ni-xu-yao-zhi-dao-de-suo-you/</id>
     <published>2024-01-01T07:29:56.000Z</published>
     <updated>2024-02-16T13:37:27.755Z</updated>
     
@@ -197,10 +197,10 @@
     
     
     
-    <category term="“你需要知道的所有”系列" scheme="https://worke2011.github.io/categories/%E2%80%9C%E4%BD%A0%E9%9C%80%E8%A6%81%E7%9F%A5%E9%81%93%E7%9A%84%E6%89%80%E6%9C%89%E2%80%9D%E7%B3%BB%E5%88%97/"/>
+    <category term="“你需要知道的所有”系列" scheme="https://leo2011.netlify.app/categories/%E2%80%9C%E4%BD%A0%E9%9C%80%E8%A6%81%E7%9F%A5%E9%81%93%E7%9A%84%E6%89%80%E6%9C%89%E2%80%9D%E7%B3%BB%E5%88%97/"/>
     
     
-    <category term="C艹" scheme="https://worke2011.github.io/tags/C%E8%89%B9/"/>
+    <category term="C艹" scheme="https://leo2011.netlify.app/%E6%A0%87%E7%AD%BE/C%E8%89%B9/"/>
     
   </entry>
   
