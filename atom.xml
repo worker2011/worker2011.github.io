@@ -6,7 +6,7 @@
   <link href="https://leo2011.pages.dev/atom.xml" rel="self"/>
   
   <link href="https://leo2011.pages.dev/"/>
-  <updated>2024-02-16T14:27:11.766Z</updated>
+  <updated>2024-02-22T15:06:18.382Z</updated>
   <id>https://leo2011.pages.dev/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://leo2011.pages.dev/2024/01/01/pythongui-tu-xing-hua-jie-mian-xiang-jie/"/>
     <id>https://leo2011.pages.dev/2024/01/01/pythongui-tu-xing-hua-jie-mian-xiang-jie/</id>
     <published>2024-01-01T07:56:32.000Z</published>
-    <updated>2024-02-16T14:27:11.766Z</updated>
+    <updated>2024-02-22T15:06:18.382Z</updated>
     
     
       
@@ -161,7 +161,7 @@
         
     <summary type="html">&lt;p&gt;话说写代码时要写 1 吨 if 的题你们有木有遇到？&lt;/p&gt;
 &lt;p&gt;比如&lt;a href=&quot;https://wonderland.run/p/T1347&quot;&gt;这道题&lt;/a&gt;。6 个操作要写 6 个 if！那么你的代码可能会成这德行：&lt;/p&gt;
-&lt;figure</summary>
+&lt;pre</summary>
         
       
     

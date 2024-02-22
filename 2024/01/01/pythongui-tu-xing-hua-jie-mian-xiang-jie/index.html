@@ -435,14 +435,14 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2024-02-16
+                    2024-02-22
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    2.2k
+                    2.1k
                 </div>
                 
 
@@ -480,13 +480,19 @@
 <p>Tips：如果您已安装Python和一个另外的IDE，可以忽略此步骤。但如果后续发现有模块运行不了且代码、模块等正常，可以按照此步骤重新安装。</p>
 </blockquote>
 <p>见<a target="_blank" rel="noopener" href="https://www.cnblogs.com/leo2011/p/17938782">这里</a></p>
-<h1 id="2-easygui"><a href="#2-easygui" class="headerlink" title="2 easygui"></a>2 easygui</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install easygui</span><br></pre></td></tr></table></figure>
+<h1 id="2-easygui"><a href="#2-easygui" class="headerlink" title="2 easygui"></a>2 easygui</h1><pre class="line-numbers language-shell"><code class="language-shell">pip install easygui
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>在你的终端中运行这段代码。如果出现了下面的东西，那么就说明安装easygui成功啦（以后我介绍的模块除了特殊说明外，都要用类似的方法安装，就不在提了）</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Looking in indexes: https://mirrors.sustech.edu.cn/pypi/simple</span><br><span class="line">Collecting easygui</span><br><span class="line">  Using cached https://mirrors.sustech.edu.cn/pypi/packages/8e/a7/b276ff776533b423710a285c8168b52551cb2ab0855443131fdc7fd8c16f/easygui-0.98.3-py2.py3-none-any.whl (92 kB)</span><br><span class="line">Installing collected packages: easygui</span><br><span class="line">Successfully installed easygui-0.98.3</span><br></pre></td></tr></table></figure>
-
+<pre class="line-numbers language-shell"><code class="language-shell">Looking in indexes: https://mirrors.sustech.edu.cn/pypi/simple
+Collecting easygui
+  Using cached https://mirrors.sustech.edu.cn/pypi/packages/8e/a7/b276ff776533b423710a285c8168b52551cb2ab0855443131fdc7fd8c16f/easygui-0.98.3-py2.py3-none-any.whl (92 kB)
+Installing collected packages: easygui
+Successfully installed easygui-0.98.3
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>然后，在你的IDE中新建个<code>.py</code>文件，输入这段代码，如果出现了下面这幅图，就算成功啦！</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> easygui <span class="keyword">as</span> eg</span><br><span class="line">eg.msgbox(<span class="string">&quot;Hello World!&quot;</span>)</span><br></pre></td></tr></table></figure>
-
+<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">import</span> easygui <span class="token keyword">as</span> eg
+eg<span class="token punctuation">.</span>msgbox<span class="token punctuation">(</span><span class="token string">"Hello World!"</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 <p><img src="/img/2023-12-29_22-44-36.png"></p>
 <p>点掉下面的<code>OK</code>，窗口就会消失。</p>
 <p>如果有问题，请核实一下下面的东西：</p>
@@ -499,14 +505,17 @@
 <p>不要用自带的IDLE！！！</p>
 <p>如果没问题，那么，恭喜你，再次打开了新世界的大门！</p>
 <p>接下来，就是对它的一顿研究了</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">eg.msgbox(msg=<span class="string">&quot;A + B Problem&quot;</span>, title=<span class="string">&quot;Leo2011&quot;</span>, ok_button=<span class="string">&quot;I AK IOI!&quot;</span>)</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-python"><code class="language-python">eg<span class="token punctuation">.</span>msgbox<span class="token punctuation">(</span>msg<span class="token operator">=</span><span class="token string">"A + B Problem"</span><span class="token punctuation">,</span> title<span class="token operator">=</span><span class="token string">"Leo2011"</span><span class="token punctuation">,</span> ok_button<span class="token operator">=</span><span class="token string">"I AK IOI!"</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>不出所料的话，应该是这样的：<br><img src="/img/2023-12-29_22-50-26.png"></p>
 <p>看，我们用<code>title=&quot;Leo2011&quot;</code>把标题改成了”Leo2011”，用<code>ok_button=&quot;I AK IOI!&quot;</code>把下面的按钮改成了”I AK IOI!”。</p>
 <p>这就msgbox能干的事了。</p>
 <p>下面，咱来看另外的几个家伙：</p>
 <ul>
 <li><p>enterbox</p>
-  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">s = eg.enterbox(<span class="string">&quot;欢迎您随便输入一堆东西&quot;</span>, title=tit)</span><br><span class="line">eg.msgbox(msg=<span class="string">&quot;您刚才输入了\n&quot;</span>+s, title=tit, ok_button=<span class="string">&quot;我知道了。&quot;</span>)</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-python"><code class="language-python">s <span class="token operator">=</span> eg<span class="token punctuation">.</span>enterbox<span class="token punctuation">(</span><span class="token string">"欢迎您随便输入一堆东西"</span><span class="token punctuation">,</span> title<span class="token operator">=</span>tit<span class="token punctuation">)</span>
+eg<span class="token punctuation">.</span>msgbox<span class="token punctuation">(</span>msg<span class="token operator">=</span><span class="token string">"您刚才输入了\n"</span><span class="token operator">+</span>s<span class="token punctuation">,</span> title<span class="token operator">=</span>tit<span class="token punctuation">,</span> ok_button<span class="token operator">=</span><span class="token string">"我知道了。"</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 <p>  能弹出这么个框：<br>  <img src="/img/2023-12-29_22-59-52.png"></p>
 </li>
 </ul>
@@ -522,14 +531,17 @@
 <p>  有一堆passwordbox在一个窗口里。</p>
 </li>
 <li><p>ccbox</p>
-  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">s = eg.ccbox(<span class="string">&quot;欢迎您随便选东西&quot;</span>, title=tit, choices=[<span class="string">&quot;[D]ebug&quot;</span>, <span class="string">&quot;C[t]j&quot;</span>])</span><br><span class="line">eg.msgbox(msg=<span class="string">&quot;您刚才输入了\n&quot;</span>+<span class="built_in">str</span>(s), title=tit, ok_button=<span class="string">&quot;我知道了。&quot;</span>)</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-python"><code class="language-python">s <span class="token operator">=</span> eg<span class="token punctuation">.</span>ccbox<span class="token punctuation">(</span><span class="token string">"欢迎您随便选东西"</span><span class="token punctuation">,</span> title<span class="token operator">=</span>tit<span class="token punctuation">,</span> choices<span class="token operator">=</span><span class="token punctuation">[</span><span class="token string">"[D]ebug"</span><span class="token punctuation">,</span> <span class="token string">"C[t]j"</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+eg<span class="token punctuation">.</span>msgbox<span class="token punctuation">(</span>msg<span class="token operator">=</span><span class="token string">"您刚才输入了\n"</span><span class="token operator">+</span>str<span class="token punctuation">(</span>s<span class="token punctuation">)</span><span class="token punctuation">,</span> title<span class="token operator">=</span>tit<span class="token punctuation">,</span> ok_button<span class="token operator">=</span><span class="token string">"我知道了。"</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 <p>  []里的字符相当于快捷键，你按下这个键就会认为你选了这个选项。ccbox只能有两个选项（否则解释器会炸）。</p>
 </li>
 <li><p>boolbox&#x2F;ynbox</p>
 <p>  同ccbox，不讲。</p>
 </li>
 <li><p>choicebox</p>
- <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">s = eg.choicebox(<span class="string">&quot;欢迎您随便选东西&quot;</span>, title=tit, choices=[<span class="string">&quot;Debug&quot;</span>, <span class="string">&quot;Ctj&quot;</span>, <span class="string">&quot;AC!&quot;</span>])</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-python"><code class="language-python">s <span class="token operator">=</span> eg<span class="token punctuation">.</span>choicebox<span class="token punctuation">(</span><span class="token string">"欢迎您随便选东西"</span><span class="token punctuation">,</span> title<span class="token operator">=</span>tit<span class="token punctuation">,</span> choices<span class="token operator">=</span><span class="token punctuation">[</span><span class="token string">"Debug"</span><span class="token punctuation">,</span> <span class="token string">"Ctj"</span><span class="token punctuation">,</span> <span class="token string">"AC!"</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p> UI会变成这样：<br> <img src="/img/2023-12-30_17-13-55.png"><br> 刚才的快捷键就只能是首字母了。choicebox可以有多个选项，但只能选一个（默认是第一个）。</p>
 </li>
 <li><p>buttonbox</p>
@@ -542,7 +554,8 @@
 <p>  <del>有一堆choicebox在一个窗口里？</del><br>  这次easygui不按套路出牌了，界面长这样：<br>  <img src="/img/2023-12-30_17-19-34.png"><br>  <code>Select All</code>就是全选，<code>Clear All</code>就是全不选，剩下两个老朋友了。<br>  返回值是这样的<code>[&#39;Debug&#39;, &#39;AC!&#39;]</code>。它会按你选中的选项在选项列表里的相对位置排成一个新列表。</p>
 </li>
 <li><p>integerbox</p>
-  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">s = eg.integerbox(msg=<span class="string">&quot;请输入一个数&quot;</span>, title=tit, default=<span class="number">5</span>, lowerbound=<span class="number">3</span>, upperbound=<span class="number">7</span>)</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-python"><code class="language-python">s <span class="token operator">=</span> eg<span class="token punctuation">.</span>integerbox<span class="token punctuation">(</span>msg<span class="token operator">=</span><span class="token string">"请输入一个数"</span><span class="token punctuation">,</span> title<span class="token operator">=</span>tit<span class="token punctuation">,</span> default<span class="token operator">=</span><span class="token number">5</span><span class="token punctuation">,</span> lowerbound<span class="token operator">=</span><span class="token number">3</span><span class="token punctuation">,</span> upperbound<span class="token operator">=</span><span class="token number">7</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>  指定你输入一个在<code>lowerbound</code>和<code>upperbound</code>之间的整数，默认为<code>default</code>。如果不在区间内了会让你重新输入。</p>
 </li>
 <li><p>egdemo</p>
@@ -554,8 +567,10 @@
 <p>Tips:实测Python turtle的不同版本在不同平台上可能会有所不同，本文以Windows 11 + Python 3.12.1为准。</p>
 </blockquote>
 <p>turtle库（人送绰号“海龟绘图”）是Python的内置库，安装了Python就可以直接用。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> turtle <span class="keyword">as</span> t</span><br><span class="line">t.write(<span class="string">&quot;Hello World!&quot;</span>)</span><br><span class="line">t.done()  <span class="comment"># 这一行必须要有，否则你是看不见你的效果的</span></span><br></pre></td></tr></table></figure>
-
+<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">import</span> turtle <span class="token keyword">as</span> t
+t<span class="token punctuation">.</span>write<span class="token punctuation">(</span><span class="token string">"Hello World!"</span><span class="token punctuation">)</span>
+t<span class="token punctuation">.</span>done<span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token comment" spellcheck="true"># 这一行必须要有，否则你是看不见你的效果的</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 <p>这就是你的第一个turtle程序了！</p>
 <p>下面，还是来介绍几个基本函数的使用：</p>
 <ul>
@@ -588,7 +603,11 @@
 </li>
 <li><p>pendown&#x2F;pd&#x2F;down</p>
 <p>  落下笔。一般可以这么使：</p>
-  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">move</span>(<span class="params">x, y</span>):</span><br><span class="line">    t.pu()</span><br><span class="line">    t.goto(x, y)</span><br><span class="line">    t.pd()</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">move</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> y<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    t<span class="token punctuation">.</span>pu<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    t<span class="token punctuation">.</span>goto<span class="token punctuation">(</span>x<span class="token punctuation">,</span> y<span class="token punctuation">)</span>
+    t<span class="token punctuation">.</span>pd<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 </li>
 <li><p>speed</p>
 <p>  设置速度的，有一个参数 $v$。你在用的时候，应保证 $0 \le v \le 10$。一般情况下，$v$ 是个整数，且越大代表越快，但也有例外：</p>
@@ -627,7 +646,11 @@
 <li><p>pencolor</p>
 <p>  可以没有参数，此时返回画笔颜色（默认是黑色 ），也可以给出参数，此时是设置颜色。</p>
 <p>  有以下几种设置模式：</p>
-  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">t.pencolor(<span class="string">&quot;red&quot;</span>)  <span class="comment"># 设置为红色</span></span><br><span class="line">t.pencolor(<span class="string">&quot;#abcde&quot;</span>)  <span class="comment"># 设置为十六进制编码为“abcde”的颜色</span></span><br><span class="line">t.pencolor((<span class="number">1</span>, <span class="number">255</span>, <span class="number">255</span>))  <span class="comment"># 设置为青色。三个数值表示RGB编码</span></span><br><span class="line">t.pencolor(<span class="number">1</span>, <span class="number">255</span>, <span class="number">255</span>)  <span class="comment"># 同上，只不过上面传过去的是一个元组。</span></span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-python"><code class="language-python">t<span class="token punctuation">.</span>pencolor<span class="token punctuation">(</span><span class="token string">"red"</span><span class="token punctuation">)</span>  <span class="token comment" spellcheck="true"># 设置为红色</span>
+t<span class="token punctuation">.</span>pencolor<span class="token punctuation">(</span><span class="token string">"#abcde"</span><span class="token punctuation">)</span>  # 设置为十六进制编码为“abcde”的颜色
+t<span class="token punctuation">.</span>pencolor<span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">255</span><span class="token punctuation">,</span> <span class="token number">255</span><span class="token punctuation">)</span><span class="token punctuation">)</span>  <span class="token comment" spellcheck="true"># 设置为青色。三个数值表示RGB编码</span>
+t<span class="token punctuation">.</span>pencolor<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">255</span><span class="token punctuation">,</span> <span class="token number">255</span><span class="token punctuation">)</span>  <span class="token comment" spellcheck="true"># 同上，只不过上面传过去的是一个元组。</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 </li>
 <li><p>fiilcolor</p>
 <p>  填充颜色，同上。</p>
@@ -1239,7 +1262,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">7.2k</span>&nbsp;字
+                class="white-color">7k</span>&nbsp;字
             
             
             

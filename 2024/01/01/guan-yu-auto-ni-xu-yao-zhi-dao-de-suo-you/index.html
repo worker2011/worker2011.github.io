@@ -451,7 +451,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    454
+                    452
                 </div>
                 
 
@@ -491,8 +491,10 @@
 <p><code>auto iter = data.begin();</code></p>
 <p>你以为这就结束了？不，还有！</p>
 <p>咱还能这么玩：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">auto</span> i : data) &#123;  <span class="comment">// 不用auto写也行，只不过auto较简便</span></span><br><span class="line">    <span class="comment">// 正常写，i是普通的迭代器</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">auto</span> i <span class="token operator">:</span> data<span class="token punctuation">)</span> <span class="token punctuation">{</span>  <span class="token comment" spellcheck="true">// 不用auto写也行，只不过auto较简便</span>
+    <span class="token comment" spellcheck="true">// 正常写，i是普通的迭代器</span>
+<span class="token punctuation">}</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 <p>不过需要注意几点：</p>
 <ol>
 <li><p>auto 和 for 里用冒号的写法和 to_string 函数一样，都是C 艹 11的新特性，在Dev-C 艹中需要单独设置（否则直接炸裂）</p>
@@ -1073,7 +1075,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">7.2k</span>&nbsp;字
+                class="white-color">7k</span>&nbsp;字
             
             
             

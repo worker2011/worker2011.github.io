@@ -488,8 +488,11 @@
 <p>意思即：如果a &lt; b，那么mn &#x3D; a，否则mn &#x3D; b</p>
 <p>那不就是if…else吗！</p>
 <p>不，如果你用if…else，那么代码会变成这样：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (a &lt; b)</span><br><span class="line">	mn = a;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">	mn = b;</span><br></pre></td></tr></table></figure>
-
+<pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token keyword">if</span> <span class="token punctuation">(</span>a <span class="token operator">&lt;</span> b<span class="token punctuation">)</span>
+    mn <span class="token operator">=</span> a<span class="token punctuation">;</span>
+<span class="token keyword">else</span>
+    mn <span class="token operator">=</span> b<span class="token punctuation">;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 <p>不仅变长了，而且，三目运算符是个运算符，它可以被塞进别的语句（写 DFS 或 DP 的时候可能会用到）里面！</p>
 <p>最后，说一下性能排名。三目运算符作为运算，速度最快，但也有很大的限制（必须要有1个变量给赋值）。而switch和if…else不相上下，但是3个以上语句时，switch不仅更方便，还更快哟。</p>
 <p>但if…else也不是一无是处，像浮点数这种你还真得用if…else是不？</p>
@@ -1051,7 +1054,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">7.2k</span>&nbsp;字
+                class="white-color">7k</span>&nbsp;字
             
             
             
