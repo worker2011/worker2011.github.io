@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="分类: “你需要知道的所有”系列, C, C++, CSS, Python">
+    <meta name="keywords" content="contact, C, C++, CSS, Python">
     <meta name="description" content="一个蒟蒻的OI日记">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>分类: “你需要知道的所有”系列 | Leo2011的博客</title>
+    <title>contact | Leo2011的博客</title>
     <link rel="icon" type="image/jpeg" href="/img/g.jpg">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -341,298 +341,86 @@
 </div>
 
 <main class="content">
-
-    
-
-<div id="category-cloud" class="container chip-container">
-    <div class="card">
-        <div class="card-content">
-            <div class="tag-title center-align">
-                <i class="fas fa-bookmark"></i>&nbsp;&nbsp;文章分类
+    <div id="contact" class="container chip-container">
+        <div class="card">
+            <div class="card-content">
+                <div class="tag-title center-align">
+                    <i class="fas fa-comments"></i>&nbsp;&nbsp;留言板
+                </div>
+                <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
             </div>
-            <div class="tag-chips">
+        </div>
+        <div class="card">
+            
+
+            
+
+            
+
+            
+
+            
+			
+			
+
+            
                 
-                
-                
-                <a href="/categories/%E2%80%9C%E4%BD%A0%E9%9C%80%E8%A6%81%E7%9F%A5%E9%81%93%E7%9A%84%E6%89%80%E6%9C%89%E2%80%9D%E7%B3%BB%E5%88%97/" title="“你需要知道的所有”系列: 5">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-active "
-                            style="background-color: #F9EBEA;">“你需要知道的所有”系列
-                        <span class="tag-length">5</span>
-                    </span>
-                </a>
-                
-                
-            </div>
+    <div id="SOHUCS"></div>
+    <script type="text/javascript">
+        window.onload = function () {
+            var loadChangYan = function () {
+                var appid = 'cyx25Oko1';
+                var conf = 'd787226d979df1c87f939ae96e941f4f';
+                var width = window.innerWidth || document.documentElement.clientWidth;
+                if (width < 960) {
+                    var head = document.getElementsByTagName('head')[0] || document.head || document.documentElement;
+                    var script = document.createElement('script');
+                    script.type = 'text/javascript';
+                    script.charset = 'utf-8';
+                    script.id = 'changyan_mobile_js';
+                    script.src = 'https://cy-cdn.kuaizhan.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid +
+                        '&conf=' + conf;
+                    head.appendChild(script);
+                } else {
+                    var loadJs = function (d, a) {
+                        var c = document.getElementsByTagName("head")[0] || document.head || document.documentElement;
+                        var b = document.createElement("script");
+                        b.setAttribute("type", "text/javascript");
+                        b.setAttribute("charset", "UTF-8");
+                        b.setAttribute("src", d);
+                        if (typeof a === "function") {
+                            if (window.attachEvent) {
+                                b.onreadystatechange = function () {
+                                    var e = b.readyState;
+                                    if (e === "loaded" || e === "complete") {
+                                        b.onreadystatechange = null;
+                                        a()
+                                    }
+                                }
+                            } else {
+                                b.onload = a
+                            }
+                        }
+                        c.appendChild(b)
+                    };
+                    loadJs("https://cy-cdn.kuaizhan.com/upload/changyan.js", function () {
+                        window.changyan.api.config({
+                            appid: appid,
+                            conf: conf
+                        })
+                    });
+                }
+            }
+
+            loadChangYan();
+        }
+    </script>
+
+            
+
         </div>
     </div>
-</div>
-
-
-    
-
-    <article id="articles" class="container articles">
-        <div class="row tags-posts">
-            
-            <div class="article tag-post col s12 m6 l4" data-aos="zoom-in">
-                <div class="card">
-                    <a href="/2024/01/01/guan-yu-san-mu-yun-suan-fu-ni-xu-yao-zhi-dao-de-suo-you/">
-                        <div class="card-image tag-image">
-                            
-                            
-                            <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="关于三目运算符，你需要知道的所有">
-                            
-                            <span class="card-title">关于三目运算符，你需要知道的所有</span>
-                        </div>
-                    </a>
-                    <div class="card-content article-content">
-                        <div class="summary block-with-text">
-                            
-                                if…else语句常写吧？
-But，你会不会觉得：
-写if…else？ 烦死了！
-写switch？就俩我写啥……
-于是，又一个C艹利器——三目运算符诞生啦！
-先上代码：
-mn = (a &lt; b) ? a : b; /* 其中，? :为
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2024-01-01
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fas fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/%E2%80%9C%E4%BD%A0%E9%9C%80%E8%A6%81%E7%9F%A5%E9%81%93%E7%9A%84%E6%89%80%E6%9C%89%E2%80%9D%E7%B3%BB%E5%88%97/" class="post-category">
-                                    “你需要知道的所有”系列
-                                </a>
-                                
-                                
-                            </span>
-                        </div>
-                    </div>
-
-                    
-                    <div class="card-action article-tags">
-                        
-                        <a href="/%E6%A0%87%E7%AD%BE/C%E8%89%B9/">
-                            <span class="chip bg-color">C艹</span>
-                        </a>
-                        
-                    </div>
-                    
-                </div>
-            </div>
-            
-            <div class="article tag-post col s12 m6 l4" data-aos="zoom-in">
-                <div class="card">
-                    <a href="/2024/01/01/guan-yu-int128-he-short-ni-xu-yao-zhi-dao-de-suo-you/">
-                        <div class="card-image tag-image">
-                            
-                            
-                            <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="关于__int128和short，你需要知道的所有">
-                            
-                            <span class="card-title">关于__int128和short，你需要知道的所有</span>
-                        </div>
-                    </a>
-                    <div class="card-content article-content">
-                        <div class="summary block-with-text">
-                            
-                                高精度大家都认识吧？
-但是，高精度这货是真滴长……
-于是，人们又发明出了一个东西 __int128！
-__int128（注意前面有2个下划线）嘛，把特点写脸上了：占用128位，也就是16个字节。储存范围，自然也是占用64位的long lon
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2024-01-01
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fas fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/%E2%80%9C%E4%BD%A0%E9%9C%80%E8%A6%81%E7%9F%A5%E9%81%93%E7%9A%84%E6%89%80%E6%9C%89%E2%80%9D%E7%B3%BB%E5%88%97/" class="post-category">
-                                    “你需要知道的所有”系列
-                                </a>
-                                
-                                
-                            </span>
-                        </div>
-                    </div>
-
-                    
-                    <div class="card-action article-tags">
-                        
-                        <a href="/%E6%A0%87%E7%AD%BE/C%E8%89%B9/">
-                            <span class="chip bg-color">C艹</span>
-                        </a>
-                        
-                    </div>
-                    
-                </div>
-            </div>
-            
-            <div class="article tag-post col s12 m6 l4" data-aos="zoom-in">
-                <div class="card">
-                    <a href="/2024/01/01/guan-yu-auto-ni-xu-yao-zhi-dao-de-suo-you/">
-                        <div class="card-image tag-image">
-                            
-                            
-                            <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="关于auto，你须要知道的所有">
-                            
-                            <span class="card-title">关于auto，你须要知道的所有</span>
-                        </div>
-                    </a>
-                    <div class="card-content article-content">
-                        <div class="summary block-with-text">
-                            
-                                话说咱写 STL 的时候经常会要写迭代器，大概是这么一大串东西：
-vector&lt;int&gt;::iterator iter = data.begin(); 
-好烦啊！而且，iterator 这个单词容易写错（CE：走好不送）……
-于
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2024-01-01
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fas fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/%E2%80%9C%E4%BD%A0%E9%9C%80%E8%A6%81%E7%9F%A5%E9%81%93%E7%9A%84%E6%89%80%E6%9C%89%E2%80%9D%E7%B3%BB%E5%88%97/" class="post-category">
-                                    “你需要知道的所有”系列
-                                </a>
-                                
-                                
-                            </span>
-                        </div>
-                    </div>
-
-                    
-                    <div class="card-action article-tags">
-                        
-                        <a href="/%E6%A0%87%E7%AD%BE/C%E8%89%B9/">
-                            <span class="chip bg-color">C艹</span>
-                        </a>
-                        
-                    </div>
-                    
-                </div>
-            </div>
-            
-            <div class="article tag-post col s12 m6 l4" data-aos="zoom-in">
-                <div class="card">
-                    <a href="/2024/01/01/guan-yu-switch-ni-xu-yao-zhi-dao-de-suo-you/">
-                        <div class="card-image tag-image">
-                            
-                            
-                            <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="关于switch，你须要知道的所有">
-                            
-                            <span class="card-title">关于switch，你须要知道的所有</span>
-                        </div>
-                    </a>
-                    <div class="card-content article-content">
-                        <div class="summary block-with-text">
-                            
-                                话说写代码时要写 1 吨 if 的题你们有木有遇到？
-比如这道题。6 个操作要写 6 个 if！那么你的代码可能会成这德行：
-if (op == 1) {
-    // 一顿操作猛如虎
-} else {
-    if (op == 2) {
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2024-01-01
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fas fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/%E2%80%9C%E4%BD%A0%E9%9C%80%E8%A6%81%E7%9F%A5%E9%81%93%E7%9A%84%E6%89%80%E6%9C%89%E2%80%9D%E7%B3%BB%E5%88%97/" class="post-category">
-                                    “你需要知道的所有”系列
-                                </a>
-                                
-                                
-                            </span>
-                        </div>
-                    </div>
-
-                    
-                    <div class="card-action article-tags">
-                        
-                        <a href="/%E6%A0%87%E7%AD%BE/C%E8%89%B9/">
-                            <span class="chip bg-color">C艹</span>
-                        </a>
-                        
-                    </div>
-                    
-                </div>
-            </div>
-            
-            <div class="article tag-post col s12 m6 l4" data-aos="zoom-in">
-                <div class="card">
-                    <a href="/2024/01/01/guan-yu-lei-ni-xu-yao-zhi-dao-de-suo-you/">
-                        <div class="card-image tag-image">
-                            
-                            
-                            <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="关于类，你须要知道的所有">
-                            
-                            <span class="card-title">关于类，你须要知道的所有</span>
-                        </div>
-                    </a>
-                    <div class="card-content article-content">
-                        <div class="summary block-with-text">
-                            
-                                众所周知，Python是一种面向对象的语言，而C不是。
-为啥呢？
-因为Python引入了Class!
-那都说C++也是面向对象的语言，C++有Class吗？
-有！跟结构体差不多！
-例如，下面这段代码：
-struct OIer{
-    in
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2024-01-01
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fas fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/%E2%80%9C%E4%BD%A0%E9%9C%80%E8%A6%81%E7%9F%A5%E9%81%93%E7%9A%84%E6%89%80%E6%9C%89%E2%80%9D%E7%B3%BB%E5%88%97/" class="post-category">
-                                    “你需要知道的所有”系列
-                                </a>
-                                
-                                
-                            </span>
-                        </div>
-                    </div>
-
-                    
-                    <div class="card-action article-tags">
-                        
-                        <a href="/%E6%A0%87%E7%AD%BE/C%E8%89%B9/">
-                            <span class="chip bg-color">C艹</span>
-                        </a>
-                        
-                    </div>
-                    
-                </div>
-            </div>
-            
-        </div>
-    </article>
 </main>
-
-
 
 
     <footer class="page-footer bg-color">
