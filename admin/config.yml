@@ -13,7 +13,7 @@ publish_mode: editorial_workflow
 
 # This line should *not* be indented
 media_folder: "/source/img" # Media files will be stored in the repo under images/uploads
-public_folder: "/img"
+public_folder: "/public"
 
 # A list of collections the CMS should be able to edit
 collections:
@@ -34,4 +34,4 @@ collections:
       - {label: "Body", name: "body", widget: "markdown", required: false}
       - {label: "Comments", name: "comments", widget: "boolean", default: true, required: false}
       - {label: "Top", name: "top", widget: "number", value_type: "int", default: 2, required: false}
-      - {label: "MathJax", name: "mathjax", widget: "boolean", 默认: false, required: false}
+      - {label: "MathJax", name: "mathjax", widget: "boolean", default: false, required: false}
