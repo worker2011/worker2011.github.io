@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="关于类，你须要知道的所有, C, C++, CSS, Python">
+    <meta name="keywords" content="hexo-sliding-spoiler演示, C, C++, CSS, Python">
     <meta name="description" content="一个蒟蒻的OI日记">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>关于类，你须要知道的所有 | Leo2011的博客</title>
+    <title>hexo-sliding-spoiler演示 | Leo2011的博客</title>
     <link rel="icon" type="image/jpeg" href="/img/g.jpg">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -315,12 +315,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/21.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/16.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">关于类，你须要知道的所有</h1>
+                    <h1 class="description center-align post-title">hexo-sliding-spoiler演示</h1>
                 </div>
             </div>
         </div>
@@ -436,23 +436,14 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/%E6%A0%87%E7%AD%BE/C%E8%89%B9/">
-                                <span class="chip bg-color">C艹</span>
+                            <a href="/%E6%A0%87%E7%AD%BE/%E6%B5%8B%E8%AF%95/">
+                                <span class="chip bg-color">测试</span>
                             </a>
                         
                     </div>
                     
                 </div>
                 <div class="col s5 right-align">
-                    
-                    <div class="post-cate">
-                        <i class="fas fa-bookmark fa-fw icon-category"></i>
-                        
-                            <a href="/categories/%E2%80%9C%E4%BD%A0%E9%9C%80%E8%A6%81%E7%9F%A5%E9%81%93%E7%9A%84%E6%89%80%E6%9C%89%E2%80%9D%E7%B3%BB%E5%88%97/" class="post-category">
-                                “你需要知道的所有”系列
-                            </a>
-                        
-                    </div>
                     
                 </div>
             </div>
@@ -461,28 +452,28 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2024-01-01
+                    2024-02-24
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2024-02-16
+                    2024-02-24
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.7k
+                    76
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    6 分
+                    1 分
                 </div>
                 
 
@@ -502,256 +493,51 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>众所周知，Python是一种面向对象的语言，而C不是。</p>
-<p>为啥呢？</p>
-<p>因为Python引入了Class!</p>
-<p>那都说C++也是面向对象的语言，C++有Class吗？</p>
-<p>有！跟结构体差不多！</p>
-<p>例如，下面这段代码：</p>
-<pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token keyword">struct</span> OIer<span class="token punctuation">{</span>
-    <span class="token keyword">int</span> age<span class="token punctuation">;</span>
-    string name<span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span class="token punctuation">;</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-<p>如果改用Class，就是这个样子：</p>
-<pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token keyword">class</span> <span class="token class-name">OIer</span><span class="token punctuation">{</span>
-    <span class="token keyword">public</span><span class="token operator">:</span>
-        <span class="token keyword">int</span> age<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 这里的内容我们叫属性</span>
-        string name<span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span class="token punctuation">;</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>咱来解释一下有啥变化。其实就一个：Public（除了这点，Class和Struct没啥区别）。这是因为每一种面向对象语言都有要对其成员进行保护的需求。Class这货默认是Private（你可以理解为要单独写访问函数才能访问，否则 <strong>CE</strong>，不过写工程的时候为保证数据安全，比较常用），要在前面加上<code>public:</code>才能正常访问。</p>
-<p>访问函数咋写？</p>
-<p>写成这样就行：</p>
-<pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token keyword">class</span> <span class="token class-name">OIer</span><span class="token punctuation">{</span>
-    <span class="token keyword">int</span> age<span class="token punctuation">;</span>
-    string name<span class="token punctuation">;</span>
-    <span class="token keyword">public</span><span class="token operator">:</span>
-        <span class="token keyword">int</span> <span class="token function">getAge</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            <span class="token keyword">return</span> age<span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-        string <span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            <span class="token keyword">return</span> name<span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-        <span class="token keyword">void</span> <span class="token function">haveAge</span><span class="token punctuation">(</span><span class="token keyword">int</span> a<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            age <span class="token operator">=</span> a<span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-        <span class="token keyword">void</span> <span class="token function">haveName</span><span class="token punctuation">(</span>string s<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            name <span class="token operator">=</span> s<span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>Leo2011<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 在这里，Leo2011就是一个对象</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>好吧，挺长的。因此我们一般在数据简单（比如做题）的情况下用结构体，复杂的情况下（比如写能赚$的程序的时候）用类。</p>
-<p>C++对Private是限制的非常死的，不用访问函数，外面，乃至包括他的子类，都无法访问（这点要夸一下C++，Python中设计了一个“强制访问”，可以越过这项检查，C++相比之下要安全一点），试图访问private里的东西就跟改变一个前面加了const修饰的常量一样，会CE！</p>
-<p>那啥是子类啊？</p>
-<p>举个栗子！</p>
-<p>我们，既属于”OIer”，又属于”Student”，显然OIer都是学生（不然那叫教练），所以”OIer”就是”Student”的子类。</p>
-<pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token keyword">class</span> <span class="token class-name">Student</span> <span class="token punctuation">{</span>
-    <span class="token keyword">protected</span><span class="token operator">:</span>
-        <span class="token keyword">void</span> <span class="token function">win</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"I AK IELTS\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
+                <div class="spoiler collapsed">
+    <div class="spoiler-title">
+        可以折叠词
+    </div>
+    <div class="spoiler-content">
+        <p>content</p>
 
-<span class="token keyword">class</span> <span class="token class-name">OIer</span> <span class="token keyword">public</span><span class="token operator">:</span> Student<span class="token punctuation">{</span> <span class="token comment" spellcheck="true">// 这里是public继承</span>
-    <span class="token comment" spellcheck="true">/*
-    我们一般管OIer叫派生类或子类，Student叫基类或父类
-    */</span>
-    <span class="token keyword">int</span> age<span class="token punctuation">;</span>
-    string name<span class="token punctuation">;</span>
-    <span class="token keyword">public</span><span class="token operator">:</span>
-        <span class="token keyword">int</span> <span class="token function">getAge</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            <span class="token keyword">return</span> age<span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-        string <span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            <span class="token keyword">return</span> name<span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-        <span class="token keyword">void</span> <span class="token function">haveAge</span><span class="token punctuation">(</span><span class="token keyword">int</span> a<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            age <span class="token operator">=</span> a<span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-        <span class="token keyword">void</span> <span class="token function">haveName</span><span class="token punctuation">(</span>string s<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            name <span class="token operator">=</span> s<span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-<span class="token punctuation">}</span><span class="token punctuation">;</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p><del>TMD</del> 这Protected又是个啥啊</p>
-<p>这个比较特殊，只能在子类和基类访问。</p>
-<p>具体权限如下表（public继承），请务必要分清：</p>
-<table>
-<thead>
-<tr>
-<th align="center">类型/位置</th>
-<th align="center">基类</th>
-<th align="center">派生类</th>
-<th align="center">外部</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">Public</td>
-<td align="center">√</td>
-<td align="center">√</td>
-<td align="center">√</td>
-</tr>
-<tr>
-<td align="center">Protected</td>
-<td align="center">√</td>
-<td align="center">√</td>
-<td align="center">×</td>
-</tr>
-<tr>
-<td align="center">Private</td>
-<td align="center">√</td>
-<td align="center">×</td>
-<td align="center">×</td>
-</tr>
-</tbody></table>
-<p>protected/private继承会把public和protected在子类中变为对应的级别。</p>
-<p>接下来！我要讲个很重要的东西，那就是——<strong>类的多态</strong></p>
-<p>啥叫多态呢？看这段代码：</p>
-<pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token keyword">class</span> <span class="token class-name">Student</span> <span class="token punctuation">{</span>
-    <span class="token keyword">protected</span><span class="token operator">:</span>
-        <span class="token keyword">void</span> <span class="token function">win</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"I AK IELTS\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-<span class="token punctuation">}</span><span class="token punctuation">;</span>
-
-<span class="token keyword">class</span> <span class="token class-name">OIer</span> <span class="token keyword">public</span><span class="token operator">:</span> Student<span class="token punctuation">{</span>
-    <span class="token keyword">int</span> age<span class="token punctuation">;</span>
-    string name<span class="token punctuation">;</span>
-    <span class="token keyword">public</span><span class="token operator">:</span>
-        <span class="token keyword">void</span> <span class="token function">win</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>  <span class="token comment" spellcheck="true">// 这个地方也叫重写win函数，重写后的函数名字和参数都是相同的，所以这里既有多态也有重写。不同就没有重写了。当然，父类中用private声明的东西访问都访问不了，重写是不可能滴。</span>
-            <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"| /-\|&lt; |o|!!!\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-        <span class="token keyword">int</span> <span class="token function">getAge</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            <span class="token keyword">return</span> age<span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-        string <span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            <span class="token keyword">return</span> name<span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-        <span class="token keyword">void</span> <span class="token function">haveAge</span><span class="token punctuation">(</span><span class="token keyword">int</span> a<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            age <span class="token operator">=</span> a<span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-        <span class="token keyword">void</span> <span class="token function">haveName</span><span class="token punctuation">(</span>string s<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            name <span class="token operator">=</span> s<span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-<span class="token punctuation">}</span><span class="token punctuation">;</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>这里，OIer 类和 Student 类都有一个 win 函数，但它们的内容是不同的。这就是多态。</p>
-<p>还有另一个东西：重载</p>
-<p>一般是这德行：</p>
-<pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token keyword">bool</span> <span class="token keyword">operator</span><span class="token operator">&lt;</span> <span class="token punctuation">(</span><span class="token keyword">const</span> OIer <span class="token operator">&amp;</span>cmp<span class="token punctuation">)</span> <span class="token keyword">const</span> <span class="token punctuation">{</span>  <span class="token comment" spellcheck="true">// OIer是类的名称，其它照抄就好</span>
-    <span class="token keyword">return</span> a <span class="token operator">&lt;</span> cmp<span class="token punctuation">.</span> a<span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">// sort的比较函数咋写的你就咋写</span>
-    <span class="token comment" spellcheck="true">/*return this->a &lt; cmp.a*/</span>
-<span class="token punctuation">}</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-<p>其中，”this-&gt;”是一个指向自己的特殊指针。不过在类当中，默认都是自己，写和不写没啥区别。</p>
-<p>!&gt; <strong>请注意，以下运算符不可重载</strong>：</p>
-<ul>
-<li><code>.</code> ：成员访问运算符</li>
-<li><code> .*</code>, <code>-&gt;*</code>：成员指针访问运算符</li>
-<li><code>::</code>：域运算符</li>
-<li><code>sizeof</code>：长度运算符</li>
-<li><code> ?</code>：条件运算符</li>
-<li><code>#</code>： 预处理符号</li>
-</ul>
-<p>!&gt; <strong>请注意，不允许通过重载定义新的运算符</strong></p>
-<p>这种情况下，重载和多态的区别是，重载的内容来自 C++，多态的内容来自父类。</p>
-<p>不过还有一种函数重载，如下：</p>
-<pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token keyword">class</span> <span class="token class-name">printData</span> <span class="token punctuation">{</span>
-   <span class="token keyword">public</span><span class="token operator">:</span>
-      <span class="token keyword">void</span> <span class="token function">print</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        cout <span class="token operator">&lt;&lt;</span> <span class="token string">"整数为: "</span> <span class="token operator">&lt;&lt;</span> i <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
-      <span class="token punctuation">}</span>
- 
-      <span class="token keyword">void</span> <span class="token function">print</span><span class="token punctuation">(</span><span class="token keyword">double</span>  f<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        cout <span class="token operator">&lt;&lt;</span> <span class="token string">"浮点数为: "</span> <span class="token operator">&lt;&lt;</span> f <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
-      <span class="token punctuation">}</span>
- 
-      <span class="token keyword">void</span> <span class="token function">print</span><span class="token punctuation">(</span><span class="token keyword">char</span> c<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        cout <span class="token operator">&lt;&lt;</span> <span class="token string">"字符串为: "</span> <span class="token operator">&lt;&lt;</span> c <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
-      <span class="token punctuation">}</span>
-<span class="token punctuation">}</span><span class="token punctuation">;</span>
+    </div>
+</div>
 
 
-<span class="token comment" spellcheck="true">/*假设现在在main函数内*/</span>
-printData pd<span class="token punctuation">;</span>
-<span class="token comment" spellcheck="true">// 输出整数</span>
-pd<span class="token punctuation">.</span><span class="token function">print</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token comment" spellcheck="true">// 输出浮点数</span>
-pd<span class="token punctuation">.</span><span class="token function">print</span><span class="token punctuation">(</span><span class="token number">500.263</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token comment" spellcheck="true">// 输出字符串</span>
-<span class="token keyword">char</span> c<span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">"Hello C++"</span><span class="token punctuation">;</span>
-pd<span class="token punctuation">.</span><span class="token function">print</span><span class="token punctuation">(</span>c<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>这里，对于不同的类型调用了不同的 print 函数，也就是函数重载了。但请注意，如果指示返回值不同，参数列表和名称相同也不构成重载。</p>
-<p>最后，讲一下构造函数。</p>
-<p>默认情况下，在你定义了对象但是又没有给它的属性赋值的时候，它的值就是全局变量时候的默认值。例如整数就是 0，字符串就是空，等等。</p>
-<p>但有的时候，我们想要有一种默认情况，就会用到构造函数。<strong>构造函数不负责构造对象，只负责初始化对象</strong></p>
-<p>咋写？</p>
-<p>写成这样就行：</p>
-<pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token comment" spellcheck="true">// 前面定义了 1 个包含 _year, _month 和 _day 的类 Date</span>
-<span class="token function">Date</span><span class="token punctuation">(</span><span class="token keyword">int</span> year<span class="token punctuation">,</span> <span class="token keyword">int</span> month<span class="token punctuation">,</span> <span class="token keyword">int</span> day<span class="token punctuation">)</span> <span class="token punctuation">{</span>  <span class="token comment" spellcheck="true">// 构造函数名=类名，注意构造函数和待会儿要讲的析构函数都不能有返回值定义，即不能写bool Date或void Date作为Date类的构造函数定义</span>
-        _year <span class="token operator">=</span> year<span class="token punctuation">;</span>
-        _month <span class="token operator">=</span> month<span class="token punctuation">;</span>
-        _day <span class="token operator">=</span> day<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    
-    
-<span class="token comment" spellcheck="true">/* main函数内 */</span>
-Date <span class="token function">d</span><span class="token punctuation">(</span><span class="token number">2020</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">27</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>需要注意的是，写了构造函数后不给构造函数传足够的参数会 CE， 比如你不能写 <code>Date d;</code> 或 <code>Date d(3, 3);</code>，但是你也可以重载，来应付多种情况。</p>
-<p>类似的还有析构函数，跟构造函数类似，只不过它是在对象被销毁（比如程序结束）的时候自动跑的，跟构造函数差不多，就不细讲了。唯一的区别就是析构函数在定义前要加一个<code>~</code></p>
-<p>下面是个大家伙：类的嵌套！</p>
-<p>啥意思？</p>
-<p>还是看Code:</p>
-<pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token keyword">class</span> <span class="token class-name">node</span><span class="token punctuation">{</span>
-    <span class="token keyword">public</span><span class="token operator">:</span>
-    <span class="token keyword">class</span> <span class="token class-name">place</span> <span class="token punctuation">{</span>
-        <span class="token keyword">int</span> x<span class="token punctuation">,</span> y<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>nodePlace<span class="token punctuation">;</span>
-    <span class="token keyword">int</span> w<span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span class="token punctuation">;</span>
-
-
-<span class="token comment" spellcheck="true">/* main函数内 */</span>
-node nde<span class="token punctuation">;</span>
-nde<span class="token operator">::</span>place <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">}</span><span class="token punctuation">;</span> 
-<span class="token comment" spellcheck="true">/* 与
-  nde::place.x = 3;
-  nde::place.y = 5;
- 等价 */</span>
-nde<span class="token operator">::</span>place<span class="token punctuation">.</span>w <span class="token operator">=</span> <span class="token number">7</span><span class="token punctuation">;</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>上面这段代码中，你在node类中新定义了一个place类，那么你就得先定义一个node类的对象（比如nde），然后通过<code>nde::place</code>的方式访问。</p>
-<p>upd：<del>好吧我又来更新了</del>，这次讲一讲typedef。</p>
-<p>用法也很简单:</p>
-<pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token keyword">typedef</span> <span class="token keyword">class</span> <span class="token class-name">Person</span> <span class="token punctuation">{</span>
-<span class="token comment" spellcheck="true">/*1t代码*/</span>
-<span class="token punctuation">}</span>mangaer<span class="token punctuation">;</span>
-
-<span class="token keyword">typedef</span> Person PM<span class="token punctuation">;</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>这段代码相当于：</p>
-<pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token keyword">class</span> <span class="token class-name">Person</span> <span class="token punctuation">{</span>
-<span class="token comment" spellcheck="true">/*代码*/</span>
-<span class="token punctuation">}</span><span class="token punctuation">;</span>
-
-<span class="token keyword">typedef</span> Person manager<span class="token punctuation">;</span>
-<span class="token keyword">typedef</span> Person PM<span class="token punctuation">;</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>此时，因为前面有<code>typedef</code>，因此后面本来负责对象定义的地方现在变成了起别名的地方。当然，你在后面继续起也没问题~</p>
-<p>就讲到这了，<del>好吧，这篇文章非常长</del>，初赛考到别懵13哈！</p>
-<hr>
-<p>参考资料（排名不分先后）：</p>
+<div class="spoiler collapsed">
+    <div class="spoiler-title">
+        也支持Markdown语法
+    </div>
+    <div class="spoiler-content">
+        <p><del>删除线</del></p>
+<p><strong>加粗</strong></p>
+<p><em>斜体</em></p>
+<h3 id="标题党也行"><a href="#标题党也行" class="headerlink" title="标题党也行"></a>标题党也行</h3><p>图片<img src="/img/g.jpg" alt="图片"><br>和<a target="_blank" rel="noopener" href="https://github.com/fletchto99/hexo-sliding-spoiler">链接</a>也都支持</p>
 <ol>
-<li><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_43831728/article/details/107788822">构造函数详解</a></p>
-</li>
-<li><p><a target="_blank" rel="noopener" href="https://www.runoob.com/cplusplus/cpp-tutorial.html">菜鸟教程——C++教程</a></p>
-</li>
+<li>有序序列</li>
 </ol>
-<p>蒟蒻所写，有问题欢迎私信。</p>
-<p>upd：感谢 <a target="_blank" rel="noopener" href="https://www.luogu.com.cn/user/770431">@GavinCQTD</a> 同志帮忙发现了个错别字的bug，已修复</p>
+<ul>
+<li>无序序列</li>
+</ul>
+<p>当然，最主要的还是代码块，这个也是支持高亮的（如果你有用）</p>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Hello World!"</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+    </div>
+</div>
+
+
+<div class="spoiler collapsed">
+    <div class="spoiler-title">
+        甚至是MathJax
+    </div>
+    <div class="spoiler-content">
+        <p>$2^{10} = 1024$</p>
+
+    </div>
+</div>
+
+
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
                 
             </div>
@@ -778,7 +564,7 @@ nde<span class="token operator">::</span>place<span class="token punctuation">.<
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://leo2011.pages.dev/2024/01/01/guan-yu-lei-ni-xu-yao-zhi-dao-de-suo-you/">https://leo2011.pages.dev/2024/01/01/guan-yu-lei-ni-xu-yao-zhi-dao-de-suo-you/</a>
+                    <a href="https://leo2011.pages.dev/2024/02/24/hexo-sliding-spoiler-yan-shi/">https://leo2011.pages.dev/2024/02/24/hexo-sliding-spoiler-yan-shi/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -816,8 +602,8 @@ nde<span class="token operator">::</span>place<span class="token punctuation">.<
                     
                         <div class="article-tag">
                             
-                                <a href="/%E6%A0%87%E7%AD%BE/C%E8%89%B9/">
-                                    <span class="chip bg-color">C艹</span>
+                                <a href="/%E6%A0%87%E7%AD%BE/%E6%B5%8B%E8%AF%95/">
+                                    <span class="chip bg-color">测试</span>
                                 </a>
                             
                         </div>
@@ -1040,17 +826,18 @@ nde<span class="token operator">::</span>place<span class="token punctuation">.<
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2024/01/01/guan-yu-switch-ni-xu-yao-zhi-dao-de-suo-you/">
+                <a href="/2024/02/24/hexo-sliding-spoiler-yan-shi/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="关于switch，你须要知道的所有">
+                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="hexo-sliding-spoiler演示">
                         
-                        <span class="card-title">关于switch，你须要知道的所有</span>
+                        <span class="card-title">hexo-sliding-spoiler演示</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -1060,26 +847,23 @@ nde<span class="token operator">::</span>place<span class="token punctuation">.<
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2024-01-01
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-02-24
+                            </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/%E2%80%9C%E4%BD%A0%E9%9C%80%E8%A6%81%E7%9F%A5%E9%81%93%E7%9A%84%E6%89%80%E6%9C%89%E2%80%9D%E7%B3%BB%E5%88%97/" class="post-category">
-                                    “你需要知道的所有”系列
-                                </a>
-                            
+                            <i class="fas fa-user fa-fw"></i>
+                            Leo2011
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/%E6%A0%87%E7%AD%BE/C%E8%89%B9/">
-                        <span class="chip bg-color">C艹</span>
+                    <a href="/%E6%A0%87%E7%AD%BE/%E6%B5%8B%E8%AF%95/">
+                        <span class="chip bg-color">测试</span>
                     </a>
                     
                 </div>
@@ -1090,16 +874,16 @@ nde<span class="token operator">::</span>place<span class="token punctuation">.<
         
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge right-badge text-color">
-                本篇&nbsp;<i class="far fa-dot-circle"></i>
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2024/01/01/guan-yu-lei-ni-xu-yao-zhi-dao-de-suo-you/">
+                <a href="/2024/01/01/pythongui-tu-xing-hua-jie-mian-xiang-jie/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="关于类，你须要知道的所有">
+                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="PythonGUI图形化界面详解">
                         
-                        <span class="card-title">关于类，你须要知道的所有</span>
+                        <span class="card-title">PythonGUI图形化界面详解</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -1114,22 +898,17 @@ nde<span class="token operator">::</span>place<span class="token punctuation">.<
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/%E2%80%9C%E4%BD%A0%E9%9C%80%E8%A6%81%E7%9F%A5%E9%81%93%E7%9A%84%E6%89%80%E6%9C%89%E2%80%9D%E7%B3%BB%E5%88%97/" class="post-category">
-                                    “你需要知道的所有”系列
-                                </a>
-                            
+                            <i class="fas fa-user fa-fw"></i>
+                            Leo2011
                             
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/%E6%A0%87%E7%AD%BE/C%E8%89%B9/">
-                        <span class="chip bg-color">C艹</span>
+                    <a href="/%E6%A0%87%E7%AD%BE/Python/">
+                        <span class="chip bg-color">Python</span>
                     </a>
                     
                 </div>

@@ -6,7 +6,7 @@
   <link href="https://leo2011.pages.dev/atom.xml" rel="self"/>
   
   <link href="https://leo2011.pages.dev/"/>
-  <updated>2024-02-22T15:06:18.382Z</updated>
+  <updated>2024-02-24T10:18:09.146Z</updated>
   <id>https://leo2011.pages.dev/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>hexo-sliding-spoiler演示</title>
+    <link href="https://leo2011.pages.dev/2024/02/24/hexo-sliding-spoiler-yan-shi/"/>
+    <id>https://leo2011.pages.dev/2024/02/24/hexo-sliding-spoiler-yan-shi/</id>
+    <published>2024-02-24T10:17:49.000Z</published>
+    <updated>2024-02-24T10:18:09.146Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;div class=&quot;spoiler collapsed&quot;&gt;
+    &lt;div class=&quot;spoiler-title&quot;&gt;
+        可以折叠词
+    &lt;/div&gt;
+    &lt;div class=&quot;spoiler-content&quot;&gt;
+       </summary>
+        
+      
+    
+    
+    
+    
+    <category term="测试" scheme="https://leo2011.pages.dev/%E6%A0%87%E7%AD%BE/%E6%B5%8B%E8%AF%95/"/>
+    
+  </entry>
   
   <entry>
     <title>PythonGUI图形化界面详解</title>
