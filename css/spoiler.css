@@ -27,7 +27,7 @@
 }
 
 .spoiler.expanded .spoiler-title:before {
-    content: "隐藏 ";
+    content: "收起 ";
 }
 
 .spoiler .spoiler-content {
@@ -46,7 +46,7 @@
 }
 
 .spoiler.collapsed .spoiler-content {
-    overflow: hidden;
+    overflow: auto;
     max-height: 0;
 }
 
