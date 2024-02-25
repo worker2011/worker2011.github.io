@@ -358,9 +358,12 @@
     }
 
     .toc-widget {
-        width: 345px;
-        padding-left: 20px;
-    }
+    	width: 345px;
+   	 padding-left: 20px;
+   	 background-color: rgb(255, 255, 255,0.7);
+    	border-radius: 10px;
+    	box-shadow: 0 10px 35px 2px rgba(0, 0, 0, .15), 0 5px 15px rgba(0, 0, 0, .07), 0 2px 5px -5px rgba(0, 0, 0, .1) !important;
+}
 
     .toc-widget .toc-title {
         padding: 35px 0 15px 17px;
@@ -459,14 +462,14 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2024-02-24
+                    2024-02-25
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    69
+                    87
                 </div>
                 
 
@@ -522,6 +525,16 @@
 <p>当然，最主要的还是代码块，这个也是支持高亮的（如果你有用）</p>
 <pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Hello World!"</span><span class="token punctuation">)</span>
 <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+    </div>
+</div>
+
+<div class="spoiler collapsed">
+    <div class="spoiler-title">
+        MathJax也支持（如果你博客支持它就支持！）
+    </div>
+    <div class="spoiler-content">
+        <p>$2 ^ {10} = 1024$</p>
 
     </div>
 </div>
@@ -1067,6 +1080,13 @@
 </main>
 
 
+<script src="https://cdn.bootcss.com/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+    MathJax.Hub.Config({
+        tex2jax: {inlineMath: [['$', '$'], ['\(', '\)']]}
+    });
+</script>
+
 
 
     <footer class="page-footer bg-color">
@@ -1084,7 +1104,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">7k</span>&nbsp;字
+                class="white-color">7.1k</span>&nbsp;字
             
             
             
