@@ -1,0 +1,500 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Leo2011的博客</title>
+  
+  <subtitle>许许多多的平凡加在一起，就成了不平凡。</subtitle>
+  <link href="https://leo2011.pages.dev/atom.xml" rel="self"/>
+  
+  <link href="https://leo2011.pages.dev/"/>
+  <updated>2024-03-24T11:08:27.607Z</updated>
+  <id>https://leo2011.pages.dev/</id>
+  
+  <author>
+    <name>Leo2011</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>P10111 [GESP202312 七级] 纸牌游戏 题解</title>
+    <link href="https://leo2011.pages.dev/2024/03/13/p10111-gesp202312-qi-ji-zhi-pai-you-xi-ti-jie/"/>
+    <id>https://leo2011.pages.dev/2024/03/13/p10111-gesp202312-qi-ji-zhi-pai-you-xi-ti-jie/</id>
+    <published>2024-03-13T15:03:53.000Z</published>
+    <updated>2024-03-24T11:08:27.607Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;&lt;del&gt;看标签&lt;/del&gt;知道要用 DP。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="题解" scheme="https://leo2011.pages.dev/categories/%E9%A2%98%E8%A7%A3/"/>
+    
+    
+    <category term="C艹" scheme="https://leo2011.pages.dev/tags/C%E8%89%B9/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>AT_abc344_D-String Bags 题解</title>
+    <link href="https://leo2011.pages.dev/2024/03/10/at-abc344-d-string-bags-ti-jie/"/>
+    <id>https://leo2011.pages.dev/2024/03/10/at-abc344-d-string-bags-ti-jie/</id>
+    <published>2024-03-10T10:52:08.000Z</published>
+    <updated>2024-03-24T11:08:07.641Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;明显是 DP。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="题解" scheme="https://leo2011.pages.dev/categories/%E9%A2%98%E8%A7%A3/"/>
+    
+    
+    <category term="C艹" scheme="https://leo2011.pages.dev/tags/C%E8%89%B9/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>P10187 [USACO24FEB] Palindrome Game B 题解</title>
+    <link href="https://leo2011.pages.dev/2024/02/29/p10187-usaco24feb-palindrome-game-b-ti-jie/"/>
+    <id>https://leo2011.pages.dev/2024/02/29/p10187-usaco24feb-palindrome-game-b-ti-jie/</id>
+    <published>2024-02-29T13:15:31.000Z</published>
+    <updated>2024-03-10T10:23:07.000Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;先说说暴力做法：&lt;/p&gt;
+&lt;p&gt;每次遍历一遍，看看是否满足 &lt;span class=&quot;math inline&quot;&gt;&#92;(t_i + s &#92;le
+c_i&#92;)&lt;/span&gt;，满足就计数，不满足就挂。单次时间复杂度显然为 &lt;span class=&quot;math inline&quot;&gt;&#92;(O(N)&#92;)&lt;/span&gt;，总得时间复杂度约为 &lt;span class=&quot;math inline&quot;&gt;&#92;(O(NQ)&#92;)&lt;/span&gt;，TLE是肯定的~&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="题解" scheme="https://leo2011.pages.dev/categories/%E9%A2%98%E8%A7%A3/"/>
+    
+    <category term="USACO" scheme="https://leo2011.pages.dev/categories/%E9%A2%98%E8%A7%A3/USACO/"/>
+    
+    
+    <category term="C艹" scheme="https://leo2011.pages.dev/tags/C%E8%89%B9/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>P10189 [USACO24FEB] Maximizing Productivity B 题解</title>
+    <link href="https://leo2011.pages.dev/2024/02/29/p10189-usaco24feb-maximizing-productivity-b-ti-jie/"/>
+    <id>https://leo2011.pages.dev/2024/02/29/p10189-usaco24feb-maximizing-productivity-b-ti-jie/</id>
+    <published>2024-02-29T12:56:06.000Z</published>
+    <updated>2024-03-10T10:23:07.000Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;&lt;del&gt;挑战题解区最短代码&lt;/del&gt;&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="题解" scheme="https://leo2011.pages.dev/categories/%E9%A2%98%E8%A7%A3/"/>
+    
+    <category term="USACO" scheme="https://leo2011.pages.dev/categories/%E9%A2%98%E8%A7%A3/USACO/"/>
+    
+    
+    <category term="Python" scheme="https://leo2011.pages.dev/tags/Python/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Hydro/Vijos美化脚本</title>
+    <link href="https://leo2011.pages.dev/2024/02/14/hydro-vijos-mei-hua-jiao-ben/"/>
+    <id>https://leo2011.pages.dev/2024/02/14/hydro-vijos-mei-hua-jiao-ben/</id>
+    <published>2024-02-14T08:00:08.000Z</published>
+    <updated>2024-03-10T10:23:07.000Z</updated>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;安装方法&quot;&gt;安装方法：&lt;/h1&gt;
+&lt;h2 id=&quot;stylus&quot;&gt;Stylus&lt;/h2&gt;
+&lt;p&gt;先按照&lt;a href=&quot;https://www.luogu.com.cn/blog/YunQian/stylishstylus-wo-di-liu-lan-qi-wo-zuo-zhu&quot;&gt;此处&lt;/a&gt;的方法安装Stylus&lt;/p&gt;
+&lt;p&gt;打开&lt;a href=&quot;https://userstyles.world/style/14641/hydrovijos&quot;&gt;https://userstyles.world/style/14641/hydrovijos&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;点击蓝色的install就可以了。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="项目" scheme="https://leo2011.pages.dev/categories/%E9%A1%B9%E7%9B%AE/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>运算符的关系简览</title>
+    <link href="https://leo2011.pages.dev/2024/01/25/yun-suan-fu-de-guan-xi-jian-lan/"/>
+    <id>https://leo2011.pages.dev/2024/01/25/yun-suan-fu-de-guan-xi-jian-lan/</id>
+    <published>2024-01-25T14:20:44.000Z</published>
+    <updated>2024-03-10T10:23:07.000Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p style=&quot;margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px; font-family: Arial; font-size: 14px; line-height: 26px; text-align: left;&quot;&gt;&lt;strong class=&quot;fr-fix-3f915ed7&quot;&gt;&lt;span class=&quot;fr-fix-3f915ed7&quot; style=&quot;font-size: 18px; color: #ff0000;&quot;&gt;C/C++运算符优先级&lt;/span&gt;&lt;/strong&gt;&lt;/p&gt;</summary>
+    
+    
+    
+    
+    <category term="C艹" scheme="https://leo2011.pages.dev/tags/C%E8%89%B9/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>2023游寄</title>
+    <link href="https://leo2011.pages.dev/2024/01/25/2023-you-ji/"/>
+    <id>https://leo2011.pages.dev/2024/01/25/2023-you-ji/</id>
+    <published>2024-01-25T12:05:42.000Z</published>
+    <updated>2024-03-10T10:23:07.000Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;按首次参加时间排序。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="年度游寄" scheme="https://leo2011.pages.dev/categories/%E5%B9%B4%E5%BA%A6%E6%B8%B8%E5%AF%84/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>几种最短路算法对比</title>
+    <link href="https://leo2011.pages.dev/2024/01/25/ji-chong-zui-duan-lu-suan-fa-dui-bi/"/>
+    <id>https://leo2011.pages.dev/2024/01/25/ji-chong-zui-duan-lu-suan-fa-dui-bi/</id>
+    <published>2024-01-25T12:04:40.000Z</published>
+    <updated>2024-03-10T10:23:07.000Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;几种最短路算法对比：&lt;/p&gt;</summary>
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>B3929 [GESP202312 五级] 小杨的幸运数 题解</title>
+    <link href="https://leo2011.pages.dev/2024/01/25/b3929-gesp202312-wu-ji-xiao-yang-de-xing-yun-shu-ti-jie/"/>
+    <id>https://leo2011.pages.dev/2024/01/25/b3929-gesp202312-wu-ji-xiao-yang-de-xing-yun-shu-ti-jie/</id>
+    <published>2024-01-25T12:01:15.000Z</published>
+    <updated>2024-03-10T10:23:07.000Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;因为一些众所周知的原因，不放代码。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="题解" scheme="https://leo2011.pages.dev/categories/%E9%A2%98%E8%A7%A3/"/>
+    
+    
+    <category term="C艹" scheme="https://leo2011.pages.dev/tags/C%E8%89%B9/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>我艹，这么多良心软件都在GitHub上，你却打都打不开？</title>
+    <link href="https://leo2011.pages.dev/2024/01/25/wo-cao-zhe-me-duo-liang-xin-ruan-jian-du-zai-github-shang-ni-que-da-du-da-bu-kai/"/>
+    <id>https://leo2011.pages.dev/2024/01/25/wo-cao-zhe-me-duo-liang-xin-ruan-jian-du-zai-github-shang-ni-que-da-du-da-bu-kai/</id>
+    <published>2024-01-25T11:43:01.000Z</published>
+    <updated>2024-03-10T10:23:07.000Z</updated>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;github为何物&quot;&gt;GitHub为何物？&lt;/h1&gt;
+&lt;p&gt;Git是一个代码管理工具。GitHub上自带Git，可以上传代码，上面囤积了不少高质量开源项目，比如&lt;a href=&quot;https://github.com/luogu-dev/cyaron&quot; title=&quot;你谷的CYaRon&quot;&gt;你谷的CYaRon&lt;/a&gt;。&lt;/p&gt;</summary>
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>hexo-sliding-spoiler演示</title>
+    <link href="https://leo2011.pages.dev/2024/01/24/hexo-sliding-spoiler-yan-shi/"/>
+    <id>https://leo2011.pages.dev/2024/01/24/hexo-sliding-spoiler-yan-shi/</id>
+    <published>2024-01-24T10:17:49.000Z</published>
+    <updated>2024-03-10T10:23:07.000Z</updated>
+    
+    
+    <summary type="html">&lt;div class=&quot;spoiler collapsed&quot;&gt;
+    &lt;div class=&quot;spoiler-title&quot;&gt;
+        可以折叠词
+    &lt;/div&gt;
+    &lt;div class=&quot;spoiler-content&quot;&gt;
+        &lt;p&gt;content&lt;/p&gt;
+
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;spoiler collapsed&quot;&gt;
+    &lt;div class=&quot;spoiler-title&quot;&gt;
+        也支持Markdown语法
+    &lt;/div&gt;
+    &lt;div class=&quot;spoiler-content&quot;&gt;
+        &lt;p&gt;&lt;del&gt;删除线&lt;/del&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;加粗&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;斜体&lt;/em&gt;&lt;/p&gt;
+&lt;h3 id=&quot;标题党也行&quot;&gt;标题党也行&lt;/h3&gt;
+&lt;p&gt;图片&lt;img src=&quot;/img/g.jpg&quot; alt=&quot;图片&quot;&gt; 和&lt;a href=&quot;https://github.com/fletchto99/hexo-sliding-spoiler&quot;&gt;链接&lt;/a&gt;也都支持
+1. 有序序列 - 无序序列&lt;/p&gt;
+&lt;p&gt;当然，最主要的还是代码块，这个也是支持高亮的（如果你有用）
+&lt;/p&gt;&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;print&lt;/span&gt;(&lt;span class=&quot;string&quot;&gt;&quot;Hello World!&quot;&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;&lt;/p&gt;
+
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;spoiler collapsed&quot;&gt;
+    &lt;div class=&quot;spoiler-title&quot;&gt;
+        MathJax也支持（如果你博客支持它就支持！）
+    &lt;/div&gt;
+    &lt;div class=&quot;spoiler-content&quot;&gt;
+        &lt;p&gt;&lt;span class=&quot;math inline&quot;&gt;&#92;(2 ^ {10} = 1024&#92;)&lt;/span&gt;&lt;/p&gt;
+
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;/css/spoiler.css&quot; type=&quot;text/css&quot;&gt;&lt;script src=&quot;/js/spoiler.js&quot; type=&quot;text/javascript&quot; async&gt;&lt;/script&gt;</summary>
+    
+    
+    
+    
+    <category term="测试" scheme="https://leo2011.pages.dev/tags/%E6%B5%8B%E8%AF%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>ABC串讲——332（A~C）</title>
+    <link href="https://leo2011.pages.dev/2024/01/19/abc-chuan-jiang-332-a-c/"/>
+    <id>https://leo2011.pages.dev/2024/01/19/abc-chuan-jiang-332-a-c/</id>
+    <published>2024-01-19T13:35:32.000Z</published>
+    <updated>2024-03-10T10:23:07.000Z</updated>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;a-online-shopping&quot;&gt;A Online Shopping&lt;/h1&gt;</summary>
+    
+    
+    
+    <category term="题解" scheme="https://leo2011.pages.dev/categories/%E9%A2%98%E8%A7%A3/"/>
+    
+    <category term="AT-ABC串讲" scheme="https://leo2011.pages.dev/categories/%E9%A2%98%E8%A7%A3/AT-ABC%E4%B8%B2%E8%AE%B2/"/>
+    
+    
+    <category term="C艹" scheme="https://leo2011.pages.dev/tags/C%E8%89%B9/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>ABC串讲——328（A~C）</title>
+    <link href="https://leo2011.pages.dev/2024/01/19/abc-chuan-jiang-328-a-c/"/>
+    <id>https://leo2011.pages.dev/2024/01/19/abc-chuan-jiang-328-a-c/</id>
+    <published>2024-01-19T13:18:32.000Z</published>
+    <updated>2024-03-10T10:23:07.000Z</updated>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;a-not-too-hard&quot;&gt;A Not Too Hard&lt;/h1&gt;</summary>
+    
+    
+    
+    <category term="题解" scheme="https://leo2011.pages.dev/categories/%E9%A2%98%E8%A7%A3/"/>
+    
+    <category term="AT-ABC串讲" scheme="https://leo2011.pages.dev/categories/%E9%A2%98%E8%A7%A3/AT-ABC%E4%B8%B2%E8%AE%B2/"/>
+    
+    
+    <category term="C艹" scheme="https://leo2011.pages.dev/tags/C%E8%89%B9/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>ABC串讲——327（A~C）</title>
+    <link href="https://leo2011.pages.dev/2024/01/18/abc-chuan-jiang-327-a-c/"/>
+    <id>https://leo2011.pages.dev/2024/01/18/abc-chuan-jiang-327-a-c/</id>
+    <published>2024-01-18T14:21:32.000Z</published>
+    <updated>2024-03-10T10:23:07.000Z</updated>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;a-ab&quot;&gt;A ab&lt;/h1&gt;</summary>
+    
+    
+    
+    <category term="题解" scheme="https://leo2011.pages.dev/categories/%E9%A2%98%E8%A7%A3/"/>
+    
+    <category term="AT-ABC串讲" scheme="https://leo2011.pages.dev/categories/%E9%A2%98%E8%A7%A3/AT-ABC%E4%B8%B2%E8%AE%B2/"/>
+    
+    
+    <category term="C艹" scheme="https://leo2011.pages.dev/tags/C%E8%89%B9/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>P2580 于是他错误的点名开始了 题解</title>
+    <link href="https://leo2011.pages.dev/2024/01/18/p2580-yu-shi-ta-cuo-wu-de-dian-ming-kai-shi-liao-ti-jie/"/>
+    <id>https://leo2011.pages.dev/2024/01/18/p2580-yu-shi-ta-cuo-wu-de-dian-ming-kai-shi-liao-ti-jie/</id>
+    <published>2024-01-18T14:01:26.000Z</published>
+    <updated>2024-03-10T10:23:07.000Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;“普及/&lt;strong&gt;提高-&lt;/strong&gt;”这个难度很有意思。&lt;/p&gt;
+&lt;p&gt;说明这题可能需要用到提高组当中比较基础的内容。&lt;/p&gt;
+&lt;p&gt;它的名字叫做 map。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="题解" scheme="https://leo2011.pages.dev/categories/%E9%A2%98%E8%A7%A3/"/>
+    
+    
+    <category term="C艹" scheme="https://leo2011.pages.dev/tags/C%E8%89%B9/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>P9012 [USACO23JAN] Moo Operations B题解</title>
+    <link href="https://leo2011.pages.dev/2024/01/18/p9012-usaco23jan-moo-operations-b-ti-jie/"/>
+    <id>https://leo2011.pages.dev/2024/01/18/p9012-usaco23jan-moo-operations-b-ti-jie/</id>
+    <published>2024-01-18T13:33:13.000Z</published>
+    <updated>2024-03-10T10:23:07.000Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;前情提要：这&lt;del&gt;恐怕&lt;/del&gt;是最好想、最简单的一种做法。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="题解" scheme="https://leo2011.pages.dev/categories/%E9%A2%98%E8%A7%A3/"/>
+    
+    <category term="USACO" scheme="https://leo2011.pages.dev/categories/%E9%A2%98%E8%A7%A3/USACO/"/>
+    
+    
+    <category term="C艹" scheme="https://leo2011.pages.dev/tags/C%E8%89%B9/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>PythonGUI图形化界面详解</title>
+    <link href="https://leo2011.pages.dev/2024/01/01/pythongui-tu-xing-hua-jie-mian-xiang-jie/"/>
+    <id>https://leo2011.pages.dev/2024/01/01/pythongui-tu-xing-hua-jie-mian-xiang-jie/</id>
+    <published>2024-01-01T07:56:32.000Z</published>
+    <updated>2024-03-10T10:23:07.000Z</updated>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;简介&quot;&gt;简介&lt;/h1&gt;
+&lt;p&gt;话说你看到的软件是不是都是用图形化界面（Graphical User Interface,
+GUI）整出来的？&lt;/p&gt;</summary>
+    
+    
+    
+    
+    <category term="Python" scheme="https://leo2011.pages.dev/tags/Python/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Python环境安装与配置</title>
+    <link href="https://leo2011.pages.dev/2024/01/01/python-huan-jing-an-zhuang-yu-pei-zhi/"/>
+    <id>https://leo2011.pages.dev/2024/01/01/python-huan-jing-an-zhuang-yu-pei-zhi/</id>
+    <published>2024-01-01T07:55:02.000Z</published>
+    <updated>2024-03-10T10:23:07.000Z</updated>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;安装python&quot;&gt;安装Python&lt;/h1&gt;
+&lt;h2 id=&quot;下载安装python&quot;&gt;下载安装Python&lt;/h2&gt;
+&lt;p&gt;要用Python，那肯定得先装个Python呐！&lt;/p&gt;</summary>
+    
+    
+    
+    
+    <category term="Python" scheme="https://leo2011.pages.dev/tags/Python/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>关于三目运算符，你需要知道的所有</title>
+    <link href="https://leo2011.pages.dev/2024/01/01/guan-yu-san-mu-yun-suan-fu-ni-xu-yao-zhi-dao-de-suo-you/"/>
+    <id>https://leo2011.pages.dev/2024/01/01/guan-yu-san-mu-yun-suan-fu-ni-xu-yao-zhi-dao-de-suo-you/</id>
+    <published>2024-01-01T07:52:41.000Z</published>
+    <updated>2024-03-10T10:23:07.000Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;if...else语句常写吧？&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="“你需要知道的所有”系列" scheme="https://leo2011.pages.dev/categories/%E2%80%9C%E4%BD%A0%E9%9C%80%E8%A6%81%E7%9F%A5%E9%81%93%E7%9A%84%E6%89%80%E6%9C%89%E2%80%9D%E7%B3%BB%E5%88%97/"/>
+    
+    
+    <category term="C艹" scheme="https://leo2011.pages.dev/tags/C%E8%89%B9/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>关于__int128和short，你需要知道的所有</title>
+    <link href="https://leo2011.pages.dev/2024/01/01/guan-yu-int128-he-short-ni-xu-yao-zhi-dao-de-suo-you/"/>
+    <id>https://leo2011.pages.dev/2024/01/01/guan-yu-int128-he-short-ni-xu-yao-zhi-dao-de-suo-you/</id>
+    <published>2024-01-01T07:48:18.000Z</published>
+    <updated>2024-03-10T10:23:07.000Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;高精度大家都认识吧？&lt;/p&gt;
+&lt;p&gt;但是，高精度这货是真滴长……&lt;/p&gt;
+&lt;p&gt;于是，人们又发明出了一个东西 __int128！&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="“你需要知道的所有”系列" scheme="https://leo2011.pages.dev/categories/%E2%80%9C%E4%BD%A0%E9%9C%80%E8%A6%81%E7%9F%A5%E9%81%93%E7%9A%84%E6%89%80%E6%9C%89%E2%80%9D%E7%B3%BB%E5%88%97/"/>
+    
+    
+    <category term="C艹" scheme="https://leo2011.pages.dev/tags/C%E8%89%B9/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>关于auto，你须要知道的所有</title>
+    <link href="https://leo2011.pages.dev/2024/01/01/guan-yu-auto-ni-xu-yao-zhi-dao-de-suo-you/"/>
+    <id>https://leo2011.pages.dev/2024/01/01/guan-yu-auto-ni-xu-yao-zhi-dao-de-suo-you/</id>
+    <published>2024-01-01T07:38:34.000Z</published>
+    <updated>2024-03-10T10:23:07.000Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;话说咱写 STL 的时候经常会要写迭代器，大概是这么一大串东西：&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="“你需要知道的所有”系列" scheme="https://leo2011.pages.dev/categories/%E2%80%9C%E4%BD%A0%E9%9C%80%E8%A6%81%E7%9F%A5%E9%81%93%E7%9A%84%E6%89%80%E6%9C%89%E2%80%9D%E7%B3%BB%E5%88%97/"/>
+    
+    
+    <category term="C艹" scheme="https://leo2011.pages.dev/tags/C%E8%89%B9/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>关于switch，你须要知道的所有</title>
+    <link href="https://leo2011.pages.dev/2024/01/01/guan-yu-switch-ni-xu-yao-zhi-dao-de-suo-you/"/>
+    <id>https://leo2011.pages.dev/2024/01/01/guan-yu-switch-ni-xu-yao-zhi-dao-de-suo-you/</id>
+    <published>2024-01-01T07:38:13.000Z</published>
+    <updated>2024-03-10T10:23:07.000Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;话说写代码时要写 1 吨 if 的题你们有木有遇到？&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="“你需要知道的所有”系列" scheme="https://leo2011.pages.dev/categories/%E2%80%9C%E4%BD%A0%E9%9C%80%E8%A6%81%E7%9F%A5%E9%81%93%E7%9A%84%E6%89%80%E6%9C%89%E2%80%9D%E7%B3%BB%E5%88%97/"/>
+    
+    
+    <category term="C艹" scheme="https://leo2011.pages.dev/tags/C%E8%89%B9/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>关于类，你须要知道的所有</title>
+    <link href="https://leo2011.pages.dev/2024/01/01/guan-yu-lei-ni-xu-yao-zhi-dao-de-suo-you/"/>
+    <id>https://leo2011.pages.dev/2024/01/01/guan-yu-lei-ni-xu-yao-zhi-dao-de-suo-you/</id>
+    <published>2024-01-01T07:29:56.000Z</published>
+    <updated>2024-03-10T10:23:07.000Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;众所周知，Python是一种面向对象的语言，而C不是。&lt;/p&gt;
+&lt;p&gt;为啥呢？&lt;/p&gt;
+&lt;p&gt;因为Python引入了Class!&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="“你需要知道的所有”系列" scheme="https://leo2011.pages.dev/categories/%E2%80%9C%E4%BD%A0%E9%9C%80%E8%A6%81%E7%9F%A5%E9%81%93%E7%9A%84%E6%89%80%E6%9C%89%E2%80%9D%E7%B3%BB%E5%88%97/"/>
+    
+    
+    <category term="C艹" scheme="https://leo2011.pages.dev/tags/C%E8%89%B9/"/>
+    
+  </entry>
+  
+</feed>

@@ -1,0 +1,2144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>Hydro/Vijos美化脚本</title>
+    <url>/2024/02/14/hydro-vijos-mei-hua-jiao-ben/</url>
+    <content><![CDATA[<h1 id="安装方法">安装方法：</h1>
+<h2 id="stylus">Stylus</h2>
+<p>先按照<a href="https://www.luogu.com.cn/blog/YunQian/stylishstylus-wo-di-liu-lan-qi-wo-zuo-zhu">此处</a>的方法安装Stylus</p>
+<p>打开<a href="https://userstyles.world/style/14641/hydrovijos">https://userstyles.world/style/14641/hydrovijos</a></p>
+<p>点击蓝色的install就可以了。</p>
+<span id="more"></span>
+<h2 id="油猴">油猴</h2>
+<p>Stylus装不了的可以用油猴。</p>
+<p>油猴发布地址：<a href="https://greasyfork.org/zh-CN/scripts/487267-hydro-vijos%E7%BE%8E%E5%8C%96">https://greasyfork.org/zh-CN/scripts/487267-hydro-vijos%E7%BE%8E%E5%8C%96</a>。二者同步更新。</p>
+<hr>
+<h1 id="使用效果">使用效果：</h1>
+<figure>
+<img src="https://hydro.ac/file/10699/nZ5UdWl5agQg6sz0NeFDp.png" alt="如图">
+<figcaption aria-hidden="true">如图</figcaption>
+</figure>
+<hr>
+<h1 id="有建议bug-欢迎私信联系hydro.ac中uid为10699的用户或在本文下方留言">有建议/bug
+欢迎<strong>私信</strong>联系hydro.ac中uid为10699的用户，或在本文下方留言。</h1>
+<hr>
+<h1 id="更新日志">更新日志：</h1>
+<h2 id="v1.0.020240209">v1.0.0（2024/02/09）：</h2>
+<ul>
+<li>首版发布，能改背景啦！</li>
+</ul>
+<h2 id="v2.0.020240214">v2.0.0（2024/02/14）：</h2>
+<ul>
+<li>新增功能：改圆角</li>
+<li>新增功能：加阴影</li>
+</ul>
+<h2 id="v2.0.120240214">v2.0.1（2024/02/14）：</h2>
+<ul>
+<li>新增功能：增加了<a href="https://oiclass.com">oiclass.com</a>、<a href="https://yundouxueyuan.com">云斗学院</a>等几个网站</li>
+</ul>
+<h2 id="v3.0.020240214">v3.0.0（2024/02/14）：</h2>
+<ul>
+<li>新增功能：设置项（Stylus），这下不改源代码也可以设置背景link啦！</li>
+</ul>
+<h2 id="v4.0.020240214">v4.0.0（2024/02/14）：</h2>
+<ul>
+<li>新增功能：透明化</li>
+</ul>
+<h2 id="v5.0.0-20240215">v5.0.0 （2024/02/15）：</h2>
+<ul>
+<li>新增功能：增加了好几张背景图片</li>
+<li>bug修复：修复了v3.0.0~v4.0.0版本中存在的设置背景失败的玄学</li>
+</ul>
+<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
+      <categories>
+        <category>项目</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>P10111 [GESP202312 七级] 纸牌游戏 题解</title>
+    <url>/2024/03/13/p10111-gesp202312-qi-ji-zhi-pai-you-xi-ti-jie/</url>
+    <content><![CDATA[<p><del>看标签</del>知道要用 DP。</p>
+<span id="more"></span>
+<p>于是开始分析。</p>
+<p>状态：$dp(i, j, k) = $ 前 <span class="math inline">\(i\)</span>
+轮中，第 <span class="math inline">\(i\)</span> 轮出 <span class="math inline">\(j\)</span>，一共换了 <span class="math inline">\(k\)</span> 次牌的最大钱数。很好理解。</p>
+<p>转移也不难，不就是不换和换两种吗！</p>
+<p>所以，转移就是： <span class="math display">\[dp(i, j, k) = \max
+\begin{cases}dp(i - 1, j, k) + \operatorname{pk}(j, c_i) \times a_i\\
+dp(i - 1, j', k - 1) + \operatorname{pk}(j, c_i) \times a_i -
+b_k\end{cases}\]</span> 其中，<span class="math inline">\(j'\)</span> 表示你要换的牌，显然要求 <span class="math inline">\(j' \neq j\)</span>，<span class="math inline">\(\operatorname{pk}(x, y)\)</span> 表示你出牌 <span class="math inline">\(x\)</span>，小杨出 <span class="math inline">\(y\)</span> 时的胜负情况。胜返回 <span class="math inline">\(2\)</span>，负返回 <span class="math inline">\(0\)</span>，平返回 <span class="math inline">\(1\)</span>。上面就是不还，下面就是换。</p>
+<p>观察发现，获胜时要么大 <span class="math inline">\(1\)</span>，要么小
+<span class="math inline">\(2\)</span>（因为此处“<span class="math inline">\(0 &gt; 2\)</span>”）。</p>
+<p>所以 <span class="math inline">\(\operatorname{pk}\)</span>
+函数如下：</p>
+<figure class="highlight cpp"><table><tbody><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">pk</span><span class="params">(<span class="type">int</span> x, <span class="type">int</span> y)</span> </span>{</span><br><span class="line">	<span class="keyword">if</span> (x == y) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">if</span> (x == y + <span class="number">1</span> || x == y - <span class="number">2</span>) <span class="keyword">return</span> <span class="number">2</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<hr>
+<p>以上为朴素做法。还能不能优化呢？滚动数组嘛！这玩意儿不就是专门给其中一维是“前
+<span class="math inline">\(i\)</span> 回……”的 DP 状态砍掉这维的嘛！</p>
+<p>于是用上滚动数组（这个不会的去看背包），空间复杂度就可以降到 <span class="math inline">\(\Theta(3N)\)</span> 啦！</p>
+<hr>
+<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
+      <categories>
+        <category>题解</category>
+      </categories>
+      <tags>
+        <tag>C艹</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>AT_abc344_D-String Bags 题解</title>
+    <url>/2024/03/10/at-abc344-d-string-bags-ti-jie/</url>
+    <content><![CDATA[<p>明显是 DP。</p>
+<span id="more"></span>
+<p>然后就开始分析：</p>
+<p>状态：<span class="math inline">\(dp_{ij} =\)</span> 有 <span class="math inline">\(i\)</span> 个袋子且匹配 <span class="math inline">\(T\)</span> 的前缀的长度为 <span class="math inline">\(j\)</span> 时所需的最少钱数。</p>
+<p>匹配 <span class="math inline">\(T\)</span> 的前缀的长度为 <span class="math inline">\(j\)</span> 就是前 <span class="math inline">\(j\)</span> 个字符与 <span class="math inline">\(T\)</span> 的前 <span class="math inline">\(j\)</span> 个字符相同。</p>
+<p>相对简单。</p>
+<table style="width:6%;">
+<colgroup>
+<col style="width: 5%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td>然后看转移。为了方便，咱不妨令 <span class="math inline">\(|S|\)</span> 为字符串 <span class="math inline">\(S\)</span> 的长度，其它的同理。</td>
+</tr>
+<tr class="even">
+<td>假设是要将第 <span class="math inline">\(i\)</span> 个袋子里的字符串
+<span class="math inline">\(L\)</span> 接到 <span class="math inline">\(S\)</span> 的末尾，那么就只有 <span class="math inline">\(S_{|S|+1}\)</span> 与 <span class="math inline">\(S_{|S|+|L|)}\)</span> 依次对应时才能从 <span class="math inline">\(dp_{(i-1)|S|}\)</span> 转移到 <span class="math inline">\(dp_{i|L|}\)</span>。</td>
+</tr>
+<tr class="odd">
+<td>为啥呢？</td>
+</tr>
+<tr class="even">
+<td>不对应那你接哪儿去了？不是说好接到末尾吗？那你问啥呢，浪费表情:-(</td>
+</tr>
+<tr class="odd">
+<td>那我不选呢？</td>
+</tr>
+<tr class="even">
+<td>不选你 <span class="math inline">\(j\)</span> 不变不就得了？</td>
+</tr>
+<tr class="odd">
+<td><div class="spoiler collapsed">
+    <div class="spoiler-title">
+        所以，转移部分就是
+    </div>
+    <div class="spoiler-content">
+        <figure class="highlight cpp"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) {</span><br><span class="line">		<span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; <span class="number">110</span>; j++) dp[i + <span class="number">1</span>][j] = dp[i][j];  <span class="comment">// 同步过去</span></span><br><span class="line">		<span class="type">int</span> m;</span><br><span class="line">		cin &gt;&gt; m;</span><br><span class="line">		<span class="keyword">while</span> (m--) {</span><br><span class="line">			...判断是否满足上面的条件</span><br><span class="line">				<span class="keyword">if</span> (满足) dp[i + <span class="number">1</span>][j + sl] = <span class="built_in">min</span>(dp[i + <span class="number">1</span>][j + sl], dp[i][j] + <span class="number">1</span>);</span><br><span class="line">			}</span><br><span class="line">		}</span><br><span class="line">	}</span><br></pre></td></tr></tbody></table></figure>
+
+    </div>
+</div></td>
+</tr>
+<tr class="even">
+<td>上面<code>dp[i + 1][j + sl]</code>就是不选，<code>dp[i][j] + 1</code>就是选。</td>
+</tr>
+</tbody>
+</table>
+<p>最后看一下时间复杂度。</p>
+<p><span class="math inline">\(\Theta(NM|S|\cdot|T|)\)</span>。<span class="math inline">\(M\)</span> 为袋中字符串数量。</p>
+<p>为啥？</p>
+<p>你看我们上面的代码，不就是先遍历了一遍 <span class="math inline">\(N\)</span> 个袋子，再遍历字符串数量 <span class="math inline">\(M\)</span>，每次判断相等挨个比较不就是 <span class="math inline">\(|S|\cdot|T|\)</span>嘛。</p>
+<p>结束~</p>
+<hr>
+<div class="spoiler collapsed">
+    <div class="spoiler-title">
+        ACCode
+    </div>
+    <div class="spoiler-content">
+        <figure class="highlight cpp"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment">// Problem: D - String Bags</span></span><br><span class="line"><span class="comment">// Contest: AtCoder - 	Toyota Programming Contest 2024#3（AtCoder Beginner Contest 344）</span></span><br><span class="line"><span class="comment">// URL: https://atcoder.jp/contests/abc344/tasks/abc344_d</span></span><br><span class="line"><span class="comment">// Memory Limit: 1024 MB</span></span><br><span class="line"><span class="comment">// Time Limit: 2000 ms</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">// Powered by CP Editor (https://cpeditor.org)</span></span><br><span class="line"><span class="comment">/*Code by Leo2011*/</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> log printf</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> EPS 1e-8</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> INF 0x3f3f3f3f</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> FOR(i, l, r) for (int(i) = (l); (i) &lt;= (r); ++(i))</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> IOS                      \</span></span><br><span class="line"><span class="meta">	ios::sync_with_stdio(false); \</span></span><br><span class="line"><span class="meta">	cin.tie(nullptr);            \</span></span><br><span class="line"><span class="meta">	cout.tie(nullptr);</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> __int128 i128;</span><br><span class="line"><span class="keyword">typedef</span> <span class="type">long</span> <span class="type">long</span> ll;</span><br><span class="line"><span class="keyword">typedef</span> pair&lt;<span class="type">int</span>, <span class="type">int</span>&gt; PII;</span><br><span class="line"></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N = <span class="number">110</span>;</span><br><span class="line"><span class="type">int</span> dp[N][N];  <span class="comment">// dp[i][j] = 前 i 个袋子中匹配 T 的前缀长度为 j 时所需的最少钱数。</span></span><br><span class="line">string t;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> T <span class="title">read</span><span class="params">()</span> </span>{</span><br><span class="line">	T sum = <span class="number">0</span>, fl = <span class="number">1</span>;</span><br><span class="line">	<span class="type">char</span> ch = <span class="built_in">getchar</span>();</span><br><span class="line">	<span class="keyword">for</span> (; !<span class="built_in">isdigit</span>(ch); ch = <span class="built_in">getchar</span>())</span><br><span class="line">		<span class="keyword">if</span> (ch == <span class="string">'-'</span>) fl = <span class="number">-1</span>;</span><br><span class="line">	<span class="keyword">for</span> (; <span class="built_in">isdigit</span>(ch); ch = <span class="built_in">getchar</span>()) sum = sum * <span class="number">10</span> + ch - <span class="string">'0'</span>;</span><br><span class="line">	<span class="keyword">return</span> sum * fl;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">write</span><span class="params">(T x)</span> </span>{</span><br><span class="line">	<span class="keyword">if</span> (x &lt; <span class="number">0</span>) <span class="built_in">putchar</span>(<span class="string">'-'</span>), <span class="built_in">write</span>&lt;T&gt;(-x);</span><br><span class="line">	<span class="type">static</span> T sta[<span class="number">35</span>];</span><br><span class="line">	<span class="type">int</span> top = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">do</span> { sta[top++] = x % <span class="number">10</span>, x /= <span class="number">10</span>; } <span class="keyword">while</span> (x);</span><br><span class="line">	<span class="keyword">while</span> (top) <span class="built_in">putchar</span>(sta[--top] + <span class="number">48</span>);</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>{</span><br><span class="line">	<span class="function">IOS <span class="title">memset</span><span class="params">(dp, INF, <span class="keyword">sizeof</span>(dp))</span></span>;</span><br><span class="line">	dp[<span class="number">0</span>][<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line">	cin &gt;&gt; t;</span><br><span class="line">	<span class="type">int</span> tl = t.<span class="built_in">size</span>(), n;</span><br><span class="line">	cin &gt;&gt; n;</span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) {</span><br><span class="line">		<span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; <span class="number">110</span>; j++) dp[i + <span class="number">1</span>][j] = dp[i][j];</span><br><span class="line">		<span class="type">int</span> m;</span><br><span class="line">		cin &gt;&gt; m;</span><br><span class="line">		<span class="keyword">while</span> (m--) {</span><br><span class="line">			string s;</span><br><span class="line">			cin &gt;&gt; s;</span><br><span class="line">			<span class="type">int</span> sl = s.<span class="built_in">size</span>();  <span class="comment">// 比较</span></span><br><span class="line">			<span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j + sl &lt;= tl; j++) {</span><br><span class="line">				<span class="type">bool</span> flag = <span class="literal">true</span>;</span><br><span class="line">				<span class="keyword">for</span> (<span class="type">int</span> k = <span class="number">0</span>; k &lt; sl; k++)</span><br><span class="line">					<span class="keyword">if</span> (t[j + k] != s[k]) {</span><br><span class="line">						flag = <span class="literal">false</span>;</span><br><span class="line">						<span class="keyword">break</span>;</span><br><span class="line">					}</span><br><span class="line">				<span class="keyword">if</span> (flag) dp[i + <span class="number">1</span>][j + sl] = <span class="built_in">min</span>(dp[i + <span class="number">1</span>][j + sl], dp[i][j] + <span class="number">1</span>);  <span class="comment">// 状态转移方程</span></span><br><span class="line">			}</span><br><span class="line">		}</span><br><span class="line">	}</span><br><span class="line">	<span class="keyword">if</span> (dp[n][tl] &gt; <span class="number">5e8</span>) dp[n][tl] = <span class="number">-1</span>;  <span class="comment">// 过大就是祭了</span></span><br><span class="line">	cout &lt;&lt; dp[n][tl] &lt;&lt; <span class="string">"\n"</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+    </div>
+</div>
+<p><a href="https://www.luogu.com.cn/record/150332762">AC记录~</a></p>
+<p>理解万岁！</p>
+<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
+      <categories>
+        <category>题解</category>
+      </categories>
+      <tags>
+        <tag>C艹</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>P10187 [USACO24FEB] Palindrome Game B 题解</title>
+    <url>/2024/02/29/p10187-usaco24feb-palindrome-game-b-ti-jie/</url>
+    <content><![CDATA[<p>先说说暴力做法：</p>
+<p>每次遍历一遍，看看是否满足 <span class="math inline">\(t_i + s \le
+c_i\)</span>，满足就计数，不满足就挂。单次时间复杂度显然为 <span class="math inline">\(O(N)\)</span>，总得时间复杂度约为 <span class="math inline">\(O(NQ)\)</span>，TLE是肯定的~</p>
+<span id="more"></span>
+<div class="spoiler collapsed">
+    <div class="spoiler-title">
+        暴力代码
+    </div>
+    <div class="spoiler-content">
+        <figure class="highlight cpp"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment">// Problem: Problem 3. Maximizing Productivity</span></span><br><span class="line"><span class="comment">// Contest: USACO - USACO 2024 February Contest, Bronze</span></span><br><span class="line"><span class="comment">// URL: https://usaco.org/index.php?page=viewproblem&amp;cpid=1385</span></span><br><span class="line"><span class="comment">// Memory Limit: 256 MB</span></span><br><span class="line"><span class="comment">// Time Limit: 4000 ms</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">// Powered by CP Editor (https://cpeditor.org)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*Code by Leo2011*/</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> log printf</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> EPS 1e-8</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> INF 0x3f3f3f3f</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> FOR(i, l, r) for (int(i) = (l); (i) &lt;= (r); ++(i))</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> IOS                      \</span></span><br><span class="line"><span class="meta">	ios::sync_with_stdio(false); \</span></span><br><span class="line"><span class="meta">	cin.tie(nullptr);            \</span></span><br><span class="line"><span class="meta">	cout.tie(nullptr);</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> __int128 i128;</span><br><span class="line"><span class="keyword">typedef</span> <span class="type">long</span> <span class="type">long</span> ll;</span><br><span class="line"><span class="keyword">typedef</span> pair&lt;<span class="type">int</span>, <span class="type">int</span>&gt; PII;</span><br><span class="line"></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N = <span class="number">2e5</span> + <span class="number">10</span>;</span><br><span class="line"><span class="type">int</span> n, q, c[N], t[N];</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> T <span class="title">read</span><span class="params">()</span> </span>{</span><br><span class="line">	T sum = <span class="number">0</span>, fl = <span class="number">1</span>;</span><br><span class="line">	<span class="type">char</span> ch = <span class="built_in">getchar</span>();</span><br><span class="line">	<span class="keyword">for</span> (; !<span class="built_in">isdigit</span>(ch); ch = <span class="built_in">getchar</span>())</span><br><span class="line">		<span class="keyword">if</span> (ch == <span class="string">'-'</span>) fl = <span class="number">-1</span>;</span><br><span class="line">	<span class="keyword">for</span> (; <span class="built_in">isdigit</span>(ch); ch = <span class="built_in">getchar</span>()) sum = sum * <span class="number">10</span> + ch - <span class="string">'0'</span>;</span><br><span class="line">	<span class="keyword">return</span> sum * fl;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">write</span><span class="params">(T x)</span> </span>{</span><br><span class="line">	<span class="type">static</span> T sta[<span class="number">35</span>];</span><br><span class="line">	<span class="type">int</span> top = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">do</span> { sta[top++] = x % <span class="number">10</span>, x /= <span class="number">10</span>; } <span class="keyword">while</span> (x);</span><br><span class="line">	<span class="keyword">while</span> (top) <span class="built_in">putchar</span>(sta[--top] + <span class="number">48</span>);</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>{</span><br><span class="line">	n = <span class="built_in">read</span>&lt;<span class="type">int</span>&gt;(), q = <span class="built_in">read</span>&lt;<span class="type">int</span>&gt;();</span><br><span class="line">	<span class="built_in">FOR</span>(i, <span class="number">1</span>, n) c[i] = <span class="built_in">read</span>&lt;<span class="type">int</span>&gt;();</span><br><span class="line">	<span class="built_in">FOR</span>(i, <span class="number">1</span>, n) t[i] = <span class="built_in">read</span>&lt;<span class="type">int</span>&gt;();</span><br><span class="line">	<span class="built_in">FOR</span>(i, <span class="number">1</span>, q) {</span><br><span class="line">		<span class="type">int</span> v = <span class="built_in">read</span>&lt;<span class="type">int</span>&gt;(), s = <span class="built_in">read</span>&lt;<span class="type">int</span>&gt;(), cnt = <span class="number">0</span>;</span><br><span class="line">		<span class="built_in">FOR</span>(j, <span class="number">1</span>, n) <span class="keyword">if</span> (s + t[j] &lt; c[j])++ cnt;</span><br><span class="line">		<span class="keyword">if</span> (cnt &gt;= v) <span class="built_in">puts</span>(<span class="string">"YES"</span>);</span><br><span class="line">		<span class="keyword">else</span> <span class="built_in">puts</span>(<span class="string">"NO"</span>);</span><br><span class="line">	}</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+
+    </div>
+</div>
+<p><a href="https://www.luogu.com.cn/record/148786459">评测记录</a>，开了优化也只有
+20pts。</p>
+<hr>
+<p>暴力废了，开始整正解。</p>
+<p><span class="math inline">\(2 \times
+10^5\)</span>？二分法，了解一下？</p>
+<p>然后，然后遇到了个问题：二分这东西要求有序，可是 <span class="math inline">\(c_i\)</span> 与 <span class="math inline">\(t_i\)</span> 是绑定在一起的啊！咋整？</p>
+<p>注意 <span class="math inline">\(c_i\)</span> 与 <span class="math inline">\(c_i - t_i\)</span>
+没关系，而这个式子能够求出啥啊？想要去到第 <span class="math inline">\(i\)</span> 个农场最大的 <span class="math inline">\(S\)</span> 嘛（<span class="math inline">\(c_i -
+t_i + t_i = c_i\)</span>，刚好卡点儿到，不可能再晚了）！</p>
+<p>总结一下，问题相当于预处理出来一个数组 <span class="math inline">\(a\)</span>，使 <span class="math inline">\(a_i =
+c_i - t_i\)</span>，求数组中是否有至少 <span class="math inline">\(V\)</span> 个数满足 <span class="math inline">\(a_i \ge S\)</span>。</p>
+<p>先排个序（不然还是 <span class="math inline">\(O(n)\)</span>
+嘛），然后就可以分出来两种做法：</p>
+<p>做法一：二分，用
+<code>upper_bound</code>函数（因为是大于等于），时间复杂度约为 <span class="math inline">\(O(QlogN)\)</span>。</p>
+<p>做法二：排完序后显然满足 <span class="math inline">\(a_V \ge a_{V -
+1} \ge a_{V - 2} ... a_1\)</span>，因此如果 <span class="math inline">\(a_V\)</span> 都小于等于 <span class="math inline">\(S\)</span>
+了，那它前面的自然也都满足。因此只需要判断 <span class="math inline">\(a_V \ge S\)</span> 成不成立即可。时间复杂度约为
+<span class="math inline">\(O(Q)\)</span>。</p>
+<div class="spoiler collapsed">
+    <div class="spoiler-title">
+        赛时ACCode（做法二）
+    </div>
+    <div class="spoiler-content">
+        <figure class="highlight cpp"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment">// Problem: Problem 3. Maximizing Productivity</span></span><br><span class="line"><span class="comment">// Contest: USACO - USACO 2024 February Contest, Bronze</span></span><br><span class="line"><span class="comment">// URL: https://usaco.org/index.php?page=viewproblem&amp;cpid=1385</span></span><br><span class="line"><span class="comment">// Memory Limit: 256 MB</span></span><br><span class="line"><span class="comment">// Time Limit: 4000 ms</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">// Powered by CP Editor (https://cpeditor.org)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*Code by Leo2011*/</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;algorithm&gt;</span>  <span class="comment">// 万能头CE</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> log printf</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> EPS 1e-8</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> INF 0x3f3f3f3f</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> FOR(i, l, r) for (int(i) = (l); (i) &lt;= (r); ++(i))</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> IOS                      \</span></span><br><span class="line"><span class="meta">	ios::sync_with_stdio(false); \</span></span><br><span class="line"><span class="meta">	cin.tie(nullptr);            \</span></span><br><span class="line"><span class="meta">	cout.tie(nullptr);</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> __int128 i128;</span><br><span class="line"><span class="keyword">typedef</span> <span class="type">long</span> <span class="type">long</span> ll;</span><br><span class="line"><span class="keyword">typedef</span> pair&lt;<span class="type">int</span>, <span class="type">int</span>&gt; PII;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> N, Q;</span><br><span class="line"><span class="type">int</span> close[<span class="number">200010</span>], t[<span class="number">200010</span>], ans[<span class="number">200010</span>], V, S;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> T <span class="title">read</span><span class="params">()</span> </span>{</span><br><span class="line">	T sum = <span class="number">0</span>, fl = <span class="number">1</span>;</span><br><span class="line">	<span class="type">char</span> ch = <span class="built_in">getchar</span>();</span><br><span class="line">	<span class="keyword">for</span> (; !<span class="built_in">isdigit</span>(ch); ch = <span class="built_in">getchar</span>())</span><br><span class="line">		<span class="keyword">if</span> (ch == <span class="string">'-'</span>) fl = <span class="number">-1</span>;</span><br><span class="line">	<span class="keyword">for</span> (; <span class="built_in">isdigit</span>(ch); ch = <span class="built_in">getchar</span>()) sum = sum * <span class="number">10</span> + ch - <span class="string">'0'</span>;</span><br><span class="line">	<span class="keyword">return</span> sum * fl;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">write</span><span class="params">(T x)</span> </span>{</span><br><span class="line">	<span class="type">static</span> T sta[<span class="number">35</span>];</span><br><span class="line">	<span class="type">int</span> top = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">do</span> { sta[top++] = x % <span class="number">10</span>, x /= <span class="number">10</span>; } <span class="keyword">while</span> (x);</span><br><span class="line">	<span class="keyword">while</span> (top) <span class="built_in">putchar</span>(sta[--top] + <span class="number">48</span>);</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">x</span><span class="params">(<span class="type">int</span> a, <span class="type">int</span> b)</span> </span>{ <span class="keyword">return</span> a &gt; b; }</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>{</span><br><span class="line">	cin &gt;&gt; N &gt;&gt; Q;</span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= N; i++) { cin &gt;&gt; close[i]; }</span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= N; i++) { cin &gt;&gt; t[i]; }</span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= N; i++) { ans[i] = close[i] - t[i]; }</span><br><span class="line">	<span class="built_in">sort</span>(ans + <span class="number">1</span>, ans + N + <span class="number">1</span>, x);</span><br><span class="line">	<span class="keyword">while</span> (Q--) {</span><br><span class="line">		cin &gt;&gt; V &gt;&gt; S;</span><br><span class="line">		<span class="keyword">if</span> (ans[V] &gt; S) cout &lt;&lt; <span class="string">"YES"</span> &lt;&lt; endl;</span><br><span class="line">		<span class="keyword">else</span> cout &lt;&lt; <span class="string">"NO"</span> &lt;&lt; endl;</span><br><span class="line">	}</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+    </div>
+</div>
+<p><a href="https://www.luogu.com.cn/record/148784245">AC记录~</a></p>
+<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
+      <categories>
+        <category>题解</category>
+        <category>USACO</category>
+      </categories>
+      <tags>
+        <tag>C艹</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>P10189 [USACO24FEB] Maximizing Productivity B 题解</title>
+    <url>/2024/02/29/p10189-usaco24feb-maximizing-productivity-b-ti-jie/</url>
+    <content><![CDATA[<p><del>挑战题解区最短代码</del> <span id="more"></span> ---</p>
+<p>回文数？数学题！打表找规律吧……</p>
+<p>显然，<span class="math inline">\(1 \sim 9\)</span>
+都是回文数，先手赢（就一位你还想咋地啊）。</p>
+<p>然后是 <span class="math inline">\(10\)</span>。<del>样例</del>告诉我们，这个不行。</p>
+<p>接着是 <span class="math inline">\(11 \sim 19\)</span>，发现随便减个
+<span class="math inline">\(1 \sim 9\)</span> 就可以变成 <span class="math inline">\(10\)</span>，而 <span class="math inline">\(10\)</span>
+是后手赢。赢得就是后手的后手，那就是先手，可以。</p>
+<p><span class="math inline">\(20\)</span>？减个 <span class="math inline">\(1 \sim 9\)</span>
+不就又回到上面了？然后就是后手的先手，也就是后手赢，寄。</p>
+<p><span class="math inline">\(21 \sim 29\)</span>？ 减个 <span class="math inline">\(1 \sim 9\)</span> 就变成 <span class="math inline">\(20\)</span> 了，后手的后手，先手赢。</p>
+<p>以此类推，每一个非整十数都可以转化为整十数，而整十数都能转化为 <span class="math inline">\(10\)</span>，而 <span class="math inline">\(10\)</span>
+是后手赢的，所以非整十数是后手的后手，先手赢。而且整十数由于首位不可能为
+<span class="math inline">\(0\)</span>，所以都不是回文数，所以都是
+整十数 <span class="math inline">\(\Rightarrow 10 \Rightarrow\)</span>
+<code>E</code> 或 非整十数 <span class="math inline">\(\Rightarrow\)</span> 整十数 <span class="math inline">\(\Rightarrow 10 \Rightarrow\)</span>
+<code>B</code>。</p>
+<p>结论：整十数是<code>E</code>，非整十数是<code>B</code>。</p>
+<hr>
+<div class="spoiler collapsed">
+    <div class="spoiler-title">
+        短短的ACCode
+    </div>
+    <div class="spoiler-content">
+        <figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">T = <span class="built_in">int</span>(<span class="built_in">input</span>())</span><br><span class="line"><span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(T):</span><br><span class="line">	start = <span class="built_in">input</span>()</span><br><span class="line">	<span class="built_in">print</span>(<span class="string">'E'</span> <span class="keyword">if</span> start[-<span class="number">1</span>] == <span class="string">'0'</span> <span class="keyword">else</span> <span class="string">'B'</span>)</span><br></pre></td></tr></tbody></table></figure>
+
+    </div>
+</div>
+<p><a href="https://www.luogu.com.cn/record/148794662">AC记录</a></p>
+<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
+      <categories>
+        <category>题解</category>
+        <category>USACO</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>运算符的关系简览</title>
+    <url>/2024/01/25/yun-suan-fu-de-guan-xi-jian-lan/</url>
+    <content><![CDATA[<p>&nbsp;</p>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px; font-family: Arial; font-size: 14px; line-height: 26px; text-align: left;"><strong class="fr-fix-3f915ed7"><span class="fr-fix-3f915ed7" style="font-size: 18px; color: #ff0000;">C/C++运算符优先级</span></strong></p><span id="more"></span>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px; font-family: Arial; font-size: 14px; line-height: 26px; text-align: left;">&nbsp;</p>
+<table style="color: #000000; font-family: Arial; font-size: 14px; line-height: 26px; text-align: left; width: 612px;" border="1" cellspacing="0" cellpadding="0">
+<tbody>
+<tr>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;" align="center"><strong class="fr-fix-3f915ed7">优先级</strong></p>
+</td>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;" align="center"><strong class="fr-fix-3f915ed7">运算符</strong></p>
+</td>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;" align="center"><strong class="fr-fix-3f915ed7">名称或含义</strong></p>
+</td>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;" align="center"><strong class="fr-fix-3f915ed7">使用形式</strong></p>
+</td>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;" align="center"><strong class="fr-fix-3f915ed7">结合方向</strong></p>
+</td>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;" align="center"><strong class="fr-fix-3f915ed7">说明</strong></p>
+</td>
+</tr>
+<tr>
+<td rowspan="4">
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;" align="center"><strong class="fr-fix-3f915ed7">1</strong></p>
+</td>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;" align="center"><strong class="fr-fix-3f915ed7"><span class="fr-fix-3f915ed7" style="color: blue;">[]</span></strong></p>
+</td>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;">数组下标</p>
+</td>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;">数组名[常量表达式]</p>
+</td>
+<td rowspan="4">
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;" align="center">左到右</p>
+</td>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;" align="center">--</p>
+</td>
+</tr>
+<tr>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;" align="center"><strong class="fr-fix-3f915ed7"><span class="fr-fix-3f915ed7" style="color: blue;">()</span></strong></p>
+</td>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;">圆括号</p>
+</td>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;">(表达式）/函数名(形参表)</p>
+</td>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;" align="center">--</p>
+</td>
+</tr>
+<tr>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;" align="center"><strong class="fr-fix-3f915ed7"><span class="fr-fix-3f915ed7" style="color: blue;">.</span></strong></p>
+</td>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;">成员选择（对象）</p>
+</td>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;">对象.成员名</p>
+</td>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;" align="center">--</p>
+</td>
+</tr>
+<tr>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;" align="center"><strong class="fr-fix-3f915ed7"><span class="fr-fix-3f915ed7" style="color: blue;">-&gt;</span></strong></p>
+</td>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;">成员选择（指针）</p>
+</td>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;">对象指针-&gt;成员名</p>
+</td>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;" align="center">--</p>
+</td>
+</tr>
+<tr>
+<td colspan="6" width="612">
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;">&nbsp;</p>
+</td>
+</tr>
+<tr>
+<td rowspan="9">
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;" align="center"><strong class="fr-fix-3f915ed7">2</strong></p>
+</td>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;" align="center"><strong class="fr-fix-3f915ed7"><span class="fr-fix-3f915ed7" style="color: blue;">-</span></strong></p>
+</td>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;">负号运算符</p>
+</td>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;">-表达式</p>
+</td>
+<td rowspan="9">
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;" align="center"><strong class="fr-fix-3f915ed7"><span class="fr-fix-3f915ed7" style="color: red;">右到左</span></strong></p>
+</td>
+<td rowspan="7">
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;" align="center">单目运算符</p>
+</td>
+</tr>
+<tr>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;" align="center"><strong class="fr-fix-3f915ed7"><span class="fr-fix-3f915ed7" style="color: blue;">~</span></strong></p>
+</td>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;">按位取反运算符</p>
+</td>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;">~表达式</p>
+</td>
+</tr>
+<tr>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;" align="center"><strong class="fr-fix-3f915ed7"><span class="fr-fix-3f915ed7" style="color: blue;">++</span></strong></p>
+</td>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;">自增运算符</p>
+</td>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;">++变量名/变量名++</p>
+</td>
+</tr>
+<tr>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;" align="center"><strong class="fr-fix-3f915ed7"><span class="fr-fix-3f915ed7" style="color: blue;">--</span></strong></p>
+</td>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;">自减运算符</p>
+</td>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;">--变量名/变量名--</p>
+</td>
+</tr>
+<tr>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;" align="center"><strong class="fr-fix-3f915ed7"><span class="fr-fix-3f915ed7" style="color: blue;">*</span></strong></p>
+</td>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;">取值运算符</p>
+</td>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;">*指针变量</p>
+</td>
+</tr>
+<tr>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;" align="center"><strong class="fr-fix-3f915ed7"><span class="fr-fix-3f915ed7" style="color: blue;">&amp;</span></strong></p>
+</td>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;">取地址运算符</p>
+</td>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;">&amp;变量名</p>
+</td>
+</tr>
+<tr>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;" align="center"><strong class="fr-fix-3f915ed7"><span class="fr-fix-3f915ed7" style="color: blue;">!</span></strong></p>
+</td>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;">逻辑非运算符</p>
+</td>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;">!表达式</p>
+</td>
+</tr>
+<tr>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;" align="center"><strong class="fr-fix-3f915ed7"><span class="fr-fix-3f915ed7" style="color: blue;">(</span><span class="fr-fix-3f915ed7" style="color: blue;">类型</span><span class="fr-fix-3f915ed7" style="color: blue;">)</span></strong></p>
+</td>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;">强制类型转换</p>
+</td>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;">(数据类型)表达式</p>
+</td>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;" align="center">--</p>
+</td>
+</tr>
+<tr>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;" align="center"><strong class="fr-fix-3f915ed7"><span class="fr-fix-3f915ed7" style="color: blue;">sizeof</span></strong></p>
+</td>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;">长度运算符</p>
+</td>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;">sizeof(表达式)</p>
+</td>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;" align="center">--</p>
+</td>
+</tr>
+<tr>
+<td colspan="6" width="612">
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;">&nbsp;</p>
+</td>
+</tr>
+<tr>
+<td rowspan="3">
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;" align="center"><strong class="fr-fix-3f915ed7">3</strong></p>
+</td>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;" align="center"><strong class="fr-fix-3f915ed7"><span class="fr-fix-3f915ed7" style="color: blue;">/</span></strong></p>
+</td>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;">除</p>
+</td>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;">表达式/表达式</p>
+</td>
+<td rowspan="3">
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;" align="center">左到右</p>
+</td>
+<td rowspan="3">
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;" align="center">双目运算符</p>
+</td>
+</tr>
+<tr>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;" align="center"><strong class="fr-fix-3f915ed7"><span class="fr-fix-3f915ed7" style="color: blue;">*</span></strong></p>
+</td>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;">乘</p>
+</td>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;">表达式*表达式</p>
+</td>
+</tr>
+<tr>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;" align="center"><strong class="fr-fix-3f915ed7"><span class="fr-fix-3f915ed7" style="color: blue;">%</span></strong></p>
+</td>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;">余数（取模）</p>
+</td>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;">整型表达式%整型表达式</p>
+</td>
+</tr>
+<tr>
+<td rowspan="2">
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;" align="center"><strong class="fr-fix-3f915ed7">4</strong></p>
+</td>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;" align="center"><strong class="fr-fix-3f915ed7"><span class="fr-fix-3f915ed7" style="color: blue;">+</span></strong></p>
+</td>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;">加</p>
+</td>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;">表达式+表达式</p>
+</td>
+<td rowspan="2">
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;" align="center">左到右</p>
+</td>
+<td rowspan="2">
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;" align="center">双目运算符</p>
+</td>
+</tr>
+<tr>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;" align="center"><strong class="fr-fix-3f915ed7"><span class="fr-fix-3f915ed7" style="color: blue;">-</span></strong></p>
+</td>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;">减</p>
+</td>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;">表达式-表达式</p>
+</td>
+</tr>
+<tr>
+<td rowspan="2">
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;" align="center"><strong class="fr-fix-3f915ed7">5</strong></p>
+</td>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;" align="center"><strong class="fr-fix-3f915ed7"><span class="fr-fix-3f915ed7" style="color: blue;">&lt;&lt; </span></strong></p>
+</td>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;">左移</p>
+</td>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;">变量&lt;&lt;表达式</p>
+</td>
+<td rowspan="2">
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;" align="center">左到右</p>
+</td>
+<td rowspan="2">
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;" align="center">双目运算符</p>
+</td>
+</tr>
+<tr>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;" align="center"><strong class="fr-fix-3f915ed7"><span class="fr-fix-3f915ed7" style="color: blue;">&gt;&gt; </span></strong></p>
+</td>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;">右移</p>
+</td>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;">变量&gt;&gt;表达式</p>
+</td>
+</tr>
+<tr>
+<td colspan="6" width="612">
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;">&nbsp;</p>
+</td>
+</tr>
+<tr>
+<td rowspan="4">
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;" align="center"><strong class="fr-fix-3f915ed7">6</strong></p>
+</td>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;" align="center"><strong class="fr-fix-3f915ed7"><span class="fr-fix-3f915ed7" style="color: blue;">&gt; </span></strong></p>
+</td>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;">大于</p>
+</td>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;">表达式&gt;表达式</p>
+</td>
+<td rowspan="4">
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;" align="center">左到右</p>
+</td>
+<td rowspan="4">
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;" align="center">双目运算符</p>
+</td>
+</tr>
+<tr>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;" align="center"><strong class="fr-fix-3f915ed7"><span class="fr-fix-3f915ed7" style="color: blue;">&gt;=</span></strong></p>
+</td>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;">大于等于</p>
+</td>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;">表达式&gt;=表达式</p>
+</td>
+</tr>
+<tr>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;" align="center"><strong class="fr-fix-3f915ed7"><span class="fr-fix-3f915ed7" style="color: blue;">&lt; </span></strong></p>
+</td>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;">小于</p>
+</td>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;">表达式&lt;表达式</p>
+</td>
+</tr>
+<tr>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;" align="center"><strong class="fr-fix-3f915ed7"><span class="fr-fix-3f915ed7" style="color: blue;">&lt;=</span></strong></p>
+</td>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;">小于等于</p>
+</td>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;">表达式&lt;=表达式</p>
+</td>
+</tr>
+<tr>
+<td rowspan="2">
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;" align="center"><strong class="fr-fix-3f915ed7">7</strong></p>
+</td>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;" align="center"><strong class="fr-fix-3f915ed7"><span class="fr-fix-3f915ed7" style="color: blue;">==</span></strong></p>
+</td>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;">等于</p>
+</td>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;">表达式==表达式</p>
+</td>
+<td rowspan="2">
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;" align="center">左到右</p>
+</td>
+<td rowspan="2">
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;" align="center">双目运算符</p>
+</td>
+</tr>
+<tr>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;" align="center"><strong class="fr-fix-3f915ed7"><span class="fr-fix-3f915ed7" style="color: blue;">！</span><span class="fr-fix-3f915ed7" style="color: blue;">=</span></strong></p>
+</td>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;">不等于</p>
+</td>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;">表达式!= 表达式</p>
+</td>
+</tr>
+<tr>
+<td colspan="6" width="612">
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;">&nbsp;</p>
+</td>
+</tr>
+<tr>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;" align="center"><strong class="fr-fix-3f915ed7">8</strong></p>
+</td>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;" align="center"><strong class="fr-fix-3f915ed7"><span class="fr-fix-3f915ed7" style="color: blue;">&amp;</span></strong></p>
+</td>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;">按位与</p>
+</td>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;">表达式&amp;表达式</p>
+</td>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;" align="center">左到右</p>
+</td>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;" align="center">双目运算符</p>
+</td>
+</tr>
+<tr>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;" align="center"><strong class="fr-fix-3f915ed7">9</strong></p>
+</td>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;" align="center"><strong class="fr-fix-3f915ed7"><span class="fr-fix-3f915ed7" style="color: blue;">^</span></strong></p>
+</td>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;">按位异或</p>
+</td>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;">表达式^表达式</p>
+</td>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;" align="center">左到右</p>
+</td>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;" align="center">双目运算符</p>
+</td>
+</tr>
+<tr>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;" align="center"><strong class="fr-fix-3f915ed7">10</strong></p>
+</td>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;" align="center"><strong class="fr-fix-3f915ed7"><span class="fr-fix-3f915ed7" style="color: blue;">|</span></strong></p>
+</td>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;">按位或</p>
+</td>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;">表达式|表达式</p>
+</td>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;" align="center">左到右</p>
+</td>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;" align="center">双目运算符</p>
+</td>
+</tr>
+<tr>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;" align="center"><strong class="fr-fix-3f915ed7">11</strong></p>
+</td>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;" align="center"><strong class="fr-fix-3f915ed7"><span class="fr-fix-3f915ed7" style="color: blue;">&amp;&amp;</span></strong></p>
+</td>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;">逻辑与</p>
+</td>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;">表达式&amp;&amp;表达式</p>
+</td>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;" align="center">左到右</p>
+</td>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;" align="center">双目运算符</p>
+</td>
+</tr>
+<tr>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;" align="center"><strong class="fr-fix-3f915ed7">12</strong></p>
+</td>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;" align="center"><strong class="fr-fix-3f915ed7"><span class="fr-fix-3f915ed7" style="color: blue;">||</span></strong></p>
+</td>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;">逻辑或</p>
+</td>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;">表达式||表达式</p>
+</td>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;" align="center">左到右</p>
+</td>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;" align="center">双目运算符</p>
+</td>
+</tr>
+<tr>
+<td colspan="6" width="612">
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;">&nbsp;</p>
+</td>
+</tr>
+<tr>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;" align="center"><strong class="fr-fix-3f915ed7">13</strong></p>
+</td>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;" align="center"><strong class="fr-fix-3f915ed7"><span class="fr-fix-3f915ed7" style="color: blue;">?:</span></strong></p>
+</td>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;">条件运算符</p>
+</td>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;">表达式1?</p>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;">表达式2: 表达式3</p>
+</td>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;" align="center"><strong class="fr-fix-3f915ed7"><span class="fr-fix-3f915ed7" style="color: red;">右到左</span></strong></p>
+</td>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;" align="center"><span style="color: red;">三目运算符</span></p>
+</td>
+</tr>
+<tr>
+<td colspan="6" width="612">&nbsp;</td>
+</tr>
+<tr>
+<td rowspan="11">
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;" align="center"><strong class="fr-fix-3f915ed7">14</strong></p>
+</td>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;" align="center"><strong class="fr-fix-3f915ed7"><span class="fr-fix-3f915ed7" style="color: blue;">=</span></strong></p>
+</td>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;">赋值运算符</p>
+</td>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;">变量=表达式</p>
+</td>
+<td rowspan="11">
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;" align="center"><strong class="fr-fix-3f915ed7"><span class="fr-fix-3f915ed7" style="color: red;">右到左</span></strong></p>
+</td>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;" align="center">--</p>
+</td>
+</tr>
+<tr>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;" align="center"><strong class="fr-fix-3f915ed7"><span class="fr-fix-3f915ed7" style="color: blue;">/=</span></strong></p>
+</td>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;">除后赋值</p>
+</td>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;">变量/=表达式</p>
+</td>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;" align="center">--</p>
+</td>
+</tr>
+<tr>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;" align="center"><strong class="fr-fix-3f915ed7"><span class="fr-fix-3f915ed7" style="color: blue;">*=</span></strong></p>
+</td>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;">乘后赋值</p>
+</td>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;">变量*=表达式</p>
+</td>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;" align="center">--</p>
+</td>
+</tr>
+<tr>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;" align="center"><strong class="fr-fix-3f915ed7"><span class="fr-fix-3f915ed7" style="color: blue;">%=</span></strong></p>
+</td>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;">取模后赋值</p>
+</td>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;">变量%=表达式</p>
+</td>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;" align="center">--</p>
+</td>
+</tr>
+<tr>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;" align="center"><strong class="fr-fix-3f915ed7"><span class="fr-fix-3f915ed7" style="color: blue;">+=</span></strong></p>
+</td>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;">加后赋值</p>
+</td>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;">变量+=表达式</p>
+</td>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;" align="center">--</p>
+</td>
+</tr>
+<tr>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;" align="center"><strong class="fr-fix-3f915ed7"><span class="fr-fix-3f915ed7" style="color: blue;">-=</span></strong></p>
+</td>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;">减后赋值</p>
+</td>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;">变量-=表达式</p>
+</td>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;" align="center">--</p>
+</td>
+</tr>
+<tr>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;" align="center"><strong class="fr-fix-3f915ed7"><span class="fr-fix-3f915ed7" style="color: blue;">&lt;&lt;=</span></strong></p>
+</td>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;">左移后赋值</p>
+</td>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;">变量&lt;&lt;=表达式</p>
+</td>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;" align="center">--</p>
+</td>
+</tr>
+<tr>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;" align="center"><strong class="fr-fix-3f915ed7"><span class="fr-fix-3f915ed7" style="color: blue;">&gt;&gt;=</span></strong></p>
+</td>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;">右移后赋值</p>
+</td>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;">变量&gt;&gt;=表达式</p>
+</td>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;" align="center">--</p>
+</td>
+</tr>
+<tr>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;" align="center"><strong class="fr-fix-3f915ed7"><span class="fr-fix-3f915ed7" style="color: blue;">&amp;=</span></strong></p>
+</td>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;">按位与后赋值</p>
+</td>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;">变量&amp;=表达式</p>
+</td>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;" align="center">--</p>
+</td>
+</tr>
+<tr>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;" align="center"><strong class="fr-fix-3f915ed7"><span class="fr-fix-3f915ed7" style="color: blue;">^=</span></strong></p>
+</td>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;">按位异或后赋值</p>
+</td>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;">变量^=表达式</p>
+</td>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;" align="center">--</p>
+</td>
+</tr>
+<tr>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;" align="center"><strong class="fr-fix-3f915ed7"><span class="fr-fix-3f915ed7" style="color: blue;">|=</span></strong></p>
+</td>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;">按位或后赋值</p>
+</td>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;">变量|=表达式</p>
+</td>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;" align="center">--</p>
+</td>
+</tr>
+<tr>
+<td colspan="6" width="612">
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;">&nbsp;</p>
+</td>
+</tr>
+<tr>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;" align="center"><strong class="fr-fix-3f915ed7">15</strong></p>
+</td>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;" align="center"><strong class="fr-fix-3f915ed7"><span class="fr-fix-3f915ed7" style="color: blue;">，</span></strong></p>
+</td>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;">逗号运算符</p>
+</td>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;">表达式,表达式,…</p>
+</td>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;" align="center">左到右</p>
+</td>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;" align="center">--</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px; font-family: Arial; font-size: 14px; line-height: 26px; text-align: left;">&nbsp;</p>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px; font-family: Arial; font-size: 14px; line-height: 26px; text-align: left;"><strong class="fr-fix-3f915ed7"><span class="fr-fix-3f915ed7" style="font-size: 18px; color: #ff0000;">说明：</span></strong></p>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px; font-family: Arial; line-height: 26px; text-align: left;">&nbsp;</p>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;"><span style="font-size: 14px; color: #3366ff;"><strong class="fr-fix-3f915ed7"> 运算符共分为15级，1级优先级最高，15级优先级最低。</strong></span></p>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;"><span style="font-size: 14px; color: #3366ff;"><strong class="fr-fix-3f915ed7"> 同一优先级的运算符，运算次序由结合方向所决定。(结合性：2 13 14 是从右至左 其他都是 从左至右)<br>简单记就是：！ &gt; 算术运算符 &gt; 关系运算符 &gt; &amp;&amp; &gt; || &gt; 赋值运算符</strong></span></p>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;"><span style="font-size: 14px; color: #3366ff;"><strong class="fr-fix-3f915ed7">&nbsp;</strong></span></p>
+<p style="text-align: left; margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;"><strong class="fr-fix-3f915ed7"><span class="fr-fix-3f915ed7" style="font-size: 14px; color: #ff0000;">再详细一点，附带一个口诀。(网上找的)</span></strong></p>
+<p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;">&nbsp;</p>
+<div style="text-align: left;"><strong class="fr-fix-3f915ed7"><span class="fr-fix-3f915ed7" style="font-size: 14px; color: #009900;">括号成员第一; </span><span class="fr-fix-3f915ed7" style="font-size: 14px; color: #cc6600;"> //括号运算符[]() 成员运算符. -&gt;</span></strong></div>
+<div style="text-align: left;"><strong class="fr-fix-3f915ed7"><span class="fr-fix-3f915ed7" style="font-size: 14px; color: #009900;">&nbsp;</span></strong></div>
+<div style="text-align: left;"><strong class="fr-fix-3f915ed7"><span class="fr-fix-3f915ed7" style="font-size: 14px; color: #009900;">全体单目第二; </span><span class="fr-fix-3f915ed7" style="font-size: 14px; color: #cc6600;">//所有的单目运算符比如++、 --、 +(正)、 -(负) 、指针运算*、&amp;</span></strong></div>
+<div style="text-align: left;"><strong class="fr-fix-3f915ed7"><span class="fr-fix-3f915ed7" style="font-size: 14px; color: #009900;">乘除余三,加减四; </span><span class="fr-fix-3f915ed7" style="font-size: 14px; color: #cc6600;"> //这个"余"是指取余运算即%</span></strong></div>
+<div style="text-align: left;"><strong class="fr-fix-3f915ed7"><span class="fr-fix-3f915ed7" style="font-size: 14px; color: #009900;">&nbsp;</span></strong></div>
+<div style="text-align: left;"><strong class="fr-fix-3f915ed7"><span class="fr-fix-3f915ed7" style="font-size: 14px; color: #009900;">移位五，关系六; </span><span class="fr-fix-3f915ed7" style="font-size: 14px; color: #cc6600;">//移位运算符：&lt;&lt; &gt;&gt; ，关系：&gt; &lt; &gt;= &lt;= 等</span></strong></div>
+<div style="text-align: left;"><strong class="fr-fix-3f915ed7"><span class="fr-fix-3f915ed7" style="font-size: 14px; color: #009900;">&nbsp;</span></strong></div>
+<div style="text-align: left;"><strong class="fr-fix-3f915ed7"><span class="fr-fix-3f915ed7" style="font-size: 14px; color: #009900;">等于(与)不等排第七; </span><span class="fr-fix-3f915ed7" style="font-size: 14px; color: #cc6600;">//即== 和!=</span></strong></div>
+<div style="text-align: left;"><strong class="fr-fix-3f915ed7"><span class="fr-fix-3f915ed7" style="font-size: 14px; color: #009900;">&nbsp;</span></strong></div>
+<div style="text-align: left;"><strong class="fr-fix-3f915ed7"><span class="fr-fix-3f915ed7" style="font-size: 14px; color: #009900;">位与异或和位或; </span><span class="fr-fix-3f915ed7" style="font-size: 14px; color: #009900;">"三分天下"八九十; <span class="fr-fix-3f915ed7" style="text-align: left;"><span class="fr-fix-3f915ed7" style="font-size: 14px; color: #cc6600;"> //这几个都是位运算: 位与(&amp;)异或(^)位或(|) </span></span></span></strong></div>
+<div style="text-align: left;"><strong class="fr-fix-3f915ed7"><span class="fr-fix-3f915ed7" style="font-size: 14px; color: #009900;">&nbsp;</span></strong></div>
+<div style="text-align: left;"><strong class="fr-fix-3f915ed7"><span class="fr-fix-3f915ed7" style="font-size: 14px; color: #009900;">逻辑或跟与; </span><span class="fr-fix-3f915ed7" style="font-size: 14px; color: #cc6600;"> //逻辑运算符:|| 和 &amp;&amp;</span></strong></div>
+<div style="text-align: left;"><strong class="fr-fix-3f915ed7"><span class="fr-fix-3f915ed7" style="font-size: 14px; color: #009900;">&nbsp;</span></strong></div>
+<div style="text-align: left;"><strong class="fr-fix-3f915ed7"><span class="fr-fix-3f915ed7" style="font-size: 14px; color: #009900;">十二和十一; </span><span class="fr-fix-3f915ed7" style="font-size: 14px; color: #cc6600;">//注意顺序:优先级(||) 底于 优先级(&amp;&amp;) </span></strong></div>
+<div style="text-align: left;"><strong class="fr-fix-3f915ed7"><span class="fr-fix-3f915ed7" style="font-size: 14px; color: #009900;">&nbsp;</span></strong></div>
+<div style="text-align: left;"><strong class="fr-fix-3f915ed7"><span class="fr-fix-3f915ed7" style="font-size: 14px; color: #009900;">条件高于赋值, </span><span class="fr-fix-3f915ed7" style="font-size: 14px; color: #cc6600;"> //三目运算符优先级排到13 位只比赋值运算符和","高</span></strong></div>
+<div style="text-align: left;"><strong class="fr-fix-3f915ed7"><span class="fr-fix-3f915ed7" style="font-size: 14px; color: #009900;">&nbsp;</span></strong></div>
+<div style="text-align: left;"><strong class="fr-fix-3f915ed7"><span class="fr-fix-3f915ed7" style="font-size: 14px; color: #009900;">逗号运算级最低! </span><span class="fr-fix-3f915ed7" style="font-size: 14px; color: #cc6600;"> //逗号运算符优先级最低</span></strong></div><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
+      <tags>
+        <tag>C艹</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>2023游寄</title>
+    <url>/2024/01/25/2023-you-ji/</url>
+    <content><![CDATA[<p>按首次参加时间排序。 <span id="more"></span> ---</p>
+<h1 id="蓝桥stema">蓝桥STEMA</h1>
+<p>考点：家里（</p>
+<p>打得最好的比赛之一。</p>
+<h2 id="年初场">年初场</h2>
+<p>选择题好简单，编程题就会前几道，没想到最后500+分进了GD省赛……</p>
+<p>可惜省赛跟英语撞了，没打……</p>
+<h3 id="年末场">年末场</h3>
+<p>跟年初场差不多，编程题多了一道也多做了一道，最后居然进了前5%……</p>
+<p>省赛还没开始……</p>
+<h1 id="itc">ITC</h1>
+<p>考点：家里</p>
+<p>题目大多比较简单，不会一道编程题，城市赛1=后面的赛场就没再打了……</p>
+<h1 id="ccf">CCF</h1>
+<h2 id="csp">CSP</h2>
+<h3 id="day-0">Day 0</h3>
+<p>CSP-J/S 2023要开始了，蒟蒻Leo2011非常紧张！</p>
+<p>不过准备的还行，但愿有个好成绩……</p>
+<h3 id="day-1">Day 1</h3>
+<p>考点：深实验初中部</p>
+<p>距家里车程约1h，跟平常到市区差不多。本部校区比我们学校和光明分校大多了，<del>路痴别考了</del>，但愿以后能去……</p>
+<h4 id="上午场pj">上午场（pj）</h4>
+<p>题目有些难度，但还好。</p>
+<p>选择第11题考了一会儿改选项了……</p>
+<p>判断题全选的✓……</p>
+<p>没想到这样还能74.5全国前10%“保送”进入复赛……（GD分数线等的我好苦……）</p>
+<h4 id="下午场tg">下午场（tg）</h4>
+<p>第一眼看到第一题：这不弱智题吗？</p>
+<p>第二眼看到第二题：我是弱智（……</p>
+<p>pj选手，tg摆烂，飞速答完题后（都不用想的，<del>反正都不会</del>）。</p>
+<p>45.5，深圳分数线46.5，我KAO……</p>
+<h3 id="day-2">Day 2</h3>
+<p>考点：耀华实验学校</p>
+<p>就考了pj……</p>
+<p>T3一元二次方程给我一六年级小学生干炸了……骗个第一个点10分跑路（其实我可以骗50的，但没想到）</p>
+<p>T4输出<code>-1</code>，本想着三四个点最后就一个点……</p>
+<p>然后T1T2反复横跳（重点写T1）</p>
+<p>T2想假了，本以为性质AB都能骗最后“面向数据范围编程”结果它的数据比我预想的小很多，30--&gt;15--&gt;0……</p>
+<p>T1玩儿命想AC，结果贪心不足反因为开了个1e9的long
+long数组CE爆0（老师赛后告诉我把9改成7就可以90甚至AC了……）</p>
+<p>2=+4级绿钩--&gt;啥也没有，寄</p>
+<h2 id="gesp">GESP</h2>
+<p>考点：深圳职业技术大学</p>
+<p>搬家前在坪山区，那里有个叫“深圳技术大学”的考点，搬家后就得大老远跑到福田去了……（真的有人会把它们弄混吗）</p>
+<h3 id="月4级">6月4级</h3>
+<p>选择判断很简单，编程AC了一道题，最后居然59全国第536……<del>€€£你给我出来挨打！！！</del></p>
+<h3 id="月4级-1">9月4级</h3>
+<p>跟6月一样，这次69了……</p>
+<h3 id="月5级">12月5级</h3>
+<p>没法跳级，但至少能考。</p>
+<p>这次是团报。</p>
+<p>选择判断还是那么弱。</p>
+<p>编程题T1从4级的AC25--&gt;15，T2居然从4级的0--&gt;20（考场数据<del>很弱</del>对选手很友好，以后继续这样）。</p>
+<p>团报能提前查分，73。</p>
+<h1 id="abc">ABC</h1>
+<p>考点：家里</p>
+<p>最开始327、328两场AC了C题就以为自己能稳定做出C，实际是做出C是偶然情况，祭。</p>
+<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
+      <categories>
+        <category>年度游寄</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>几种最短路算法对比</title>
+    <url>/2024/01/25/ji-chong-zui-duan-lu-suan-fa-dui-bi/</url>
+    <content><![CDATA[<p>几种最短路算法对比：</p>
+<span id="more"></span>
+<table>
+<colgroup>
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">名称</th>
+<th style="text-align: center;">时间复杂度</th>
+<th style="text-align: center;">优点</th>
+<th style="text-align: center;">缺点</th>
+<th style="text-align: center;">使用情况</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">Floyd-Warshall</td>
+<td style="text-align: center;"><span class="math inline">\(O(n ^
+3)\)</span></td>
+<td style="text-align: center;">仅有的多源最短路径算法（即跑一遍Floyd能求出每个点到其它点的距离）、其核心代码就
+5 行</td>
+<td style="text-align: center;">时间复杂度过高</td>
+<td style="text-align: center;">多源最短路、对时间复杂度没要求</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Dijkstra</td>
+<td style="text-align: center;"><span class="math inline">\(O(n ^
+2)\)</span></td>
+<td style="text-align: center;">时间复杂度比较低，具有良好的可扩展性</td>
+<td style="text-align: center;">编码复杂度非常高、不能处理负权，即边的权值是负数的情况（跟它用的是贪心有关）</td>
+<td style="text-align: center;">稠密图且是单源最短路、对时间复杂度有要求</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Bellman-Ford</td>
+<td style="text-align: center;"><span class="math inline">\(O(nm)\)</span></td>
+<td style="text-align: center;">能处理负权，时间复杂度还行，核心代码只有
+4 行</td>
+<td style="text-align: center;">跟Dijkstra时间复杂度互有胜负，有时还是
+Dijkstra赢了</td>
+<td style="text-align: center;">时间复杂度较高，别用</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">SPFA</td>
+<td style="text-align: center;">最坏也是 <span class="math inline">\(O(nm)\)</span></td>
+<td style="text-align: center;"><del>我个人</del>比较喜欢的算法，继承了Bellman-Ford的所有优点的同时有所优化</td>
+<td style="text-align: center;">容易退化</td>
+<td style="text-align: center;">稀疏图</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">BFS</td>
+<td style="text-align: center;"><span class="math inline">\(O(n +
+m)\)</span></td>
+<td style="text-align: center;">思路简单</td>
+<td style="text-align: center;">只能处理等权图或无权图</td>
+<td style="text-align: center;">等权图/无权图</td>
+</tr>
+</tbody>
+</table>
+<p>注：<span class="math inline">\(n\)</span> 为点的个数，<span class="math inline">\(m\)</span> 为边的个数。</p>
+<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
+  </entry>
+  <entry>
+    <title>B3929 [GESP202312 五级] 小杨的幸运数 题解</title>
+    <url>/2024/01/25/b3929-gesp202312-wu-ji-xiao-yang-de-xing-yun-shu-ti-jie/</url>
+    <content><![CDATA[<p>因为一些众所周知的原因，不放代码。 <span id="more"></span> ---</p>
+<p>分享一种考场思路：</p>
+<p><span class="math inline">\(a \le 10^7\)</span>，
+顺序查找肯定会废，所以可以用一种类似埃氏筛的方法将所有满足条件的数标记一下，并将其加入一个答案数组
+<span class="math inline">\(a\)</span>
+当中。然后每次查询只需要用<code>lower_bound</code>函数二分查找一下，假如找到了第
+<span class="math inline">\(i\)</span> 个：</p>
+<p><span class="math inline">\(a_i = x\)</span>, 直接输出；</p>
+<p>否则，比较 <span class="math inline">\(\mid a_{i - 1} - x
+\mid\)</span> 和 <span class="math inline">\(\mid a_i - x
+\mid\)</span>，看看那个差值小输出。</p>
+<p>最后算一下时间复杂度：预处理部分比埃氏筛快，查找部分二分时间复杂度最坏
+<span class="math inline">\(O(N \log m)\)</span>，其中 <span class="math inline">\(m\)</span>
+就是查找出来的满足条件数数组大小，经计算，<span class="math inline">\(m\)</span> 最坏是 <span class="math inline">\(500\)</span> 左右，乘 <span class="math inline">\(N\)</span> 显然是因为有 <span class="math inline">\(N\)</span> 次查询，最后是 <span class="math inline">\(O(a \log \log a + N \log m)\)</span> 不到，不会
+TLE。</p>
+<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
+      <categories>
+        <category>题解</category>
+      </categories>
+      <tags>
+        <tag>C艹</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>我艹，这么多良心软件都在GitHub上，你却打都打不开？</title>
+    <url>/2024/01/25/wo-cao-zhe-me-duo-liang-xin-ruan-jian-du-zai-github-shang-ni-que-da-du-da-bu-kai/</url>
+    <content><![CDATA[<h1 id="github为何物">GitHub为何物？</h1>
+<p>Git是一个代码管理工具。GitHub上自带Git，可以上传代码，上面囤积了不少高质量开源项目，比如<a href="https://github.com/luogu-dev/cyaron" title="你谷的CYaRon">你谷的CYaRon</a>。 <span id="more"></span></p>
+<h1 id="有啥缺点不">有啥缺点不？</h1>
+<p>有啊，国内裸网打不开……<del>设计墙这东西的那个S13出来挨打！！！</del></p>
+<h1 id="咋办呢">咋办呢？</h1>
+<h2 id="挂梯子">挂梯子</h2>
+<p>愁，是一堵矮矮的墙。我在这头，GitHub在那头（doge</p>
+<p>那你架个梯子把墙翻过去不就得了？</p>
+<h3 id="优点">优点</h3>
+<p>简单粗暴，能够访问其它站点</p>
+<h3 id="缺点">缺点</h3>
+<ol type="1">
+<li>大部分梯子都要付钱</li>
+<li>免费的梯子不好找，一般还不太稳定</li>
+<li><strong>外挂梯子是违法行为</strong></li>
+</ol>
+<p><img src="/img/IMG_1005.PNG"></p>
+<h2 id="watt-toolkit">Watt Toolkit</h2>
+<p><a href="https://steampp.net/">在这里~</a></p>
+<h3 id="优点-1">优点</h3>
+<ol type="1">
+<li>服务比较稳定</li>
+<li>免费</li>
+<li>由正规公司开发，通过了微软的审核，不会逝</li>
+<li>能加速部分其他站点，但像谷歌全家桶这样的就算了……</li>
+</ol>
+<h3 id="缺点-1">缺点</h3>
+<ol type="1">
+<li>还是可能会崩</li>
+</ol>
+<div class="spoiler collapsed">
+    <div class="spoiler-title">
+        讲点别的——Watt Toolkit什么能加速？
+    </div>
+    <div class="spoiler-content">
+        <p>Watt Toolkit什么能加速？</p>
+<p>这得说到GitHub为什么访问慢。其实GitHub在日本、韩国这些地方有服务器，离咱们近，自然访问快。但GitHub配置的DNS（有多个服务器时帮你选择服务器的服务）比较奇葩，会把你导到美国的服务器去，很容易就TLE了。</p>
+<p>而另一个关键是Hosts文件，你可以在此修改一些网络配置。比如以<code>站点地址 服务器IP</code>的格式让所有访问这个地址的请求在本机上转移到你指定的服务器。所以我们拿到日韩的服务器IP地址，再修改Hosts就可以实现加速了。</p>
+<p>Watt
+Toolkit其实就是实现这个过程的自动化脚本，但有图形化界面。<del>不会的可以看<a href="https://leo2011.pages.dev/2024/01/01/pythongui-tu-xing-hua-jie-mian-xiang-jie/">这篇简介</a>。</del></p>
+
+    </div>
+</div>
+<h2 id="steamcommunity-302">Steamcommunity 302</h2>
+<p><a href="https://www.dogfight360.com/blog/knowledge-base/steamcommunity_302_manual/">这里~</a>。</p>
+<h3 id="优点-2">优点</h3>
+<ol type="1">
+<li>比较稳定、免费、能加速一些别的</li>
+</ol>
+<h3 id="缺点-2">缺点</h3>
+<ol type="1">
+<li>Watt Toolkit与这个互相不兼容，即不能同时开启两个</li>
+<li><del>我个人认为</del>UI有那么亿点点简陋……</li>
+</ol>
+<h2 id="fastgithub">FastGitHub</h2>
+<p><del>原GitHub库已消失，只能在<a href="https://github.com/ylong52/fastgithub_win">这里找到</a></del></p>
+<h3 id="优点-3">优点</h3>
+<ol type="1">
+<li>纯粹</li>
+<li>如果加速不成功能显示报错信息</li>
+<li>与上面两个兼容</li>
+</ol>
+<h3 id="缺点-3">缺点</h3>
+<ol type="1">
+<li>名字就能看出只加速GitHub</li>
+<li>这项目本身就TM托管在GitHub上……<del>这作者有脑子，但不多</del></li>
+</ol>
+<h1 id="总结">总结</h1>
+<p>一张表，拿走：</p>
+<table>
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">方式</th>
+<th style="text-align: center;">网址</th>
+<th style="text-align: center;">优点</th>
+<th style="text-align: center;">缺点</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">挂梯子</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">能访问所有外国站点，简单粗暴</td>
+<td style="text-align: center;"><strong>违法</strong>、付费、免费的不稳定、有些加速器的“智能路由模式”非常智障</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Watt Toolkit</td>
+<td style="text-align: center;"><a href="https://steampp.net/">https://steampp.net/</a></td>
+<td style="text-align: center;">能加速一些别的、稳定、安全</td>
+<td style="text-align: center;">还是可能会崩</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Steamcommunity 302</td>
+<td style="text-align: center;"><a href="https://www.dogfight360.com/blog/knowledge-base/steamcommunity_302_manual/">https://www.dogfight360.com/blog/knowledge-base/steamcommunity_302_manual/</a></td>
+<td style="text-align: center;">同Watt Toolkit</td>
+<td style="text-align: center;">与Watt Toolkit不兼容、UI比较丑</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">FastGitHub</td>
+<td style="text-align: center;">已消失，但可以在<a href="https://github.com/ylong52/fastgithub_win">https://github.com/ylong52/fastgithub_win</a>下载</td>
+<td style="text-align: center;">纯粹、能显示报错信息，与上面两个兼容</td>
+<td style="text-align: center;">只能加速GitHub、原GitHub项目已消失</td>
+</tr>
+</tbody>
+</table>
+<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
+  </entry>
+  <entry>
+    <title>hexo-sliding-spoiler演示</title>
+    <url>/2024/01/24/hexo-sliding-spoiler-yan-shi/</url>
+    <content><![CDATA[<div class="spoiler collapsed">
+    <div class="spoiler-title">
+        可以折叠词
+    </div>
+    <div class="spoiler-content">
+        <p>content</p>
+
+    </div>
+</div>
+<div class="spoiler collapsed">
+    <div class="spoiler-title">
+        也支持Markdown语法
+    </div>
+    <div class="spoiler-content">
+        <p><del>删除线</del></p>
+<p><strong>加粗</strong></p>
+<p><em>斜体</em></p>
+<h3 id="标题党也行">标题党也行</h3>
+<p>图片<img src="/img/g.jpg" alt="图片"> 和<a href="https://github.com/fletchto99/hexo-sliding-spoiler">链接</a>也都支持
+1. 有序序列 - 无序序列</p>
+<p>当然，最主要的还是代码块，这个也是支持高亮的（如果你有用）
+</p><figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="string">"Hello World!"</span>)</span><br></pre></td></tr></tbody></table></figure><p></p>
+
+    </div>
+</div>
+<div class="spoiler collapsed">
+    <div class="spoiler-title">
+        MathJax也支持（如果你博客支持它就支持！）
+    </div>
+    <div class="spoiler-content">
+        <p><span class="math inline">\(2 ^ {10} = 1024\)</span></p>
+
+    </div>
+</div>
+<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
+      <tags>
+        <tag>测试</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>ABC串讲——332（A~C）</title>
+    <url>/2024/01/19/abc-chuan-jiang-332-a-c/</url>
+    <content><![CDATA[<h1 id="a-online-shopping">A Online Shopping</h1>
+<span id="more"></span>
+<p>模拟计算就得了。</p>
+<div class="spoiler collapsed">
+    <div class="spoiler-title">
+        ACCode
+    </div>
+    <div class="spoiler-content">
+        <figure class="highlight cpp"><table><tbody><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> log printf</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N = <span class="number">10010</span>;</span><br><span class="line"><span class="type">int</span> n, s, k, p[N], q[N], sum;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>{</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d%d%d"</span>, &amp;n, &amp;s, &amp;k);</span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n;i++)</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">"%d%d"</span>, &amp;p[i], &amp;q[i]), sum += p[i] * q[i];</span><br><span class="line">	<span class="keyword">if</span> (sum &lt; s) sum += k;</span><br><span class="line">	<span class="built_in">log</span>(<span class="string">"%d\n"</span>, sum);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+    </div>
+</div>
+<p><a href="https://www.luogu.com.cn/record/140465002">AC记录</a></p>
+<h1 id="b-glass-and-mug">B Glass and Mug</h1>
+<p>还是模拟，建俩变量模拟一遍得了。</p>
+<div class="spoiler collapsed">
+    <div class="spoiler-title">
+        ACCode
+    </div>
+    <div class="spoiler-content">
+        <figure class="highlight cpp"><table><tbody><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> log printf</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> k, g, m, gls, mug;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>{</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d%d%d"</span>, &amp;k, &amp;g, &amp;m);</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>;i &lt; k;i++) {</span><br><span class="line">        <span class="keyword">if</span> (gls == g) gls = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">			<span class="keyword">if</span> (mug == <span class="number">0</span>) mug = m;</span><br><span class="line">            <span class="keyword">else</span> {</span><br><span class="line">				<span class="type">int</span> mug_can = mug, gls_need = g - gls;</span><br><span class="line">				<span class="keyword">if</span> (mug_can &gt; gls_need) gls = g, mug -= gls_need;</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span> (mug_can &lt; gls_need) mug = <span class="number">0</span>, gls += mug_can;</span><br><span class="line">                <span class="keyword">else</span> gls += gls_need, mug -= mug_can;</span><br><span class="line">			}</span><br><span class="line">    }</span><br><span class="line">	<span class="built_in">log</span>(<span class="string">"%d %d\n"</span>, gls, mug);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+    </div>
+</div>
+<p><a href="https://www.luogu.com.cn/record/140465914" title="AC记录">AC记录</a></p>
+<h1 id="c-t-shirts">C T-shirts</h1>
+<p>又双叒叕是模拟。</p>
+<div class="spoiler collapsed">
+    <div class="spoiler-title">
+        ACCode
+    </div>
+    <div class="spoiler-content">
+        <figure class="highlight cpp"><table><tbody><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> log printf</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> m, n, plain, logo, logo_have;</span><br><span class="line">string s;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>{</span><br><span class="line">	cin &gt;&gt; n &gt;&gt; m &gt;&gt; s;</span><br><span class="line">	plain = m;</span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) {</span><br><span class="line">		<span class="keyword">if</span> (s[i] == <span class="string">'0'</span>) {</span><br><span class="line">			plain = m;</span><br><span class="line">			logo_have = logo;</span><br><span class="line">			<span class="keyword">continue</span>;</span><br><span class="line">		}</span><br><span class="line">		<span class="keyword">if</span> (s[i] == <span class="string">'1'</span>) {</span><br><span class="line">			<span class="keyword">if</span> (plain &gt; <span class="number">0</span>)</span><br><span class="line">				plain--;</span><br><span class="line">			<span class="keyword">else</span> {</span><br><span class="line">				<span class="keyword">if</span> (logo_have &gt; <span class="number">0</span>)</span><br><span class="line">					logo_have--;</span><br><span class="line">				<span class="keyword">else</span></span><br><span class="line">					logo++;</span><br><span class="line">			}</span><br><span class="line">		} <span class="keyword">else</span> {</span><br><span class="line">			<span class="keyword">if</span> (logo_have &gt; <span class="number">0</span>)</span><br><span class="line">				logo_have--;</span><br><span class="line">			<span class="keyword">else</span></span><br><span class="line">				logo++;</span><br><span class="line">		}</span><br><span class="line">	}</span><br><span class="line">	<span class="built_in">log</span>(<span class="string">"%d\n"</span>, logo);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+    </div>
+</div>
+<p><a href="https://www.luogu.com.cn/record/140466860" title="AC记录">AC记录</a></p>
+<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
+      <categories>
+        <category>题解</category>
+        <category>AT-ABC串讲</category>
+      </categories>
+      <tags>
+        <tag>C艹</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>ABC串讲——328（A~C）</title>
+    <url>/2024/01/19/abc-chuan-jiang-328-a-c/</url>
+    <content><![CDATA[<h1 id="a-not-too-hard">A Not Too Hard</h1>
+<span id="more"></span>
+<p><span class="math inline">\(N \le 8\)</span>
+也是醉了，循环枚举就得了呗？ 遍历一遍数组就可以 AC 了。</p>
+<div class="spoiler collapsed">
+    <div class="spoiler-title">
+        ACCode
+    </div>
+    <div class="spoiler-content">
+        <figure class="highlight cpp"><table><tbody><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N = <span class="number">10</span>;</span><br><span class="line"><span class="type">int</span> n, x, a[N], sum;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>{</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d%d"</span>, &amp;n, &amp;x);</span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>;i &lt;= n;i++) {</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;a[i]);</span><br><span class="line">		<span class="keyword">if</span> (a[i] &lt;= x)</span><br><span class="line">			sum += a[i];</span><br><span class="line">	}</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%d\n"</span>, sum);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+
+    </div>
+</div>
+<p><a href="https://www.luogu.com.cn/record/135867122">AC记录</a></p>
+<h1 id="b-1111">B 11/11</h1>
+<p><del>我生日哎。</del></p>
+<p>数位最多两位，这个数位分解很简单。这里有一种简单粗暴的办法：如果十位是0就让它等于个位就好了，反正不影响结果。</p>
+<div class="spoiler collapsed">
+    <div class="spoiler-title">
+        ACCode
+    </div>
+    <div class="spoiler-content">
+        <figure class="highlight cpp"><table><tbody><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N = <span class="number">110</span>;</span><br><span class="line"><span class="type">int</span> n, d[N], ans;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>{</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;n);</span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>;i &lt;= n;i++) {</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;d[i]);</span><br><span class="line">		<span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">1</span>;j &lt;= d[i];j++) {</span><br><span class="line">			<span class="type">int</span> ge = j % <span class="number">10</span>, shi = j / <span class="number">10</span>, gei = i % <span class="number">10</span>, shii = i /<span class="number">10</span>;</span><br><span class="line">			<span class="keyword">if</span> (shi == <span class="number">0</span>)</span><br><span class="line">				shi = ge;</span><br><span class="line">			<span class="keyword">if</span> (shii == <span class="number">0</span>)</span><br><span class="line">				shii = gei;</span><br><span class="line">			<span class="keyword">if</span> (ge == shi &amp;&amp; shi == gei &amp;&amp; gei == shii)</span><br><span class="line">				ans++;</span><br><span class="line">		}</span><br><span class="line">	}</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%d\n"</span>, ans);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+    </div>
+</div>
+<p><a href="https://www.luogu.com.cn/record/135867314" title="AC记录">AC记录</a></p>
+<h1 id="c-consecutive">C Consecutive</h1>
+<blockquote>
+<p>Tips：区间求答案，就想前缀和。</p>
+</blockquote>
+<p>如果相等，就在答案数组上+1，否则就不加</p>
+<div class="spoiler collapsed">
+    <div class="spoiler-title">
+        ACCode with 注释
+    </div>
+    <div class="spoiler-content">
+        <figure class="highlight cpp"><table><tbody><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N = <span class="number">3e5</span> + <span class="number">10</span>;</span><br><span class="line"><span class="type">int</span> n, q, l, r, cnt[N];</span><br><span class="line">string s;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>{</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d%d"</span>, &amp;n, &amp;q);</span><br><span class="line">    cin &gt;&gt; s;</span><br><span class="line">    s = <span class="string">' '</span> + s;  <span class="comment">// 前缀和从1开始</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>;i &lt;= n;i++)</span><br><span class="line">        <span class="keyword">if</span> (s[i] == s[i + <span class="number">1</span>])  <span class="comment">// 相等</span></span><br><span class="line">            cnt[i] = cnt[i - <span class="number">1</span>] + <span class="number">1</span>;  <span class="comment">// 记录</span></span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            cnt[i] = cnt[i - <span class="number">1</span>];</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>;i &lt;= q;i++) {</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">"%d%d"</span>, &amp;l, &amp;r);</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"%d\n"</span>,  cnt[r - <span class="number">1</span>] - cnt[l - <span class="number">1</span>]);</span><br><span class="line">        <span class="comment">/*因为上面是s[i + 1]与s[i]相同就记录了，</span></span><br><span class="line"><span class="comment">        所以要用cnt[r - 1]以防在最后一组相同的区间内只有其中一个字符，</span></span><br><span class="line"><span class="comment">        即避免如aabb中的bb在筛查1~3的时候被计算*/</span></span><br><span class="line">    }</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+    </div>
+</div>
+<p><a href="https://www.luogu.com.cn/record/135867500" title="AC记录">AC记录</a></p>
+<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
+      <categories>
+        <category>题解</category>
+        <category>AT-ABC串讲</category>
+      </categories>
+      <tags>
+        <tag>C艹</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>ABC串讲——327（A~C）</title>
+    <url>/2024/01/18/abc-chuan-jiang-327-a-c/</url>
+    <content><![CDATA[<h1 id="a-ab">A ab</h1>
+<span id="more"></span>
+<p><span class="math inline">\(S\)</span> 长度不超过 100，随便搞~</p>
+<p>遍历一遍，如果一个是“a”且下一个字符是“b”就有，否则没有。</p>
+<div class="spoiler collapsed">
+    <div class="spoiler-title">
+        ACCode
+    </div>
+    <div class="spoiler-content">
+        <figure class="highlight cpp"><table><tbody><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> log printf</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> n, len;</span><br><span class="line">string s;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>{</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;n);</span><br><span class="line">	cin &gt;&gt; s;</span><br><span class="line">	len = s.<span class="built_in">size</span>();</span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>;i &lt; len;i++)</span><br><span class="line">		<span class="keyword">if</span> ((s[i] == <span class="string">'a'</span> &amp;&amp; s[i + <span class="number">1</span>] == <span class="string">'b'</span>) || (s[i + <span class="number">1</span>] == <span class="string">'a'</span> &amp;&amp; s[i] == <span class="string">'b'</span>)) {</span><br><span class="line">			<span class="built_in">log</span>(<span class="string">"Yes\n"</span>);</span><br><span class="line">			<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">		}</span><br><span class="line">	<span class="built_in">log</span>(<span class="string">"No\n"</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+    </div>
+</div>
+<p><a href="https://www.luogu.com.cn/record/133471689" title="AC记录">AC记录</a></p>
+<h1 id="b-aa">B A^A</h1>
+<p><span class="math inline">\(\sqrt{18}\approx{4}\)</span>，枚举到
+<span class="math inline">\(10^5\)</span> 最多了。</p>
+<p>枚举就完事儿了，连快速幂都不需要的。</p>
+<div class="spoiler collapsed">
+    <div class="spoiler-title">
+        ACCode
+    </div>
+    <div class="spoiler-content">
+        <figure class="highlight cpp"><table><tbody><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> log printf</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">typedef</span> <span class="type">long</span> <span class="type">long</span> ll;</span><br><span class="line"></span><br><span class="line">ll b;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>{</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%lld"</span>, &amp;b);</span><br><span class="line">	<span class="keyword">for</span> (ll i = <span class="number">1</span>; i &lt;= (<span class="type">int</span>) <span class="number">1e5</span>; i++) {</span><br><span class="line">		ll tmp = <span class="number">1</span>;</span><br><span class="line">		<span class="keyword">for</span> (ll j = <span class="number">1</span>;j &lt;= i;j++)</span><br><span class="line">			tmp *= i;</span><br><span class="line">		<span class="keyword">if</span> (tmp == b) {</span><br><span class="line">			<span class="built_in">log</span>(<span class="string">"%lld\n"</span>, i);</span><br><span class="line">			<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">		} <span class="keyword">else</span> {</span><br><span class="line">			<span class="keyword">if</span> (tmp &gt; b) {</span><br><span class="line">				<span class="built_in">log</span>(<span class="string">"-1\n"</span>);</span><br><span class="line">				<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">			}</span><br><span class="line">		}</span><br><span class="line">	}</span><br><span class="line">	<span class="built_in">log</span>(<span class="string">"-1\n"</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+    </div>
+</div>
+<p><a href="https://www.luogu.com.cn/record/133471890" title="AC记录">AC记录</a></p>
+<h1 id="c-number-place">C Number Place</h1>
+<p>数独 <span class="math inline">\(=9\times9\)</span>
+的矩阵，枚举就完事儿了。</p>
+<div class="spoiler collapsed">
+    <div class="spoiler-title">
+        ACCode
+    </div>
+    <div class="spoiler-content">
+        <figure class="highlight cpp"><table><tbody><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> log printf</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N = <span class="number">10</span>;</span><br><span class="line"><span class="type">int</span> a[N][N];</span><br><span class="line"><span class="type">bool</span> cnt[N];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">add</span><span class="params">(<span class="type">int</span> x, <span class="type">int</span> y)</span> </span>{</span><br><span class="line">    <span class="keyword">if</span> (!cnt[a[x][y]])</span><br><span class="line">        cnt[a[x][y]] = <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">else</span> {</span><br><span class="line">        <span class="built_in">log</span>(<span class="string">"No\n"</span>);</span><br><span class="line">        <span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>{</span><br><span class="line">    <span class="comment">// 读入，固定是九宫格</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= <span class="number">9</span>; i++)</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">1</span>; j &lt;= <span class="number">9</span>; j++)</span><br><span class="line">            <span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;a[i][j]);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 行</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= <span class="number">9</span>; i++) {</span><br><span class="line">        <span class="built_in">memset</span>(cnt, <span class="literal">false</span>, <span class="built_in">sizeof</span>(cnt));</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">1</span>; j &lt;= <span class="number">9</span>; j++)</span><br><span class="line">            <span class="built_in">add</span>(i, j);</span><br><span class="line">    }</span><br><span class="line">    <span class="comment">//  列</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= <span class="number">9</span>; i++) {</span><br><span class="line">        <span class="built_in">memset</span>(cnt, <span class="literal">false</span>, <span class="built_in">sizeof</span>(cnt));</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">1</span>; j &lt;= <span class="number">9</span>; j++)</span><br><span class="line">            <span class="built_in">add</span>(j, i);</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="built_in">memset</span>(cnt, <span class="literal">false</span>, <span class="built_in">sizeof</span>(cnt));</span><br><span class="line">    <span class="built_in">add</span>(<span class="number">1</span>, <span class="number">1</span>);</span><br><span class="line">    <span class="built_in">add</span>(<span class="number">1</span>, <span class="number">2</span>);</span><br><span class="line">    <span class="built_in">add</span>(<span class="number">1</span>, <span class="number">3</span>);</span><br><span class="line">    <span class="built_in">add</span>(<span class="number">2</span>, <span class="number">1</span>);</span><br><span class="line">    <span class="built_in">add</span>(<span class="number">2</span>, <span class="number">2</span>);</span><br><span class="line">    <span class="built_in">add</span>(<span class="number">2</span>, <span class="number">3</span>);</span><br><span class="line">    <span class="built_in">add</span>(<span class="number">3</span>, <span class="number">1</span>);</span><br><span class="line">    <span class="built_in">add</span>(<span class="number">3</span>, <span class="number">2</span>);</span><br><span class="line">    <span class="built_in">add</span>(<span class="number">3</span>, <span class="number">3</span>);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">memset</span>(cnt, <span class="literal">false</span>, <span class="built_in">sizeof</span>(cnt));</span><br><span class="line">    <span class="built_in">add</span>(<span class="number">1</span>, <span class="number">4</span>);</span><br><span class="line">    <span class="built_in">add</span>(<span class="number">1</span>, <span class="number">5</span>);</span><br><span class="line">    <span class="built_in">add</span>(<span class="number">1</span>, <span class="number">6</span>);</span><br><span class="line">    <span class="built_in">add</span>(<span class="number">2</span>, <span class="number">4</span>);</span><br><span class="line">    <span class="built_in">add</span>(<span class="number">2</span>, <span class="number">5</span>);</span><br><span class="line">    <span class="built_in">add</span>(<span class="number">2</span>, <span class="number">6</span>);</span><br><span class="line">    <span class="built_in">add</span>(<span class="number">3</span>, <span class="number">4</span>);</span><br><span class="line">    <span class="built_in">add</span>(<span class="number">3</span>, <span class="number">5</span>);</span><br><span class="line">    <span class="built_in">add</span>(<span class="number">3</span>, <span class="number">6</span>);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">memset</span>(cnt, <span class="literal">false</span>, <span class="built_in">sizeof</span>(cnt));</span><br><span class="line">    <span class="built_in">add</span>(<span class="number">1</span>, <span class="number">7</span>);</span><br><span class="line">    <span class="built_in">add</span>(<span class="number">1</span>, <span class="number">8</span>);</span><br><span class="line">    <span class="built_in">add</span>(<span class="number">1</span>, <span class="number">9</span>);</span><br><span class="line">    <span class="built_in">add</span>(<span class="number">2</span>, <span class="number">7</span>);</span><br><span class="line">    <span class="built_in">add</span>(<span class="number">2</span>, <span class="number">8</span>);</span><br><span class="line">    <span class="built_in">add</span>(<span class="number">2</span>, <span class="number">9</span>);</span><br><span class="line">    <span class="built_in">add</span>(<span class="number">3</span>, <span class="number">7</span>);</span><br><span class="line">    <span class="built_in">add</span>(<span class="number">3</span>, <span class="number">8</span>);</span><br><span class="line">    <span class="built_in">add</span>(<span class="number">3</span>, <span class="number">9</span>);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">memset</span>(cnt, <span class="literal">false</span>, <span class="built_in">sizeof</span>(cnt));</span><br><span class="line">    <span class="built_in">add</span>(<span class="number">4</span>, <span class="number">1</span>);</span><br><span class="line">    <span class="built_in">add</span>(<span class="number">4</span>, <span class="number">2</span>);</span><br><span class="line">    <span class="built_in">add</span>(<span class="number">4</span>, <span class="number">3</span>);</span><br><span class="line">    <span class="built_in">add</span>(<span class="number">5</span>, <span class="number">1</span>);</span><br><span class="line">    <span class="built_in">add</span>(<span class="number">5</span>, <span class="number">2</span>);</span><br><span class="line">    <span class="built_in">add</span>(<span class="number">5</span>, <span class="number">3</span>);</span><br><span class="line">    <span class="built_in">add</span>(<span class="number">6</span>, <span class="number">1</span>);</span><br><span class="line">    <span class="built_in">add</span>(<span class="number">6</span>, <span class="number">2</span>);</span><br><span class="line">    <span class="built_in">add</span>(<span class="number">6</span>, <span class="number">3</span>);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">memset</span>(cnt, <span class="literal">false</span>, <span class="built_in">sizeof</span>(cnt));</span><br><span class="line">    <span class="built_in">add</span>(<span class="number">4</span>, <span class="number">4</span>);</span><br><span class="line">    <span class="built_in">add</span>(<span class="number">4</span>, <span class="number">5</span>);</span><br><span class="line">    <span class="built_in">add</span>(<span class="number">4</span>, <span class="number">6</span>);</span><br><span class="line">    <span class="built_in">add</span>(<span class="number">5</span>, <span class="number">4</span>);</span><br><span class="line">    <span class="built_in">add</span>(<span class="number">5</span>, <span class="number">5</span>);</span><br><span class="line">    <span class="built_in">add</span>(<span class="number">5</span>, <span class="number">6</span>);</span><br><span class="line">    <span class="built_in">add</span>(<span class="number">6</span>, <span class="number">4</span>);</span><br><span class="line">    <span class="built_in">add</span>(<span class="number">6</span>, <span class="number">5</span>);</span><br><span class="line">    <span class="built_in">add</span>(<span class="number">6</span>, <span class="number">6</span>);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">memset</span>(cnt, <span class="literal">false</span>, <span class="built_in">sizeof</span>(cnt));</span><br><span class="line">    <span class="built_in">add</span>(<span class="number">4</span>, <span class="number">7</span>);</span><br><span class="line">    <span class="built_in">add</span>(<span class="number">4</span>, <span class="number">8</span>);</span><br><span class="line">    <span class="built_in">add</span>(<span class="number">4</span>, <span class="number">9</span>);</span><br><span class="line">    <span class="built_in">add</span>(<span class="number">5</span>, <span class="number">7</span>);</span><br><span class="line">    <span class="built_in">add</span>(<span class="number">5</span>, <span class="number">8</span>);</span><br><span class="line">    <span class="built_in">add</span>(<span class="number">5</span>, <span class="number">9</span>);</span><br><span class="line">    <span class="built_in">add</span>(<span class="number">6</span>, <span class="number">7</span>);</span><br><span class="line">    <span class="built_in">add</span>(<span class="number">6</span>, <span class="number">8</span>);</span><br><span class="line">    <span class="built_in">add</span>(<span class="number">6</span>, <span class="number">9</span>);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">memset</span>(cnt, <span class="literal">false</span>, <span class="built_in">sizeof</span>(cnt));</span><br><span class="line">    <span class="built_in">add</span>(<span class="number">7</span>, <span class="number">1</span>);</span><br><span class="line">    <span class="built_in">add</span>(<span class="number">7</span>, <span class="number">2</span>);</span><br><span class="line">    <span class="built_in">add</span>(<span class="number">7</span>, <span class="number">3</span>);</span><br><span class="line">    <span class="built_in">add</span>(<span class="number">8</span>, <span class="number">1</span>);</span><br><span class="line">    <span class="built_in">add</span>(<span class="number">8</span>, <span class="number">2</span>);</span><br><span class="line">    <span class="built_in">add</span>(<span class="number">8</span>, <span class="number">3</span>);</span><br><span class="line">    <span class="built_in">add</span>(<span class="number">9</span>, <span class="number">1</span>);</span><br><span class="line">    <span class="built_in">add</span>(<span class="number">9</span>, <span class="number">2</span>);</span><br><span class="line">    <span class="built_in">add</span>(<span class="number">9</span>, <span class="number">3</span>);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">memset</span>(cnt, <span class="literal">false</span>, <span class="built_in">sizeof</span>(cnt));</span><br><span class="line">    <span class="built_in">add</span>(<span class="number">7</span>, <span class="number">4</span>);</span><br><span class="line">    <span class="built_in">add</span>(<span class="number">7</span>, <span class="number">5</span>);</span><br><span class="line">    <span class="built_in">add</span>(<span class="number">7</span>, <span class="number">6</span>);</span><br><span class="line">    <span class="built_in">add</span>(<span class="number">8</span>, <span class="number">4</span>);</span><br><span class="line">    <span class="built_in">add</span>(<span class="number">8</span>, <span class="number">5</span>);</span><br><span class="line">    <span class="built_in">add</span>(<span class="number">8</span>, <span class="number">6</span>);</span><br><span class="line">    <span class="built_in">add</span>(<span class="number">9</span>, <span class="number">4</span>);</span><br><span class="line">    <span class="built_in">add</span>(<span class="number">9</span>, <span class="number">5</span>);</span><br><span class="line">    <span class="built_in">add</span>(<span class="number">9</span>, <span class="number">6</span>);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">memset</span>(cnt, <span class="literal">false</span>, <span class="built_in">sizeof</span>(cnt));</span><br><span class="line">    <span class="built_in">add</span>(<span class="number">7</span>, <span class="number">7</span>);</span><br><span class="line">    <span class="built_in">add</span>(<span class="number">7</span>, <span class="number">8</span>);</span><br><span class="line">    <span class="built_in">add</span>(<span class="number">7</span>, <span class="number">9</span>);</span><br><span class="line">    <span class="built_in">add</span>(<span class="number">8</span>, <span class="number">7</span>);</span><br><span class="line">    <span class="built_in">add</span>(<span class="number">8</span>, <span class="number">8</span>);</span><br><span class="line">    <span class="built_in">add</span>(<span class="number">8</span>, <span class="number">9</span>);</span><br><span class="line">    <span class="built_in">add</span>(<span class="number">9</span>, <span class="number">7</span>);</span><br><span class="line">    <span class="built_in">add</span>(<span class="number">9</span>, <span class="number">8</span>);</span><br><span class="line">    <span class="built_in">add</span>(<span class="number">9</span>, <span class="number">9</span>);</span><br><span class="line">    <span class="built_in">log</span>(<span class="string">"Yes\n"</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+    </div>
+</div>
+<p><a href="https://www.luogu.com.cn/record/133417678" title="AC记录">AC记录</a></p>
+<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
+      <categories>
+        <category>题解</category>
+        <category>AT-ABC串讲</category>
+      </categories>
+      <tags>
+        <tag>C艹</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>P2580 于是他错误的点名开始了 题解</title>
+    <url>/2024/01/18/p2580-yu-shi-ta-cuo-wu-de-dian-ming-kai-shi-liao-ti-jie/</url>
+    <content><![CDATA[<p>“普及/<strong>提高-</strong>”这个难度很有意思。</p>
+<p>说明这题可能需要用到提高组当中比较基础的内容。</p>
+<p>它的名字叫做 map。 <span id="more"></span> ---</p>
+<figure class="highlight cpp"><table><tbody><tr><td class="code"><pre><span class="line">map&lt;<span class="type">int</span>, <span class="type">int</span>&gt; a;</span><br><span class="line">a[<span class="number">7</span>] = <span class="number">5</span>;</span><br><span class="line">map&lt;string, <span class="type">int</span>&gt; score;</span><br><span class="line">score[<span class="string">"Leo2011"</span>] = <span class="number">400</span>;</span><br></pre></td></tr></tbody></table></figure>
+<p>map，其实相当于一个超大数组，但它真实的作用是：映射。比如
+<code>a[7] = 5;</code>就是用 a 数组把 7 和 5
+关联了起来，这个操作就叫映射。</p>
+<p>map这东西 NB
+的地方在于，它能这么写：<code>score["Leo2011"] = 400;</code>。哎对，这个类似下标的玩意儿就是个字符串！</p>
+<p>有了这不好办了？</p>
+<hr>
+<div class="spoiler collapsed">
+    <div class="spoiler-title">
+        ACCode
+    </div>
+    <div class="spoiler-content">
+        <figure class="highlight cpp"><table><tbody><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line">unordered_map&lt;string, <span class="type">int</span>&gt; mp;  <span class="comment">// map会自动排序，此时访问时间复杂度为O(logn)，unordered_map不排序，时间复杂度O(1)</span></span><br><span class="line"><span class="type">int</span> m, n;</span><br><span class="line">string s;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>{</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;n);</span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>;i &lt;= n;i++) {</span><br><span class="line">		cin &gt;&gt; s;</span><br><span class="line">		mp[s] = <span class="number">1</span>;</span><br><span class="line">	}</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;m);</span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>;i &lt;= m;i++) {</span><br><span class="line">		cin &gt;&gt; s;</span><br><span class="line">		<span class="keyword">if</span> (mp[s] == <span class="number">1</span>) {</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">"OK\n"</span>);</span><br><span class="line">			mp[s] = <span class="number">2</span>;</span><br><span class="line">		}</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">			<span class="keyword">if</span> (!mp[s])</span><br><span class="line">				<span class="built_in">printf</span>(<span class="string">"WRONG\n"</span>);</span><br><span class="line">			<span class="keyword">else</span></span><br><span class="line">				<span class="built_in">printf</span>(<span class="string">"REPEAT\n"</span>);</span><br><span class="line">	}</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+    </div>
+</div>
+<p><a href="https://www.luogu.com.cn/record/129964488" title="AC记录">AC记录</a></p>
+<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
+      <categories>
+        <category>题解</category>
+      </categories>
+      <tags>
+        <tag>C艹</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>P9012 [USACO23JAN] Moo Operations B题解</title>
+    <url>/2024/01/18/p9012-usaco23jan-moo-operations-b-ti-jie/</url>
+    <content><![CDATA[<p>前情提要：这<del>恐怕</del>是最好想、最简单的一种做法。 <span id="more"></span>
+---</p>
+<p><del>第 1 道赛场 AC 的题，必须发篇题解记录一下。</del></p>
+<blockquote>
+<p>Tips: <span class="math inline">\(1 \le |S| \le 100\)</span>
+——题目</p>
+</blockquote>
+<p>才 <span class="math inline">\(100\)</span>，这就可以随便整活了。</p>
+<hr>
+<p>如果你稍微懂点英语，就会知道第 <span class="math inline">\(2 \sim
+4\)</span> 个点的 <span class="math inline">\(S\)</span> 都最多只有
+<span class="math inline">\(3\)</span> 个字符，而目标“MOO”也是 <span class="math inline">\(3\)</span> 个字符，所以只需要模拟就可以了。</p>
+<div class="spoiler collapsed">
+    <div class="spoiler-title">
+        于是你迅速写出了下面的 check 函数，并用它 AC 了前几个点：
+    </div>
+    <div class="spoiler-content">
+        <figure class="highlight cpp"><table><tbody><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">check</span><span class="params">(string a)</span> </span>{</span><br><span class="line">	<span class="keyword">if</span> (a.<span class="built_in">size</span>() &lt; <span class="number">3</span>)  <span class="comment">// 不让加字符，小于 3 的肯定就废了</span></span><br><span class="line">		<span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">	<span class="type">int</span> step = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">if</span> (a == <span class="string">"MOO"</span>)  <span class="comment">// 都一样了你还变它干啥，浪费表情(</span></span><br><span class="line">		<span class="keyword">return</span> step;</span><br><span class="line">	string tmp1 = a;</span><br><span class="line">	step++;</span><br><span class="line">	<span class="keyword">if</span> (tmp1[<span class="number">0</span>] == <span class="string">'M'</span>)  <span class="comment">// 胡乱尝试</span></span><br><span class="line">		tmp1[<span class="number">0</span>] = <span class="string">'O'</span>;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">		tmp1[<span class="number">0</span>] = <span class="string">'M'</span>;</span><br><span class="line">	<span class="keyword">if</span> (tmp1 != <span class="string">"MOO"</span>) {</span><br><span class="line">		step++;</span><br><span class="line">		<span class="keyword">if</span> (tmp1[<span class="number">2</span>] == <span class="string">'M'</span>)</span><br><span class="line">			tmp1[<span class="number">2</span>] = <span class="string">'O'</span>;</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">			tmp1[<span class="number">2</span>] = <span class="string">'M'</span>;</span><br><span class="line">	} <span class="keyword">else</span></span><br><span class="line">		<span class="keyword">return</span> step;</span><br><span class="line">	<span class="keyword">if</span> (tmp1 != <span class="string">"MOO"</span>) {</span><br><span class="line">		step--;  <span class="comment">// 撤销第 1 步操作，所以是--</span></span><br><span class="line">		<span class="keyword">if</span> (tmp1[<span class="number">0</span>] == <span class="string">'M'</span>)</span><br><span class="line">			tmp1[<span class="number">0</span>] = <span class="string">'O'</span>;</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">			tmp1[<span class="number">0</span>] = <span class="string">'M'</span>;</span><br><span class="line">	} <span class="keyword">else</span></span><br><span class="line">		<span class="keyword">return</span> step;</span><br><span class="line">	<span class="keyword">if</span> (tmp1 != <span class="string">"MOO"</span>)</span><br><span class="line">		<span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">	<span class="keyword">return</span> step;</span><br><span class="line">}</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+
+    </div>
+</div>
+<p>这样你就能顺利的 AC 前三个点了。</p>
+<p>那剩下的咋整？</p>
+<p>“MOO”就仨字符，那你把它砍成只有仨字符的形式不就得了？反正 <span class="math inline">\(100\)</span>
+的数据量随便折腾。所以，你只需要把仨字符能组成的 <span class="math inline">\(8\)</span>
+个字符串都枚举出来，挨个判断子串，如果仨字符的是子串，那么就是子串所需步数
+<span class="math inline">\(+\)</span> 原字符串长度 <span class="math inline">\(-3\)</span>（因为可以不断把它删成子串）。</p>
+<hr>
+<div class="spoiler collapsed">
+    <div class="spoiler-title">
+        ACCode：
+    </div>
+    <div class="spoiler-content">
+        <figure class="highlight cpp"><table><tbody><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> n;</span><br><span class="line">string str;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">min</span><span class="params">(<span class="type">int</span> a, <span class="type">int</span> b)</span> </span>{</span><br><span class="line">	<span class="keyword">return</span> a &gt; b ? b : a;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">checkSubString</span><span class="params">(string a, string b)</span> </span>{</span><br><span class="line">	<span class="type">int</span> x = a.<span class="built_in">size</span>(), y = b.<span class="built_in">size</span>();</span><br><span class="line">	<span class="keyword">if</span> (x &lt;= y) {</span><br><span class="line">		<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; y; i++) {</span><br><span class="line">			<span class="keyword">if</span> (b[i] == a[<span class="number">0</span>]) {</span><br><span class="line">				<span class="type">bool</span> flag = <span class="literal">true</span>;</span><br><span class="line">				<span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; x; j++)</span><br><span class="line">					<span class="keyword">if</span> (b[i + j] == a[j])</span><br><span class="line">						<span class="keyword">continue</span>;</span><br><span class="line">					<span class="keyword">else</span> {</span><br><span class="line">						flag = <span class="literal">false</span>;</span><br><span class="line">						<span class="keyword">break</span>;</span><br><span class="line">					}</span><br><span class="line">				<span class="keyword">if</span> (flag)</span><br><span class="line">					<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">			}</span><br><span class="line">		}</span><br><span class="line">	}</span><br><span class="line">	<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">check</span><span class="params">(string a)</span> </span>{</span><br><span class="line">	<span class="keyword">if</span> (a.<span class="built_in">size</span>() &lt; <span class="number">3</span>)</span><br><span class="line">		<span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">	<span class="type">int</span> step = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">if</span> (a == <span class="string">"MOO"</span>)</span><br><span class="line">		<span class="keyword">return</span> step;</span><br><span class="line">	string tmp1 = a;</span><br><span class="line">	step++;</span><br><span class="line">	<span class="keyword">if</span> (tmp1[<span class="number">0</span>] == <span class="string">'M'</span>)</span><br><span class="line">		tmp1[<span class="number">0</span>] = <span class="string">'O'</span>;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">		tmp1[<span class="number">0</span>] = <span class="string">'M'</span>;</span><br><span class="line">	<span class="keyword">if</span> (tmp1 != <span class="string">"MOO"</span>) {</span><br><span class="line">		step++;</span><br><span class="line">		<span class="keyword">if</span> (tmp1[<span class="number">2</span>] == <span class="string">'M'</span>)</span><br><span class="line">			tmp1[<span class="number">2</span>] = <span class="string">'O'</span>;</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">			tmp1[<span class="number">2</span>] = <span class="string">'M'</span>;</span><br><span class="line">	} <span class="keyword">else</span></span><br><span class="line">		<span class="keyword">return</span> step;</span><br><span class="line">	<span class="keyword">if</span> (tmp1 != <span class="string">"MOO"</span>) {</span><br><span class="line">		step--;</span><br><span class="line">		<span class="keyword">if</span> (tmp1[<span class="number">0</span>] == <span class="string">'M'</span>)</span><br><span class="line">			tmp1[<span class="number">0</span>] = <span class="string">'O'</span>;</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">			tmp1[<span class="number">0</span>] = <span class="string">'M'</span>;</span><br><span class="line">	} <span class="keyword">else</span></span><br><span class="line">		<span class="keyword">return</span> step;</span><br><span class="line">	<span class="keyword">if</span> (tmp1 != <span class="string">"MOO"</span>)</span><br><span class="line">		<span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">	<span class="keyword">return</span> step;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">checker</span><span class="params">(string x)</span> </span>{</span><br><span class="line">	<span class="keyword">if</span> (x.<span class="built_in">size</span>() &lt;= <span class="number">3</span>)</span><br><span class="line">		<span class="keyword">return</span> <span class="built_in">check</span>(x);</span><br><span class="line">	<span class="type">int</span> mn = <span class="number">10000</span>;</span><br><span class="line">	string a[] = {<span class="string">"OOO"</span>, <span class="string">"OOM"</span>, <span class="string">"OMO"</span>, <span class="string">"OMM"</span>, <span class="string">"MOO"</span>, <span class="string">"MOM"</span>, <span class="string">"MMO"</span>, <span class="string">"MMM"</span>};</span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">8</span>; i++) {</span><br><span class="line">		<span class="keyword">if</span> (<span class="built_in">checkSubString</span>(a[i], x)) {</span><br><span class="line">			<span class="type">int</span> tmp = <span class="built_in">check</span>(a[i]);</span><br><span class="line">			<span class="keyword">if</span> (tmp != <span class="number">-1</span>)</span><br><span class="line">				mn = <span class="built_in">min</span>(mn, (tmp + x.<span class="built_in">size</span>() - <span class="number">3</span>));</span><br><span class="line">		}</span><br><span class="line">	}</span><br><span class="line">	<span class="keyword">if</span> (mn == <span class="number">10000</span>)</span><br><span class="line">		<span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">	<span class="keyword">return</span> mn;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>{</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;n);</span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) {</span><br><span class="line">		cin &gt;&gt; str;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"%d\n"</span>, <span class="built_in">checker</span>(str));</span><br><span class="line">		str = <span class="string">""</span>;</span><br><span class="line">	}</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+    </div>
+</div>
+<p><a href="https://www.luogu.com.cn/record/102461763" title="AC记录">AC记录</a></p>
+<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
+      <categories>
+        <category>题解</category>
+        <category>USACO</category>
+      </categories>
+      <tags>
+        <tag>C艹</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>PythonGUI图形化界面详解</title>
+    <url>/2024/01/01/pythongui-tu-xing-hua-jie-mian-xiang-jie/</url>
+    <content><![CDATA[<h1 id="简介">简介</h1>
+<p>话说你看到的软件是不是都是用图形化界面（Graphical User Interface,
+GUI）整出来的？</p>
+<span id="more"></span>
+<p>比如这个：</p>
+<p><img src="/img/2023-12-29_19-37-52.png"></p>
+<p>然鹅，再看看咱的“图形化界面”：</p>
+<p><img src="/img/2023-12-29_19-40-06.png"></p>
+<p>upd：这里的命令行界面连图形化界面都不是，应该叫文本用户界面（Text
+User Interface, TUI），不可以混淆！</p>
+<p>根本不是一个等级的啊！于是，我们来用Python整一个真正的GUI吧！</p>
+<h1 id="安装环境">安装环境</h1>
+<blockquote>
+<p>Tips：如果您已安装Python和一个另外的IDE，可以忽略此步骤。但如果后续发现有模块运行不了且代码、模块等正常，可以按照此步骤重新安装。</p>
+</blockquote>
+<p>见<a href="https://leo2011.pages.dev/2024/01/01/python-huan-jing-an-zhuang-yu-pei-zhi/">这里</a></p>
+<h1 id="easygui">easygui</h1>
+<figure class="highlight shell"><table><tbody><tr><td class="code"><pre><span class="line">pip install easygui</span><br></pre></td></tr></tbody></table></figure>
+<p>在你的终端中运行这段代码。如果出现了下面的东西，那么就说明安装easygui成功啦（以后我介绍的模块除了特殊说明外，都要用类似的方法安装，就不在提了）
+</p><figure class="highlight shell"><table><tbody><tr><td class="code"><pre><span class="line">Looking in indexes: https://mirrors.sustech.edu.cn/pypi/simple</span><br><span class="line">Collecting easygui</span><br><span class="line">  Using cached https://mirrors.sustech.edu.cn/pypi/packages/8e/a7/b276ff776533b423710a285c8168b52551cb2ab0855443131fdc7fd8c16f/easygui-0.98.3-py2.py3-none-any.whl (92 kB)</span><br><span class="line">Installing collected packages: easygui</span><br><span class="line">Successfully installed easygui-0.98.3</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>然后，在你的IDE中新建个<code>.py</code>文件，输入这段代码，如果出现了下面这幅图，就算成功啦！</p>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> easygui <span class="keyword">as</span> eg</span><br><span class="line">eg.msgbox(<span class="string">"Hello World!"</span>)</span><br></pre></td></tr></tbody></table></figure>
+<p><img src="/img/2023-12-29_22-44-36.png"></p>
+<p>点掉下面的<code>OK</code>，窗口就会消失。</p>
+<p>如果有问题，请核实一下下面的东西：</p>
+<blockquote>
+<p>Warning: easygui 是运行在 tkinter 上并拥有自身的事件循环，而 IDLE
+也是 tkinter
+写的一个应用程序并也拥有自身的事件循环。因此当两者同时运行的时候，有可能会发生冲突，且带来不可预测的结果。因此如果你发现你的
+easygui 程序有这样的问题，请尝试在 IDLE 外去运行你的程序。</p>
+</blockquote>
+<p>其实就3句话：</p>
+<p>不要用自带的IDLE！！！</p>
+<p>不要用自带的IDLE！！！</p>
+<p>不要用自带的IDLE！！！</p>
+<p>如果没问题，那么，恭喜你，再次打开了新世界的大门！</p>
+<p>接下来，就是对它的一顿研究了</p>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">eg.msgbox(msg=<span class="string">"A + B Problem"</span>, title=<span class="string">"Leo2011"</span>, ok_button=<span class="string">"I AK IOI!"</span>)</span><br></pre></td></tr></tbody></table></figure>
+<p>不出所料的话，应该是这样的： <img src="/img/2023-12-29_22-50-26.png"></p>
+<p>看，我们用<code>title="Leo2011"</code>把标题改成了"Leo2011"，用<code>ok_button="I AK IOI!"</code>把下面的按钮改成了"I
+AK IOI!"。</p>
+<p>这就msgbox能干的事了。</p>
+<p>下面，咱来看另外的几个家伙：</p>
+<ul>
+<li><p>enterbox</p>
+<p></p><figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">s = eg.enterbox(<span class="string">"欢迎您随便输入一堆东西"</span>, title=tit)</span><br><span class="line">eg.msgbox(msg=<span class="string">"您刚才输入了\n"</span>+s, title=tit, ok_button=<span class="string">"我知道了。"</span>)</span><br></pre></td></tr></tbody></table></figure> 能弹出这么个框： <img src="/img/2023-12-29_22-59-52.png"><p></p></li>
+</ul>
+<p>框中可以随便输东西（只要你打得出来），输完了按回车或点<code>OK</code>（这个不能改）结束。如果你点了<code>Cancel</code>或直接关掉了这个框，会返回<code>None</code>（这不是一个字符串，是<code>Nonetype</code>，意思就是啥也没有）</p>
+<ul>
+<li><p>multenterbox</p>
+<p>有一堆enterbox在一个窗口里。</p></li>
+<li><p>passwordbox</p>
+<p>跟enterbox一样，只不过用户视角中输入的字符只能看到“*”，跟输密码似的。</p></li>
+<li><p>multpasswordbox</p>
+<p>有一堆passwordbox在一个窗口里。</p></li>
+<li><p>ccbox</p>
+<p></p><figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">s = eg.ccbox(<span class="string">"欢迎您随便选东西"</span>, title=tit, choices=[<span class="string">"[D]ebug"</span>, <span class="string">"C[t]j"</span>])</span><br><span class="line">eg.msgbox(msg=<span class="string">"您刚才输入了\n"</span>+<span class="built_in">str</span>(s), title=tit, ok_button=<span class="string">"我知道了。"</span>)</span><br></pre></td></tr></tbody></table></figure>
+[]里的字符相当于快捷键，你按下这个键就会认为你选了这个选项。ccbox只能有两个选项（否则解释器会炸）。<p></p></li>
+<li><p>boolbox/ynbox</p>
+<p>同ccbox，不讲。</p></li>
+<li><p>choicebox</p>
+<p></p><figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">s = eg.choicebox(<span class="string">"欢迎您随便选东西"</span>, title=tit, choices=[<span class="string">"Debug"</span>, <span class="string">"Ctj"</span>, <span class="string">"AC!"</span>])</span><br></pre></td></tr></tbody></table></figure> UI会变成这样： <img src="/img/2023-12-30_17-13-55.png">
+刚才的快捷键就只能是首字母了。choicebox可以有多个选项，但只能选一个（默认是第一个）。<p></p></li>
+<li><p>buttonbox</p>
+<p>同choicebox，不讲。</p></li>
+<li><p>indexbox</p>
+<p>跟choicebox一样，只不过choicebox会返回你选中的文本，而indexbox会返回你选中的那货在你的选项列表里的下标。</p></li>
+<li><p>multchoicebox</p>
+<p><del>有一堆choicebox在一个窗口里？</del>
+这次easygui不按套路出牌了，界面长这样： <img src="/img/2023-12-30_17-19-34.png">
+<code>Select All</code>就是全选，<code>Clear All</code>就是全不选，剩下两个老朋友了。
+返回值是这样的<code>['Debug', 'AC!']</code>。它会按你选中的选项在选项列表里的相对位置排成一个新列表。</p></li>
+<li><p>integerbox</p>
+<p></p><figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">s = eg.integerbox(msg=<span class="string">"请输入一个数"</span>, title=tit, default=<span class="number">5</span>, lowerbound=<span class="number">3</span>, upperbound=<span class="number">7</span>)</span><br></pre></td></tr></tbody></table></figure>
+指定你输入一个在<code>lowerbound</code>和<code>upperbound</code>之间的整数，默认为<code>default</code>。如果不在区间内了会让你重新输入。<p></p></li>
+<li><p>egdemo</p>
+<p>easygui所有函数的效果演示。</p></li>
+</ul>
+<p>eaysgui确实很easy！</p>
+<h1 id="turtle">turtle</h1>
+<blockquote>
+<p>Tips:实测Python
+turtle的不同版本在不同平台上可能会有所不同，本文以Windows 11 + Python
+3.12.1为准。</p>
+</blockquote>
+<p>turtle库（人送绰号“海龟绘图”）是Python的内置库，安装了Python就可以直接用。
+</p><figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> turtle <span class="keyword">as</span> t</span><br><span class="line">t.write(<span class="string">"Hello World!"</span>)</span><br><span class="line">t.done()  <span class="comment"># 这一行必须要有，否则你是看不见你的效果的</span></span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>这就是你的第一个turtle程序了！</p>
+<p>下面，还是来介绍几个基本函数的使用：</p>
+<ul>
+<li><p>home</p>
+<p>木有参数。回到原点(0,
+0)，也就是屏幕正中央的起始位置（这在你画图画懵13的时候很有用）。</p></li>
+<li><p>forward/fd</p>
+<p>1个参数 <span class="math inline">\(k\)</span>，表示你想要让这个画笔沿笔头方向前进
+<span class="math inline">\(k\)</span>
+个像素。如<code>fd(1000)</code>即让画笔从当前位置前进1000个像素。</p></li>
+<li><p>backward/bk/back</p>
+<p>1个参数 <span class="math inline">\(k\)</span>，相当于<code>fd(-k)</code>，即沿笔头方向后退
+<span class="math inline">\(k\)</span> 步。</p></li>
+<li><p>left/lt</p>
+<p>1个参数 <span class="math inline">\(k\)</span>，表示你想让画笔左转
+<span class="math inline">\(k^\circ\)</span>。</p></li>
+<li><p>right/rt</p>
+<p>1个参数 <span class="math inline">\(k\)</span>， 表示你想让画笔右转
+<span class="math inline">\(k^\circ\)</span>。</p></li>
+<li><p>goto</p>
+<p>2个参数 <span class="math inline">\(x,
+y\)</span>，表示将画笔直线移动到 <span class="math inline">\((x,
+y)\)</span>的位置。如果画笔还没被抬起来，就会把轨迹画下来。</p></li>
+<li><p>circle</p>
+<p>用来画圆的（这是空心的）。参数最多3个：<span class="math inline">\(r,
+e, s\)</span>， <span class="math inline">\(r\)</span>
+表示要画的圆的半径（必须要写），<span class="math inline">\(e\)</span>
+表示圆心角度数（默认为整个圆），<span class="math inline">\(s\)</span>
+表示要画的正多边形边数（不写会自动确定）。这里解释一下，电脑上画圆不太现实，都是用正
+<span class="math inline">\(n\)</span> 边形（这个 <span class="math inline">\(n\)</span>
+一般不小）模拟出来的，所以这个函数即可用来画圆也可以用来画正多边形。</p></li>
+<li><p>dot</p>
+<p>也是画一个圆。最多两个参数：<span class="math inline">\(d\)</span> 和
+color。 <span class="math inline">\(d\)</span>
+指要画的圆的直径，color是一个字符串，表示要画的圆的颜色。与circle不同，dot画的圆是实心的，而circle默认情况下是空心的。</p></li>
+<li><p>penup/up/pu</p>
+<p>抬起笔，此后在落下笔之前所有的操作都不会留下痕迹。</p></li>
+<li><p>pendown/pd/down</p>
+<p>落下笔。一般可以这么使： </p><figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">move</span>(<span class="params">x, y</span>):</span><br><span class="line">    t.pu()</span><br><span class="line">    t.goto(x, y)</span><br><span class="line">    t.pd()</span><br></pre></td></tr></tbody></table></figure><p></p></li>
+<li><p>speed</p>
+<p>设置速度的，有一个参数 <span class="math inline">\(v\)</span>。你在用的时候，应保证 <span class="math inline">\(0 \le v \le 10\)</span>。一般情况下，<span class="math inline">\(v\)</span>
+是个整数，且越大代表越快，但也有例外：</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;"><span class="math inline">\(v\)</span>
+的值</th>
+<th style="text-align: center;">速度</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">0或"fastest"</td>
+<td style="text-align: center;">最快</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">10或"fast"</td>
+<td style="text-align: center;">快</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">6或"normal"</td>
+<td style="text-align: center;">正常（默认）</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">3或"slow"</td>
+<td style="text-align: center;">慢</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">1或"slowest"</td>
+<td style="text-align: center;">最慢</td>
+</tr>
+</tbody>
+</table></li>
+<li><p>pensize/width</p>
+<p>一个参数 <span class="math inline">\(w\)</span>，表示画笔粗细。</p></li>
+<li><p>pencolor</p>
+<p>可以没有参数，此时返回画笔颜色（默认是黑色
+），也可以给出参数，此时是设置颜色。</p>
+<p>有以下几种设置模式： </p><figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">t.pencolor(<span class="string">"red"</span>)  <span class="comment"># 设置为红色</span></span><br><span class="line">t.pencolor(<span class="string">"#abcde"</span>)  <span class="comment"># 设置为十六进制编码为“abcde”的颜色</span></span><br><span class="line">t.pencolor((<span class="number">1</span>, <span class="number">255</span>, <span class="number">255</span>))  <span class="comment"># 设置为青色。三个数值表示RGB编码</span></span><br><span class="line">t.pencolor(<span class="number">1</span>, <span class="number">255</span>, <span class="number">255</span>)  <span class="comment"># 同上，只不过上面传过去的是一个元组。</span></span><br></pre></td></tr></tbody></table></figure><p></p></li>
+<li><p>fiilcolor</p>
+<p>填充颜色，同上。</p></li>
+<li><p>color</p>
+<p>两个都设置了，可以填写1~2组参数。1组就是设置成一样的，两组就是先pencolor再fillcolor。</p></li>
+<li><p>bgcolor</p>
+<p>背景颜色，参数同pencolor。</p></li>
+<li><p>bgpic</p>
+<p>背景图片，需要给一个字符串表示背景图片位置。如果是"nopic"就是删除背景图片。</p></li>
+<li><p>begin_fill</p>
+<p>记录一下，准备填充。</p></li>
+<li><p>end_fill</p>
+<p>把上次begin_fill以后画的东西填充成fillcolor。</p></li>
+<li><p>write</p>
+<p>主要有2个参数，文字和设置。可以把文字设置成属性后写上去，如开头的例子。</p></li>
+<li><p>hideturtle/ht</p>
+<p>隐藏画笔，能加速。</p></li>
+<li><p>showturtle/st</p>
+<p>显示画笔。</p></li>
+<li><p>shape</p>
+<p>海龟绘图，海龟在哪儿呢？</p>
+<p>就是这么设置的。</p>
+<p>给定一个参数，它会自动把海龟调整成对应的形状。</p>
+<p>支持以下形状：</p>
+<ul>
+<li>"arrow"</li>
+<li>"turtle"</li>
+<li>"square"</li>
+<li>"triangle"</li>
+<li>"classic"</li>
+</ul>
+<p>可以自己去试一试~</p></li>
+<li><p>stamp</p>
+<p>把画笔印在当前位置，即在那个位置留下海龟的形状。</p></li>
+</ul>
+<p>turtle库就先介绍这些，不少了。自个儿试着画几张图去吧！</p>
+<p>老规矩，有问题的欢迎私信联系我。</p>
+<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
+      <tags>
+        <tag>Python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Python环境安装与配置</title>
+    <url>/2024/01/01/python-huan-jing-an-zhuang-yu-pei-zhi/</url>
+    <content><![CDATA[<h1 id="安装python">安装Python</h1>
+<h2 id="下载安装python">下载安装Python</h2>
+<p>要用Python，那肯定得先装个Python呐！ <span id="more"></span> 先把<a href="https://www.python.org/">Python官网</a>扒出来。访问速度一般不咋滴，请耐心等待~</p>
+<p>如果正常，应该能出来个这个：<img src="img/2023-12-29_20-39-34.png"></p>
+<p><del>TMD我等了半天出来个我不认识的全英版本？</del></p>
+<p><del>是的，就是这样的。</del></p>
+<p>没事，我帮你翻译。选Downloads，鼠标在上面停留一会，会出现一个列表。直接选你用的系统（Win就选Windows，macOS就是macOS，Linux的……<del>自己找教程去吧，官方大概率没有</del>可以去Other
+Platforms瞅一瞅，没有就去问度娘吧），然后如下操作（macOS的会有一个<code>universal2 installer</code>，下载后打开，按指示操作就可以了）。</p>
+<p><img src="/img/2023-12-29_20-49-55.png"></p>
+<p>看图操作就好。下载可能比（fei）较（chang）慢，导入迅雷之类的下载器下载就好。</p>
+<p>下载下来当然要打开啦（废话），正常情况下如图：</p>
+<p><img src="/img/2023-12-29_21-32-31.png"></p>
+<p>勾了 <code>Add python.exe to PATH</code>选项后一键安装就可以了。</p>
+<p>然后静静地等着它安装。</p>
+<p>安装的同时，可以去隔壁<a href="https://www.jetbrains.com.cn">JetBrains官网</a>看看，这理由待会要用的IDE——Pycharm。</p>
+<p>安装完后，按win +
+r，输入cmd，在弹出的窗口中输入python（如果是Linux/macOS，因为这两者系统中内置一个Python的2.x版本，你需要做的是在终端中输入python3，相应地，后面的pip也要替换成pip3)，如果结果如图，那么恭喜你，Python安装成功（请注意！如果你没勾
+<code>Add python.exe to PATH</code>这个选项，那么你电脑是查不到的！这种情况下需要你配置一下环境变量，每个版本的Win都不太一样，自己度娘去，实在不行重装吧……）！</p>
+<p><img src="/img/2023-12-29_21-47-25.png"></p>
+<h2 id="配置pip">配置pip</h2>
+<p>下一步，是配置pip。pip是用来管理外部库的，类似应用宝。pip默认的下载地址在国外，链接可能会TLE，需要配置一下。</p>
+<h3 id="linuxmacos用户">Linux/macOS用户：</h3>
+<p>打开配置文件 <code>~/.pip/pip.conf</code>（不存在就创建），修改如下：
+</p><figure class="highlight plaintext"><table><tbody><tr><td class="code"><pre><span class="line">[global]</span><br><span class="line">index-url = https://pypi.tuna.tsinghua.edu.cn/simple</span><br><span class="line">[install]</span><br><span class="line">trusted-host = https://pypi.tuna.tsinghua.edu.cn</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>这里，<code>https://pypi.tuna.tsinghua.edu.cn/simple</code>是清华的镜像站，除了清华的，常用的还有：</p>
+<table>
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">名称</th>
+<th style="text-align: center;">网站</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">南科大镜像源</td>
+<td style="text-align: center;"><a href="https://mirrors.sustech.edu.cn/pypi/web/simple">https://mirrors.sustech.edu.cn/pypi/web/simple</a></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">阿里云镜像站</td>
+<td style="text-align: center;"><a href="http://mirrors.aliyun.com/pypi/simple/">http://mirrors.aliyun.com/pypi/simple/</a></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">豆瓣镜像站</td>
+<td style="text-align: center;"><a href="http://pypi.douban.com/simple/">http://pypi.douban.com/simple/</a></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">中科大镜像站</td>
+<td style="text-align: center;"><a href="https://pypi.mirrors.ustc.edu.cn/simple">https://pypi.mirrors.ustc.edu.cn/simple</a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="windows用户">Windows用户</h3>
+<p>conf文件在<code>C:\Users\xx\pip</code>（xx是你用户名），其它的照抄Linux/macOS的即可。</p>
+<h2 id="升级turtle库">升级turtle库</h2>
+<p>这个步骤不是必须的，但很推荐操作。</p>
+<p>现在你终端中跑一下这行代码：</p>
+<figure class="highlight powershell"><table><tbody><tr><td class="code"><pre><span class="line">pip install turtle <span class="literal">--upgrade</span> turtle</span><br></pre></td></tr></tbody></table></figure>
+<p>肯定会炸。翻到上面以<code>Using cached xxx (xxkB)</code>开头的那玩意，中间的部分是一个链接，用浏览器打开，会自动下载下来。</p>
+<p>跑到下载目录，解压压缩包，找到setup.py，用记事本或者其它任何能编辑文本的东西打开（如果你装了下面的PyCharm，也可以用它）。找到第40行，更改成下面的样子：</p>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">except</span> (ValueError, ve):</span><br></pre></td></tr></tbody></table></figure>
+<p>保存，在终端中切到这个目录，运行以下代码：</p>
+<figure class="highlight powershell"><table><tbody><tr><td class="code"><pre><span class="line">pip install <span class="literal">-e</span> turtle<span class="literal">-0</span>.<span class="number">0.2</span></span><br></pre></td></tr></tbody></table></figure>
+<p>现在应该就成功啦！</p>
+<h1 id="安装pycharm">安装PyCharm</h1>
+<p>这样Python就整完了，安装PyCharm去（当然，如果你愿意用VSCode、Sublime之类的其它工具写代码，我也不拦着你，但切记不要用自带的IDLE写，原因嘛<a href="https://leo2011.pages.dev/2024/01/01/pythongui-tu-xing-hua-jie-mian-xiang-jie/">这里</a>有讲）。</p>
+<p><a href="https://www.jetbrains.com.cn/pycharm/download/?section=windows">到这里</a>，把页面拉到底部，下载Community
+Edition就可以了（Professional
+Edition是付费的，而Community是免费的）。这次安装包是中文的，按指示操作就好。</p>
+<p>打开PyCharm，会出来一个<code>JETBRAINS COMMUNITY EDITION TERMS</code>，直接点下面的勾后continue就好。</p>
+<p>然后的界面中，点击<code>New Project</code>（新建一个项目，不建就没法使PyCharm），在新的窗口中如图配置，配置好后点Create就好了。</p>
+<p><img src="/img/2023-12-29_22-34-21.png"></p>
+<p>配置好后，就可以愉快的享受被誉为“宇宙最强PythonIDE”的PyCharm了！</p>
+<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
+      <tags>
+        <tag>Python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>关于三目运算符，你需要知道的所有</title>
+    <url>/2024/01/01/guan-yu-san-mu-yun-suan-fu-ni-xu-yao-zhi-dao-de-suo-you/</url>
+    <content><![CDATA[<p>if...else语句常写吧？ <span id="more"></span> But，你会不会觉得：</p>
+<p>写if...else？ 烦死了！</p>
+<p>写switch？就俩我写啥……</p>
+<p>于是，又一个C艹利器——三目运算符诞生啦！</p>
+<p>先上代码：</p>
+<p><code>mn = (a &lt; b) ? a : b; /* 其中，? :为三目运算符，一般为“结果保存值 = 条件 ? 结果A : 结果B*/</code></p>
+<p>意思即：如果a &lt; b，那么mn = a，否则mn = b</p>
+<p>那不就是if...else吗！</p>
+<p>不，如果你用if...else，那么代码会变成这样：</p>
+<figure class="highlight cpp"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> (a &lt; b)</span><br><span class="line">	mn = a;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">	mn = b;</span><br></pre></td></tr></tbody></table></figure>
+<p>不仅变长了，而且，三目运算符是个运算符，它可以被塞进别的语句（写 DFS
+或 DP 的时候可能会用到）里面！</p>
+<p>最后，说一下性能排名。三目运算符作为运算，速度最快，但也有很大的限制（必须要有1个变量给赋值）。而switch和if...else不相上下，但是3个以上语句时，switch不仅更方便，还更快哟。</p>
+<p>但if...else也不是一无是处，像浮点数这种你还真得用if...else是不？</p>
+<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
+      <categories>
+        <category>“你需要知道的所有”系列</category>
+      </categories>
+      <tags>
+        <tag>C艹</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>关于__int128和short，你需要知道的所有</title>
+    <url>/2024/01/01/guan-yu-int128-he-short-ni-xu-yao-zhi-dao-de-suo-you/</url>
+    <content><![CDATA[<p>高精度大家都认识吧？</p>
+<p>但是，高精度这货是真滴长……</p>
+<p>于是，人们又发明出了一个东西 __int128！ <span id="more"></span>
+__int128（注意前面有2个下划线）嘛，把特点写脸上了：占用128位，也就是16个字节。储存范围，自然也是占用64位的long
+long的2倍。换算一下，能存三十多近四十位。基本上可以代替部分高精度了。</p>
+<p>那__int128这么NB，咋就不能被广泛使用呢（好多教材没教这个对不）？</p>
+<p>因为它缺陷也很多：</p>
+<ol type="1">
+<li>不通用。__int128并没有在任何一个C艹标准中严格定义
+，所以目前它只是GCC系列编译器的专属（NOI
+Linux恰好也用的是GCC，所以__int128可用。然鹅，使用Visual
+Studio的同志们，你们用的编译器一般是MSVC，是不支持的）。目前测试，只在Linux系统下能够正常使用（好在大部分地区比赛、评测均已切换至NOI
+Linux 2.0了）。</li>
+<li>不方便。__{int128}目前看来是不支持直接读入、输出的。管你是cin、cout、scanf还是printf，都甭想输入一个__int128类型的数据。于是它输入得用string输入字符后<span class="math inline">\(\times 10 +\)</span>尾数，输出得数位分解。</li>
+<li>空间大，速度慢。
+__int128占用了16个字节来存，MLE的风险显著增加。空间大速度还慢。你想啊，人家int才32位，64位的CPU一次处理俩；你128位，64位的CPU两次处理1个，不得慢死（TLE风险增加）……</li>
+</ol>
+<p>不过，为了让大家多掌握（pian）亿点东（fen）西，下面给出使用__int128时的基本框架。</p>
+<div class="spoiler collapsed">
+    <div class="spoiler-title">
+        板子
+    </div>
+    <div class="spoiler-content">
+        <figure class="highlight cpp"><table><tbody><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> log printf</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line">__int128 n;</span><br><span class="line"></span><br><span class="line"><span class="function">__int128 <span class="title">reader</span><span class="params">()</span> </span>{</span><br><span class="line">	__int128 x = <span class="number">0</span>; <span class="comment">// 虽然限制那么多，但咱赋个值总还是可以的吧…… </span></span><br><span class="line">    <span class="type">int</span> w = <span class="number">0</span>; </span><br><span class="line">    <span class="type">char</span> ch;</span><br><span class="line">    <span class="keyword">while</span> (!<span class="built_in">isdigit</span>(ch)) { </span><br><span class="line">    	w |= ch == <span class="string">'-'</span>; ch = <span class="built_in">getchar</span>(); </span><br><span class="line">    }</span><br><span class="line">    <span class="keyword">while</span> (<span class="built_in">isdigit</span>(ch)) </span><br><span class="line">    	x = (x &lt;&lt; <span class="number">3</span>) + (x &lt;&lt; <span class="number">1</span>) + (ch ^ <span class="number">48</span>), ch = <span class="built_in">getchar</span>();</span><br><span class="line">    <span class="keyword">return</span> w ? -x : x;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">output</span><span class="params">(__int128 x)</span> </span>{</span><br><span class="line">    <span class="keyword">if</span> (x &lt; <span class="number">0</span>) {</span><br><span class="line">        <span class="built_in">putchar</span>(<span class="string">'-'</span>);</span><br><span class="line">        x *= <span class="number">-1</span>;</span><br><span class="line">    }</span><br><span class="line">	<span class="keyword">if</span> (x &gt; <span class="number">9</span>)</span><br><span class="line">		<span class="built_in">output</span>(x / <span class="number">10</span>);</span><br><span class="line">	<span class="built_in">putchar</span>(x % <span class="number">10</span> + <span class="string">'0'</span>);  <span class="comment">// 众所周知这货只能搞四则运算，输出还请数位分解一下（其实就是快读快写）</span></span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>{  <span class="comment">// 你变量全用__int128我也不拦着你，但永远记住main函数不开int（好吧用signed也行）会CE的哈 </span></span><br><span class="line">	n = <span class="built_in">reader</span>();</span><br><span class="line">	<span class="comment">// 请自行操作</span></span><br><span class="line">	<span class="built_in">output</span>(n);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>; </span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+    </div>
+</div>
+<hr>
+<p>说了这么半天慢的太吓人的__int128，那有木有一个特快的，比如说16位2个字节的哪种？
+还真有，而且这个槽点就没那么多了。它就是——short！</p>
+<p>short这玩意儿可比__int128强多了。它是通用的，也是可以直接读入、输出的（scanf和printf统一用“%hd”）。</p>
+<p>那为啥它用的也不多呢？</p>
+<p>因为它太省内存了，你说它就<span class="math inline">\(2^{15} -
+1\)</span>(不到4万）的存储范围能存个啥？</p>
+<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
+      <categories>
+        <category>“你需要知道的所有”系列</category>
+      </categories>
+      <tags>
+        <tag>C艹</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>关于auto，你须要知道的所有</title>
+    <url>/2024/01/01/guan-yu-auto-ni-xu-yao-zhi-dao-de-suo-you/</url>
+    <content><![CDATA[<p>话说咱写 STL 的时候经常会要写迭代器，大概是这么一大串东西：
+<span id="more"></span>
+<code>vector&lt;int&gt;::iterator iter = data.begin();</code></p>
+<p>好烦啊！而且，iterator 这个单词容易写错（CE：走好不送）……</p>
+<p>于是，在 C 艹 11标准中，C 艹开发者发明了一个超级好用的东西：auto!</p>
+<p>auto 这货类似于 Python 定义变量，会自动确定它的类型！</p>
+<p>如：</p>
+<p><code>auto a = 3; // a为int类型</code></p>
+<p><code>auto b = a + 0.1;  // b为double类型</code></p>
+<p>好爽哦有木有！</p>
+<p>于是，开头的那段代码就可以写成这德行：</p>
+<p><code>auto iter = data.begin();</code></p>
+<p>你以为这就结束了？不，还有！</p>
+<p>咱还能这么玩：</p>
+<figure class="highlight cpp"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">auto</span> i : data) {  <span class="comment">// 不用auto写也行，只不过auto较简便</span></span><br><span class="line">    <span class="comment">// 正常写，i是普通的迭代器</span></span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<p>不过需要注意几点：</p>
+<ol type="1">
+<li><p>auto 和 for 里用冒号的写法和 to_string 函数一样，都是C 艹
+11的新特性，在Dev-C 艹中需要单独设置（否则直接炸裂）</p></li>
+<li><p>比赛时采用 C 艹 14 标准，可放心使用</p></li>
+<li><p>auto 因为要自动判断类型，运行速度会略慢一丁点，不过差距大概就是
+scanf 和 cin 那点，一般 €€£ 不会在这点上卡常的(ps：据说 €€£
+在敛财将评测机由“老爷机”置换为“少爷机”，传闻新评测机能够在 1 秒内
+AC(10^5
+^5)的数据。但只是传言！现在还没有那么快！老老实实把代码时间复杂度降下来吧)……</p></li>
+<li><p>别尝试 auto 一个数组，否则大概是这个场景：</p>
+<p>你： <code>auto arr[10086];</code></p>
+<p>编译器：<code>这踏马谁知道arr这货是啥类型啊……</code></p>
+<p>Python ：<code>我咋可以呢？</code></p>
+<p>编译器：<code>废话你啥都能存进去……</code></p>
+<p>评测组件：<code>Compile Error！</code></p>
+<p>€€£ 砖家组：<code>唉，又一个爆0了的……</code></p>
+<p>到时候别怪我没提醒你啊……</p></li>
+</ol>
+<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
+      <categories>
+        <category>“你需要知道的所有”系列</category>
+      </categories>
+      <tags>
+        <tag>C艹</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>关于switch，你须要知道的所有</title>
+    <url>/2024/01/01/guan-yu-switch-ni-xu-yao-zhi-dao-de-suo-you/</url>
+    <content><![CDATA[<p>话说写代码时要写 1 吨 if 的题你们有木有遇到？ <span id="more"></span> 比如<a href="https://wonderland.run/p/T1347">这道题</a>。6 个操作要写 6 个
+if！那么你的代码可能会成这德行：</p>
+<figure class="highlight cpp"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> (op == <span class="number">1</span>) {</span><br><span class="line">	<span class="comment">// 一顿操作猛如虎</span></span><br><span class="line">} <span class="keyword">else</span> {</span><br><span class="line">	<span class="keyword">if</span> (op == <span class="number">2</span>) {</span><br><span class="line">		<span class="comment">// 一顿操作猛如虎</span></span><br><span class="line">	} <span class="keyword">else</span> {</span><br><span class="line">		<span class="keyword">if</span> (op == <span class="number">3</span>) {</span><br><span class="line">			<span class="comment">// 一顿操作猛如虎</span></span><br><span class="line">		} <span class="keyword">else</span> {</span><br><span class="line">			<span class="keyword">if</span> (op == <span class="number">4</span>) {</span><br><span class="line">				<span class="comment">// 一顿操作猛如虎</span></span><br><span class="line">			} <span class="keyword">else</span> {</span><br><span class="line">				<span class="keyword">if</span> (op == <span class="number">5</span>) {</span><br><span class="line">					<span class="comment">// 一顿操作猛如虎</span></span><br><span class="line">				} <span class="keyword">else</span> {</span><br><span class="line">					<span class="comment">//一顿操作猛如虎</span></span><br><span class="line">				}</span><br><span class="line">			}</span><br><span class="line">		}</span><br><span class="line">	}</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<p>坑*啊！一个这写 20 多行……</p>
+<p>于是，人们发明了这个东西：switch！</p>
+<p>switch 这玩意儿需要你给它 1 个数，它会自己判断。</p>
+<p>格式大概是这样：</p>
+<figure class="highlight cpp"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">switch</span> (op) {</span><br><span class="line">	<span class="keyword">case</span> <span class="number">1</span> :  <span class="comment">/*一顿操作猛如虎*/</span> <span class="keyword">break</span>;</span><br><span class="line">	<span class="keyword">case</span> <span class="number">2</span> :  <span class="comment">/*一顿操作猛如虎*/</span> <span class="keyword">break</span>;</span><br><span class="line">	<span class="keyword">case</span> <span class="number">3</span> :  <span class="comment">/*一顿操作猛如虎*/</span> <span class="keyword">break</span>;</span><br><span class="line">	<span class="keyword">case</span> <span class="number">4</span> :  <span class="comment">/*一顿操作猛如虎*/</span> <span class="keyword">break</span>;</span><br><span class="line">	<span class="keyword">case</span> <span class="number">5</span> :  <span class="comment">/*一顿操作猛如虎*/</span> <span class="keyword">break</span>;</span><br><span class="line">	<span class="keyword">case</span> <span class="number">6</span> :  <span class="comment">/*一顿操作猛如虎*/</span> <span class="keyword">break</span>;</span><br><span class="line">	......</span><br><span class="line">	<span class="keyword">case</span> <span class="number">10086</span>: <span class="comment">/*一顿操作猛如虎*/</span> <span class="keyword">break</span>;</span><br><span class="line">	<span class="keyword">default</span> : <span class="comment">/*一顿操作猛如虎*/</span></span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+<p>咱来解读一下这货咋跑的：</p>
+<p>先进去，op 是几就进哪个 case（与位置无关），执行里面的操作。注意case
+语句后面的操作无论有几个语句都不用像 if
+或循环那样写个花括号括起来。最后，如果你认为到此为止了，那么写个“break”结束。如果你不写“break”，那么它会自动执行下一个语句（可以是
+case，也可以是 default）</p>
+<p>如果哪个 case 都不对应呢？那么这个时候就进了 default。default
+已经是默认一波操作了，不需要 break 了。</p>
+<p>明白了不？</p>
+<p>那么用 switch 语句改写上面那段代码就会变成这德行：</p>
+<figure class="highlight cpp"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">switch</span> (op) {</span><br><span class="line">	<span class="keyword">case</span> <span class="number">1</span> :  <span class="comment">/*一顿操作猛如虎*/</span> <span class="keyword">break</span>;</span><br><span class="line">	<span class="keyword">case</span> <span class="number">2</span> :  <span class="comment">/*一顿操作猛如虎*/</span> <span class="keyword">break</span>;</span><br><span class="line">	<span class="keyword">case</span> <span class="number">3</span> :  <span class="comment">/*一顿操作猛如虎*/</span> <span class="keyword">break</span>;</span><br><span class="line">	<span class="keyword">case</span> <span class="number">4</span> :  <span class="comment">/*一顿操作猛如虎*/</span> <span class="keyword">break</span>;</span><br><span class="line">	<span class="keyword">case</span> <span class="number">5</span> :  <span class="comment">/*一顿操作猛如虎*/</span> <span class="keyword">break</span>;</span><br><span class="line">	<span class="keyword">case</span> <span class="number">6</span> :  <span class="comment">/*一顿操作猛如虎*/</span> <span class="keyword">break</span>;</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+<p>是不是清爽了好多？</p>
+<hr>
+<p>Q &amp; A:</p>
+<ol type="1">
+<li><p>case 里的 break; 还能结束循环吗？</p>
+<p>不能，只能结束该 switch 语句。</p></li>
+<li><p>你最后的那段代码没有 default 哎……</p>
+<p>这货本来就是默认操作，可写可不写。就像你也写过1吨不带 else 的 if
+一样……</p></li>
+<li><p>default 只能写在最后嘛？</p>
+<p>你爱写哪儿写哪儿，反正能走 case 的都先走 case
+了。只不过一般会写在最后。</p></li>
+<li><p>switch (op) 中的 op 可以是哪几种类型呢？</p>
+<p>一般都是整数，有时也会用
+char。但你千万别用浮点数（浮点数都敢枚举，疯了？这得枚举到猴年马月去……为了给你续命，正常的编译器都会直接CE）。</p></li>
+<li><p>case里的东西只能写在 1 行里弄得我码风都乱了……</p>
+<p>不是，这 TM 谁告诉你只能写在 1 行里的？你要是愿意可以写 10086w
+行，反正都不用加花括号。写在 1 行里只是为了方便阅读……</p></li>
+<li><p>能嵌套吗？</p>
+<p>当然可以，switch= 特殊的 if 语句，你 if 能嵌套 switch
+咋就不行了？</p></li>
+</ol>
+<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
+      <categories>
+        <category>“你需要知道的所有”系列</category>
+      </categories>
+      <tags>
+        <tag>C艹</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>关于类，你须要知道的所有</title>
+    <url>/2024/01/01/guan-yu-lei-ni-xu-yao-zhi-dao-de-suo-you/</url>
+    <content><![CDATA[<p>众所周知，Python是一种面向对象的语言，而C不是。</p>
+<p>为啥呢？</p>
+<p>因为Python引入了Class! <span id="more"></span>
+那都说C++也是面向对象的语言，C++有Class吗？</p>
+<p>有！跟结构体差不多！</p>
+<p>例如，下面这段代码：</p>
+<figure class="highlight cpp"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">OIer</span>{</span><br><span class="line">    <span class="type">int</span> age;</span><br><span class="line">    string name;</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+<p>如果改用Class，就是这个样子：</p>
+<figure class="highlight cpp"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">OIer</span>{</span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">        <span class="type">int</span> age; <span class="comment">// 这里的内容我们叫属性</span></span><br><span class="line">        string name;</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+<p>咱来解释一下有啥变化。其实就一个：Public（除了这点，Class和Struct没啥区别）。这是因为每一种面向对象语言都有要对其成员进行保护的需求。Class这货默认是Private（你可以理解为要单独写访问函数才能访问，否则
+<strong>CE</strong>，不过写工程的时候为保证数据安全，比较常用），要在前面加上<code>public:</code>才能正常访问。</p>
+<p>访问函数咋写？</p>
+<p>写成这样就行： </p><figure class="highlight cpp"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">OIer</span>{</span><br><span class="line">    <span class="type">int</span> age;</span><br><span class="line">    string name;</span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">        <span class="function"><span class="type">int</span> <span class="title">getAge</span><span class="params">()</span> </span>{</span><br><span class="line">            <span class="keyword">return</span> age;</span><br><span class="line">        }</span><br><span class="line">        <span class="function">string <span class="title">getName</span><span class="params">()</span> </span>{</span><br><span class="line">            <span class="keyword">return</span> name;</span><br><span class="line">        }</span><br><span class="line">        <span class="function"><span class="type">void</span> <span class="title">haveAge</span><span class="params">(<span class="type">int</span> a)</span> </span>{</span><br><span class="line">            age = a;</span><br><span class="line">        }</span><br><span class="line">        <span class="function"><span class="type">void</span> <span class="title">haveName</span><span class="params">(string s)</span> </span>{</span><br><span class="line">            name = s;</span><br><span class="line">        }</span><br><span class="line">}Leo2011; <span class="comment">// 在这里，Leo2011就是一个对象</span></span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>好吧，挺长的。因此我们一般在数据简单（比如做题）的情况下用结构体，复杂的情况下（比如写能赚$的程序的时候）用类。</p>
+<p>C++对Private是限制的非常死的，不用访问函数，外面，乃至包括他的子类，都无法访问（这点要夸一下C++，Python中设计了一个“强制访问”，可以越过这项检查，C++相比之下要安全一点），试图访问private里的东西就跟改变一个前面加了const修饰的常量一样，会CE！</p>
+<p>那啥是子类啊？</p>
+<p>举个栗子！</p>
+<p>我们，既属于"OIer"，又属于"Student"，显然OIer都是学生（不然那叫教练），所以"OIer"就是"Student"的子类。
+</p><figure class="highlight cpp"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Student</span> {</span><br><span class="line">    <span class="keyword">protected</span>:</span><br><span class="line">        <span class="function"><span class="type">void</span> <span class="title">win</span><span class="params">()</span> </span>{</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">"I AK IELTS\n"</span>);</span><br><span class="line">        }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">OIer</span> <span class="keyword">public</span>: Student{ <span class="comment">// 这里是public继承</span></span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">    我们一般管OIer叫派生类或子类，Student叫基类或父类</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">    <span class="type">int</span> age;</span><br><span class="line">    string name;</span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">        <span class="function"><span class="type">int</span> <span class="title">getAge</span><span class="params">()</span> </span>{</span><br><span class="line">            <span class="keyword">return</span> age;</span><br><span class="line">        }</span><br><span class="line">        <span class="function">string <span class="title">getName</span><span class="params">()</span> </span>{</span><br><span class="line">            <span class="keyword">return</span> name;</span><br><span class="line">        }</span><br><span class="line">        <span class="function"><span class="type">void</span> <span class="title">haveAge</span><span class="params">(<span class="type">int</span> a)</span> </span>{</span><br><span class="line">            age = a;</span><br><span class="line">        }</span><br><span class="line">        <span class="function"><span class="type">void</span> <span class="title">haveName</span><span class="params">(string s)</span> </span>{</span><br><span class="line">            name = s;</span><br><span class="line">        }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p><del>TMD</del> 这Protected又是个啥啊</p>
+<p>这个比较特殊，只能在子类和基类访问。</p>
+<p>具体权限如下表（public继承），请务必要分清：</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">类型/位置</th>
+<th style="text-align: center;">基类</th>
+<th style="text-align: center;">派生类</th>
+<th style="text-align: center;">外部</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">Public</td>
+<td style="text-align: center;">√</td>
+<td style="text-align: center;">√</td>
+<td style="text-align: center;">√</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Protected</td>
+<td style="text-align: center;">√</td>
+<td style="text-align: center;">√</td>
+<td style="text-align: center;">×</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Private</td>
+<td style="text-align: center;">√</td>
+<td style="text-align: center;">×</td>
+<td style="text-align: center;">×</td>
+</tr>
+</tbody>
+</table>
+<p>protected/private继承会把public和protected在子类中变为对应的级别。</p>
+<p>接下来！我要讲个很重要的东西，那就是——<strong>类的多态</strong></p>
+<p>啥叫多态呢？看这段代码： </p><figure class="highlight cpp"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Student</span> {</span><br><span class="line">    <span class="keyword">protected</span>:</span><br><span class="line">        <span class="function"><span class="type">void</span> <span class="title">win</span><span class="params">()</span> </span>{</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">"I AK IELTS\n"</span>);</span><br><span class="line">        }</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">OIer</span> <span class="keyword">public</span>: Student{</span><br><span class="line">    <span class="type">int</span> age;</span><br><span class="line">    string name;</span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">        <span class="function"><span class="type">void</span> <span class="title">win</span><span class="params">()</span> </span>{  <span class="comment">// 这个地方也叫重写win函数，重写后的函数名字和参数都是相同的，所以这里既有多态也有重写。不同就没有重写了。当然，父类中用private声明的东西访问都访问不了，重写是不可能滴。</span></span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">"| /-\|&lt; |o|!!!\n"</span>);</span><br><span class="line">        }</span><br><span class="line">        <span class="function"><span class="type">int</span> <span class="title">getAge</span><span class="params">()</span> </span>{</span><br><span class="line">            <span class="keyword">return</span> age;</span><br><span class="line">        }</span><br><span class="line">        <span class="function">string <span class="title">getName</span><span class="params">()</span> </span>{</span><br><span class="line">            <span class="keyword">return</span> name;</span><br><span class="line">        }</span><br><span class="line">        <span class="function"><span class="type">void</span> <span class="title">haveAge</span><span class="params">(<span class="type">int</span> a)</span> </span>{</span><br><span class="line">            age = a;</span><br><span class="line">        }</span><br><span class="line">        <span class="function"><span class="type">void</span> <span class="title">haveName</span><span class="params">(string s)</span> </span>{</span><br><span class="line">            name = s;</span><br><span class="line">        }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>这里，OIer 类和 Student 类都有一个 win
+函数，但它们的内容是不同的。这就是多态。</p>
+<p>还有另一个东西：重载</p>
+<p>一般是这德行： </p><figure class="highlight cpp"><table><tbody><tr><td class="code"><pre><span class="line"><span class="type">bool</span> <span class="keyword">operator</span>&lt; (<span class="type">const</span> OIer &amp;cmp) <span class="type">const</span> {  <span class="comment">// OIer是类的名称，其它照抄就好</span></span><br><span class="line">    <span class="keyword">return</span> a &lt; cmp. a;  <span class="comment">// sort的比较函数咋写的你就咋写</span></span><br><span class="line">    <span class="comment">/*return this-&gt;a &lt; cmp.a*/</span></span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+其中，"this-&gt;"是一个指向自己的特殊指针。不过在类当中，默认都是自己，写和不写没啥区别。<p></p>
+<p>!&gt; <strong>请注意，以下运算符不可重载</strong>： - <code>.</code>
+：成员访问运算符 - <code>.*</code>,
+<code>-&gt;*</code>：成员指针访问运算符 - <code>::</code>：域运算符 -
+<code>sizeof</code>：长度运算符 - <code>?</code>：条件运算符 -
+<code>#</code>： 预处理符号</p>
+<p>!&gt; <strong>请注意，不允许通过重载定义新的运算符</strong></p>
+<p>这种情况下，重载和多态的区别是，重载的内容来自
+C++，多态的内容来自父类。</p>
+<p>不过还有一种函数重载，如下：</p>
+<figure class="highlight cpp"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">printData</span> {</span><br><span class="line">   <span class="keyword">public</span>:</span><br><span class="line">      <span class="function"><span class="type">void</span> <span class="title">print</span><span class="params">(<span class="type">int</span> i)</span> </span>{</span><br><span class="line">        cout &lt;&lt; <span class="string">"整数为: "</span> &lt;&lt; i &lt;&lt; endl;</span><br><span class="line">      }</span><br><span class="line"> </span><br><span class="line">      <span class="function"><span class="type">void</span> <span class="title">print</span><span class="params">(<span class="type">double</span>  f)</span> </span>{</span><br><span class="line">        cout &lt;&lt; <span class="string">"浮点数为: "</span> &lt;&lt; f &lt;&lt; endl;</span><br><span class="line">      }</span><br><span class="line"> </span><br><span class="line">      <span class="function"><span class="type">void</span> <span class="title">print</span><span class="params">(<span class="type">char</span> c[])</span> </span>{</span><br><span class="line">        cout &lt;&lt; <span class="string">"字符串为: "</span> &lt;&lt; c &lt;&lt; endl;</span><br><span class="line">      }</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/*假设现在在main函数内*/</span></span><br><span class="line">printData pd;</span><br><span class="line"><span class="comment">// 输出整数</span></span><br><span class="line">pd.<span class="built_in">print</span>(<span class="number">5</span>);</span><br><span class="line"><span class="comment">// 输出浮点数</span></span><br><span class="line">pd.<span class="built_in">print</span>(<span class="number">500.263</span>);</span><br><span class="line"><span class="comment">// 输出字符串</span></span><br><span class="line"><span class="type">char</span> c[] = <span class="string">"Hello C++"</span>;</span><br><span class="line">pd.<span class="built_in">print</span>(c);</span><br></pre></td></tr></tbody></table></figure>
+<p>这里，对于不同的类型调用了不同的 print
+函数，也就是函数重载了。但请注意，如果指示返回值不同，参数列表和名称相同也不构成重载。</p>
+<p>最后，讲一下构造函数。</p>
+<p>默认情况下，在你定义了对象但是又没有给它的属性赋值的时候，它的值就是全局变量时候的默认值。例如整数就是
+0，字符串就是空，等等。</p>
+<p>但有的时候，我们想要有一种默认情况，就会用到构造函数。<strong>构造函数不负责构造对象，只负责初始化对象</strong></p>
+<p>咋写？</p>
+<p>写成这样就行：</p>
+<figure class="highlight cpp"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment">// 前面定义了 1 个包含 _year, _month 和 _day 的类 Date</span></span><br><span class="line"><span class="built_in">Date</span>(<span class="type">int</span> year, <span class="type">int</span> month, <span class="type">int</span> day) {  <span class="comment">// 构造函数名=类名，注意构造函数和待会儿要讲的析构函数都不能有返回值定义，即不能写bool Date或void Date作为Date类的构造函数定义</span></span><br><span class="line">		_year = year;</span><br><span class="line">		_month = month;</span><br><span class="line">		_day = day;</span><br><span class="line">	}</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line"><span class="comment">/* main函数内 */</span></span><br><span class="line"><span class="function">Date <span class="title">d</span><span class="params">(<span class="number">2020</span>, <span class="number">4</span>, <span class="number">27</span>)</span></span>;</span><br></pre></td></tr></tbody></table></figure>
+<p>需要注意的是，写了构造函数后不给构造函数传足够的参数会 CE，
+比如你不能写 <code>Date d;</code> 或
+<code>Date d(3, 3);</code>，但是你也可以重载，来应付多种情况。</p>
+<p>类似的还有析构函数，跟构造函数类似，只不过它是在对象被销毁（比如程序结束）的时候自动跑的，跟构造函数差不多，就不细讲了。唯一的区别就是析构函数在定义前要加一个<code>~</code></p>
+<p>下面是个大家伙：类的嵌套！</p>
+<p>啥意思？</p>
+<p>还是看Code: </p><figure class="highlight cpp"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">node</span>{</span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">class</span> <span class="title class_">place</span> {</span><br><span class="line">    	<span class="type">int</span> x, y;</span><br><span class="line">    }nodePlace;</span><br><span class="line">    <span class="type">int</span> w;</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/* main函数内 */</span></span><br><span class="line">node nde;</span><br><span class="line">nde::place = {<span class="number">3</span>, <span class="number">5</span>}; </span><br><span class="line"><span class="comment">/* 与</span></span><br><span class="line"><span class="comment">  nde::place.x = 3;</span></span><br><span class="line"><span class="comment">  nde::place.y = 5;</span></span><br><span class="line"><span class="comment"> 等价 */</span></span><br><span class="line">nde::place.w = <span class="number">7</span>;</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>上面这段代码中，你在node类中新定义了一个place类，那么你就得先定义一个node类的对象（比如nde），然后通过<code>nde::place</code>的方式访问。</p>
+<p>upd：<del>好吧我又来更新了</del>，这次讲一讲typedef。</p>
+<p>用法也很简单: </p><figure class="highlight cpp"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">class</span> <span class="title class_">Person</span> {</span><br><span class="line"><span class="comment">/*1t代码*/</span></span><br><span class="line">}mangaer;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> Person PM;</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>这段代码相当于： </p><figure class="highlight cpp"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Person</span> {</span><br><span class="line"><span class="comment">/*代码*/</span></span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> Person manager;</span><br><span class="line"><span class="keyword">typedef</span> Person PM;</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>此时，因为前面有<code>typedef</code>，因此后面本来负责对象定义的地方现在变成了起别名的地方。当然，你在后面继续起也没问题~</p>
+<p>就讲到这了，<del>好吧，这篇文章非常长</del>，初赛考到别懵13哈！</p>
+<hr>
+<p>参考资料（排名不分先后）：</p>
+<ol type="1">
+<li><p><a href="https://blog.csdn.net/weixin_43831728/article/details/107788822">构造函数详解</a></p></li>
+<li><p><a href="https://www.runoob.com/cplusplus/cpp-tutorial.html">菜鸟教程——C++教程</a></p></li>
+</ol>
+<p>蒟蒻所写，有问题欢迎私信。</p>
+<p>upd：感谢 <a href="https://www.luogu.com.cn/user/770431"><span class="citation" data-cites="GavinCQTD">@GavinCQTD</span></a>
+同志帮忙发现了个错别字的bug，已修复</p>
+<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
+      <categories>
+        <category>“你需要知道的所有”系列</category>
+      </categories>
+      <tags>
+        <tag>C艹</tag>
+      </tags>
+  </entry>
+</search>
