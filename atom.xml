@@ -6,7 +6,7 @@
   <link href="https://www.leo2011.eu.org/atom.xml" rel="self"/>
   
   <link href="https://www.leo2011.eu.org/"/>
-  <updated>2024-11-09T09:52:10.490Z</updated>
+  <updated>2024-11-09T09:55:27.954Z</updated>
   <id>https://www.leo2011.eu.org/</id>
   
   <author>
@@ -15,26 +15,6 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title></title>
-    <link href="https://www.leo2011.eu.org/2024/11/09/package/"/>
-    <id>https://www.leo2011.eu.org/2024/11/09/package/</id>
-    <published>2024-11-09T09:52:10.490Z</published>
-    <updated>2024-11-09T09:52:10.490Z</updated>
-    
-    <content type="html"><![CDATA[{"dependencies":{"hexo-theme-redefine":"latest"}}]]></content>
-    
-    
-      
-      
-    <summary type="html">{&quot;dependencies&quot;:{&quot;hexo-theme-redefine&quot;:&quot;latest&quot;}}</summary>
-      
-    
-    
-    
-    
-  </entry>
   
   <entry>
     <title>题解：P11248 [GESP202409 七级] 矩阵移动</title>

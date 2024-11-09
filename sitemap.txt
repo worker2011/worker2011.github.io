@@ -1,7 +1,6 @@
 https://www.leo2011.eu.org/2024/11/09/ti-jie-p11248-gesp202409-qi-ji-ju-zhen-yi-dong/
 https://www.leo2011.eu.org/2024/11/09/csp-j-s-2024-you-ji/
 https://www.leo2011.eu.org/2024/02/03/2023-you-ji/
-https://www.leo2011.eu.org/2024/11/09/package/
 https://www.leo2011.eu.org/2024/10/20/ti-jie-at-abc376-d-abc376d-cycle/
 https://www.leo2011.eu.org/2024/10/20/ti-jie-at-abc376-c-abc376c-prepare-another-box/
 https://www.leo2011.eu.org/2024/06/27/yacs-2022-nian-1-yue-yue-sai-bing-zu-ping-heng-gua-hao/
@@ -57,8 +56,8 @@ https://www.leo2011.eu.org/tags/%E6%B5%8B%E8%AF%95/
 https://www.leo2011.eu.org/tags/Python/
 https://www.leo2011.eu.org/tags/YACS%E7%B2%BE%E9%80%89/
 https://www.leo2011.eu.org/tags/%E3%80%8C%E9%87%91%E5%9D%B7%E5%9E%83%E6%9D%AF%E3%80%8D/
-https://www.leo2011.eu.org/categories/%E9%97%B2%E8%AF%9D/
 https://www.leo2011.eu.org/categories/%E6%B8%B8%E5%AF%84/
+https://www.leo2011.eu.org/categories/%E9%97%B2%E8%AF%9D/
 https://www.leo2011.eu.org/categories/%E9%A2%98%E8%A7%A3/
 https://www.leo2011.eu.org/categories/%E9%A2%98%E8%A7%A3/AT-ABC%E4%B8%B2%E8%AE%B2/
 https://www.leo2011.eu.org/categories/%E6%B5%8B%E8%AF%95/
