@@ -109,7 +109,9 @@
     
     
     
-<meta name="generator" content="Hexo 7.0.0"><style>mjx-container[jax="SVG"] {
+<meta name="generator" content="Hexo 7.0.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<style>mjx-container[jax="SVG"] {
   direction: ltr;
 }
 
@@ -221,9 +223,7 @@ mjx-container[display="true"] {
 mjx-container[display="true"] + br {
   display: none;
 }
-</style>
-<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
-<link rel="alternate" href="/atom.xml" title="Leo2011的博客" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</style><link rel="alternate" href="/atom.xml" title="Leo2011的博客" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 
@@ -1016,8 +1016,7 @@ mjx-container[display="true"] + br {
         <div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
             <p>话说写代码时要写 1 吨 if 的题你们有木有遇到？</p>
 <span id="more"></span>
-<p>比如<a class="link" target="_blank" rel="noopener" href="https://wonderland.run/p/T1347">这道题 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>。6 个操作要写
-6 个 if！那么你的代码可能会成这德行：</p>
+<p>比如<a class="link" target="_blank" rel="noopener" href="https://wonderland.run/p/T1347">这道题 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>。6 个操作要写 6 个 if！那么你的代码可能会成这德行：</p>
 <div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (op == <span class="number">1</span>) {</span><br><span class="line">	<span class="comment">// 一顿操作猛如虎</span></span><br><span class="line">} <span class="keyword">else</span> {</span><br><span class="line">	<span class="keyword">if</span> (op == <span class="number">2</span>) {</span><br><span class="line">		<span class="comment">// 一顿操作猛如虎</span></span><br><span class="line">	} <span class="keyword">else</span> {</span><br><span class="line">		<span class="keyword">if</span> (op == <span class="number">3</span>) {</span><br><span class="line">			<span class="comment">// 一顿操作猛如虎</span></span><br><span class="line">		} <span class="keyword">else</span> {</span><br><span class="line">			<span class="keyword">if</span> (op == <span class="number">4</span>) {</span><br><span class="line">				<span class="comment">// 一顿操作猛如虎</span></span><br><span class="line">			} <span class="keyword">else</span> {</span><br><span class="line">				<span class="keyword">if</span> (op == <span class="number">5</span>) {</span><br><span class="line">					<span class="comment">// 一顿操作猛如虎</span></span><br><span class="line">				} <span class="keyword">else</span> {</span><br><span class="line">					<span class="comment">//一顿操作猛如虎</span></span><br><span class="line">				}</span><br><span class="line">			}</span><br><span class="line">		}</span><br><span class="line">	}</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure></div>
 <p>坑 * 啊！一个这写 20 多行……</p>
 <p>于是，人们发明了这个东西：switch！</p>
@@ -1025,36 +1024,39 @@ mjx-container[display="true"] + br {
 <p>格式大概是这样：</p>
 <div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">switch</span> (op) {</span><br><span class="line">	<span class="keyword">case</span> <span class="number">1</span> :  <span class="comment">/*一顿操作猛如虎*/</span> <span class="keyword">break</span>;</span><br><span class="line">	<span class="keyword">case</span> <span class="number">2</span> :  <span class="comment">/*一顿操作猛如虎*/</span> <span class="keyword">break</span>;</span><br><span class="line">	<span class="keyword">case</span> <span class="number">3</span> :  <span class="comment">/*一顿操作猛如虎*/</span> <span class="keyword">break</span>;</span><br><span class="line">	<span class="keyword">case</span> <span class="number">4</span> :  <span class="comment">/*一顿操作猛如虎*/</span> <span class="keyword">break</span>;</span><br><span class="line">	<span class="keyword">case</span> <span class="number">5</span> :  <span class="comment">/*一顿操作猛如虎*/</span> <span class="keyword">break</span>;</span><br><span class="line">	<span class="keyword">case</span> <span class="number">6</span> :  <span class="comment">/*一顿操作猛如虎*/</span> <span class="keyword">break</span>;</span><br><span class="line">	......</span><br><span class="line">	<span class="keyword">case</span> <span class="number">10086</span>: <span class="comment">/*一顿操作猛如虎*/</span> <span class="keyword">break</span>;</span><br><span class="line">	<span class="keyword">default</span> : <span class="comment">/*一顿操作猛如虎*/</span></span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure></div>
 <p>咱来解读一下这货咋跑的：</p>
-<p>先进去，op 是几就进哪个 case（与位置无关），执行里面的操作。注意 case
-语句后面的操作无论有几个语句都不用像 if
-或循环那样写个花括号括起来。最后，如果你认为到此为止了，那么写个 “break” 结束。如果你不写 “break”，那么它会自动执行下一个语句（可以是
-case，也可以是 default）</p>
-<p>如果哪个 case 都不对应呢？那么这个时候就进了 default。default
-已经是默认一波操作了，不需要 break 了。</p>
+<p>先进去，op 是几就进哪个 case（与位置无关），执行里面的操作。注意 case 语句后面的操作无论有几个语句都不用像 if 或循环那样写个花括号括起来。最后，如果你认为到此为止了，那么写个 “break” 结束。如果你不写 “break”，那么它会自动执行下一个语句（可以是 case，也可以是 default）</p>
+<p>如果哪个 case 都不对应呢？那么这个时候就进了 default。default 已经是默认一波操作了，不需要 break 了。</p>
 <p>明白了不？</p>
 <p>那么用 switch 语句改写上面那段代码就会变成这德行：</p>
 <div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">switch</span> (op) {</span><br><span class="line">	<span class="keyword">case</span> <span class="number">1</span> :  <span class="comment">/*一顿操作猛如虎*/</span> <span class="keyword">break</span>;</span><br><span class="line">	<span class="keyword">case</span> <span class="number">2</span> :  <span class="comment">/*一顿操作猛如虎*/</span> <span class="keyword">break</span>;</span><br><span class="line">	<span class="keyword">case</span> <span class="number">3</span> :  <span class="comment">/*一顿操作猛如虎*/</span> <span class="keyword">break</span>;</span><br><span class="line">	<span class="keyword">case</span> <span class="number">4</span> :  <span class="comment">/*一顿操作猛如虎*/</span> <span class="keyword">break</span>;</span><br><span class="line">	<span class="keyword">case</span> <span class="number">5</span> :  <span class="comment">/*一顿操作猛如虎*/</span> <span class="keyword">break</span>;</span><br><span class="line">	<span class="keyword">case</span> <span class="number">6</span> :  <span class="comment">/*一顿操作猛如虎*/</span> <span class="keyword">break</span>;</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure></div>
 <p>是不是清爽了好多？</p>
 <hr>
 <p>Q &amp; A:</p>
-<ol type="1">
-<li><p>case 里的 break; 还能结束循环吗？</p>
-<p>不能，只能结束该 switch 语句。</p></li>
-<li><p>你最后的那段代码没有 default 哎……</p>
-<p>这货本来就是默认操作，可写可不写。就像你也写过 1 吨不带 else 的 if
-一样……</p></li>
-<li><p>default 只能写在最后嘛？</p>
-<p>你爱写哪儿写哪儿，反正能走 case 的都先走 case
-了。只不过一般会写在最后。</p></li>
-<li><p>switch (op) 中的 op 可以是哪几种类型呢？</p>
-<p>一般都是整数，有时也会用
-char。但你千万别用浮点数（浮点数都敢枚举，疯了？这得枚举到猴年马月去…… 为了给你续命，正常的编译器都会直接 CE）。</p></li>
-<li><p>case 里的东西只能写在 1 行里弄得我码风都乱了……</p>
-<p>不是，这 TM 谁告诉你只能写在 1 行里的？你要是愿意可以写 10086w
-行，反正都不用加花括号。写在 1 行里只是为了方便阅读……</p></li>
-<li><p> 能嵌套吗？</p>
-<p>当然可以，switch= 特殊的 if 语句，你 if 能嵌套 switch
-咋就不行了？</p></li>
+<ol>
+<li>
+<p>case 里的 break; 还能结束循环吗？</p>
+<p>不能，只能结束该 switch 语句。</p>
+</li>
+<li>
+<p>你最后的那段代码没有 default 哎……</p>
+<p>这货本来就是默认操作，可写可不写。就像你也写过 1 吨不带 else 的 if 一样……</p>
+</li>
+<li>
+<p>default 只能写在最后嘛？</p>
+<p>你爱写哪儿写哪儿，反正能走 case 的都先走 case 了。只不过一般会写在最后。</p>
+</li>
+<li>
+<p>switch (op) 中的 op 可以是哪几种类型呢？</p>
+<p>一般都是整数，有时也会用 char。但你千万别用浮点数（浮点数都敢枚举，疯了？这得枚举到猴年马月去…… 为了给你续命，正常的编译器都会直接 CE）。</p>
+</li>
+<li>
+<p>case 里的东西只能写在 1 行里弄得我码风都乱了……</p>
+<p>不是，这 TM 谁告诉你只能写在 1 行里的？你要是愿意可以写 10086w 行，反正都不用加花括号。写在 1 行里只是为了方便阅读……</p>
+</li>
+<li>
+<p>能嵌套吗？</p>
+<p>当然可以，switch= 特殊的 if 语句，你 if 能嵌套 switch 咋就不行了？</p>
+</li>
 </ol>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
         </div>
@@ -1318,21 +1320,12 @@ char。但你千万别用浮点数（浮点数都敢枚举，疯了？这得枚�
                                         width="40" style='display:inline-block;vertical-align:middle'>
                                     MIIT20240835号</a><br />
                                 <a href="https://icp.18z.fun/?id=2024080084" target="_blank">梵AIA盟2024080084号</a><br />
-                                <a target="_blank" rel="noopener" href="https://icp.dns163.cn/beian/ICP-3935415108.html"
-                                    title="易AIA盟3935415108号"><img
-                                        src="https://icp.dns163.cn/uploads/allimg/20240413/1-240409203122D3.png"
-                                        alt="易AIA盟3935415108号"
-                                        style='display:inline-block;vertical-align:middle;height: 20px;margin-bottom:-5px;'>易AIA盟3935415108号</a><br />
                                 <a target="_blank" rel="noopener" href="https://icp.3v.hk/beian/20240072"><img
                                         src="https://icp.3v.hk/static/picture/icplogoi.png"
                                         style='display:inline-block;vertical-align:middle;height: 20px;'>酷AIA盟20240072号</a><br />
-                                <a target="_blank" rel="noopener" href="https://nyaicp.us.kg/?id=20240312"><img
-                                        src="https://520524.xyz/icptb" width="20"
-                                        style='display:inline-block;vertical-align:middle'>喵呜20240312号</a><br />
-                                <a target="_blank" rel="noopener"
-                                    href="https://three.dns163.cn/website/TYF2732377397272490.html"><img
-                                        src="https://three.dns163.cn/images/snzylogo.png"
-                                        style='display:inline-block;vertical-align:middle;height: 45px;'></a> <a
+                                <a target="_blank" rel="noopener" href="https://three.dns163.cn/certificate/zhengshu-2732377397272490.html" title="Leo2011正在履约中"><img
+                                        src="https://three.dns163.cn/istatic/picture/snzylyzs.png" alt="Leo2011正在履约中"
+                                        style="width: 130px;height: 45px;display:inline-block;vertical-align:middle"></a> <a
                                     target="_blank" rel="noopener" href="https://three.dns163.cn/go"><img
                                         src="https://three.dns163.cn/images/wormhole_1.gif"
                                         style='display:inline-block;vertical-align:middle;height: 45px;'></a><br />
