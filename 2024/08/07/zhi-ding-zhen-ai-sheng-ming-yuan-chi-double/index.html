@@ -1001,10 +1001,11 @@ mjx-container[display="true"] + br {
 
 
 		<div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
-			<p>rt，今日模拟赛时，某只小 L 看到了 T1，发现是个百分数计算裸题，于是飞速写下了下面的代码：</p>
+			<p>rt，今日模拟赛时，某只小 L 看到了
+T1，发现是个百分数计算裸题，于是飞速写下了下面的代码：</p>
 <span id="more"></span>
 <div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">double</span> tmp;</span><br><span class="line">...</span><br><span class="line"><span class="built_in">scanf</span>(<span class="string">"%d%d"</span>, &amp;n, &amp;x);</span><br><span class="line">	<span class="built_in">FOR</span>(i, <span class="number">1</span>, n) <span class="built_in">scanf</span>(<span class="string">"%d%d"</span>, &amp;v[i], &amp;p[i]);</span><br><span class="line">	<span class="built_in">FOR</span>(i, <span class="number">1</span>, n) {</span><br><span class="line">		tmp += v[i] * (p[i] * <span class="number">0.01</span>), ++ans;</span><br><span class="line">		<span class="keyword">if</span> (tmp &gt; (x * <span class="number">1.0</span>)) <span class="keyword">break</span>;</span><br><span class="line">	}</span><br><span class="line">	<span class="keyword">if</span> (tmp &lt; (x * <span class="number">1.0</span>)) <span class="built_in">log</span>(<span class="string">"-1\n"</span>);</span><br><span class="line">	<span class="keyword">else</span> <span class="built_in">log</span>(<span class="string">"%d\n"</span>, ans);</span><br></pre></td></tr></tbody></table></figure></div>
-<p>然后呢？100–&gt;40，rk4–&gt;rk7</p>
+<p>然后呢？100--&gt;40，rk4--&gt;rk7</p>
 <p>小 L 衷心希望大家不要再犯同样的错误……</p>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
 		</div>
