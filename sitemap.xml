@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://www.leo2011.eu.org/2024/11/23/ti-jie-at-abc381-c-abc381c-11-22-substring/</loc>
+    
+    <lastmod>2024-11-23</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://www.leo2011.eu.org/2024/11/09/csp-j-s-2024-you-ji/</loc>
     
     <lastmod>2024-11-23</lastmod>
@@ -496,7 +505,7 @@
 
   
   <url>
-    <loc>https://www.leo2011.eu.org/categories/%E9%97%B2%E8%AF%9D/</loc>
+    <loc>https://www.leo2011.eu.org/categories/%E6%B8%B8%E5%AF%84/</loc>
     <lastmod>2024-11-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -510,7 +519,7 @@
   </url>
   
   <url>
-    <loc>https://www.leo2011.eu.org/categories/%E6%B8%B8%E5%AF%84/</loc>
+    <loc>https://www.leo2011.eu.org/categories/%E9%97%B2%E8%AF%9D/</loc>
     <lastmod>2024-11-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
