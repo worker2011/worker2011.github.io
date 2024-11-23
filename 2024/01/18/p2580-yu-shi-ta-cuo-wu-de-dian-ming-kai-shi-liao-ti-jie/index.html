@@ -125,9 +125,7 @@
 <link rel="stylesheet" href="/fontawesome/sharp-solid.min.css">
 
     
-<meta name="generator" content="Hexo 7.0.0">
-<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
-<style>mjx-container[jax="SVG"] {
+<meta name="generator" content="Hexo 7.0.0"><style>mjx-container[jax="SVG"] {
   direction: ltr;
 }
 
@@ -239,7 +237,9 @@ mjx-container[display="true"] {
 mjx-container[display="true"] + br {
   display: none;
 }
-</style><link rel="alternate" href="/atom.xml" title="Leo2011的博客" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</style>
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="Leo2011的博客" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 
@@ -1030,11 +1030,8 @@ mjx-container[display="true"] + br {
 <p>它的名字叫做 map。</p>
 <hr>
 <div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">map&lt;<span class="type">int</span>, <span class="type">int</span>&gt; a;</span><br><span class="line">a[<span class="number">7</span>] = <span class="number">5</span>;</span><br><span class="line">map&lt;string, <span class="type">int</span>&gt; score;</span><br><span class="line">score[<span class="string">"Leo2011"</span>] = <span class="number">400</span>;</span><br></pre></td></tr></tbody></table></figure></div>
-<p>map，其实相当于一个超大数组，但它真实的作用是：映射。比如
-<code>a[7] = 5;</code> 就是用 a 数组把 7 和 5
-关联了起来，这个操作就叫映射。</p>
-<p>map 这东西 NB
-的地方在于，它能这么写：<code>score["Leo2011"] = 400;</code>。哎对，这个类似下标的玩意儿就是个字符串！</p>
+<p>map，其实相当于一个超大数组，但它真实的作用是：映射。比如 <code>a[7] = 5;</code> 就是用 a 数组把 7 和 5 关联了起来，这个操作就叫映射。</p>
+<p>map 这东西 NB 的地方在于，它能这么写：<code>score["Leo2011"] = 400;</code>。哎对，这个类似下标的玩意儿就是个字符串！</p>
 <p>有了这不好办了？</p>
 <hr>
 <p>ACCode:</p>
