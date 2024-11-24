@@ -18,15 +18,15 @@
     <meta name="googlebot" content="index,follow">
     <meta name="revisit-after" content="1 days">
     
-        <meta name="description" content="显然这个 “11&#x2F;22 Substring” 是以那个 “&#x2F;” 为中心对称的。鉴于一个这样的字符串只能有一个 “&#x2F;”，而题目又要求最长，所以确定了 “&#x2F;” 就能确定一个满足要求的子串。 那思路就很简单了，只有两步：   找到所有的 “&#x2F;”   两边同时寻找相应的子串。   别的，除了判断一下越界之外，就不用管了。  ACCode： 123456789101112131415161718192021">
+        <meta name="description" content="显然这个 “11&#x2F;22 Substring” 是以那个 “&#x2F;” 为中心对称的。鉴于一个这样的字符串只能有一个 “&#x2F;”，而题目又要求最长，所以确定了 “&#x2F;” 就能确定一个满足要求的子串。 那思路就很简单了，只有两步：  找到所有的 “&#x2F;”  两边同时寻找相应的子串。  别的，除了判断一下越界之外，就不用管了。  ACCode： 123456789101112131415161718192021222">
 <meta property="og:type" content="article">
 <meta property="og:title" content="题解：AT_abc381_c [ABC381C] 11&#x2F;22 Substring">
 <meta property="og:url" content="https://www.leo2011.eu.org/2024/11/23/ti-jie-at-abc381-c-abc381c-11-22-substring/index.html">
 <meta property="og:site_name" content="Leo2011的博客">
-<meta property="og:description" content="显然这个 “11&#x2F;22 Substring” 是以那个 “&#x2F;” 为中心对称的。鉴于一个这样的字符串只能有一个 “&#x2F;”，而题目又要求最长，所以确定了 “&#x2F;” 就能确定一个满足要求的子串。 那思路就很简单了，只有两步：   找到所有的 “&#x2F;”   两边同时寻找相应的子串。   别的，除了判断一下越界之外，就不用管了。  ACCode： 123456789101112131415161718192021">
+<meta property="og:description" content="显然这个 “11&#x2F;22 Substring” 是以那个 “&#x2F;” 为中心对称的。鉴于一个这样的字符串只能有一个 “&#x2F;”，而题目又要求最长，所以确定了 “&#x2F;” 就能确定一个满足要求的子串。 那思路就很简单了，只有两步：  找到所有的 “&#x2F;”  两边同时寻找相应的子串。  别的，除了判断一下越界之外，就不用管了。  ACCode： 123456789101112131415161718192021222">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-11-23T14:24:02.000Z">
-<meta property="article:modified_time" content="2024-11-23T14:24:25.588Z">
+<meta property="article:modified_time" content="2024-11-23T14:31:27.685Z">
 <meta property="article:author" content="Leo2011">
 <meta property="article:tag" content="C艹">
 <meta name="twitter:card" content="summary">
@@ -125,7 +125,9 @@
 <link rel="stylesheet" href="/fontawesome/sharp-solid.min.css">
 
     
-<meta name="generator" content="Hexo 7.0.0"><style>mjx-container[jax="SVG"] {
+<meta name="generator" content="Hexo 7.0.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<style>mjx-container[jax="SVG"] {
   direction: ltr;
 }
 
@@ -237,9 +239,7 @@ mjx-container[display="true"] {
 mjx-container[display="true"] + br {
   display: none;
 }
-</style>
-<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
-<link rel="alternate" href="/atom.xml" title="Leo2011的博客" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</style><link rel="alternate" href="/atom.xml" title="Leo2011的博客" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 
@@ -961,8 +961,8 @@ mjx-container[display="true"] + br {
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2024-11-23 22:24:25</span>
-            <span class="mobile">2024-11-23 22:24:25</span>
+            <span class="desktop">2024-11-23 22:31:27</span>
+            <span class="mobile">2024-11-23 22:31:27</span>
             <span class="hover-info">更新</span>
         </span>
     
@@ -1024,15 +1024,12 @@ mjx-container[display="true"] + br {
 
 
 		<div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
-			<p>显然这个 “11/22 Substring” 是以那个 “/” 为中心对称的。鉴于一个这样的字符串只能有一个 “/”，而题目又要求最长，<strong>所以确定了 “/” 就能确定一个满足要求的子串</strong>。</p>
+			<p>显然这个 “11/22
+Substring” 是以那个 “/” 为中心对称的。鉴于一个这样的字符串只能有一个 “/”，而题目又要求最长，<strong>所以确定了 “/” 就能确定一个满足要求的子串</strong>。</p>
 <p>那思路就很简单了，只有两步：</p>
-<ol>
-<li>
-<p>找到所有的 “/”</p>
-</li>
-<li>
-<p>两边<strong>同时</strong>寻找相应的子串。</p>
-</li>
+<ol type="1">
+<li><p>找到所有的 “/”</p></li>
+<li><p> 两边<strong>同时</strong>寻找相应的子串。</p></li>
 </ol>
 <p>别的，除了判断一下越界之外，就不用管了。</p>
 <hr>
@@ -1054,7 +1051,7 @@ mjx-container[display="true"] + br {
         
             <li>
                 <strong>更新于
-                    :</strong> 2024-11-23 22:24:25
+                    :</strong> 2024-11-23 22:31:27
             </li>
         
         <li>
@@ -1236,7 +1233,7 @@ mjx-container[display="true"] + br {
                                                 </span>
                                                 
                                                     <span>
-                                                        共 34k 字
+                                                        共 35k 字
                                                     </span>
                                                     
                                             </p>

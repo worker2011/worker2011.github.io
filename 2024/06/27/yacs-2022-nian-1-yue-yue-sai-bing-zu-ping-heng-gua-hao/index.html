@@ -126,7 +126,9 @@
 <link rel="stylesheet" href="/fontawesome/sharp-solid.min.css">
 
     
-<meta name="generator" content="Hexo 7.0.0"><style>mjx-container[jax="SVG"] {
+<meta name="generator" content="Hexo 7.0.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<style>mjx-container[jax="SVG"] {
   direction: ltr;
 }
 
@@ -238,9 +240,7 @@ mjx-container[display="true"] {
 mjx-container[display="true"] + br {
   display: none;
 }
-</style>
-<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
-<link rel="alternate" href="/atom.xml" title="Leo2011的博客" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</style><link rel="alternate" href="/atom.xml" title="Leo2011的博客" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 
@@ -1036,36 +1036,21 @@ mjx-container[display="true"] + br {
 <hr>
 <p>关于栈的详细内容可以看 <a class="link" target="_blank" rel="noopener" href="https://oi-wiki.org/ds/stack/">OI-Wiki<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a>，这里简单说一下。</p>
 <p>其实栈（stack）就相当于一个桶，有两种操作：从顶上（top）往里边扔东西（push）和拿东西（pop），底部不允许操作（不然就漏了）。</p>
-<p>这里就有 <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.05ex;" xmlns="http://www.w3.org/2000/svg" width="1.131ex" height="1.554ex" role="img" focusable="false" viewBox="0 -665 500 687"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mn"><path data-c="33" d="M127 463Q100 463 85 480T69 524Q69 579 117 622T233 665Q268 665 277 664Q351 652 390 611T430 522Q430 470 396 421T302 350L299 348Q299 347 308 345T337 336T375 315Q457 262 457 175Q457 96 395 37T238 -22Q158 -22 100 21T42 130Q42 158 60 175T105 193Q133 193 151 175T169 130Q169 119 166 110T159 94T148 82T136 74T126 70T118 67L114 66Q165 21 238 21Q293 21 321 74Q338 107 338 175V195Q338 290 274 322Q259 328 213 329L171 330L168 332Q166 335 166 348Q166 366 174 366Q202 366 232 371Q266 376 294 413T322 525V533Q322 590 287 612Q265 626 240 626Q208 626 181 615T143 592T132 580H135Q138 579 143 578T153 573T165 566T175 555T183 540T186 520Q186 498 172 481T127 463Z"></path></g></g></g></svg></mjx-container> 种操作了：</p>
-<ol>
-<li>
-<p>top：用来获取最上方的东西</p>
-</li>
-<li>
-<p>push：扔东西进去</p>
-</li>
-<li>
-<p>pop：拿东西出来</p>
-</li>
+<p>这里就有 <span class="math inline"><mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.05ex;" xmlns="http://www.w3.org/2000/svg" width="1.131ex" height="1.554ex" role="img" focusable="false" viewBox="0 -665 500 687"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mn"><path data-c="33" d="M127 463Q100 463 85 480T69 524Q69 579 117 622T233 665Q268 665 277 664Q351 652 390 611T430 522Q430 470 396 421T302 350L299 348Q299 347 308 345T337 336T375 315Q457 262 457 175Q457 96 395 37T238 -22Q158 -22 100 21T42 130Q42 158 60 175T105 193Q133 193 151 175T169 130Q169 119 166 110T159 94T148 82T136 74T126 70T118 67L114 66Q165 21 238 21Q293 21 321 74Q338 107 338 175V195Q338 290 274 322Q259 328 213 329L171 330L168 332Q166 335 166 348Q166 366 174 366Q202 366 232 371Q266 376 294 413T322 525V533Q322 590 287 612Q265 626 240 626Q208 626 181 615T143 592T132 580H135Q138 579 143 578T153 573T165 566T175 555T183 540T186 520Q186 498 172 481T127 463Z"></path></g></g></g></svg></mjx-container></span> 种操作了：</p>
+<ol type="1">
+<li><p>top：用来获取最上方的东西</p></li>
+<li><p> push：扔东西进去</p></li>
+<li><p> pop：拿东西出来</p></li>
 </ol>
 <hr>
 <p>所以这个题就可以用栈解决了，具体步骤如下：</p>
-<ol>
-<li>
-<p>遍历字符串</p>
-</li>
-<li>
-<p>如果栈是空的（empty），那么直接放东西（学名：入栈）</p>
-</li>
-<li>
-<p>如果这个字符和栈顶（上一个待匹配的字符）匹配，那么栈顶出去（学名：出栈）</p>
-</li>
-<li>
-<p>如果不匹配，那么就加进去</p>
-</li>
-<li>
-<p>对每个字符进行操作 2~4（显然只会执行一个），此时匹配的已经不在栈中，栈里只有不匹配的。如果栈里没东西，那么说明都匹配了，是平衡的；如果有，那就是不平衡的。</p>
-</li>
+<ol type="1">
+<li><p>遍历字符串</p></li>
+<li><p>如果栈是空的（empty），那么直接放东西（学名：入栈）</p></li>
+<li><p>如果这个字符和栈顶（上一个待匹配的字符）匹配，那么栈顶出去（学名：出栈）</p></li>
+<li><p>如果不匹配，那么就加进去</p></li>
+<li><p>对每个字符进行操作
+2~4（显然只会执行一个），此时匹配的已经不在栈中，栈里只有不匹配的。如果栈里没东西，那么说明都匹配了，是平衡的；如果有，那就是不平衡的。</p></li>
 </ol>
 <p>这里，这个栈就是用来存储不匹配的括号的。</p>
 <hr>
@@ -1286,7 +1271,7 @@ mjx-container[display="true"] + br {
                                                 </span>
                                                 
                                                     <span>
-                                                        共 34k 字
+                                                        共 35k 字
                                                     </span>
                                                     
                                             </p>
