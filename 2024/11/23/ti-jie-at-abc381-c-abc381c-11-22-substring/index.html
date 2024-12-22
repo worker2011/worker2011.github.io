@@ -18,12 +18,15 @@
     <meta name="googlebot" content="index,follow">
     <meta name="revisit-after" content="1 days">
     
-        <meta name="description" content="显然这个 “11&#x2F;22 Substring” 是以那个 “&#x2F;” 为中心对称的。鉴于一个这样的字符串只能有一个 “&#x2F;”，而题目又要求最长，所以确定了 “&#x2F;” 就能确定一个满足要求的子串。 那思路就很简单了，只有两步：  找到所有的 “&#x2F;”  两边同时寻找相应的子串。  别的，除了判断一下越界之外，就不用管了。  ACCode： 123456789101112131415161718192021222">
+    
+    
+        
+        <meta name="description" content="许许多多的平凡加在一起，就成了不平凡。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="题解：AT_abc381_c [ABC381C] 11&#x2F;22 Substring">
 <meta property="og:url" content="https://www.leo2011.eu.org/2024/11/23/ti-jie-at-abc381-c-abc381c-11-22-substring/index.html">
 <meta property="og:site_name" content="Leo2011的博客">
-<meta property="og:description" content="显然这个 “11&#x2F;22 Substring” 是以那个 “&#x2F;” 为中心对称的。鉴于一个这样的字符串只能有一个 “&#x2F;”，而题目又要求最长，所以确定了 “&#x2F;” 就能确定一个满足要求的子串。 那思路就很简单了，只有两步：  找到所有的 “&#x2F;”  两边同时寻找相应的子串。  别的，除了判断一下越界之外，就不用管了。  ACCode： 123456789101112131415161718192021222">
+<meta property="og:description" content="许许多多的平凡加在一起，就成了不平凡。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-11-23T14:24:02.000Z">
 <meta property="article:modified_time" content="2024-11-23T14:31:27.685Z">
@@ -63,7 +66,7 @@
 
     
         
-<link rel="stylesheet" href="/build/css/tailwind.css">
+<link rel="stylesheet" href="/css/build/tailwind.css">
 
     
 
@@ -81,13 +84,13 @@
     
     
         
-<script src="/build/js/libs/anime.min.js"></script>
+<script src="/js/build/libs/anime.min.js"></script>
 
     
 
     <script id="hexo-configurations">
     window.config = {"hostname":"www.leo2011.eu.org","root":"/","language":"zh-CN","path":"search.xml"};
-    window.theme = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true,"title_alignment":"left","headings_top_spacing":{"h1":"3.2rem","h2":"2.4rem","h3":"1.9rem","h4":"1.6rem","h5":"1.4rem","h6":"1.3rem"}},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":["魔怔哥"]},"code_block":{"copy":true,"style":"mac","highlight_theme":{"light":"atom-one-light","dark":"vs2015"},"font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":6,"number":true,"expand":true,"init_open":true},"copyright":{"enable":true,"default":"cc_by_nc_sa"},"lazyload":true,"pangu_js":true,"recommendation":{"enable":true,"title":"推荐阅读","limit":6,"mobile_limit":3,"placeholder":null,"skip_dirs":["/_drafts/","/_data/"]}},"colors":{"primary":"#3a84ff","secondary":null,"default_mode":"light"},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null},"title":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":true},"scroll_progress":{"bar":true,"percentage":true},"website_counter":{"url":"https://cn.vercount.one/js","enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"single_page":true,"preloader":{"enable":true,"custom_message":null},"open_graph":true,"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/background.jpeg","dark":"/images/bgdark.jpg"},"title":"Leo2011 的博客","subtitle":{"text":["不要以为你掌握了整个World，因为你只会个 Hello World。","学习，就是发现自己越来越菜的过程。——任宝硕","关于 SPFA，它死了，但它还活着。关于 Dijkstra，它还活着，但它已经死了。"],"hitokoto":{"enable":false,"show_author":false,"api":"https://v1.hitokoto.cn"},"typing_speed":210,"backing_speed":10,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":true,"style":"default","links":{"github":"https://github.com/worker2011/","instagram":null,"zhihu":"https://www.zhihu.com/people/leo2011-46","twitter":null,"email":"mailto:study86@outlook.com","fa fa-rss":"/atom.xml","fas fa-blog":"https://home.cnblogs.com/u/leo2011","fab fa-blogger":"https://www.luogu.com.cn/user/539066","fas fa-train-subway":"https://www.travellings.cn/go-by-clouds.html"},"qrs":{"weixin":null}}},"plugins":{"feed":{"enable":true},"aplayer":{"enable":true,"type":"fixed","audios":[{"name":"像我这样的人","artist":"毛不易","url":"/images/像我这样的人.mp3","cover":"http://puui.qpic.cn/vpic_cover/n0551ux81rf/n0551ux81rf_hz.jpg/1280","lrc":null},{"name":"Something Just Like This","artist":"The Chainsmokers, Coldplay","url":"https://evan.beee.top/music/Something%20Just%20Like%20This%20-%20The%20Chainsmokers%E3%80%81Coldplay.mp3","cover":"/images/Something Just Like This.jfif"},{"name":"青花瓷","artist":"周杰伦","url":"https://npm.elemecdn.com/anzhiyu-music@1.0.4/青花瓷/青花瓷.mp3","cover":"https://y.qq.com/music/photo_new/T002R300x300M000002eFUFm2XYZ7z_2.jpg?max_age=2592000","lrc":"https://npm.elemecdn.com/anzhiyu-music@1.0.4/青花瓷/青花瓷.lrc"},{"name":"听妈妈的话","artist":"周杰伦","url":"https://npm.elemecdn.com/anzhiyu-music@1.0.2/听妈妈的话/听妈妈的话.mp3","cover":"https://y.qq.com/music/photo_new/T002R300x300M000002jLGWe16Tf1H_1.jpg?max_age=2592000","lrc":"https://npm.elemecdn.com/anzhiyu-music@1.0.2/听妈妈的话/听妈妈的话.lrc"},{"name":"龙卷风","artist":"周杰伦","url":"https://npm.elemecdn.com/anzhiyu-music@1.0.4/龙卷风/龙卷风.mp3","cover":"https://y.qq.com/music/photo_new/T002R300x300M000000f01724fd7TH_1.jpg?max_age=2592000","lrc":"https://npm.elemecdn.com/anzhiyu-music@1.0.4/龙卷风/龙卷风.lrc"},{"name":"本草纲目","artist":"周杰伦","url":"https://npm.elemecdn.com/anzhiyu-music@1.0.4/本草纲目/本草纲目.mp3","cover":"https://y.qq.com/music/photo_new/T002R300x300M000002jLGWe16Tf1H_1.jpg?max_age=2592000","lrc":"https://npm.elemecdn.com/anzhiyu-music@1.0.4/本草纲目/本草纲目.lrc"},{"name":"兰亭序","artist":"周杰伦","url":"https://npm.elemecdn.com/anzhiyu-music@1.0.1/周杰伦/兰亭序/兰亭序.mp3","cover":"https://y.qq.com/music/photo_new/T002R300x300M000002Neh8l0uciQZ_1.jpg?max_age=2592000","lrc":"https://npm.elemecdn.com/anzhiyu-music@1.0.1/周杰伦/兰亭序/兰亭序.lrc"}]},"mermaid":{"enable":true,"version":"11.4.0"}},"version":"2.8.1","navbar":{"auto_hide":true,"color":{"left":"#f78736","right":"#367df7","transparency":35},"width":{"home":"1200px","pages":"1000px"},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"},"Archives":{"path":"/archives","icon":"fa-regular fa-archive"},"tags":{"path":"/tags","icon":"fa fa-tags"},"categories":{"path":"/categories","icon":"fa fa-th"},"RSS":{"path":"/atom.xml","icon":"fa fa-rss"},"开往":{"path":"https://www.travellings.cn/go-by-clouds.html","icon":"fas fa-train-subway"},"友情链接":{"path":"/friends","icon":"fas fa-user-group"},"About":{"path":"/about","icon":"fa-regular fa-user"},"Links":{"icon":"fa-regular fa-link","submenus":{"LTC_Augenstern":"https://www.cnblogs.com/Liu-Tao-Chang","popcoount":"https://www.cnblogs.com/popfront","留言板":"/essays","MBTI 测试":"/MBTI","小空调":"/air-conditioner","论坛":"https://leo2011.flarum.cloud/"}}},"search":{"enable":true,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":"许许多多的平凡加在一起，就成了不平凡。","show_on_mobile":true,"links":{"归档":{"path":"/archives","icon":"fa-regular fa-archive"},"标签":{"path":"/tags","icon":"fa-regular fa-tags"},"分类":{"path":"/categories","icon":"fa-regular fa-folder"},"开往":{"path":"https://www.travellings.cn/go-by-clouds.html","icon":"fas fa-train-subway"}}},"article_date_format":"auto","excerpt_length":200,"categories":{"enable":true,"limit":200},"tags":{"enable":true,"limit":200}},"footerStart":"2023/11/15 19:30:15"};
+    window.theme = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true,"delete_mask":false,"title_alignment":"left","headings_top_spacing":{"h1":"3.2rem","h2":"2.4rem","h3":"1.9rem","h4":"1.6rem","h5":"1.4rem","h6":"1.3rem"}},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":["魔怔哥"]},"code_block":{"copy":true,"style":"mac","highlight_theme":{"light":"atom-one-light","dark":"vs2015"},"font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":6,"number":true,"expand":true,"init_open":true},"copyright":{"enable":true,"default":"cc_by_nc_sa"},"lazyload":true,"pangu_js":true,"recommendation":{"enable":true,"title":"推荐阅读","limit":6,"mobile_limit":3,"placeholder":null,"skip_dirs":["/_drafts/","/_data/"]}},"colors":{"primary":"#3a84ff","secondary":null,"default_mode":"light"},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null},"title":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":true},"scroll_progress":{"bar":true,"percentage":true},"website_counter":{"url":"https://cn.vercount.one/js","enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"single_page":true,"preloader":{"enable":true,"custom_message":null},"open_graph":true,"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/background.jpeg","dark":"/images/bgdark.jpg"},"title":"Leo2011 的博客","subtitle":{"text":["不要以为你掌握了整个World，因为你只会个 Hello World。","学习，就是发现自己越来越菜的过程。——任宝硕","关于 SPFA，它死了，但它还活着。关于 Dijkstra，它还活着，但它已经死了。"],"hitokoto":{"enable":false,"show_author":false,"api":"https://v1.hitokoto.cn"},"typing_speed":210,"backing_speed":10,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":true,"style":"default","links":{"github":"https://github.com/worker2011/","instagram":null,"zhihu":"https://www.zhihu.com/people/leo2011-46","twitter":null,"email":"mailto:study86@outlook.com","fa fa-rss":"/atom.xml","fas fa-blog":"https://home.cnblogs.com/u/leo2011","fab fa-blogger":"https://www.luogu.com.cn/user/539066","fas fa-train-subway":"https://www.travellings.cn/go-by-clouds.html"},"qrs":{"weixin":null}}},"plugins":{"feed":{"enable":true},"aplayer":{"enable":true,"type":"fixed","audios":[{"name":"像我这样的人","artist":"毛不易","url":"/images/像我这样的人.mp3","cover":"http://puui.qpic.cn/vpic_cover/n0551ux81rf/n0551ux81rf_hz.jpg/1280","lrc":null},{"name":"Something Just Like This","artist":"The Chainsmokers, Coldplay","url":"https://evan.beee.top/music/Something%20Just%20Like%20This%20-%20The%20Chainsmokers%E3%80%81Coldplay.mp3","cover":"/images/Something Just Like This.jfif"},{"name":"青花瓷","artist":"周杰伦","url":"https://npm.elemecdn.com/anzhiyu-music@1.0.4/青花瓷/青花瓷.mp3","cover":"https://y.qq.com/music/photo_new/T002R300x300M000002eFUFm2XYZ7z_2.jpg?max_age=2592000","lrc":"https://npm.elemecdn.com/anzhiyu-music@1.0.4/青花瓷/青花瓷.lrc"},{"name":"听妈妈的话","artist":"周杰伦","url":"https://npm.elemecdn.com/anzhiyu-music@1.0.2/听妈妈的话/听妈妈的话.mp3","cover":"https://y.qq.com/music/photo_new/T002R300x300M000002jLGWe16Tf1H_1.jpg?max_age=2592000","lrc":"https://npm.elemecdn.com/anzhiyu-music@1.0.2/听妈妈的话/听妈妈的话.lrc"},{"name":"龙卷风","artist":"周杰伦","url":"https://npm.elemecdn.com/anzhiyu-music@1.0.4/龙卷风/龙卷风.mp3","cover":"https://y.qq.com/music/photo_new/T002R300x300M000000f01724fd7TH_1.jpg?max_age=2592000","lrc":"https://npm.elemecdn.com/anzhiyu-music@1.0.4/龙卷风/龙卷风.lrc"},{"name":"本草纲目","artist":"周杰伦","url":"https://npm.elemecdn.com/anzhiyu-music@1.0.4/本草纲目/本草纲目.mp3","cover":"https://y.qq.com/music/photo_new/T002R300x300M000002jLGWe16Tf1H_1.jpg?max_age=2592000","lrc":"https://npm.elemecdn.com/anzhiyu-music@1.0.4/本草纲目/本草纲目.lrc"},{"name":"兰亭序","artist":"周杰伦","url":"https://npm.elemecdn.com/anzhiyu-music@1.0.1/周杰伦/兰亭序/兰亭序.mp3","cover":"https://y.qq.com/music/photo_new/T002R300x300M000002Neh8l0uciQZ_1.jpg?max_age=2592000","lrc":"https://npm.elemecdn.com/anzhiyu-music@1.0.1/周杰伦/兰亭序/兰亭序.lrc"}]},"mermaid":{"enable":true,"version":"11.4.0"}},"version":"2.8.2","navbar":{"auto_hide":true,"color":{"left":"#f78736","right":"#367df7","transparency":35},"width":{"home":"1200px","pages":"1000px"},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"},"Archives":{"path":"/archives","icon":"fa-regular fa-archive"},"tags":{"path":"/tags","icon":"fa fa-tags"},"categories":{"path":"/categories","icon":"fa fa-th"},"RSS":{"path":"/atom.xml","icon":"fa fa-rss"},"开往":{"path":"https://www.travellings.cn/go-by-clouds.html","icon":"fas fa-train-subway"},"友情链接":{"path":"/friends","icon":"fas fa-user-group"},"About":{"path":"/about","icon":"fa-regular fa-user"},"Links":{"icon":"fa-regular fa-link","submenus":{"LTC_Augenstern":"https://www.cnblogs.com/Liu-Tao-Chang","popcoount":"https://www.cnblogs.com/popfront","留言板":"/essays","MBTI 测试":"/MBTI","小空调":"/air-conditioner","论坛":"https://leo2011.flarum.cloud/"}}},"search":{"enable":true,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":"许许多多的平凡加在一起，就成了不平凡。","show_on_mobile":true,"links":{"归档":{"path":"/archives","icon":"fa-regular fa-archive"},"标签":{"path":"/tags","icon":"fa-regular fa-tags"},"分类":{"path":"/categories","icon":"fa-regular fa-folder"},"开往":{"path":"https://www.travellings.cn/go-by-clouds.html","icon":"fas fa-train-subway"}}},"article_date_format":"auto","excerpt_length":200,"categories":{"enable":true,"limit":200},"tags":{"enable":true,"limit":200}},"footerStart":"2023/11/15 19:30:15"};
     window.lang_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"};
     window.data = {"masonry":false};
   </script>
@@ -125,7 +128,7 @@
 <link rel="stylesheet" href="/fontawesome/sharp-solid.min.css">
 
     
-<meta name="generator" content="Hexo 7.0.0">
+<meta name="generator" content="Hexo 7.3.0">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
 <style>mjx-container[jax="SVG"] {
   direction: ltr;
@@ -902,7 +905,7 @@ mjx-container[display="true"] + br {
 
         <div class="statistics flex justify-around my-2.5">
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">6</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">7</div>
         <div class="label text-third-text-color text-sm">标签</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
@@ -910,7 +913,7 @@ mjx-container[display="true"] + br {
         <div class="label text-third-text-color text-sm">分类</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">43</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">44</div>
         <div class="label text-third-text-color text-sm">文章</div>
     </a>
 </div>
@@ -1034,7 +1037,7 @@ Substring” 是以那个 “/” 为中心对称的。鉴于一个这样的字�
 <p>别的，除了判断一下越界之外，就不用管了。</p>
 <hr>
 <p>ACCode：</p>
-<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*Code by Leo2011*/</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> INF 0x3f3f3f3f</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> EPS 1e-8</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> FOR(i, l, r) for (int(i) = (l); (i) &lt;= (r); ++(i))</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> log printf</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> IOS                      \</span></span><br><span class="line"><span class="meta">	ios::sync_with_stdio(false); \</span></span><br><span class="line"><span class="meta">	cin.tie(nullptr);            \</span></span><br><span class="line"><span class="meta">	cout.tie(nullptr);</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> __int128 i128;</span><br><span class="line"><span class="keyword">typedef</span> <span class="type">long</span> <span class="type">long</span> ll;</span><br><span class="line"><span class="keyword">typedef</span> pair&lt;<span class="type">int</span>, <span class="type">int</span>&gt; PII;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> n, ans;</span><br><span class="line">string s;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> T <span class="title">read</span><span class="params">()</span> </span>{</span><br><span class="line">	T sum = <span class="number">0</span>, fl = <span class="number">1</span>;</span><br><span class="line">	<span class="type">char</span> ch = <span class="built_in">getchar</span>();</span><br><span class="line">	<span class="keyword">for</span> (; !<span class="built_in">isdigit</span>(ch); ch = <span class="built_in">getchar</span>())</span><br><span class="line">		<span class="keyword">if</span> (ch == <span class="string">'-'</span>) fl = <span class="number">-1</span>;</span><br><span class="line">	<span class="keyword">for</span> (; <span class="built_in">isdigit</span>(ch); ch = <span class="built_in">getchar</span>()) sum = sum * <span class="number">10</span> + ch - <span class="string">'0'</span>;</span><br><span class="line">	<span class="keyword">return</span> sum * fl;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">write</span><span class="params">(T x)</span> </span>{</span><br><span class="line">	<span class="keyword">if</span> (x &lt; <span class="number">0</span>) {</span><br><span class="line">		<span class="built_in">putchar</span>(<span class="string">'-'</span>), <span class="built_in">write</span>&lt;T&gt;(-x);</span><br><span class="line">		<span class="keyword">return</span>;</span><br><span class="line">	}</span><br><span class="line">	<span class="type">static</span> T sta[<span class="number">35</span>];</span><br><span class="line">	<span class="type">int</span> top = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">do</span> { sta[top++] = x % <span class="number">10</span>, x /= <span class="number">10</span>; } <span class="keyword">while</span> (x);</span><br><span class="line">	<span class="keyword">while</span> (top) <span class="built_in">putchar</span>(sta[--top] + <span class="number">48</span>);</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>{</span><br><span class="line">	IOS;</span><br><span class="line">	cin &gt;&gt; n &gt;&gt; s;</span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; ++i) {</span><br><span class="line">		<span class="keyword">if</span> (s[i] == <span class="string">'/'</span>) {</span><br><span class="line">			<span class="type">int</span> l = i - <span class="number">1</span>, r = i + <span class="number">1</span>, len = <span class="number">1</span>;</span><br><span class="line">			<span class="keyword">while</span> (l &gt;= <span class="number">0</span> &amp;&amp; r &lt; n)</span><br><span class="line">				<span class="keyword">if</span> (s[l] == <span class="string">'1'</span> &amp;&amp; s[r] == <span class="string">'2'</span>) --l, ++r, len += <span class="number">2</span>;  <span class="comment">// 左右同时寻找，所以是 +2</span></span><br><span class="line">				<span class="keyword">else</span> <span class="keyword">break</span>;  <span class="comment">// 不满足了及时break</span></span><br><span class="line">			ans = <span class="built_in">max</span>(ans, len);</span><br><span class="line">		}</span><br><span class="line">	}</span><br><span class="line">	<span class="built_in">write</span>&lt;<span class="type">int</span>&gt;(ans);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure></div>
+<div class="code-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*Code by Leo2011*/</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> INF 0x3f3f3f3f</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> EPS 1e-8</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> FOR(i, l, r) for (int(i) = (l); (i) &lt;= (r); ++(i))</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> log printf</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> IOS                      \</span></span><br><span class="line"><span class="meta">	ios::sync_with_stdio(false); \</span></span><br><span class="line"><span class="meta">	cin.tie(nullptr);            \</span></span><br><span class="line"><span class="meta">	cout.tie(nullptr);</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> __int128 i128;</span><br><span class="line"><span class="keyword">typedef</span> <span class="type">long</span> <span class="type">long</span> ll;</span><br><span class="line"><span class="keyword">typedef</span> pair&lt;<span class="type">int</span>, <span class="type">int</span>&gt; PII;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> n, ans;</span><br><span class="line">string s;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> T <span class="title">read</span><span class="params">()</span> </span>{</span><br><span class="line">	T sum = <span class="number">0</span>, fl = <span class="number">1</span>;</span><br><span class="line">	<span class="type">char</span> ch = <span class="built_in">getchar</span>();</span><br><span class="line">	<span class="keyword">for</span> (; !<span class="built_in">isdigit</span>(ch); ch = <span class="built_in">getchar</span>())</span><br><span class="line">		<span class="keyword">if</span> (ch == <span class="string">'-'</span>) fl = <span class="number">-1</span>;</span><br><span class="line">	<span class="keyword">for</span> (; <span class="built_in">isdigit</span>(ch); ch = <span class="built_in">getchar</span>()) sum = sum * <span class="number">10</span> + ch - <span class="string">'0'</span>;</span><br><span class="line">	<span class="keyword">return</span> sum * fl;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">write</span><span class="params">(T x)</span> </span>{</span><br><span class="line">	<span class="keyword">if</span> (x &lt; <span class="number">0</span>) {</span><br><span class="line">		<span class="built_in">putchar</span>(<span class="string">'-'</span>), <span class="built_in">write</span>&lt;T&gt;(-x);</span><br><span class="line">		<span class="keyword">return</span>;</span><br><span class="line">	}</span><br><span class="line">	<span class="type">static</span> T sta[<span class="number">35</span>];</span><br><span class="line">	<span class="type">int</span> top = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">do</span> { sta[top++] = x % <span class="number">10</span>, x /= <span class="number">10</span>; } <span class="keyword">while</span> (x);</span><br><span class="line">	<span class="keyword">while</span> (top) <span class="built_in">putchar</span>(sta[--top] + <span class="number">48</span>);</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>{</span><br><span class="line">	IOS;</span><br><span class="line">	cin &gt;&gt; n &gt;&gt; s;</span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; ++i) {</span><br><span class="line">		<span class="keyword">if</span> (s[i] == <span class="string">'/'</span>) {</span><br><span class="line">			<span class="type">int</span> l = i - <span class="number">1</span>, r = i + <span class="number">1</span>, len = <span class="number">1</span>;</span><br><span class="line">			<span class="keyword">while</span> (l &gt;= <span class="number">0</span> &amp;&amp; r &lt; n)</span><br><span class="line">				<span class="keyword">if</span> (s[l] == <span class="string">'1'</span> &amp;&amp; s[r] == <span class="string">'2'</span>) --l, ++r, len += <span class="number">2</span>;  <span class="comment">// 左右同时寻找，所以是 +2</span></span><br><span class="line">				<span class="keyword">else</span> <span class="keyword">break</span>;  <span class="comment">// 不满足了及时break</span></span><br><span class="line">			ans = <span class="built_in">max</span>(ans, len);</span><br><span class="line">		}</span><br><span class="line">	}</span><br><span class="line">	<span class="built_in">write</span>&lt;<span class="type">int</span>&gt;(ans);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure></div>
 <p><a class="link" target="_blank" rel="noopener" href="https://www.luogu.com.cn/record/190717875">AC 记录～<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
 <p>理解万岁！</p>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
@@ -1129,6 +1132,18 @@ Substring” 是以那个 “/” 为中心对称的。鉴于一个这样的字�
 		
 		<div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
 			
+			<div class="article-prev border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+				<a class="prev" rel="prev" href="/2024/12/08/gesp-202412-you-ji/">
+					<span class="left arrow-icon flex justify-center items-center">
+						<i class="fa-solid fa-chevron-left"></i>
+					</span>
+					<span class="title flex justify-center items-center">
+						<span class="post-nav-title-item">GESP 202412 游记</span>
+						<span class="post-nav-item">上一篇</span>
+					</span>
+				</a>
+			</div>
+			
 			
 			<div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
 				<a class="next" rel="next" href="/2024/11/09/ti-jie-p11248-gesp202409-qi-ji-ju-zhen-yi-dong/">
@@ -1213,168 +1228,59 @@ Substring” 是以那个 “/” 为中心对称的。鉴于一个这样的字�
 			<footer class="footer mt-5 py-5 h-auto text-base text-third-text-color relative border-t-2 border-t-border-color">
     <div class="info-container py-3 text-center">
         
-                <div class="text-center">
-                    &copy;
+        <div class="text-center">
+            &copy;
+            
+              <span>2023</span>
+              -
+            
+            2024&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a href="/">Leo2011</a>
+            
+                
+                <p class="post-count space-x-0.5">
+                    <span>
+                        共撰写了 44 篇文章
+                    </span>
                     
                         <span>
-                            2023
+                            共 35k 字
                         </span>
-                        -
-                        
-                            2024&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a
-                                        href="/">
-                                        Leo2011
-                                    </a>
-                                    
-                                        
-                                            <p class="post-count space-x-0.5">
-                                                <span>
-                                                    共撰写了 43 篇文章
-                                                </span>
-                                                
-                                                    <span>
-                                                        共 35k 字
-                                                    </span>
-                                                    
-                                            </p>
-                                            
-                </div>
-                
-                    <script data-swup-reload-script src = "https://cn.vercount.one/js"></script>
-                    <div
-                        class="relative text-center lg:absolute lg:right-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-right">
-                        
-                            <span id="busuanzi_container_site_uv" class="lg:!block">
-                                <span class="text-sm">访问人数</span>
-                                <span id="busuanzi_value_site_uv"></span>
-                            </span>
-                            
-                                
-                                    <span id="busuanzi_container_site_pv" class="lg:!block">
-                                        <span class="text-sm">总访问量</span>
-                                        <span id="busuanzi_value_site_pv"></span>
-                                    </span>
-                                    
-                    </div>
                     
-                        <div
-                            class="relative text-center lg:absolute lg:left-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-left">
-                            <span class="lg:block text-sm">由 <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg class="relative top-[2px] inline-block align-baseline" version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" class="text-base" href="https://hexo.io">Hexo</a> 驱动</span>
-                            <span class="text-sm lg:block">主题&nbsp;<a
-                                            class="text-base" target="_blank"
-                                            href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.8.1</a></span>
-                                
-                        </div>
-                        
-                                <a target="_blank" rel="noopener" href="https://guan.ma/hao/2024000185/"
-                                    title="官码2024000185号"><img src="https://style.wmou.com/images/guanma.png" alt="官码"
-                                        width="20"
-                                        style='display:inline-block;vertical-align:middle'>官码2024000185号</a><br />
-                                <a target="_blank" href="https://beian.miit.cn.com/gov/search.php?query=leo2011.eu.org"
-                                    title="MIIT备20240835号"><img src="https://beian.miit.cn.com/logo.png" alt="MIIT"
-                                        width="40" style='display:inline-block;vertical-align:middle'>
-                                    MIIT20240835号</a><br />
-                                <a href="https://icp.18z.fun/?id=2024080084" target="_blank">梵AIA盟2024080084号</a><br />
-                                <a target="_blank" rel="noopener" href="https://icp.3v.hk/beian/20240072"><img
-                                        src="https://icp.3v.hk/static/picture/icplogoi.png"
-                                        style='display:inline-block;vertical-align:middle;height: 20px;'>酷AIA盟20240072号</a><br />
-                                <a target="_blank" rel="noopener" href="https://three.dns163.cn/certificate/zhengshu-2732377397272490.html"
-                                    title="Leo2011正在履约中"><img src="https://three.dns163.cn/istatic/picture/snzylyzs.png"
-                                        alt="Leo2011正在履约中"
-                                        style="width: 130px;height: 45px;display:inline-block;vertical-align:middle"></a>
-                                <a target="_blank" rel="noopener" href="https://three.dns163.cn/go"><img
-                                        src="https://three.dns163.cn/images/wormhole_1.gif"
-                                        style='display:inline-block;vertical-align:middle;height: 45px;'></a><br />
-                                <a target="_blank" rel="noopener"
-                                    href="https://www.gyfzlm.com/fanzha/NO-44256470.html"><img
-                                        src="https://www.gyfzlm.com/istatic/image/gyfzlogo.png"
-                                        style='display:inline-block;vertical-align:middle;height: 45px;'></a> <a
-                                    target="_blank" rel="noopener" href="https://www.gyfzlm.com/fanzha/NO-44256470.html"
-                                    title="公益反诈联盟成员单位">公益反诈联盟成员单位</a><br />
-                                <a target="_blank" rel="noopener" href="https://icp.gs/?id=20241704"
-                                    title="岸号:20241704号"><img src="https://icp.gs/assets/images/icp.png" alt="岸号:"
-                                        width="20"
-                                        style='display:inline-block;vertical-align:middle'>岸号:20241704号</a><br />
-                                <a href="https://icp.gov.moe/?keyword=20240681" target="_blank">萌ICP备20240681号 </a><a
-                                    style="text-decoration:none;" href="https://travel.moe/go.html"
-                                    title="异次元之旅-跃迁-我们一起去萌站成员的星球旅行吧！" target="_blank"><img
-                                        src="https://travel.moe/images/icon/icon64.png"
-                                        style="width:24px;height:24px;display:inline-block;vertical-align:middle">异次元之旅</a><br />
-                                <a target="_blank" rel="noopener" href="https://imicp.cn/"><img
-                                        src="https://imicp.cn/logo.png" width="20"
-                                        style='display:inline-block;vertical-align:middle'>IMICP备:20240681号</a><br /> <a
-                                    href="https://icp.tomzhao.top/" target="_blank">氢ICP备20240681号</a><br />
-                                <img style='display:inline-block;vertical-align:middle;width:20px;height:20px;margin-bottom:-4px'
-                                    src="https://postimage.me/images/2024/08/27/Y.gif"><a
-                                    href="https://icp.znzx.cc/?id=20240681" target="_blank">影石ICP备案 20240681号</a><br />
-                                <a href="https://www.travellings.cn/go-by-clouds.html" target="_blank" rel="noopener"
-                                    title="开往-友链接力">
-                                    <img src="https://www.travellings.cn/assets/logo.gif" alt="开往-友链接力" width="120"
-                                        style='display:inline-block;vertical-align:middle;'> </a><br />
-                                <a href="https://blogscn.fun/" title="BLOGS·CN" target="_blank"> <img
-                                        src="https://photo.xiangming.site/img/blogscn.png" alt="本站已加入BLOGS·CN"
-                                        style="width:auto;height:25px;display:inline-block;vertical-align:middle">
-                                </a><br />
-                                <a href="http://icp.1.kjcx1.top/appleinc/00000012" ; target="_blank"><img
-                                        style="width:20px;height:20px;display:inline-block;vertical-align:middle"
-                                        src="http://icp.1.kjcx1.top/Logo.ico" ;>创游ICP备00000012号</a><br />
-                                <a href="https://ipw.cn/ssl/?site=www.leo2011.eu.org" title="本站支持SSL安全访问"
-                                    target='_blank'><img style='display:inline-block;vertical-align:middle'
-                                        alt="本站支持SSL安全访问" src="https://static.ipw.cn/icon/ssl-s4.svg"></a>
-                                <a href="https://ipw.cn/ipv6webcheck/?site=www.leo2011.eu.org" title="本站支持IPv6访问"
-                                    target='_blank'><img style='display:inline-block;vertical-align:middle'
-                                        alt="本站支持IPv6访问" src="https://static.ipw.cn/icon/ipv6-s4.svg"></a><br />
-                                <a target="_blank" rel="noopener" href="https://notbyai.fyi/"><img
-                                        src="/images/Produced-By-Human-Not-By-AI-Badge-black.svg" width="100"
-                                        style='display:inline-block;vertical-align:middle'><img
-                                        src="/images/Written-By-Human-Not-By-AI-Badge-black.svg" width="100"
-                                        style='display:inline-block;vertical-align:middle'></a><br />
-                                <!-- 
-         -->
-                                <span id="sitetime"></span>
-                                <script language=javascript>
-                                    function siteTime() {
-                                        window.setTimeout("siteTime()", 1000);
-                                        var seconds = 1000;
-                                        var minutes = seconds * 60;
-                                        var hours = minutes * 60;
-                                        var days = hours * 24;
-                                        var years = days * 365;
-                                        var today = new Date();
-                                        var todayYear = today.getFullYear();
-                                        var todayMonth = today.getMonth() + 1;
-                                        var todayDate = today.getDate();
-                                        var todayHour = today.getHours();
-                                        var todayMinute = today.getMinutes();
-                                        var todaySecond = today.getSeconds();
-                                        /* Date.UTC() -- 返回date对象距世界标准时间(UTC)1970年1月1日午夜之间的毫秒数(时间戳)
-                                        year - 作为date对象的年份，为4位年份值
-                                        month - 0-11之间的整数，做为date对象的月份
-                                        day - 1-31之间的整数，做为date对象的天数
-                                        hours - 0(午夜24点)-23之间的整数，做为date对象的小时数
-                                        minutes - 0-59之间的整数，做为date对象的分钟数
-                                        seconds - 0-59之间的整数，做为date对象的秒数
-                                        microseconds - 0-999之间的整数，做为date对象的毫秒数 */
-                                        var t1 = Date.UTC(2023, 11, 15, 19, 30, 15); //北京时间2023-11-15 19:30:15
-                                        var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
-                                        var diff = t2 - t1;
-                                        var diffYears = Math.floor(diff / years);
-                                        var diffDays = Math.floor((diff / days) - diffYears * 365);
-                                        var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
-                                        var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) / minutes);
-                                        var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours - diffMinutes * minutes) / seconds);
-                                        document.getElementById("sitetime").innerHTML = " 本站已<s>苟</s>安全运行 " + diffYears + " 年 " + diffDays + " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
-                                    }/*因为建站时间还没有一年，就将之注释掉了。需要的可以取消*/
-                                    siteTime();
-                                </script>
-                                
-                                    
-                                        
-                                                                
-                                        
-                                                                
-
-    </div>
+                </p>
+            
+        </div>
+        
+            <script data-swup-reload-script src="https://cn.vercount.one/js"></script>
+            <div class="relative text-center lg:absolute lg:right-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-right">
+                
+                    <span id="busuanzi_container_site_uv" class="lg:!block">
+                        <span class="text-sm">访问人数</span>
+                        <span id="busuanzi_value_site_uv"></span>
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv" class="lg:!block">
+                        <span class="text-sm">总访问量</span>
+                        <span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="relative text-center lg:absolute lg:left-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-left">
+            <span class="lg:block text-sm">由 <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg class="relative top-[2px] inline-block align-baseline" version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" class="text-base" href="https://hexo.io">Hexo</a> 驱动</span>
+            <span class="text-sm lg:block">主题&nbsp;<a class="text-base" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.8.2</a></span>
+        </div>
+        
+        
+        
+        
+            
+                
+        
+                
+        
+        
+    </div>  
 </footer>
 		</div>
 	</div>
@@ -1478,17 +1384,17 @@ Substring” 是以那个 “/” 为中心对称的。鉴于一个这样的字�
 
 
 
-<script src="/build/js/libs/Swup.min.js"></script>
+<script src="/js/build/libs/Swup.min.js"></script>
 
-<script src="/build/js/libs/SwupSlideTheme.min.js"></script>
+<script src="/js/build/libs/SwupSlideTheme.min.js"></script>
 
-<script src="/build/js/libs/SwupScriptsPlugin.min.js"></script>
+<script src="/js/build/libs/SwupScriptsPlugin.min.js"></script>
 
-<script src="/build/js/libs/SwupProgressPlugin.min.js"></script>
+<script src="/js/build/libs/SwupProgressPlugin.min.js"></script>
 
-<script src="/build/js/libs/SwupScrollPlugin.min.js"></script>
+<script src="/js/build/libs/SwupScrollPlugin.min.js"></script>
 
-<script src="/build/js/libs/SwupPreloadPlugin.min.js"></script>
+<script src="/js/build/libs/SwupPreloadPlugin.min.js"></script>
 
 <script>
     const swup = new Swup({
@@ -1513,36 +1419,36 @@ Substring” 是以那个 “/” 为中心对称的。鉴于一个这样的字�
 
 
 	
-<script src="/build/js/tools/imageViewer.js" type="module"></script>
+<script src="/js/build/tools/imageViewer.js" type="module"></script>
 
-<script src="/build/js/utils.js" type="module"></script>
+<script src="/js/build/utils.js" type="module"></script>
 
-<script src="/build/js/main.js" type="module"></script>
+<script src="/js/build/main.js" type="module"></script>
 
-<script src="/build/js/layouts/navbarShrink.js" type="module"></script>
+<script src="/js/build/layouts/navbarShrink.js" type="module"></script>
 
-<script src="/build/js/tools/scrollTopBottom.js" type="module"></script>
+<script src="/js/build/tools/scrollTopBottom.js" type="module"></script>
 
-<script src="/build/js/tools/lightDarkSwitch.js" type="module"></script>
+<script src="/js/build/tools/lightDarkSwitch.js" type="module"></script>
 
-<script src="/build/js/layouts/categoryList.js" type="module"></script>
-
-
-
-    
-<script src="/build/js/tools/localSearch.js" type="module"></script>
-
+<script src="/js/build/layouts/categoryList.js" type="module"></script>
 
 
 
     
-<script src="/build/js/tools/codeBlock.js" type="module"></script>
+<script src="/js/build/tools/localSearch.js" type="module"></script>
 
 
 
 
     
-<script src="/build/js/layouts/lazyload.js" type="module"></script>
+<script src="/js/build/tools/codeBlock.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/build/layouts/lazyload.js" type="module"></script>
 
 
 
@@ -1550,49 +1456,49 @@ Substring” 是以那个 “/” 为中心对称的。鉴于一个这样的字�
 
 
   
-<script src="/build/js/libs/Typed.min.js"></script>
+<script src="/js/build/libs/Typed.min.js"></script>
 
   
-<script src="/build/js/plugins/typed.js" type="module"></script>
+<script src="/js/build/plugins/typed.js" type="module"></script>
 
 
 
 
     
-<script src="/build/js/libs/mermaid.min.js"></script>
-
+        <script src="https://cdn.jsdelivr.net/npm/mermaid@11.4.0/dist/mermaid.min.js"></script>
     
-<script src="/build/js/plugins/mermaid.js"></script>
-
-
-
-
-
-
-
-
-
     
-<script src="/build/js/tools/tocToggle.js" type="module" data-swup-reload-script=""></script>
-
-<script src="/build/js/layouts/toc.js" type="module" data-swup-reload-script=""></script>
-
-<script src="/build/js/plugins/tabs.js" type="module" data-swup-reload-script=""></script>
+<script src="/js/build/plugins/mermaid.js"></script>
 
 
 
 
-<script src="/build/js/libs/moment-with-locales.min.js" data-swup-reload-script=""></script>
 
 
-<script src="/build/js/layouts/essays.js" type="module" data-swup-reload-script=""></script>
 
 
 
     
-<script src="/build/js/libs/pangu.min.js"></script>
+<script src="/js/build/tools/tocToggle.js" type="module" data-swup-reload-script=""></script>
 
-<script src="/build/js/plugins/pangu.js"></script>
+<script src="/js/build/layouts/toc.js" type="module" data-swup-reload-script=""></script>
+
+<script src="/js/build/plugins/tabs.js" type="module" data-swup-reload-script=""></script>
+
+
+
+
+<script src="/js/build/libs/moment-with-locales.min.js" data-swup-reload-script=""></script>
+
+
+<script src="/js/build/layouts/essays.js" type="module" data-swup-reload-script=""></script>
+
+
+
+    
+<script src="/js/build/libs/pangu.min.js"></script>
+
+<script src="/js/build/plugins/pangu.js"></script>
 
 
 
@@ -1600,10 +1506,11 @@ Substring” 是以那个 “/” 为中心对称的。鉴于一个这样的字�
 	
 	<div id="aplayer"></div>
 
-<script src="/build/js/libs/APlayer.min.js"></script>
+<script src="/js/build/libs/APlayer.min.js"></script>
 
 
-<script src="/build/js/plugins/aplayer.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+<script src="/js/build/plugins/aplayer.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
 
 	
 </body>
