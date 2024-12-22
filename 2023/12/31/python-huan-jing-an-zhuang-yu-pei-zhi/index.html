@@ -1021,83 +1021,74 @@ mjx-container[display="true"] + br {
 
 
 		<div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
-			<h1 id="安装python">安装 Python</h1>
-<h2 id="下载安装python">下载安装 Python</h2>
+			<h1>安装 Python</h1>
+<h2 id="下载安装Python">下载安装 Python</h2>
 <p>要用 Python，那肯定得先装个 Python 呐！</p>
 <span id="more"></span>
 <p>先把 <a class="link" target="_blank" rel="noopener" href="https://www.python.org/">Python 官网<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a>扒出来。访问速度一般不咋滴，请耐心等待～</p>
-<p>如果正常，应该能出来个这个：<img lazyload="" src="/images/loading.svg" data-src="https://s2.loli.net/2024/07/23/W9Tymr7q8dbDJhG.png"></p>
-<p><del>TMD 我等了半天出来个我不认识的全英版本？</del></p>
-<p><del>是的，就是这样的。</del></p>
-<p>没事，我帮你翻译。选 Downloads，鼠标在上面停留一会，会出现一个列表。直接选你用的系统（Win 就选 Windows，macOS 就是 macOS，Linux 的…… <del>自己找教程去吧，官方大概率没有</del>可以去 Other
-Platforms 瞅一瞅，没有就去问度娘吧），然后如下操作（macOS 的会有一个 <code>universal2 installer</code>，下载后打开，按指示操作就可以了）。</p>
-<p><img lazyload="" src="/images/loading.svg" data-src="https://s2.loli.net/2024/07/23/2TkyOsvB81NAdC3.png"></p>
+<p>如果正常，应该能出来个这个：<img lazyload="" src="/images/loading.svg" data-src="https://s2.loli.net/2024/07/23/W9Tymr7q8dbDJhG.png" alt=""></p>
+<p><s>TMD 我等了半天出来个我不认识的全英版本？</s></p>
+<p><s>是的，就是这样的。</s></p>
+<p>没事，我帮你翻译。选 Downloads，鼠标在上面停留一会，会出现一个列表。直接选你用的系统（Win 就选 Windows，macOS 就是 macOS，Linux 的…… <s>自己找教程去吧，官方大概率没有</s>可以去 Other Platforms 瞅一瞅，没有就去问度娘吧），然后如下操作（macOS 的会有一个 <code>universal2 installer</code>，下载后打开，按指示操作就可以了）。</p>
+<p><img lazyload="" src="/images/loading.svg" data-src="https://s2.loli.net/2024/07/23/2TkyOsvB81NAdC3.png" alt=""></p>
 <p>看图操作就好。下载可能比（fei）较（chang）慢，导入迅雷之类的下载器下载就好。</p>
 <p>下载下来当然要打开啦（废话），正常情况下如图：</p>
-<p><img lazyload="" src="/images/loading.svg" data-src="https://s2.loli.net/2024/07/23/VWM1I6DTZEJoOvs.png"></p>
+<p><img lazyload="" src="/images/loading.svg" data-src="https://s2.loli.net/2024/07/23/VWM1I6DTZEJoOvs.png" alt=""></p>
 <p>勾了 <code>Add python.exe to PATH</code> 选项后一键安装就可以了。</p>
 <p>然后静静地等着它安装。</p>
 <p>安装的同时，可以去隔壁 <a class="link" target="_blank" rel="noopener" href="https://www.jetbrains.com.cn">JetBrains 官网<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a>看看，这理由待会要用的 IDE——Pycharm。</p>
-<p>安装完后，按 win +
-r，输入 cmd，在弹出的窗口中输入 python（如果是 Linux/macOS，因为这两者系统中内置一个 Python 的 2.x 版本，你需要做的是在终端中输入 python3，相应地，后面的 pip 也要替换成 pip3)，如果结果如图，那么恭喜你，Python 安装成功（请注意！如果你没勾
-<code>Add python.exe to PATH</code> 这个选项，那么你电脑是查不到的！这种情况下需要你配置一下环境变量，每个版本的 Win 都不太一样，自己度娘去，实在不行重装吧……）！</p>
-<p><img lazyload="" src="/images/loading.svg" data-src="https://s2.loli.net/2024/07/23/2nbAXYyZe1FsqQC.png"></p>
+<p>安装完后，按 win + r，输入 cmd，在弹出的窗口中输入 python（如果是 Linux/macOS，因为这两者系统中内置一个 Python 的 2.x 版本，你需要做的是在终端中输入 python3，相应地，后面的 pip 也要替换成 pip3)，如果结果如图，那么恭喜你，Python 安装成功（请注意！如果你没勾 <code>Add python.exe to PATH</code> 这个选项，那么你电脑是查不到的！这种情况下需要你配置一下环境变量，每个版本的 Win 都不太一样，自己度娘去，实在不行重装吧……）！</p>
+<p><img lazyload="" src="/images/loading.svg" data-src="https://s2.loli.net/2024/07/23/2nbAXYyZe1FsqQC.png" alt=""></p>
 <h2 id="配置pip">配置 pip</h2>
 <p>下一步，是配置 pip。pip 是用来管理外部库的，类似应用宝。pip 默认的下载地址在国外，链接可能会 TLE，需要配置一下。</p>
-<h3 id="linuxmacos用户">Linux/macOS 用户：</h3>
-<p>打开配置文件 <code>~/.pip/pip.conf</code>（不存在就创建），修改如下：
-</p><div class="code-container" data-rel="Ini"><figure class="iseeu highlight ini"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[global]</span></span><br><span class="line"><span class="attr">index-url</span> = https://pypi.tuna.tsinghua.edu.cn/simple</span><br><span class="line"><span class="section">[install]</span></span><br><span class="line"><span class="attr">trusted-host</span> = https://pypi.tuna.tsinghua.edu.cn</span><br></pre></td></tr></tbody></table></figure></div><p></p>
+<h3 id="Linux-macOS用户：">Linux/macOS 用户：</h3>
+<p>打开配置文件 <code>~/.pip/pip.conf</code>（不存在就创建），修改如下：</p>
+<div class="code-container" data-rel="Ini"><figure class="iseeu highlight ini"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[global]</span></span><br><span class="line"><span class="attr">index-url</span> = https://pypi.tuna.tsinghua.edu.cn/simple</span><br><span class="line"><span class="section">[install]</span></span><br><span class="line"><span class="attr">trusted-host</span> = https://pypi.tuna.tsinghua.edu.cn</span><br></pre></td></tr></tbody></table></figure></div>
 <p>这里，<code>https://pypi.tuna.tsinghua.edu.cn/simple</code> 是清华的镜像站，除了清华的，常用的还有：</p>
 <table>
-<colgroup>
-<col style="width: 11%">
-<col style="width: 88%">
-</colgroup>
 <thead>
-<tr class="header">
-<th style="text-align: center;">名称</th>
-<th style="text-align: center;">网站</th>
+<tr>
+<th style="text-align:center">名称</th>
+<th style="text-align:center">网站</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
-<td style="text-align: center;">南科大镜像源 </td>
-<td style="text-align: center;"><a class="link" target="_blank" rel="noopener" href="https://mirrors.sustech.edu.cn/pypi/web/simple">https://mirrors.sustech.edu.cn/pypi/web/simple<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></td>
+<tr>
+<td style="text-align:center">南科大镜像源 </td>
+<td style="text-align:center"><a class="link" target="_blank" rel="noopener" href="https://mirrors.sustech.edu.cn/pypi/web/simple">https://mirrors.sustech.edu.cn/pypi/web/simple<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></td>
 </tr>
-<tr class="even">
-<td style="text-align: center;">阿里云镜像站 </td>
-<td style="text-align: center;"><a class="link" target="_blank" rel="noopener" href="http://mirrors.aliyun.com/pypi/simple/">http://mirrors.aliyun.com/pypi/simple/<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></td>
+<tr>
+<td style="text-align:center">阿里云镜像站 </td>
+<td style="text-align:center"><a class="link" target="_blank" rel="noopener" href="http://mirrors.aliyun.com/pypi/simple/">http://mirrors.aliyun.com/pypi/simple/<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></td>
 </tr>
-<tr class="odd">
-<td style="text-align: center;">豆瓣镜像站 </td>
-<td style="text-align: center;"><a class="link" target="_blank" rel="noopener" href="http://pypi.douban.com/simple/">http://pypi.douban.com/simple/<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></td>
+<tr>
+<td style="text-align:center">豆瓣镜像站 </td>
+<td style="text-align:center"><a class="link" target="_blank" rel="noopener" href="http://pypi.douban.com/simple/">http://pypi.douban.com/simple/<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></td>
 </tr>
-<tr class="even">
-<td style="text-align: center;">中科大镜像站 </td>
-<td style="text-align: center;"><a class="link" target="_blank" rel="noopener" href="https://pypi.mirrors.ustc.edu.cn/simple">https://pypi.mirrors.ustc.edu.cn/simple<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></td>
+<tr>
+<td style="text-align:center">中科大镜像站</td>
+<td style="text-align:center"><a class="link" target="_blank" rel="noopener" href="https://pypi.mirrors.ustc.edu.cn/simple"> https://pypi.mirrors.ustc.edu.cn/simple<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></td>
 </tr>
 </tbody>
 </table>
-<h3 id="windows用户">Windows 用户</h3>
+<h3 id="Windows用户">Windows 用户</h3>
 <p>conf 文件在 <code>C:\Users\xx\pip</code>（xx 是你用户名），其它的照抄 Linux/macOS 的即可。</p>
 <h2 id="升级turtle库">升级 turtle 库</h2>
 <p>这个步骤不是必须的，但很推荐操作。</p>
 <p>现在你终端中跑一下这行代码：</p>
 <div class="code-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install turtle --upgrade turtle</span><br></pre></td></tr></tbody></table></figure></div>
 <p>肯定会炸。翻到上面以 <code>Using cached xxx (xxkB)</code> 开头的那玩意，中间的部分是一个链接，用浏览器打开，会自动下载下来。</p>
-<p>跑到下载目录，解压压缩包，找到 setup.py，用记事本或者其它任何能编辑文本的东西打开（如果你装了下面的 PyCharm，也可以用它）。找到第 40 行，更改成下面的样子：</p>
+<p>跑到下载目录，解压压缩包，<a class="link" target="_blank" rel="noopener" href="http://xn--setup-6o6h178g.py">找到 setup.py<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a>，用记事本或者其它任何能编辑文本的东西打开（如果你装了下面的 PyCharm，也可以用它）。找到第 40 行，更改成下面的样子：</p>
 <div class="code-container" data-rel="Python"><figure class="iseeu highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">except</span> (ValueError, ve):</span><br></pre></td></tr></tbody></table></figure></div>
 <p>保存，在终端中切到这个目录，运行以下代码：</p>
 <div class="code-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install -e turtle-0.0.2</span><br></pre></td></tr></tbody></table></figure></div>
 <p>现在应该就成功啦！</p>
-<h1 id="安装pycharm">安装 PyCharm</h1>
+<h1>安装 PyCharm</h1>
 <p>这样 Python 就整完了，安装 PyCharm 去（当然，如果你愿意用 VSCode、Sublime 之类的其它工具写代码，我也不拦着你，但切记不要用自带的 IDLE 写，原因嘛<a class="link" target="_blank" rel="noopener" href="https://leo2011.eu.org/2023/12/29/pythongui-tu-xing-hua-jie-mian-xiang-jie/">这里<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a>有讲）。</p>
-<p><a class="link" target="_blank" rel="noopener" href="https://www.jetbrains.com.cn/pycharm/download/?section=windows">到这里<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a>，把页面拉到底部，下载 Community
-Edition 就可以了（Professional
-Edition 是付费的，而 Community 是免费的）。这次安装包是中文的，按指示操作就好。</p>
+<p><a class="link" target="_blank" rel="noopener" href="https://www.jetbrains.com.cn/pycharm/download/?section=windows">到这里<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a>，把页面拉到底部，下载 Community Edition 就可以了（Professional Edition 是付费的，而 Community 是免费的）。这次安装包是中文的，按指示操作就好。</p>
 <p>打开 PyCharm，会出来一个 <code>JETBRAINS COMMUNITY EDITION TERMS</code>，直接点下面的勾后 continue 就好。</p>
-<p>然后的界面中，点击 <code>New Project</code>（新建一个项目，不建就没法使 PyCharm），在新的窗口中如图配置，配置好后点 Create 就好了。
-<img lazyload="" src="/images/loading.svg" data-src="https://s2.loli.net/2024/07/23/xavIFTyDdik6ABb.png"></p>
+<p>然后的界面中，点击 <code>New Project</code>（新建一个项目，不建就没法使 PyCharm），在新的窗口中如图配置，配置好后点 Create 就好了。<br>
+<img lazyload="" src="/images/loading.svg" data-src="https://s2.loli.net/2024/07/23/xavIFTyDdik6ABb.png" alt=""></p>
 <p>配置好后，就可以愉快的享受被誉为 “宇宙最强 PythonIDE” 的 PyCharm 了！</p>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
 		</div>
@@ -1271,7 +1262,7 @@ Edition 是付费的，而 Community 是免费的）。这次安装包是中文�
 	<div class="post-toc">
 		<div class="toc-title">目录</div>
 		<div class="page-title">Python 环境安装与配置</div>
-		<ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%89%E8%A3%85python"><span class="nav-number">1.</span> <span class="nav-text">安装 Python</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8B%E8%BD%BD%E5%AE%89%E8%A3%85python"><span class="nav-number">1.1.</span> <span class="nav-text">下载安装 Python</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%85%8D%E7%BD%AEpip"><span class="nav-number">1.2.</span> <span class="nav-text">配置 pip</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#linuxmacos%E7%94%A8%E6%88%B7"><span class="nav-number">1.2.1.</span> <span class="nav-text">Linux&#x2F;macOS 用户：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#windows%E7%94%A8%E6%88%B7"><span class="nav-number">1.2.2.</span> <span class="nav-text">Windows 用户</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%87%E7%BA%A7turtle%E5%BA%93"><span class="nav-number">1.3.</span> <span class="nav-text">升级 turtle 库</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%89%E8%A3%85pycharm"><span class="nav-number">2.</span> <span class="nav-text">安装 PyCharm</span></a></li></ol>
+		<ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">安装 Python</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8B%E8%BD%BD%E5%AE%89%E8%A3%85Python"><span class="nav-number">1.1.</span> <span class="nav-text">下载安装 Python</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%85%8D%E7%BD%AEpip"><span class="nav-number">1.2.</span> <span class="nav-text">配置 pip</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Linux-macOS%E7%94%A8%E6%88%B7%EF%BC%9A"><span class="nav-number">1.2.1.</span> <span class="nav-text">Linux&#x2F;macOS 用户：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Windows%E7%94%A8%E6%88%B7"><span class="nav-number">1.2.2.</span> <span class="nav-text">Windows 用户</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%87%E7%BA%A7turtle%E5%BA%93"><span class="nav-number">1.3.</span> <span class="nav-text">升级 turtle 库</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">2.</span> <span class="nav-text">安装 PyCharm</span></a></li></ol>
 
 	</div>
 </div>
@@ -1287,59 +1278,173 @@ Edition 是付费的，而 Community 是免费的）。这次安装包是中文�
 			<footer class="footer mt-5 py-5 h-auto text-base text-third-text-color relative border-t-2 border-t-border-color">
     <div class="info-container py-3 text-center">
         
-        <div class="text-center">
-            &copy;
-            
-              <span>2023</span>
-              -
-            
-            2024&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a href="/">Leo2011</a>
-            
-                
-                <p class="post-count space-x-0.5">
-                    <span>
-                        共撰写了 44 篇文章
-                    </span>
+                <div class="text-center">
+                    &copy;
                     
                         <span>
-                            共 35k 字
+                            2023
                         </span>
+                        -
+                        
+                            2024&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a
+                                        href="/">
+                                        Leo2011
+                                    </a>
+                                    
+                                        
+                                            <p class="post-count space-x-0.5">
+                                                <span>
+                                                    共撰写了 44 篇文章
+                                                </span>
+                                                
+                                                    <span>
+                                                        共 35k 字
+                                                    </span>
+                                                    
+                                            </p>
+                                            
+                </div>
+                
+                    <script data-swup-reload-script src = "https://cn.vercount.one/js"></script>
+                    <div
+                        class="relative text-center lg:absolute lg:right-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-right">
+                        
+                            <span id="busuanzi_container_site_uv" class="lg:!block">
+                                <span class="text-sm">访问人数</span>
+                                <span id="busuanzi_value_site_uv"></span>
+                            </span>
+                            
+                                
+                                    <span id="busuanzi_container_site_pv" class="lg:!block">
+                                        <span class="text-sm">总访问量</span>
+                                        <span id="busuanzi_value_site_pv"></span>
+                                    </span>
+                                    
+                    </div>
                     
-                </p>
-            
-        </div>
-        
-            <script data-swup-reload-script src="https://cn.vercount.one/js"></script>
-            <div class="relative text-center lg:absolute lg:right-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-right">
-                
-                    <span id="busuanzi_container_site_uv" class="lg:!block">
-                        <span class="text-sm">访问人数</span>
-                        <span id="busuanzi_value_site_uv"></span>
-                    </span>
-                
-                
-                    <span id="busuanzi_container_site_pv" class="lg:!block">
-                        <span class="text-sm">总访问量</span>
-                        <span id="busuanzi_value_site_pv"></span>
-                    </span>
-                
-            </div>
-        
-        <div class="relative text-center lg:absolute lg:left-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-left">
-            <span class="lg:block text-sm">由 <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg class="relative top-[2px] inline-block align-baseline" version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" class="text-base" href="https://hexo.io">Hexo</a> 驱动</span>
-            <span class="text-sm lg:block">主题&nbsp;<a class="text-base" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.8.2</a></span>
-        </div>
-        
-        
-        
-        
-            
-                
-        
-                
-        
-        
-    </div>  
+                        <div
+                            class="relative text-center lg:absolute lg:left-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-left">
+                            <span class="lg:block text-sm">由 <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg class="relative top-[2px] inline-block align-baseline" version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" class="text-base" href="https://hexo.io">Hexo</a> 驱动</span>
+                            <span class="text-sm lg:block">主题&nbsp;<a
+                                            class="text-base" target="_blank"
+                                            href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.8.2</a></span>
+                                
+                        </div>
+                        
+                                <a target="_blank" rel="noopener" href="https://guan.ma/hao/2024000185/"
+                                    title="官码2024000185号"><img src="https://style.wmou.com/images/guanma.png" alt="官码"
+                                        width="20"
+                                        style='display:inline-block;vertical-align:middle'>官码2024000185号</a><br />
+                                <a target="_blank" href="https://beian.miit.cn.com/gov/search.php?query=leo2011.eu.org"
+                                    title="MIIT备20240835号"><img src="https://beian.miit.cn.com/logo.png" alt="MIIT"
+                                        width="40" style='display:inline-block;vertical-align:middle'>
+                                    MIIT20240835号</a><br />
+                                <a href="https://icp.18z.fun/?id=2024080084" target="_blank">梵AIA盟2024080084号</a><br />
+                                <a target="_blank" rel="noopener" href="https://icp.dns163.cn/beian/ICP-3935415108.html"
+                                    title="易AIA盟3935415108号"><img
+                                        src="https://icp.dns163.cn/uploads/allimg/20240413/1-240409203122D3.png"
+                                        alt="易AIA盟3935415108号"
+                                        style='display:inline-block;vertical-align:middle;height: 20px;margin-bottom:-5px;'>易AIA盟3935415108号</a><br />
+                                <a target="_blank" rel="noopener" href="https://icp.3v.hk/beian/20240072"><img
+                                        src="https://icp.3v.hk/static/picture/icplogoi.png"
+                                        style='display:inline-block;vertical-align:middle;height: 20px;'>酷AIA盟20240072号</a><br />
+                                <a target="_blank" rel="noopener" href="https://nyaicp.us.kg/?id=20240312"><img
+                                        src="https://520524.xyz/icptb" width="20"
+                                        style='display:inline-block;vertical-align:middle'>喵呜20240312号</a><br />
+                                <a target="_blank" rel="noopener"
+                                    href="https://three.dns163.cn/website/TYF2732377397272490.html"><img
+                                        src="https://three.dns163.cn/images/snzylogo.png"
+                                        style='display:inline-block;vertical-align:middle;height: 45px;'></a> <a
+                                    target="_blank" rel="noopener" href="https://three.dns163.cn/go"><img
+                                        src="https://three.dns163.cn/images/wormhole_1.gif"
+                                        style='display:inline-block;vertical-align:middle;height: 45px;'></a><br />
+                                <a target="_blank" rel="noopener"
+                                    href="https://www.gyfzlm.com/fanzha/NO-44256470.html"><img
+                                        src="https://www.gyfzlm.com/istatic/image/gyfzlogo.png"
+                                        style='display:inline-block;vertical-align:middle;height: 45px;'></a> <a
+                                    target="_blank" rel="noopener" href="https://www.gyfzlm.com/fanzha/NO-44256470.html"
+                                    title="公益反诈联盟成员单位">公益反诈联盟成员单位</a><br />
+                                <a target="_blank" rel="noopener" href="https://icp.gs/?id=20241704"
+                                    title="岸号:20241704号"><img src="https://icp.gs/assets/images/icp.png" alt="岸号:"
+                                        width="20"
+                                        style='display:inline-block;vertical-align:middle'>岸号:20241704号</a><br />
+                                <a href="https://icp.gov.moe/?keyword=20240681" target="_blank">萌ICP备20240681号 </a><a
+                                    style="text-decoration:none;" href="https://travel.moe/go.html"
+                                    title="异次元之旅-跃迁-我们一起去萌站成员的星球旅行吧！" target="_blank"><img
+                                        src="https://travel.moe/images/icon/icon64.png"
+                                        style="width:24px;height:24px;display:inline-block;vertical-align:middle">异次元之旅</a><br />
+                                <a target="_blank" rel="noopener" href="https://imicp.cn/"><img
+                                        src="https://imicp.cn/logo.png" width="20"
+                                        style='display:inline-block;vertical-align:middle'>IMICP备:20240681号</a><br /> <a
+                                    href="https://icp.tomzhao.top/" target="_blank">氢ICP备20240681号</a><br />
+                                <img style='display:inline-block;vertical-align:middle;width:20px;height:20px;margin-bottom:-4px'
+                                    src="https://postimage.me/images/2024/08/27/Y.gif"><a
+                                    href="https://icp.znzx.cc/?id=20240681" target="_blank">影石ICP备案 20240681号</a><br />
+                                <a href="https://www.travellings.cn/go-by-clouds.html" target="_blank" rel="noopener"
+                                    title="开往-友链接力">
+                                    <img src="https://www.travellings.cn/assets/logo.gif" alt="开往-友链接力" width="120"
+                                        style='display:inline-block;vertical-align:middle;'> </a><br />
+                                <a href="https://blogscn.fun/" title="BLOGS·CN" target="_blank"> <img
+                                        src="https://photo.xiangming.site/img/blogscn.png" alt="本站已加入BLOGS·CN"
+                                        style="width:auto;height:25px;display:inline-block;vertical-align:middle">
+                                </a><br />
+                                <a href="https://ipw.cn/ssl/?site=leo2011.eu.org" title="本站支持SSL安全访问"
+                                    target='_blank'><img style='display:inline-block;vertical-align:middle'
+                                        alt="本站支持SSL安全访问" src="https://static.ipw.cn/icon/ssl-s4.svg"></a>
+                                <a href="https://ipw.cn/ipv6webcheck/?site=leo2011.eu.org" title="本站支持IPv6访问"
+                                    target='_blank'><img style='display:inline-block;vertical-align:middle'
+                                        alt="本站支持IPv6访问" src="https://static.ipw.cn/icon/ipv6-s4.svg"></a><br />
+                                <a target="_blank" rel="noopener" href="https://notbyai.fyi/"><img
+                                        src="/images/Produced-By-Human-Not-By-AI-Badge-black.svg" width="100"
+                                        style='display:inline-block;vertical-align:middle'><img
+                                        src="/images/Written-By-Human-Not-By-AI-Badge-black.svg" width="100"
+                                        style='display:inline-block;vertical-align:middle'></a><br />
+                                <!-- 
+         -->
+                                <span id="sitetime"></span>
+                                <script language=javascript>
+                                    function siteTime() {
+                                        window.setTimeout("siteTime()", 1000);
+                                        var seconds = 1000;
+                                        var minutes = seconds * 60;
+                                        var hours = minutes * 60;
+                                        var days = hours * 24;
+                                        var years = days * 365;
+                                        var today = new Date();
+                                        var todayYear = today.getFullYear();
+                                        var todayMonth = today.getMonth() + 1;
+                                        var todayDate = today.getDate();
+                                        var todayHour = today.getHours();
+                                        var todayMinute = today.getMinutes();
+                                        var todaySecond = today.getSeconds();
+                                        /* Date.UTC() -- 返回date对象距世界标准时间(UTC)1970年1月1日午夜之间的毫秒数(时间戳)
+                                        year - 作为date对象的年份，为4位年份值
+                                        month - 0-11之间的整数，做为date对象的月份
+                                        day - 1-31之间的整数，做为date对象的天数
+                                        hours - 0(午夜24点)-23之间的整数，做为date对象的小时数
+                                        minutes - 0-59之间的整数，做为date对象的分钟数
+                                        seconds - 0-59之间的整数，做为date对象的秒数
+                                        microseconds - 0-999之间的整数，做为date对象的毫秒数 */
+                                        var t1 = Date.UTC(2023, 11, 15, 19, 30, 15); //北京时间2023-11-15 19:30:15
+                                        var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                                        var diff = t2 - t1;
+                                        var diffYears = Math.floor(diff / years);
+                                        var diffDays = Math.floor((diff / days) - diffYears * 365);
+                                        var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+                                        var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) / minutes);
+                                        var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours - diffMinutes * minutes) / seconds);
+                                        document.getElementById("sitetime").innerHTML = " 本站已<s>苟</s>安全运行 " +diffYears+" 年 "+diffDays + " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                                    }
+                                    siteTime();
+                                </script>
+                                
+                                    
+                                        
+                                                                
+                                        
+                                                                
+
+    </div>
 </footer>
 		</div>
 	</div>

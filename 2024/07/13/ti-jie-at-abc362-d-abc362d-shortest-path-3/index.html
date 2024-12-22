@@ -1027,18 +1027,14 @@ mjx-container[display="true"] + br {
 
 
 		<div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
-			<p>一句话题意：给定一个带点权的有权无向连通图，求点 1
-到所有其它点的最短路径。</p>
+			<p>一句话题意：给定一个带点权的有权无向连通图，求点 1 到所有其它点的最短路径。</p>
 <span id="more"></span>
-<p>首先，只有 1 一个起点，所以是单源最短路，又因为最大是 <span class="math inline"><mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.05ex;" xmlns="http://www.w3.org/2000/svg" width="7.147ex" height="2.005ex" role="img" focusable="false" viewBox="0 -864 3159 886"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mn"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"></path></g><g data-mml-node="mo" transform="translate(722.2,0)"><path data-c="D7" d="M630 29Q630 9 609 9Q604 9 587 25T493 118L389 222L284 117Q178 13 175 11Q171 9 168 9Q160 9 154 15T147 29Q147 36 161 51T255 146L359 250L255 354Q174 435 161 449T147 471Q147 480 153 485T168 490Q173 490 175 489Q178 487 284 383L389 278L493 382Q570 459 587 475T609 491Q630 491 630 471Q630 464 620 453T522 355L418 250L522 145Q606 61 618 48T630 29Z"></path></g><g data-mml-node="msup" transform="translate(1722.4,0)"><g data-mml-node="mn"><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path><path data-c="30" d="M96 585Q152 666 249 666Q297 666 345 640T423 548Q460 465 460 320Q460 165 417 83Q397 41 362 16T301 -15T250 -22Q224 -22 198 -16T137 16T82 83Q39 165 39 320Q39 494 96 585ZM321 597Q291 629 250 629Q208 629 178 597Q153 571 145 525T137 333Q137 175 145 125T181 46Q209 16 250 16Q290 16 318 46Q347 76 354 130T362 333Q362 478 354 524T321 597Z" transform="translate(500,0)"></path></g><g data-mml-node="mn" transform="translate(1033,393.1) scale(0.707)"><path data-c="35" d="M164 157Q164 133 148 117T109 101H102Q148 22 224 22Q294 22 326 82Q345 115 345 210Q345 313 318 349Q292 382 260 382H254Q176 382 136 314Q132 307 129 306T114 304Q97 304 95 310Q93 314 93 485V614Q93 664 98 664Q100 666 102 666Q103 666 123 658T178 642T253 634Q324 634 389 662Q397 666 402 666Q410 666 410 648V635Q328 538 205 538Q174 538 149 544L139 546V374Q158 388 169 396T205 412T256 420Q337 420 393 355T449 201Q449 109 385 44T229 -22Q148 -22 99 32T50 154Q50 178 61 192T84 210T107 214Q132 214 148 197T164 157Z"></path></g></g></g></g></svg></mjx-container></span>，所以是优先队列（堆）优化过后的 Dijkstra。</p>
-<p>所以，我们只需要解决点权的问题就好了。一种显而易见的想法是把与这条边的边权加上起终点的点权，因为走这条边肯定是要过这两个点的。但这样有个问题：样例都过不了（或许是我写挂了？反正只过了样例
-2）！为啥呢？</p>
+<p>首先，只有 1 一个起点，所以是单源最短路，又因为最大是  <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.05ex;" xmlns="http://www.w3.org/2000/svg" width="7.147ex" height="2.005ex" role="img" focusable="false" viewBox="0 -864 3159 886"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mn"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"></path></g><g data-mml-node="mo" transform="translate(722.2,0)"><path data-c="D7" d="M630 29Q630 9 609 9Q604 9 587 25T493 118L389 222L284 117Q178 13 175 11Q171 9 168 9Q160 9 154 15T147 29Q147 36 161 51T255 146L359 250L255 354Q174 435 161 449T147 471Q147 480 153 485T168 490Q173 490 175 489Q178 487 284 383L389 278L493 382Q570 459 587 475T609 491Q630 491 630 471Q630 464 620 453T522 355L418 250L522 145Q606 61 618 48T630 29Z"></path></g><g data-mml-node="msup" transform="translate(1722.4,0)"><g data-mml-node="mn"><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path><path data-c="30" d="M96 585Q152 666 249 666Q297 666 345 640T423 548Q460 465 460 320Q460 165 417 83Q397 41 362 16T301 -15T250 -22Q224 -22 198 -16T137 16T82 83Q39 165 39 320Q39 494 96 585ZM321 597Q291 629 250 629Q208 629 178 597Q153 571 145 525T137 333Q137 175 145 125T181 46Q209 16 250 16Q290 16 318 46Q347 76 354 130T362 333Q362 478 354 524T321 597Z" transform="translate(500,0)"></path></g><g data-mml-node="mn" transform="translate(1033,393.1) scale(0.707)"><path data-c="35" d="M164 157Q164 133 148 117T109 101H102Q148 22 224 22Q294 22 326 82Q345 115 345 210Q345 313 318 349Q292 382 260 382H254Q176 382 136 314Q132 307 129 306T114 304Q97 304 95 310Q93 314 93 485V614Q93 664 98 664Q100 666 102 666Q103 666 123 658T178 642T253 634Q324 634 389 662Q397 666 402 666Q410 666 410 648V635Q328 538 205 538Q174 538 149 544L139 546V374Q158 388 169 396T205 412T256 420Q337 420 393 355T449 201Q449 109 385 44T229 -22Q148 -22 99 32T50 154Q50 178 61 192T84 210T107 214Q132 214 148 197T164 157Z"></path></g></g></g></g></svg></mjx-container>，所以是优先队列（堆）优化过后的 Dijkstra。</p>
+<p>所以，我们只需要解决点权的问题就好了。一种显而易见的想法是把与这条边的边权加上起终点的点权，因为走这条边肯定是要过这两个点的。但这样有个问题：样例都过不了（或许是我写挂了？反正只过了样例 2）！为啥呢？</p>
 <p>你从 1 走到 2，再从 2 走到 3，你这点 2 的点权不就算重了？</p>
 <p>那该咋办呢？</p>
-<p>其实你不用改边权，对 Dijkstra
-做一点小改动即可。什么小改动呢？每次走边的时候加上终点的点权，这样子就方便算、判断了。注意不能加起点的，因为起点是固定的，你算它跟没算一样。</p>
-<p>比如还是从 1 到 2 再到 3，你每条边再加上点 2、3
-的点权，就不会出事了。</p>
+<p>其实你不用改边权，对 Dijkstra 做一点小改动即可。什么小改动呢？每次走边的时候加上终点的点权，这样子就方便算、判断了。注意不能加起点的，因为起点是固定的，你算它跟没算一样。</p>
+<p>比如还是从 1 到 2 再到 3，你每条边再加上点 2、3 的点权，就不会出事了。</p>
 <p>但注意此时点 1 的点权还没算，输出时加上就好。</p>
 <hr>
 <p>ACCode:</p>
@@ -1233,59 +1229,173 @@ mjx-container[display="true"] + br {
 			<footer class="footer mt-5 py-5 h-auto text-base text-third-text-color relative border-t-2 border-t-border-color">
     <div class="info-container py-3 text-center">
         
-        <div class="text-center">
-            &copy;
-            
-              <span>2023</span>
-              -
-            
-            2024&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a href="/">Leo2011</a>
-            
-                
-                <p class="post-count space-x-0.5">
-                    <span>
-                        共撰写了 44 篇文章
-                    </span>
+                <div class="text-center">
+                    &copy;
                     
                         <span>
-                            共 35k 字
+                            2023
                         </span>
+                        -
+                        
+                            2024&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a
+                                        href="/">
+                                        Leo2011
+                                    </a>
+                                    
+                                        
+                                            <p class="post-count space-x-0.5">
+                                                <span>
+                                                    共撰写了 44 篇文章
+                                                </span>
+                                                
+                                                    <span>
+                                                        共 35k 字
+                                                    </span>
+                                                    
+                                            </p>
+                                            
+                </div>
+                
+                    <script data-swup-reload-script src = "https://cn.vercount.one/js"></script>
+                    <div
+                        class="relative text-center lg:absolute lg:right-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-right">
+                        
+                            <span id="busuanzi_container_site_uv" class="lg:!block">
+                                <span class="text-sm">访问人数</span>
+                                <span id="busuanzi_value_site_uv"></span>
+                            </span>
+                            
+                                
+                                    <span id="busuanzi_container_site_pv" class="lg:!block">
+                                        <span class="text-sm">总访问量</span>
+                                        <span id="busuanzi_value_site_pv"></span>
+                                    </span>
+                                    
+                    </div>
                     
-                </p>
-            
-        </div>
-        
-            <script data-swup-reload-script src="https://cn.vercount.one/js"></script>
-            <div class="relative text-center lg:absolute lg:right-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-right">
-                
-                    <span id="busuanzi_container_site_uv" class="lg:!block">
-                        <span class="text-sm">访问人数</span>
-                        <span id="busuanzi_value_site_uv"></span>
-                    </span>
-                
-                
-                    <span id="busuanzi_container_site_pv" class="lg:!block">
-                        <span class="text-sm">总访问量</span>
-                        <span id="busuanzi_value_site_pv"></span>
-                    </span>
-                
-            </div>
-        
-        <div class="relative text-center lg:absolute lg:left-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-left">
-            <span class="lg:block text-sm">由 <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg class="relative top-[2px] inline-block align-baseline" version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" class="text-base" href="https://hexo.io">Hexo</a> 驱动</span>
-            <span class="text-sm lg:block">主题&nbsp;<a class="text-base" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.8.2</a></span>
-        </div>
-        
-        
-        
-        
-            
-                
-        
-                
-        
-        
-    </div>  
+                        <div
+                            class="relative text-center lg:absolute lg:left-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-left">
+                            <span class="lg:block text-sm">由 <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg class="relative top-[2px] inline-block align-baseline" version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" class="text-base" href="https://hexo.io">Hexo</a> 驱动</span>
+                            <span class="text-sm lg:block">主题&nbsp;<a
+                                            class="text-base" target="_blank"
+                                            href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.8.2</a></span>
+                                
+                        </div>
+                        
+                                <a target="_blank" rel="noopener" href="https://guan.ma/hao/2024000185/"
+                                    title="官码2024000185号"><img src="https://style.wmou.com/images/guanma.png" alt="官码"
+                                        width="20"
+                                        style='display:inline-block;vertical-align:middle'>官码2024000185号</a><br />
+                                <a target="_blank" href="https://beian.miit.cn.com/gov/search.php?query=leo2011.eu.org"
+                                    title="MIIT备20240835号"><img src="https://beian.miit.cn.com/logo.png" alt="MIIT"
+                                        width="40" style='display:inline-block;vertical-align:middle'>
+                                    MIIT20240835号</a><br />
+                                <a href="https://icp.18z.fun/?id=2024080084" target="_blank">梵AIA盟2024080084号</a><br />
+                                <a target="_blank" rel="noopener" href="https://icp.dns163.cn/beian/ICP-3935415108.html"
+                                    title="易AIA盟3935415108号"><img
+                                        src="https://icp.dns163.cn/uploads/allimg/20240413/1-240409203122D3.png"
+                                        alt="易AIA盟3935415108号"
+                                        style='display:inline-block;vertical-align:middle;height: 20px;margin-bottom:-5px;'>易AIA盟3935415108号</a><br />
+                                <a target="_blank" rel="noopener" href="https://icp.3v.hk/beian/20240072"><img
+                                        src="https://icp.3v.hk/static/picture/icplogoi.png"
+                                        style='display:inline-block;vertical-align:middle;height: 20px;'>酷AIA盟20240072号</a><br />
+                                <a target="_blank" rel="noopener" href="https://nyaicp.us.kg/?id=20240312"><img
+                                        src="https://520524.xyz/icptb" width="20"
+                                        style='display:inline-block;vertical-align:middle'>喵呜20240312号</a><br />
+                                <a target="_blank" rel="noopener"
+                                    href="https://three.dns163.cn/website/TYF2732377397272490.html"><img
+                                        src="https://three.dns163.cn/images/snzylogo.png"
+                                        style='display:inline-block;vertical-align:middle;height: 45px;'></a> <a
+                                    target="_blank" rel="noopener" href="https://three.dns163.cn/go"><img
+                                        src="https://three.dns163.cn/images/wormhole_1.gif"
+                                        style='display:inline-block;vertical-align:middle;height: 45px;'></a><br />
+                                <a target="_blank" rel="noopener"
+                                    href="https://www.gyfzlm.com/fanzha/NO-44256470.html"><img
+                                        src="https://www.gyfzlm.com/istatic/image/gyfzlogo.png"
+                                        style='display:inline-block;vertical-align:middle;height: 45px;'></a> <a
+                                    target="_blank" rel="noopener" href="https://www.gyfzlm.com/fanzha/NO-44256470.html"
+                                    title="公益反诈联盟成员单位">公益反诈联盟成员单位</a><br />
+                                <a target="_blank" rel="noopener" href="https://icp.gs/?id=20241704"
+                                    title="岸号:20241704号"><img src="https://icp.gs/assets/images/icp.png" alt="岸号:"
+                                        width="20"
+                                        style='display:inline-block;vertical-align:middle'>岸号:20241704号</a><br />
+                                <a href="https://icp.gov.moe/?keyword=20240681" target="_blank">萌ICP备20240681号 </a><a
+                                    style="text-decoration:none;" href="https://travel.moe/go.html"
+                                    title="异次元之旅-跃迁-我们一起去萌站成员的星球旅行吧！" target="_blank"><img
+                                        src="https://travel.moe/images/icon/icon64.png"
+                                        style="width:24px;height:24px;display:inline-block;vertical-align:middle">异次元之旅</a><br />
+                                <a target="_blank" rel="noopener" href="https://imicp.cn/"><img
+                                        src="https://imicp.cn/logo.png" width="20"
+                                        style='display:inline-block;vertical-align:middle'>IMICP备:20240681号</a><br /> <a
+                                    href="https://icp.tomzhao.top/" target="_blank">氢ICP备20240681号</a><br />
+                                <img style='display:inline-block;vertical-align:middle;width:20px;height:20px;margin-bottom:-4px'
+                                    src="https://postimage.me/images/2024/08/27/Y.gif"><a
+                                    href="https://icp.znzx.cc/?id=20240681" target="_blank">影石ICP备案 20240681号</a><br />
+                                <a href="https://www.travellings.cn/go-by-clouds.html" target="_blank" rel="noopener"
+                                    title="开往-友链接力">
+                                    <img src="https://www.travellings.cn/assets/logo.gif" alt="开往-友链接力" width="120"
+                                        style='display:inline-block;vertical-align:middle;'> </a><br />
+                                <a href="https://blogscn.fun/" title="BLOGS·CN" target="_blank"> <img
+                                        src="https://photo.xiangming.site/img/blogscn.png" alt="本站已加入BLOGS·CN"
+                                        style="width:auto;height:25px;display:inline-block;vertical-align:middle">
+                                </a><br />
+                                <a href="https://ipw.cn/ssl/?site=leo2011.eu.org" title="本站支持SSL安全访问"
+                                    target='_blank'><img style='display:inline-block;vertical-align:middle'
+                                        alt="本站支持SSL安全访问" src="https://static.ipw.cn/icon/ssl-s4.svg"></a>
+                                <a href="https://ipw.cn/ipv6webcheck/?site=leo2011.eu.org" title="本站支持IPv6访问"
+                                    target='_blank'><img style='display:inline-block;vertical-align:middle'
+                                        alt="本站支持IPv6访问" src="https://static.ipw.cn/icon/ipv6-s4.svg"></a><br />
+                                <a target="_blank" rel="noopener" href="https://notbyai.fyi/"><img
+                                        src="/images/Produced-By-Human-Not-By-AI-Badge-black.svg" width="100"
+                                        style='display:inline-block;vertical-align:middle'><img
+                                        src="/images/Written-By-Human-Not-By-AI-Badge-black.svg" width="100"
+                                        style='display:inline-block;vertical-align:middle'></a><br />
+                                <!-- 
+         -->
+                                <span id="sitetime"></span>
+                                <script language=javascript>
+                                    function siteTime() {
+                                        window.setTimeout("siteTime()", 1000);
+                                        var seconds = 1000;
+                                        var minutes = seconds * 60;
+                                        var hours = minutes * 60;
+                                        var days = hours * 24;
+                                        var years = days * 365;
+                                        var today = new Date();
+                                        var todayYear = today.getFullYear();
+                                        var todayMonth = today.getMonth() + 1;
+                                        var todayDate = today.getDate();
+                                        var todayHour = today.getHours();
+                                        var todayMinute = today.getMinutes();
+                                        var todaySecond = today.getSeconds();
+                                        /* Date.UTC() -- 返回date对象距世界标准时间(UTC)1970年1月1日午夜之间的毫秒数(时间戳)
+                                        year - 作为date对象的年份，为4位年份值
+                                        month - 0-11之间的整数，做为date对象的月份
+                                        day - 1-31之间的整数，做为date对象的天数
+                                        hours - 0(午夜24点)-23之间的整数，做为date对象的小时数
+                                        minutes - 0-59之间的整数，做为date对象的分钟数
+                                        seconds - 0-59之间的整数，做为date对象的秒数
+                                        microseconds - 0-999之间的整数，做为date对象的毫秒数 */
+                                        var t1 = Date.UTC(2023, 11, 15, 19, 30, 15); //北京时间2023-11-15 19:30:15
+                                        var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                                        var diff = t2 - t1;
+                                        var diffYears = Math.floor(diff / years);
+                                        var diffDays = Math.floor((diff / days) - diffYears * 365);
+                                        var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+                                        var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) / minutes);
+                                        var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours - diffMinutes * minutes) / seconds);
+                                        document.getElementById("sitetime").innerHTML = " 本站已<s>苟</s>安全运行 " +diffYears+" 年 "+diffDays + " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                                    }
+                                    siteTime();
+                                </script>
+                                
+                                    
+                                        
+                                                                
+                                        
+                                                                
+
+    </div>
 </footer>
 		</div>
 	</div>
