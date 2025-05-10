@@ -29,7 +29,7 @@
 <meta property="og:description" content="许许多多的平凡加在一起，就成了不平凡。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-08-07T04:59:26.000Z">
-<meta property="article:modified_time" content="2024-11-17T04:01:30.454Z">
+<meta property="article:modified_time" content="2025-03-23T08:54:54.556Z">
 <meta property="article:author" content="Leo2011">
 <meta property="article:tag" content="C, C++, Python">
 <meta name="twitter:card" content="summary">
@@ -128,7 +128,13 @@
 <link rel="stylesheet" href="/fontawesome/sharp-solid.min.css">
 
     
-<meta name="generator" content="Hexo 7.3.0"><style>mjx-container[jax="SVG"] {
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.0.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<style>mjx-container[jax="SVG"] {
   direction: ltr;
 }
 
@@ -240,9 +246,7 @@ mjx-container[display="true"] {
 mjx-container[display="true"] + br {
   display: none;
 }
-</style>
-<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
-<link rel="alternate" href="/atom.xml" title="Leo2011的博客" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</style><link rel="alternate" href="/atom.xml" title="Leo2011的博客" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 
@@ -913,7 +917,7 @@ mjx-container[display="true"] + br {
         <div class="label text-third-text-color text-sm">分类</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">45</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">48</div>
         <div class="label text-third-text-color text-sm">文章</div>
     </a>
 </div>
@@ -968,8 +972,8 @@ mjx-container[display="true"] + br {
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2024-11-17 12:01:30</span>
-            <span class="mobile">2024-11-17 12:01:30</span>
+            <span class="desktop">2025-03-23 16:54:54</span>
+            <span class="mobile">2025-03-23 16:54:54</span>
             <span class="hover-info">更新</span>
         </span>
     
@@ -1007,8 +1011,8 @@ mjx-container[display="true"] + br {
 			<p>rt，今日模拟赛时，某只小 L 看到了
 T1，发现是个百分数计算裸题，于是飞速写下了下面的代码：</p>
 <span id="more"></span>
-<div class="code-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">double</span> tmp;</span><br><span class="line">...</span><br><span class="line"><span class="built_in">scanf</span>(<span class="string">"%d%d"</span>, &amp;n, &amp;x);</span><br><span class="line">	<span class="built_in">FOR</span>(i, <span class="number">1</span>, n) <span class="built_in">scanf</span>(<span class="string">"%d%d"</span>, &amp;v[i], &amp;p[i]);</span><br><span class="line">	<span class="built_in">FOR</span>(i, <span class="number">1</span>, n) {</span><br><span class="line">		tmp += v[i] * (p[i] * <span class="number">0.01</span>), ++ans;</span><br><span class="line">		<span class="keyword">if</span> (tmp &gt; (x * <span class="number">1.0</span>)) <span class="keyword">break</span>;</span><br><span class="line">	}</span><br><span class="line">	<span class="keyword">if</span> (tmp &lt; (x * <span class="number">1.0</span>)) <span class="built_in">log</span>(<span class="string">"-1\n"</span>);</span><br><span class="line">	<span class="keyword">else</span> <span class="built_in">log</span>(<span class="string">"%d\n"</span>, ans);</span><br></pre></td></tr></tbody></table></figure></div>
-<p>然后呢？100--&gt;40，rk4--&gt;rk7</p>
+<div class="code-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">double</span> tmp;</span><br><span class="line">...</span><br><span class="line"><span class="built_in">scanf</span>(<span class="string">"%d%d"</span>, &amp;n, &amp;x);</span><br><span class="line"><span class="built_in">FOR</span>(i, <span class="number">1</span>, n) <span class="built_in">scanf</span>(<span class="string">"%d%d"</span>, &amp;v[i], &amp;p[i]);</span><br><span class="line"><span class="built_in">FOR</span>(i, <span class="number">1</span>, n) {</span><br><span class="line">	tmp += v[i] * (p[i] * <span class="number">0.01</span>), ++ans;</span><br><span class="line">	<span class="keyword">if</span> (tmp &gt; (x * <span class="number">1.0</span>)) <span class="keyword">break</span>;</span><br><span class="line">}</span><br><span class="line"><span class="keyword">if</span> (tmp &lt; (x * <span class="number">1.0</span>)) <span class="built_in">log</span>(<span class="string">"-1\n"</span>);</span><br><span class="line"><span class="keyword">else</span> <span class="built_in">log</span>(<span class="string">"%d\n"</span>, ans);</span><br></pre></td></tr></tbody></table></figure></div>
+<p>然后呢？100–&gt;40，rk4–&gt;rk7</p>
 <p>小 L 衷心希望大家不要再犯同样的错误……</p>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
 		</div>
@@ -1024,7 +1028,7 @@ T1，发现是个百分数计算裸题，于是飞速写下了下面的代码：
         
             <li>
                 <strong>更新于
-                    :</strong> 2024-11-17 12:01:30
+                    :</strong> 2025-03-23 16:54:54
             </li>
         
         <li>
@@ -1206,11 +1210,11 @@ T1，发现是个百分数计算裸题，于是飞速写下了下面的代码：
                                         
                                             <p class="post-count space-x-0.5">
                                                 <span>
-                                                    共撰写了 45 篇文章
+                                                    共撰写了 48 篇文章
                                                 </span>
                                                 
                                                     <span>
-                                                        共 36k 字
+                                                        共 38k 字
                                                     </span>
                                                     
                                             </p>
@@ -1243,33 +1247,6 @@ T1，发现是个百分数计算裸题，于是飞速写下了下面的代码：
                                 
                         </div>
                         
-                                <a target="_blank" rel="noopener" href="https://guan.ma/hao/2024000185/"
-                                    title="官码2024000185号"><img src="https://style.wmou.com/images/guanma.png" alt="官码"
-                                        width="20"
-                                        style='display:inline-block;vertical-align:middle'>官码2024000185号</a><br />
-                                <a target="_blank" href="https://beian.miit.cn.com/gov/search.php?query=leo2011.eu.org"
-                                    title="MIIT备20240835号"><img src="https://beian.miit.cn.com/logo.png" alt="MIIT"
-                                        width="40" style='display:inline-block;vertical-align:middle'>
-                                    MIIT20240835号</a><br />
-                                <a href="https://icp.18z.fun/?id=2024080084" target="_blank">梵AIA盟2024080084号</a><br />
-                                <a target="_blank" rel="noopener" href="https://icp.dns163.cn/beian/ICP-3935415108.html"
-                                    title="易AIA盟3935415108号"><img
-                                        src="https://icp.dns163.cn/uploads/allimg/20240413/1-240409203122D3.png"
-                                        alt="易AIA盟3935415108号"
-                                        style='display:inline-block;vertical-align:middle;height: 20px;margin-bottom:-5px;'>易AIA盟3935415108号</a><br />
-                                <a target="_blank" rel="noopener" href="https://icp.3v.hk/beian/20240072"><img
-                                        src="https://icp.3v.hk/static/picture/icplogoi.png"
-                                        style='display:inline-block;vertical-align:middle;height: 20px;'>酷AIA盟20240072号</a><br />
-                                <a target="_blank" rel="noopener" href="https://nyaicp.us.kg/?id=20240312"><img
-                                        src="https://520524.xyz/icptb" width="20"
-                                        style='display:inline-block;vertical-align:middle'>喵呜20240312号</a><br />
-                                <a target="_blank" rel="noopener"
-                                    href="https://three.dns163.cn/website/TYF2732377397272490.html"><img
-                                        src="https://three.dns163.cn/images/snzylogo.png"
-                                        style='display:inline-block;vertical-align:middle;height: 45px;'></a> <a
-                                    target="_blank" rel="noopener" href="https://three.dns163.cn/go"><img
-                                        src="https://three.dns163.cn/images/wormhole_1.gif"
-                                        style='display:inline-block;vertical-align:middle;height: 45px;'></a><br />
                                 <a target="_blank" rel="noopener"
                                     href="https://www.gyfzlm.com/fanzha/NO-44256470.html"><img
                                         src="https://www.gyfzlm.com/istatic/image/gyfzlogo.png"
@@ -1285,10 +1262,7 @@ T1，发现是个百分数计算裸题，于是飞速写下了下面的代码：
                                     title="异次元之旅-跃迁-我们一起去萌站成员的星球旅行吧！" target="_blank"><img
                                         src="https://travel.moe/images/icon/icon64.png"
                                         style="width:24px;height:24px;display:inline-block;vertical-align:middle">异次元之旅</a><br />
-                                <a target="_blank" rel="noopener" href="https://imicp.cn/"><img
-                                        src="https://imicp.cn/logo.png" width="20"
-                                        style='display:inline-block;vertical-align:middle'>IMICP备:20240681号</a><br /> <a
-                                    href="https://icp.tomzhao.top/" target="_blank">氢ICP备20240681号</a><br />
+                                <a target="_blank" rel="noopener" href="https://imicp.cn/">IMICP备:20240681号</a><br />
                                 <img style='display:inline-block;vertical-align:middle;width:20px;height:20px;margin-bottom:-4px'
                                     src="https://postimage.me/images/2024/08/27/Y.gif"><a
                                     href="https://icp.znzx.cc/?id=20240681" target="_blank">影石ICP备案 20240681号</a><br />
@@ -1345,7 +1319,7 @@ T1，发现是个百分数计算裸题，于是飞速写下了下面的代码：
                                         var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
                                         var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) / minutes);
                                         var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours - diffMinutes * minutes) / seconds);
-                                        document.getElementById("sitetime").innerHTML = " 本站已<s>苟</s>安全运行 " +diffYears+" 年 "+diffDays + " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                                        document.getElementById("sitetime").innerHTML = " 本站已<s>苟</s>安全运行 " + diffYears +" 年 "+diffDays + " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
                                     }/*因为建站时间还没有一年，就将之注释掉了。需要的可以取消*/
                                     siteTime();
                                 </script>
@@ -1358,6 +1332,7 @@ T1，发现是个百分数计算裸题，于是飞速写下了下面的代码：
 
     </div>
 </footer>
+
 		</div>
 	</div>
 
