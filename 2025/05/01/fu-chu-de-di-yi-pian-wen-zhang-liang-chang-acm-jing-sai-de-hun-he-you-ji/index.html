@@ -6,6 +6,116 @@
     <meta name="keywords" content="C, C++, Python">
     
     <meta name="author" content="Leo2011">
+    
+    <!-- Completely eliminate flash of wrong theme -->
+    <script>
+        (function() {
+            const THEME_KEY = "REDEFINE-THEME-STATUS";
+            const DARK = "dark", LIGHT = "light";
+            
+            // Get preferred theme
+            function getTheme() {
+                try {
+                    const saved = localStorage.getItem(THEME_KEY);
+                    if (saved) {
+                        const { isDark } = JSON.parse(saved);
+                        return isDark ? DARK : LIGHT;
+                    }
+                } catch (e) {}
+                
+                return matchMedia("(prefers-color-scheme: dark)").matches ? DARK : LIGHT;
+            }
+            
+            // Apply theme to document
+            function applyTheme(theme) {
+                const isDark = theme === DARK;
+                const root = document.documentElement;
+                
+                // Set data attribute for CSS variables
+                root.setAttribute("data-theme", theme);
+                
+                // Set classes for compatibility
+                root.classList.add(theme);
+                root.classList.remove(isDark ? LIGHT : DARK);
+                root.style.colorScheme = theme;
+            }
+            
+            // Initial application
+            const theme = getTheme();
+            applyTheme(theme);
+            
+            // Listen for system preference changes
+            matchMedia("(prefers-color-scheme: dark)").addEventListener("change", ({ matches }) => {
+                // Only update if using system preference (no localStorage entry)
+                if (!localStorage.getItem(THEME_KEY)) {
+                    applyTheme(matches ? DARK : LIGHT);
+                }
+            });
+            
+            // Set body classes once DOM is ready
+            if (document.readyState !== "loading") {
+                document.body.classList.add(theme + "-mode");
+            } else {
+                document.addEventListener("DOMContentLoaded", () => {
+                    document.body.classList.add(theme + "-mode");
+                    document.body.classList.remove((theme === DARK ? LIGHT : DARK) + "-mode");
+                });
+            }
+        })();
+    </script>
+    
+    <!-- Critical CSS to prevent flash -->
+    <style>
+        :root[data-theme="dark"] {
+            --background-color: #202124;
+            --background-color-transparent: rgba(32, 33, 36, 0.6);
+            --second-background-color: #2d2e32;
+            --third-background-color: #34353a;
+            --third-background-color-transparent: rgba(32, 33, 36, 0.6);
+            --primary-color: #0066CC;
+            --first-text-color: #ffffff;
+            --second-text-color: #eeeeee;
+            --third-text-color: #bebec6;
+            --fourth-text-color: #999999;
+            --default-text-color: #bebec6;
+            --invert-text-color: #373D3F;
+            --border-color: rgba(255, 255, 255, 0.08);
+            --selection-color: #0066CC;
+            --shadow-color-1: rgba(255, 255, 255, 0.08);
+            --shadow-color-2: rgba(255, 255, 255, 0.05);
+        }
+        
+        :root[data-theme="light"] {
+            --background-color: #fff;
+            --background-color-transparent: rgba(255, 255, 255, 0.6);
+            --second-background-color: #f8f8f8;
+            --third-background-color: #f2f2f2;
+            --third-background-color-transparent: rgba(241, 241, 241, 0.6);
+            --primary-color: #0066CC;
+            --first-text-color: #16171a;
+            --second-text-color: #2f3037;
+            --third-text-color: #5e5e5e;
+            --fourth-text-color: #eeeeee;
+            --default-text-color: #373D3F;
+            --invert-text-color: #bebec6;
+            --border-color: rgba(0, 0, 0, 0.08);
+            --selection-color: #0066CC;
+            --shadow-color-1: rgba(0, 0, 0, 0.08);
+            --shadow-color-2: rgba(0, 0, 0, 0.05);
+        }
+        
+        body {
+            background-color: var(--background-color);
+            color: var(--default-text-color);
+        }
+        
+        /* Apply body classes as soon as DOM is ready */
+        :root[data-theme="dark"] body {
+            background-color: var(--background-color);
+            color: var(--default-text-color);
+        }
+    </style>
+    
     <!-- preconnect -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -34,7 +144,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://www.leo2011.eu.org/images/g.jpg">
 <meta property="article:published_time" content="2025-05-01T02:24:47.000Z">
-<meta property="article:modified_time" content="2025-06-01T08:28:12.041Z">
+<meta property="article:modified_time" content="2025-07-23T08:23:14.534Z">
 <meta property="article:author" content="Leo2011">
 <meta property="article:tag" content="C, C++, Python">
 <meta name="twitter:card" content="summary">
@@ -54,7 +164,7 @@
         
     </title>
 
-    <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.8.2/files/source/fonts/Chillax/chillax.css">
+    <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/fonts/Chillax/chillax.css">
 
     <!--- Inject Part-->
     
@@ -69,11 +179,11 @@
 
 
     
-        <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.8.2/files/source/css/build/tailwind.css">
+        <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/css/build/tailwind.css">
     
 
-    <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.8.2/files/source/fonts/GeistMono/geist-mono.css">
-    <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.8.2/files/source/fonts/Geist/geist.css">
+    <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/fonts/GeistMono/geist-mono.css">
+    <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/fonts/Geist/geist.css">
     <!--- Font Part-->
     
     
@@ -81,32 +191,32 @@
     
     
     
-        <script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.2/files/source/js/build/libs/anime.min.js" ></script>
+        <script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/libs/anime.min.js" ></script>
     
 
     <script id="hexo-configurations">
     window.config = {"hostname":"www.leo2011.eu.org","root":"/","language":"zh-CN","path":"search.xml"};
-    window.theme = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true,"delete_mask":true,"title_alignment":"left","headings_top_spacing":{"h1":"3.2rem","h2":"2.4rem","h3":"1.9rem","h4":"1.6rem","h5":"1.4rem","h6":"1.3rem"}},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":["警示后人"]},"code_block":{"copy":true,"style":"mac","highlight_theme":{"light":"atom-one-light","dark":"vs2015"},"font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":6,"number":true,"expand":true,"init_open":true},"copyright":{"enable":true,"default":"cc_by_nc_sa"},"lazyload":false,"pangu_js":true,"recommendation":{"enable":true,"title":"推荐阅读","limit":6,"mobile_limit":3,"placeholder":null,"skip_dirs":["/_drafts/","/_data/"]}},"colors":{"primary":"#3A84FF","secondary":null,"default_mode":"light"},"global":{"fonts":{"chinese":{"enable":false,"family":"LXGW WenKai GB Medium","url":"/images/LXGWWenKaiGB-Medium.ttf"},"english":{"enable":false,"family":"Monaspace Xenon Frozen Medium","url":"/images/MonaspaceXenonFrozen-Medium.ttf"},"title":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":true},"scroll_progress":{"bar":true,"percentage":true},"website_counter":{"url":"https://cn.vercount.one/js","enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"single_page":true,"preloader":{"enable":true,"custom_message":null},"open_graph":{"enable":true,"image":"/images/g.jpg","description":"Leo2011 的博客——一个蒟蒻的 OI 日记"},"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/background.jpeg","dark":"/images/bgdark.jpg"},"title":"Leo2011 的博客","subtitle":{"text":["不要总是以为你掌握了整个World，因为可能你只会个 Hello World。","学习，就是发现自己越来越菜的过程。——任宝硕","关于 SPFA，它死了，但它还活着。关于 Dijkstra，它还活着，但它已经死了。"],"hitokoto":{"enable":false,"show_author":false,"api":"https://v1.hitokoto.cn"},"typing_speed":210,"backing_speed":10,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":true,"style":"default","links":{"github":"https://github.com/worker2011/","instagram":null,"zhihu":"https://www.zhihu.com/people/leo2011-46","twitter":null,"email":"mailto:admin@leo2011.eu.org","fa fa-rss":"/atom.xml","fas fa-blog":"https://home.cnblogs.com/u/leo2011","fab fa-blogger":"https://www.luogu.com.cn/user/539066","fas fa-train-subway":"https://www.travellings.cn/go-by-clouds.html"},"qrs":{"weixin":null}}},"plugins":{"feed":{"enable":true},"aplayer":{"enable":true,"type":"fixed","audios":[{"name":"像我这样的人","artist":"毛不易","url":"/images/像我这样的人.mp3","cover":"http://puui.qpic.cn/vpic_cover/n0551ux81rf/n0551ux81rf_hz.jpg/1280","lrc":null},{"name":"Something Just Like This","artist":"The Chainsmokers, Coldplay","url":"https://evan.beee.top/music/Something%20Just%20Like%20This%20-%20The%20Chainsmokers%E3%80%81Coldplay.mp3","cover":"/images/Something Just Like This.jfif"},{"name":"青花瓷","artist":"周杰伦","url":"https://npm.elemecdn.com/anzhiyu-music@1.0.4/青花瓷/青花瓷.mp3","cover":"https://y.qq.com/music/photo_new/T002R300x300M000002eFUFm2XYZ7z_2.jpg?max_age=2592000","lrc":"https://npm.elemecdn.com/anzhiyu-music@1.0.4/青花瓷/青花瓷.lrc"},{"name":"听妈妈的话","artist":"周杰伦","url":"https://npm.elemecdn.com/anzhiyu-music@1.0.2/听妈妈的话/听妈妈的话.mp3","cover":"https://y.qq.com/music/photo_new/T002R300x300M000002jLGWe16Tf1H_1.jpg?max_age=2592000","lrc":"https://npm.elemecdn.com/anzhiyu-music@1.0.2/听妈妈的话/听妈妈的话.lrc"},{"name":"龙卷风","artist":"周杰伦","url":"https://npm.elemecdn.com/anzhiyu-music@1.0.4/龙卷风/龙卷风.mp3","cover":"https://y.qq.com/music/photo_new/T002R300x300M000000f01724fd7TH_1.jpg?max_age=2592000","lrc":"https://npm.elemecdn.com/anzhiyu-music@1.0.4/龙卷风/龙卷风.lrc"},{"name":"本草纲目","artist":"周杰伦","url":"https://npm.elemecdn.com/anzhiyu-music@1.0.4/本草纲目/本草纲目.mp3","cover":"https://y.qq.com/music/photo_new/T002R300x300M000002jLGWe16Tf1H_1.jpg?max_age=2592000","lrc":"https://npm.elemecdn.com/anzhiyu-music@1.0.4/本草纲目/本草纲目.lrc"},{"name":"兰亭序","artist":"周杰伦","url":"https://npm.elemecdn.com/anzhiyu-music@1.0.1/周杰伦/兰亭序/兰亭序.mp3","cover":"https://y.qq.com/music/photo_new/T002R300x300M000002Neh8l0uciQZ_1.jpg?max_age=2592000","lrc":"https://npm.elemecdn.com/anzhiyu-music@1.0.1/周杰伦/兰亭序/兰亭序.lrc"}]},"mermaid":{"enable":true,"version":"11.4.1"}},"version":"2.8.2","navbar":{"auto_hide":true,"color":{"left":"#f78736","right":"#367df7","transparency":35},"width":{"home":"1200px","pages":"1000px"},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"},"Archives":{"path":"/archives","icon":"fa-regular fa-archive"},"tags":{"path":"/tags","icon":"fa fa-tags"},"categories":{"path":"/categories","icon":"fa fa-th"},"RSS":{"path":"/atom.xml","icon":"fa fa-rss"},"开往":{"path":"https://www.travellings.cn/go-by-clouds.html","icon":"fas fa-train-subway"},"友情链接":{"path":"/friends","icon":"fas fa-user-group"},"About":{"path":"/about","icon":"fa-regular fa-user"},"Links":{"icon":"fa-regular fa-link","submenus":{"LTC_Augenstern":"https://www.cnblogs.com/Liu-Tao-Chang","popcoount":"https://www.cnblogs.com/popfront","留言板":"/essays","MBTI 测试":"/MBTI","小空调":"/air-conditioner","论坛":"https://leo2011.flarum.cloud/"}}},"search":{"enable":true,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":"许许多多的平凡加在一起，就成了不平凡。","show_on_mobile":true,"links":{"归档":{"path":"/archives","icon":"fa-regular fa-archive"},"标签":{"path":"/tags","icon":"fa-regular fa-tags"},"分类":{"path":"/categories","icon":"fa-regular fa-folder"},"开往":{"path":"https://www.travellings.cn/go-by-clouds.html","icon":"fas fa-train-subway"}}},"article_date_format":"auto","excerpt_length":200,"categories":{"enable":true,"limit":200},"tags":{"enable":true,"limit":200}},"footerStart":"2023/11/15 19:30:15"};
+    window.theme = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true,"delete_mask":false,"title_alignment":"left","headings_top_spacing":{"h1":"3.2rem","h2":"2.4rem","h3":"1.9rem","h4":"1.6rem","h5":"1.4rem","h6":"1.3rem"}},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":["警示后人"]},"code_block":{"copy":true,"style":"mac","highlight_theme":{"light":"atom-one-light","dark":"vs2015"},"font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":6,"number":true,"expand":true,"init_open":true},"copyright":{"enable":true,"default":"cc_by_nc_sa"},"lazyload":false,"pangu_js":true,"recommendation":{"enable":true,"title":"推荐阅读","limit":6,"mobile_limit":3,"placeholder":null,"skip_dirs":["/_drafts/","/_data/"]}},"colors":{"primary":"#3A84FF","secondary":null,"default_mode":"light"},"global":{"fonts":{"chinese":{"enable":false,"family":"LXGW WenKai GB Medium","url":"/images/LXGWWenKaiGB-Medium.ttf"},"english":{"enable":false,"family":"Monaspace Xenon Frozen Medium","url":"/images/MonaspaceXenonFrozen-Medium.ttf"},"title":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":true},"scroll_progress":{"bar":true,"percentage":true},"website_counter":{"url":"https://cn.vercount.one/js","enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"single_page":true,"preloader":{"enable":true,"custom_message":null},"side_tools":{"gear_rotation":true,"auto_expand":false},"open_graph":{"enable":true,"image":"/images/g.jpg","description":"Leo2011 的博客——一个蒟蒻的 OI 日记"},"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/background.jpeg","dark":"/images/bgdark.jpg"},"title":"Leo2011 的博客","subtitle":{"text":["不要总是以为你掌握了整个World，因为可能你只会个 Hello World。","学习，就是发现自己越来越菜的过程。——任宝硕","关于 SPFA，它死了，但它还活着。关于 Dijkstra，它还活着，但它已经死了。"],"hitokoto":{"enable":false,"show_author":false,"api":"https://v1.hitokoto.cn"},"typing_speed":210,"backing_speed":10,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":true,"style":"default","links":{"github":"https://github.com/worker2011/","instagram":null,"zhihu":"https://www.zhihu.com/people/leo2011-46","twitter":null,"email":"mailto:admin@leo2011.eu.org","fa fa-rss":"/atom.xml","fas fa-blog":"https://home.cnblogs.com/u/leo2011","fab fa-blogger":"https://www.luogu.com.cn/user/539066","fas fa-train-subway":"https://www.travellings.cn/go-by-clouds.html"},"qrs":{"weixin":null}}},"plugins":{"feed":{"enable":true},"aplayer":{"enable":true,"type":"fixed","audios":[{"name":"像我这样的人","artist":"毛不易","url":"/images/像我这样的人.mp3","cover":"http://puui.qpic.cn/vpic_cover/n0551ux81rf/n0551ux81rf_hz.jpg/1280","lrc":null},{"name":"Something Just Like This","artist":"The Chainsmokers, Coldplay","url":"https://evan.beee.top/music/Something%20Just%20Like%20This%20-%20The%20Chainsmokers%E3%80%81Coldplay.mp3","cover":"/images/Something Just Like This.jfif"},{"name":"青花瓷","artist":"周杰伦","url":"https://npm.elemecdn.com/anzhiyu-music@1.0.4/青花瓷/青花瓷.mp3","cover":"https://y.qq.com/music/photo_new/T002R300x300M000002eFUFm2XYZ7z_2.jpg?max_age=2592000","lrc":"https://npm.elemecdn.com/anzhiyu-music@1.0.4/青花瓷/青花瓷.lrc"},{"name":"听妈妈的话","artist":"周杰伦","url":"https://npm.elemecdn.com/anzhiyu-music@1.0.2/听妈妈的话/听妈妈的话.mp3","cover":"https://y.qq.com/music/photo_new/T002R300x300M000002jLGWe16Tf1H_1.jpg?max_age=2592000","lrc":"https://npm.elemecdn.com/anzhiyu-music@1.0.2/听妈妈的话/听妈妈的话.lrc"},{"name":"龙卷风","artist":"周杰伦","url":"https://npm.elemecdn.com/anzhiyu-music@1.0.4/龙卷风/龙卷风.mp3","cover":"https://y.qq.com/music/photo_new/T002R300x300M000000f01724fd7TH_1.jpg?max_age=2592000","lrc":"https://npm.elemecdn.com/anzhiyu-music@1.0.4/龙卷风/龙卷风.lrc"},{"name":"本草纲目","artist":"周杰伦","url":"https://npm.elemecdn.com/anzhiyu-music@1.0.4/本草纲目/本草纲目.mp3","cover":"https://y.qq.com/music/photo_new/T002R300x300M000002jLGWe16Tf1H_1.jpg?max_age=2592000","lrc":"https://npm.elemecdn.com/anzhiyu-music@1.0.4/本草纲目/本草纲目.lrc"},{"name":"兰亭序","artist":"周杰伦","url":"https://npm.elemecdn.com/anzhiyu-music@1.0.1/周杰伦/兰亭序/兰亭序.mp3","cover":"https://y.qq.com/music/photo_new/T002R300x300M000002Neh8l0uciQZ_1.jpg?max_age=2592000","lrc":"https://npm.elemecdn.com/anzhiyu-music@1.0.1/周杰伦/兰亭序/兰亭序.lrc"}]},"mermaid":{"enable":true,"version":"11.4.1"}},"version":"2.8.5","navbar":{"auto_hide":true,"color":{"left":"#f78736","right":"#367df7","transparency":35},"width":{"home":"1200px","pages":"1000px"},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"},"Archives":{"path":"/archives","icon":"fa-regular fa-archive"},"tags":{"path":"/tags","icon":"fa fa-tags"},"categories":{"path":"/categories","icon":"fa fa-th"},"RSS":{"path":"/atom.xml","icon":"fa fa-rss"},"开往":{"path":"https://www.travellings.cn/go-by-clouds.html","icon":"fas fa-train-subway"},"友情链接":{"path":"/friends","icon":"fas fa-user-group"},"About":{"path":"/about","icon":"fa-regular fa-user"},"Links":{"icon":"fa-regular fa-link","submenus":{"LTC_Augenstern":"https://www.cnblogs.com/Liu-Tao-Chang","popcoount":"https://www.cnblogs.com/popfront","留言板":"/essays","MBTI 测试":"/MBTI","小空调":"/air-conditioner","论坛":"https://leo2011.flarum.cloud/"}}},"search":{"enable":true,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":"许许多多的平凡加在一起，就成了不平凡。","show_on_mobile":true,"links":{"归档":{"path":"/archives","icon":"fa-regular fa-archive"},"标签":{"path":"/tags","icon":"fa-regular fa-tags"},"分类":{"path":"/categories","icon":"fa-regular fa-folder"},"开往":{"path":"https://www.travellings.cn/go-by-clouds.html","icon":"fas fa-train-subway"}}},"article_date_format":"auto","excerpt_length":200,"categories":{"enable":true,"limit":200},"tags":{"enable":true,"limit":200}},"footerStart":"2023/11/15 19:30:15"};
     window.lang_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"};
     window.data = {"masonry":false};
   </script>
     
     <!--- Fontawesome Part-->
-    <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.8.2/files/source/fontawesome/fontawesome.min.css">
-    <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.8.2/files/source/fontawesome/brands.min.css">
-    <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.8.2/files/source/fontawesome/solid.min.css">
-    <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.8.2/files/source/fontawesome/regular.min.css">
+    <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/fontawesome/fontawesome.min.css">
+    <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/fontawesome/brands.min.css">
+    <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/fontawesome/solid.min.css">
+    <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/fontawesome/regular.min.css">
     
-        <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.8.2/files/source/fontawesome/thin.min.css">
-    
-    
-        <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.8.2/files/source/fontawesome/light.min.css">
+        <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/fontawesome/thin.min.css">
     
     
-        <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.8.2/files/source/fontawesome/duotone.min.css">
+        <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/fontawesome/light.min.css">
     
     
-        <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.8.2/files/source/fontawesome/sharp-solid.min.css">
+        <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/fontawesome/duotone.min.css">
+    
+    
+        <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/fontawesome/sharp-solid.min.css">
     
 <!-- hexo injector head_end start -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
@@ -403,7 +513,7 @@ mjx-container[display="true"] + br {
         <div class="left">
             
                 <a class="logo-image h-8 w-8 sm:w-10 sm:h-10 mr-3" href="/">
-                    <img src="/images/g.jpg" class="w-full h-full rounded-sm">
+                    <img src="/images/g.jpg" class="w-full h-full rounded-xs">
                 </a>
             
             <a class="logo-title" href="/">
@@ -893,11 +1003,11 @@ mjx-container[display="true"] + br {
         <div class="label text-third-text-color text-sm">标签</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">7</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">8</div>
         <div class="label text-third-text-color text-sm">分类</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">47</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">50</div>
         <div class="label text-third-text-color text-sm">文章</div>
     </a>
 </div>
@@ -952,8 +1062,8 @@ mjx-container[display="true"] + br {
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2025-06-01 16:28:12</span>
-            <span class="mobile">2025-06-01 16:28:12</span>
+            <span class="desktop">2025-07-23 16:23:14</span>
+            <span class="mobile">2025-07-23 16:23:14</span>
             <span class="hover-info">更新</span>
         </span>
     
@@ -1004,14 +1114,14 @@ mjx-container[display="true"] + br {
 
 
 		<div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
-			<p>小 L <del class="mask">残血</del>复活啦！最近在研究 whk，OI
+			<p>小 L <del>残血</del>复活啦！最近在研究 whk，OI
 也比较废，姑且就写写游记水一水吧。</p>
 <p>由于电脑比较烂删了很多必要的组件，加上之前一段时间写的都是长文（当然，都没写完），因此拖更了很长时间，不好意思哈！</p>
 <p>本次依然按照时间顺序～</p>
-<p><del class="mask">无</del>趣味提问：不用快捷键，快来快来数一数，本文中有几个 “莫名其妙”（包含这一个）？</p>
+<p><del>无</del>趣味提问：不用快捷键，快来快来数一数，本文中有几个 “莫名其妙”（包含这一个）？</p>
 <h1 id="day--infty">Day <span class="math inline"><mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.186ex;" xmlns="http://www.w3.org/2000/svg" width="4.023ex" height="1.505ex" role="img" focusable="false" viewBox="0 -583 1778 665"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mo"><path data-c="2212" d="M84 237T84 250T98 270H679Q694 262 694 250T679 230H98Q84 237 84 250Z"></path></g><g data-mml-node="mi" transform="translate(778,0)"><path data-c="221E" d="M55 217Q55 305 111 373T254 442Q342 442 419 381Q457 350 493 303L507 284L514 294Q618 442 747 442Q833 442 888 374T944 214Q944 128 889 59T743 -11Q657 -11 580 50Q542 81 506 128L492 147L485 137Q381 -11 252 -11Q166 -11 111 57T55 217ZM907 217Q907 285 869 341T761 397Q740 397 720 392T682 378T648 359T619 335T594 310T574 285T559 263T548 246L543 238L574 198Q605 158 622 138T664 94T714 61T765 51Q827 51 867 100T907 217ZM92 214Q92 145 131 89T239 33Q357 33 456 193L425 233Q364 312 334 337Q285 380 233 380Q171 380 132 331T92 214Z"></path></g></g></g></svg></mjx-container></span></h1>
 <p>N 多 years ago，老师莫名其妙的找了个 CUHK (SZ) 的比赛名额，小 L
-作为这一届<del class="mask">前</del>最强的选手自然也要来参加！</p>
+作为这一届<del>前</del>最强的选手自然也要来参加！</p>
 <p>然鹅，期中考逝就要到了，小 L 只好把 whk 时间提高到了 <span class="math inline"><mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.127ex;" xmlns="http://www.w3.org/2000/svg" width="5.278ex" height="1.824ex" role="img" focusable="false" viewBox="0 -750 2333 806"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mn"><path data-c="39" d="M352 287Q304 211 232 211Q154 211 104 270T44 396Q42 412 42 436V444Q42 537 111 606Q171 666 243 666Q245 666 249 666T257 665H261Q273 665 286 663T323 651T370 619T413 560Q456 472 456 334Q456 194 396 97Q361 41 312 10T208 -22Q147 -22 108 7T68 93T121 149Q143 149 158 135T173 96Q173 78 164 65T148 49T135 44L131 43Q131 41 138 37T164 27T206 22H212Q272 22 313 86Q352 142 352 280V287ZM244 248Q292 248 321 297T351 430Q351 508 343 542Q341 552 337 562T323 588T293 615T246 625Q208 625 181 598Q160 576 154 546T147 441Q147 358 152 329T172 282Q197 248 244 248Z"></path><path data-c="30" d="M96 585Q152 666 249 666Q297 666 345 640T423 548Q460 465 460 320Q460 165 417 83Q397 41 362 16T301 -15T250 -22Q224 -22 198 -16T137 16T82 83Q39 165 39 320Q39 494 96 585ZM321 597Q291 629 250 629Q208 629 178 597Q153 571 145 525T137 333Q137 175 145 125T181 46Q209 16 250 16Q290 16 318 46Q347 76 354 130T362 333Q362 478 354 524T321 597Z" transform="translate(500,0)"></path><path data-c="30" d="M96 585Q152 666 249 666Q297 666 345 640T423 548Q460 465 460 320Q460 165 417 83Q397 41 362 16T301 -15T250 -22Q224 -22 198 -16T137 16T82 83Q39 165 39 320Q39 494 96 585ZM321 597Q291 629 250 629Q208 629 178 597Q153 571 145 525T137 333Q137 175 145 125T181 46Q209 16 250 16Q290 16 318 46Q347 76 354 130T362 333Q362 478 354 524T321 597Z" transform="translate(1000,0)"></path></g><g data-mml-node="mi" transform="translate(1500,0)"><path data-c="25" d="M465 605Q428 605 394 614T340 632T319 641Q332 608 332 548Q332 458 293 403T202 347Q145 347 101 402T56 548Q56 637 101 693T202 750Q241 750 272 719Q359 642 464 642Q580 642 650 732Q662 748 668 749Q670 750 673 750Q682 750 688 743T693 726Q178 -47 170 -52Q166 -56 160 -56Q147 -56 142 -45Q137 -36 142 -27Q143 -24 363 304Q469 462 525 546T581 630Q528 605 465 605ZM207 385Q235 385 263 427T292 548Q292 617 267 664T200 712Q193 712 186 709T167 698T147 668T134 615Q132 595 132 548V527Q132 436 165 403Q183 385 203 385H207ZM500 146Q500 234 544 290T647 347Q699 347 737 292T776 146T737 0T646 -56Q590 -56 545 0T500 146ZM651 -18Q679 -18 707 24T736 146Q736 215 711 262T644 309Q637 309 630 306T611 295T591 265T578 212Q577 200 577 146V124Q577 -18 647 -18H651Z"></path></g></g></g></svg></mjx-container></span>（别问我为啥这么莫名其妙）</p>
 <p>后面又多了个去 SZTU 的比赛。</p>
 <p>笑点解析：小 L 从 PS 干到 GM （小 L 所在的浅圳市的两个区）才上的
@@ -1019,14 +1129,14 @@ mjx-container[display="true"] + br {
 awa），本想着可以近一点，结果比赛的时候又给我干回 PS 去了……</p>
 <h1 id="day-1">Day 1</h1>
 <p>本次比赛为 CUHK (SZ)。官方名称叫什么 “国际编程大赛”。学校在离 PS 很近的
-LG（不是你谷啦）区。让我比较惊喜的是可以带纸质资料哎！<del class="mask">虽然实践表明没啥大用</del></p>
+LG（不是你谷啦）区。让我比较惊喜的是可以带纸质资料哎！<del>虽然实践表明没啥大用</del></p>
 <h2 id="上午热身赛">上午热身赛</h2>
 <p>本来到的比较早的了（总部那些人上午的热身赛干脆不打了），但是到了地方还是人巨多。而且我竟然不知道自己是那个赛道的（有
 A、B、C 三个，后续得知 A 是内部的，B 是小 L
-这种 <del class="mask">xxs</del> 中小学生的，C 打得好可以保博）</p>
+这种 <del>xxs</del> 中小学生的，C 打得好可以保博）</p>
 <p><img src="/images/pyq0.png" alt="朋友圈截图0（不含点赞）"></p>
 <p>经过不懈的 —— 排队，拿到了参赛证，进入机房，结果机子死活登不上去。后面改了三五回密码，终于进去了（密码的！）</p>
-<p>这里莫名其妙的只能用 Dev-C++ <del class="mask">这种老古董</del>，VSCode
+<p>这里莫名其妙的只能用 Dev-C++ <del>这种老古董</del>，VSCode
 没配置（考场机器老毛病了），鉴于是 ACM 赛制就不用了。</p>
 <p>上午 Track B 参赛 48 人，小 L 以做出一题的成绩位列第 17
 名（一共四道题）。</p>
@@ -1037,7 +1147,7 @@ A、B、C 三个，后续得知 A 是内部的，B 是小 L
 的一场弱智比赛。从上周莫名其妙的延期到这天的，理由竟是服务器炸了？还 TM
 只有选判，若只啊…… 这还是那个敢对战 CCF 的 CIE
 吗？校内信号还贼差（只允许访问内部 OJ），我 *****</p>
-<p>upd on 5202/05/31：晋级了，<span class="math inline"><mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.05ex;" xmlns="http://www.w3.org/2000/svg" width="2.262ex" height="1.557ex" role="img" focusable="false" viewBox="0 -666 1000 688"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mn"><path data-c="38" d="M70 417T70 494T124 618T248 666Q319 666 374 624T429 515Q429 485 418 459T392 417T361 389T335 371T324 363L338 354Q352 344 366 334T382 323Q457 264 457 174Q457 95 399 37T249 -22Q159 -22 101 29T43 155Q43 263 172 335L154 348Q133 361 127 368Q70 417 70 494ZM286 386L292 390Q298 394 301 396T311 403T323 413T334 425T345 438T355 454T364 471T369 491T371 513Q371 556 342 586T275 624Q268 625 242 625Q201 625 165 599T128 534Q128 511 141 492T167 463T217 431Q224 426 228 424L286 386ZM250 21Q308 21 350 55T392 137Q392 154 387 169T375 194T353 216T330 234T301 253T274 270Q260 279 244 289T218 306L210 311Q204 311 181 294T133 239T107 157Q107 98 150 60T250 21Z"></path><path data-c="38" d="M70 417T70 494T124 618T248 666Q319 666 374 624T429 515Q429 485 418 459T392 417T361 389T335 371T324 363L338 354Q352 344 366 334T382 323Q457 264 457 174Q457 95 399 37T249 -22Q159 -22 101 29T43 155Q43 263 172 335L154 348Q133 361 127 368Q70 417 70 494ZM286 386L292 390Q298 394 301 396T311 403T323 413T334 425T345 438T355 454T364 471T369 491T371 513Q371 556 342 586T275 624Q268 625 242 625Q201 625 165 599T128 534Q128 511 141 492T167 463T217 431Q224 426 228 424L286 386ZM250 21Q308 21 350 55T392 137Q392 154 387 169T375 194T353 216T330 234T301 253T274 270Q260 279 244 289T218 306L210 311Q204 311 181 294T133 239T107 157Q107 98 150 60T250 21Z" transform="translate(500,0)"></path></g></g></g></svg></mjx-container></span>，但是参赛体验感极差，因为网还迟到了几分钟，但是差不多半个小时就答完了，但是还是错过了集体合照<del class="mask">虽然没啥用</del>。</p>
+<p>upd on 5202/05/31：晋级了，<span class="math inline"><mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.05ex;" xmlns="http://www.w3.org/2000/svg" width="2.262ex" height="1.557ex" role="img" focusable="false" viewBox="0 -666 1000 688"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mn"><path data-c="38" d="M70 417T70 494T124 618T248 666Q319 666 374 624T429 515Q429 485 418 459T392 417T361 389T335 371T324 363L338 354Q352 344 366 334T382 323Q457 264 457 174Q457 95 399 37T249 -22Q159 -22 101 29T43 155Q43 263 172 335L154 348Q133 361 127 368Q70 417 70 494ZM286 386L292 390Q298 394 301 396T311 403T323 413T334 425T345 438T355 454T364 471T369 491T371 513Q371 556 342 586T275 624Q268 625 242 625Q201 625 165 599T128 534Q128 511 141 492T167 463T217 431Q224 426 228 424L286 386ZM250 21Q308 21 350 55T392 137Q392 154 387 169T375 194T353 216T330 234T301 253T274 270Q260 279 244 289T218 306L210 311Q204 311 181 294T133 239T107 157Q107 98 150 60T250 21Z"></path><path data-c="38" d="M70 417T70 494T124 618T248 666Q319 666 374 624T429 515Q429 485 418 459T392 417T361 389T335 371T324 363L338 354Q352 344 366 334T382 323Q457 264 457 174Q457 95 399 37T249 -22Q159 -22 101 29T43 155Q43 263 172 335L154 348Q133 361 127 368Q70 417 70 494ZM286 386L292 390Q298 394 301 396T311 403T323 413T334 425T345 438T355 454T364 471T369 491T371 513Q371 556 342 586T275 624Q268 625 242 625Q201 625 165 599T128 534Q128 511 141 492T167 463T217 431Q224 426 228 424L286 386ZM250 21Q308 21 350 55T392 137Q392 154 387 169T375 194T353 216T330 234T301 253T274 270Q260 279 244 289T218 306L210 311Q204 311 181 294T133 239T107 157Q107 98 150 60T250 21Z" transform="translate(500,0)"></path></g></g></g></svg></mjx-container></span>，但是参赛体验感极差，因为网还迟到了几分钟，但是差不多半个小时就答完了，但是还是错过了集体合照<del>虽然没啥用</del>。</p>
 <p>更逆天的是妈妈莫名其妙九点多点的外卖莫名其妙的十一点了还没送到…… 店就在校内啊…… 相距只有 1 公里多啊…… 这要十几分钟？骑手的电驴比我跑的都慢啊…… 干脆取消订单去食堂了。</p>
 <p>不过食堂很干净也很香，比去年集训去的某双非强多了……</p>
 <p>遂发朋友圈，结果莫名其妙的得到了老师的点赞，不要哇……</p>
@@ -1053,11 +1163,11 @@ A、B、C 三个，后续得知 A 是内部的，B 是小 L
 拿到气球（真的有哎！）。</p>
 <p>后续 B 题是个约瑟夫模板，小 L
 愣是写了莫名其妙的半个多小时然后莫名其妙的用了双向循环链表才过的。不过好歹莫名其妙的没吃上罚时，而且莫名其妙跑的不算慢。</p>
-<p>C 题因为莫名其妙地没看题<del class="mask">（逃</del> 挂了一发，但是比 B
+<p>C 题因为莫名其妙地没看题<del>（逃</del> 挂了一发，但是比 B
 题写的快。</p>
 <p>后面的比赛全程死磕 D 一道莫名其妙的中模拟（看了一下
 E、F，都不会），最后交了 <span class="math inline"><mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.05ex;" xmlns="http://www.w3.org/2000/svg" width="1.131ex" height="1.557ex" role="img" focusable="false" viewBox="0 -666 500 688"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mn"><path data-c="38" d="M70 417T70 494T124 618T248 666Q319 666 374 624T429 515Q429 485 418 459T392 417T361 389T335 371T324 363L338 354Q352 344 366 334T382 323Q457 264 457 174Q457 95 399 37T249 -22Q159 -22 101 29T43 155Q43 263 172 335L154 348Q133 361 127 368Q70 417 70 494ZM286 386L292 390Q298 394 301 396T311 403T323 413T334 425T345 438T355 454T364 471T369 491T371 513Q371 556 342 586T275 624Q268 625 242 625Q201 625 165 599T128 534Q128 511 141 492T167 463T217 431Q224 426 228 424L286 386ZM250 21Q308 21 350 55T392 137Q392 154 387 169T375 194T353 216T330 234T301 253T274 270Q260 279 244 289T218 306L210 311Q204 311 181 294T133 239T107 157Q107 98 150 60T250 21Z"></path></g></g></g></svg></mjx-container></span>
-发愣是莫名其妙地没过。然后比赛结束了。不过壁莫名其妙地比隔壁莫名其妙高中了但是莫名其妙爆炸的（奶龙题都没过！）的莫名其妙大哥强。</p>
+发愣是莫名其妙地没过。然后比赛结束了。不过比莫名其妙地比隔壁莫名其妙高中了但是莫名其妙爆炸的（奶龙题都没过！）的莫名其妙大哥强。</p>
 <h3 id="讲评">讲评</h3>
 <p>ABCD 都是水题，D 题我想对了，应该还是细节吧。</p>
 <p>后面的题解拍照就好了。</p>
@@ -1083,15 +1193,15 @@ E、F，都不会），最后交了 <span class="math inline"><mjx-container cla
 <h3 id="day-3">Day 3</h3>
 <p>跑到 PS 考 SZTU。</p>
 <h4 id="入场前">入场前</h4>
-<p><del class="mask">百里迢迢</del> 来到现场比赛，然后发现车找不到停车场和考场：)</p>
+<p><del>百里迢迢</del> 来到现场比赛，然后发现车找不到停车场和考场：)</p>
 <p><img src="/images/pyq3.png" alt="朋友圈"></p>
-<p>不过和教练以及本部的二位大佬会合了，然后莫名其妙（我怎么莫名其妙的是个这么莫名其妙的人？）的成了敲代码的。教练<del class="mask">检验</del>了一下
+<p>不过和教练以及本部的二位大佬会合了，然后莫名其妙（我怎么莫名其妙的是个这么莫名其妙的人？）的成了敲代码的。教练<del>检验</del>了一下
 whk，竟然过关了（他本来要求年级前 <span class="math inline"><mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.05ex;" xmlns="http://www.w3.org/2000/svg" width="3.394ex" height="1.557ex" role="img" focusable="false" viewBox="0 -666 1500 688"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mn"><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path><path data-c="30" d="M96 585Q152 666 249 666Q297 666 345 640T423 548Q460 465 460 320Q460 165 417 83Q397 41 362 16T301 -15T250 -22Q224 -22 198 -16T137 16T82 83Q39 165 39 320Q39 494 96 585ZM321 597Q291 629 250 629Q208 629 178 597Q153 571 145 525T137 333Q137 175 145 125T181 46Q209 16 250 16Q290 16 318 46Q347 76 354 130T362 333Q362 478 354 524T321 597Z" transform="translate(500,0)"></path><path data-c="30" d="M96 585Q152 666 249 666Q297 666 345 640T423 548Q460 465 460 320Q460 165 417 83Q397 41 362 16T301 -15T250 -22Q224 -22 198 -16T137 16T82 83Q39 165 39 320Q39 494 96 585ZM321 597Q291 629 250 629Q208 629 178 597Q153 571 145 525T137 333Q137 175 145 125T181 46Q209 16 250 16Q290 16 318 46Q347 76 354 130T362 333Q362 478 354 524T321 597Z" transform="translate(1000,0)"></path></g></g></g></svg></mjx-container></span>，但我们整个初中部就我们一个年级，一共才
 <span class="math inline"><mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.05ex;" xmlns="http://www.w3.org/2000/svg" width="3.394ex" height="1.557ex" role="img" focusable="false" viewBox="0 -666 1500 688"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mn"><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z" transform="translate(500,0)"></path><path data-c="39" d="M352 287Q304 211 232 211Q154 211 104 270T44 396Q42 412 42 436V444Q42 537 111 606Q171 666 243 666Q245 666 249 666T257 665H261Q273 665 286 663T323 651T370 619T413 560Q456 472 456 334Q456 194 396 97Q361 41 312 10T208 -22Q147 -22 108 7T68 93T121 149Q143 149 158 135T173 96Q173 78 164 65T148 49T135 44L131 43Q131 41 138 37T164 27T206 22H212Q272 22 313 86Q352 142 352 280V287ZM244 248Q292 248 321 297T351 430Q351 508 343 542Q341 552 337 562T323 588T293 615T246 625Q208 625 181 598Q160 576 154 546T147 441Q147 358 152 329T172 282Q197 248 244 248Z" transform="translate(1000,0)"></path></g></g></g></svg></mjx-container></span>
 个人…… 还有一个国家一级运动员下午不上课、考试看随机的
 dalao，真・把答题卡丢地上踩两脚就行）</p>
 <p>封面图便摄与场外。</p>
-<p><img src="/images/SZTU.png" alt="封面图"></p>
+<p><img src="/images/SZTU.jpg" alt="封面图"></p>
 <h4 id="场内">场内</h4>
 <p>正式了很多，但是气球组明显效率不高。</p>
 <p>由于考试有 <span class="math inline"><mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.05ex;" xmlns="http://www.w3.org/2000/svg" width="1.131ex" height="1.557ex" role="img" focusable="false" viewBox="0 -666 500 688"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mn"><path data-c="35" d="M164 157Q164 133 148 117T109 101H102Q148 22 224 22Q294 22 326 82Q345 115 345 210Q345 313 318 349Q292 382 260 382H254Q176 382 136 314Q132 307 129 306T114 304Q97 304 95 310Q93 314 93 485V614Q93 664 98 664Q100 666 102 666Q103 666 123 658T178 642T253 634Q324 634 389 662Q397 666 402 666Q410 666 410 648V635Q328 538 205 538Q174 538 149 544L139 546V374Q158 388 169 396T205 412T256 420Q337 420 393 355T449 201Q449 109 385 44T229 -22Q148 -22 99 32T50 154Q50 178 61 192T84 210T107 214Q132 214 148 197T164 157Z"></path></g></g></g></svg></mjx-container></span>
@@ -1100,15 +1210,15 @@ dalao，真・把答题卡丢地上踩两脚就行）</p>
 的结果不一样（UB？）</p>
 <hr>
 <p>先做的 A
-啦，语言入门题。但是莫名其妙（又莫名其妙！）的在线处理会很慢，<del class="mask">经隔壁队的提醒</del>离线就过了。</p>
+啦，语言入门题。但是莫名其妙（又莫名其妙！）的在线处理会很慢，<del>经隔壁队的提醒</del>离线就过了。</p>
 <p>在 A 题莫名其妙的过程中，小 L 突然发现 G
 题只有输出，然后队友飞速把它秒了。</p>
 <p>接着做完 A 之后，小 L 开始拼
 F，但是样例一直没过（莫名其妙的每个答案都大 <span class="math inline"><mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: 0;" xmlns="http://www.w3.org/2000/svg" width="1.131ex" height="1.507ex" role="img" focusable="false" viewBox="0 -666 500 666"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mn"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"></path></g></g></g></svg></mjx-container></span>），考后得知叫什么斯坦纳树，我就说为嘛我
 Floyd 过不了嘛（</p>
-<p>他们考试找 E 题（数学题）的规律和想 J，但是 J 写完之后一直没过，E
+<p>两位队友尝试找 E 题（数学题）的规律和想 J，但是 J 写完之后一直没过，E
 一直没想出来。后续小 L
-接手，一顿提交之后用队列滑动窗口极限过掉了此题（此时距比赛结束还剩不到半个小时），摆脱了队伍成为倒一的厄运，同时得到了隔壁组的紧急<del class="mask">抄袭</del>学习，队友直呼自己是躺赢狗（A
+接手，一顿提交之后用队列滑动窗口极限过掉了此题（此时距比赛结束还剩不到半个小时），摆脱了队伍成为倒一的厄运<del>虽然是倒二</del>，同时得到了隔壁组的紧急<del>抄袭</del>学习，队友直呼自己是躺赢狗（A
 题中的梗）</p>
 <p>与此同时，队友们找到了首 A E
 题的队伍（也是我们集团的），和隔壁队伍等一起沟通后交给小 L 找规律，小 L
@@ -1135,7 +1245,7 @@ Floyd 过不了嘛（</p>
         
             <li>
                 <strong>更新于
-                    :</strong> 2025-06-01 16:28:12
+                    :</strong> 2025-07-23 16:23:14
             </li>
         
         <li>
@@ -1177,12 +1287,12 @@ Floyd 过不了嘛（</p>
 </a><a class="recommended-article-item" href="/2024/02/03/2023-you-ji/" title="2023 游寄" rel="bookmark">
   <img src="/images/2024.jpg" alt="2023 游寄" class="!max-w-none">
   <span class="title">2023 游寄</span>
+</a><a class="recommended-article-item" href="/2025/08/12/wang-luo-shi-zen-yang-dan-sheng-de-jian-jie-osi-qi-ceng-mo-xing-tcp-ip-si-wu-ceng-mo-xing/" title="网络是怎样诞生的？—— 简介 OSI 七层模型 & TCP/IP 四（五）层模型" rel="bookmark">
+  <img src="https://cdn.luogu.com.cn/upload/image_hosting/89yolwir.png" alt="网络是怎样诞生的？—— 简介 OSI 七层模型 & TCP/IP 四（五）层模型" class="!max-w-none">
+  <span class="title">网络是怎样诞生的？—— 简介 OSI 七层模型 & TCP/IP 四（五）层模型</span>
 </a><a class="recommended-article-item" href="/2025/02/08/bo-ke-fu-wu-jiang-ji-gong-gao/" title="【临时置顶】博客服务降级公告" rel="bookmark">
   <img src="https://bu.dusays.com/2023/05/08/645907596997d.gif" alt="【临时置顶】博客服务降级公告" class="!max-w-none">
   <span class="title">【临时置顶】博客服务降级公告</span>
-</a><a class="recommended-article-item" href="/2024/07/29/ti-jie-p10815-mo-ban-kuai-su-du-ru/" title="题解：P10815 【模板】快速读入" rel="bookmark">
-  <img src="/images/P10815.png" alt="题解：P10815 【模板】快速读入" class="!max-w-none">
-  <span class="title">题解：P10815 【模板】快速读入</span>
 </a></div>
    </div>
    <div class="recommended-mobile">
@@ -1211,7 +1321,7 @@ Floyd 过不了嘛（</p>
 						<i class="fa-solid fa-chevron-left"></i>
 					</span>
 					<span class="title flex justify-center items-center">
-						<span class="post-nav-title-item">题解：P1001 A+B Problem</span>
+						<span class="post-nav-title-item truncate max-w-48">题解：P1001 A+B Problem</span>
 						<span class="post-nav-item">上一篇</span>
 					</span>
 				</a>
@@ -1221,7 +1331,7 @@ Floyd 过不了嘛（</p>
 			<div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
 				<a class="next" rel="next" href="/2025/02/08/bo-ke-fu-wu-jiang-ji-gong-gao/">
 					<span class="title flex justify-center items-center">
-						<span class="post-nav-title-item">【临时置顶】博客服务降级公告</span>
+						<span class="post-nav-title-item truncate max-w-48">【临时置顶】博客服务降级公告</span>
 						<span class="post-nav-item">下一篇</span>
 					</span>
 					<span class="right arrow-icon flex justify-center items-center">
@@ -1317,11 +1427,11 @@ Floyd 过不了嘛（</p>
                                         
                                             <p class="post-count space-x-0.5">
                                                 <span>
-                                                    共撰写了 47 篇文章
+                                                    共撰写了 50 篇文章
                                                 </span>
                                                 
                                                     <span>
-                                                        共 38k 字
+                                                        共 47k 字
                                                     </span>
                                                     
                                             </p>
@@ -1350,7 +1460,7 @@ Floyd 过不了嘛（</p>
                             <span class="lg:block text-sm">由 <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg class="relative top-[2px] inline-block align-baseline" version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" class="text-base" href="https://hexo.io">Hexo</a> 驱动</span>
                             <span class="text-sm lg:block">主题&nbsp;<a
                                             class="text-base" target="_blank"
-                                            href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.8.2</a></span>
+                                            href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.8.5</a></span>
                                 
                         </div>
                         
@@ -1426,7 +1536,7 @@ Floyd 过不了嘛（</p>
                                         var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
                                         var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) / minutes);
                                         var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours - diffMinutes * minutes) / seconds);
-                                        document.getElementById("sitetime").innerHTML = " 本站已<s>苟</s>安全运行 " + diffYears +" 年 "+diffDays + " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                                        document.getElementById("sitetime").innerHTML = " 本站已<s>苟</s>安全运行 " + diffYears + " 年 " + diffDays + " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
                                     }/*因为建站时间还没有一年，就将之注释掉了。需要的可以取消*/
                                     siteTime();
                                 </script>
@@ -1439,7 +1549,6 @@ Floyd 过不了嘛（</p>
 
     </div>
 </footer>
-
 		</div>
 	</div>
 
@@ -1541,7 +1650,7 @@ Floyd 过不了嘛（</p>
 </main>
 
 
-<script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.2/files/source/js/build/libs/Swup.min.js" ></script><script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.2/files/source/js/build/libs/SwupSlideTheme.min.js" ></script><script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.2/files/source/js/build/libs/SwupScriptsPlugin.min.js" ></script><script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.2/files/source/js/build/libs/SwupProgressPlugin.min.js" ></script><script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.2/files/source/js/build/libs/SwupScrollPlugin.min.js" ></script><script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.2/files/source/js/build/libs/SwupPreloadPlugin.min.js" ></script>
+<script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/libs/Swup.min.js" ></script><script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/libs/SwupSlideTheme.min.js" ></script><script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/libs/SwupScriptsPlugin.min.js" ></script><script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/libs/SwupProgressPlugin.min.js" ></script><script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/libs/SwupScrollPlugin.min.js" ></script><script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/libs/SwupPreloadPlugin.min.js" ></script>
 <script>
     const swup = new Swup({
         plugins: [
@@ -1564,30 +1673,30 @@ Floyd 过不了嘛（</p>
 
 
 
-	<script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.2/files/source/js/build/tools/imageViewer.js" ></script><script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.2/files/source/js/build/utils.js" ></script><script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.2/files/source/js/build/main.js" ></script><script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.2/files/source/js/build/layouts/navbarShrink.js" ></script><script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.2/files/source/js/build/tools/scrollTopBottom.js" ></script><script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.2/files/source/js/build/tools/lightDarkSwitch.js" ></script><script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.2/files/source/js/build/layouts/categoryList.js" ></script>
+	<script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/tools/imageViewer.js" ></script><script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/utils.js" ></script><script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/main.js" ></script><script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/layouts/navbarShrink.js" ></script><script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/tools/scrollTopBottom.js" ></script><script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/tools/lightDarkSwitch.js" ></script><script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/layouts/categoryList.js" ></script>
 
 
-    <script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.2/files/source/js/build/tools/localSearch.js" ></script>
-
-
-
-    <script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.2/files/source/js/build/tools/codeBlock.js" ></script>
+    <script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/tools/localSearch.js" ></script>
 
 
 
+    <script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/tools/codeBlock.js" ></script>
 
 
 
 
-  <script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.2/files/source/js/build/libs/Typed.min.js" ></script>
-  <script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.2/files/source/js/build/plugins/typed.js" ></script>
+
+
+
+  <script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/libs/Typed.min.js" ></script>
+  <script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/plugins/typed.js" ></script>
 
 
 
     
-        <script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.2/files/source/js/build/libs/mermaid.min.js" ></script>
+        <script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/libs/mermaid.min.js" ></script>
     
-    <script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.2/files/source/js/build/plugins/mermaid.js" ></script>
+    <script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/plugins/mermaid.js" ></script>
 
 
 
@@ -1596,21 +1705,21 @@ Floyd 过不了嘛（</p>
 
 
 
-    <script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.2/files/source/js/build/tools/tocToggle.js" data-swup-reload-script></script><script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.2/files/source/js/build/layouts/toc.js" data-swup-reload-script></script><script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.2/files/source/js/build/plugins/tabs.js" data-swup-reload-script></script>
+    <script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/tools/tocToggle.js" data-swup-reload-script></script><script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/layouts/toc.js" data-swup-reload-script></script><script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/plugins/tabs.js" data-swup-reload-script></script>
 
 
-<script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.2/files/source/js/build/libs/moment-with-locales.min.js" data-swup-reload-script></script>
-<script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.2/files/source/js/build/layouts/essays.js" data-swup-reload-script></script>
+<script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/libs/moment-with-locales.min.js" data-swup-reload-script></script>
+<script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/layouts/essays.js" data-swup-reload-script></script>
 
 
-    <script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.2/files/source/js/build/libs/pangu.min.js" ></script><script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.2/files/source/js/build/plugins/pangu.js" ></script>
+    <script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/libs/pangu.min.js" ></script><script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/plugins/pangu.js" ></script>
 
 
 
 	
 	<div id="aplayer"></div>
-<script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.2/files/source/js/build/libs/APlayer.min.js" ></script>
-<script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.2/files/source/js/build/plugins/aplayer.js" ></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+<script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/libs/APlayer.min.js" ></script>
+<script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/plugins/aplayer.js" ></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 	
 </body>

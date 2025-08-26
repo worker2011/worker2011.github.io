@@ -6,6 +6,116 @@
     <meta name="keywords" content="C, C++, Python">
     
     <meta name="author" content="Leo2011">
+    
+    <!-- Completely eliminate flash of wrong theme -->
+    <script>
+        (function() {
+            const THEME_KEY = "REDEFINE-THEME-STATUS";
+            const DARK = "dark", LIGHT = "light";
+            
+            // Get preferred theme
+            function getTheme() {
+                try {
+                    const saved = localStorage.getItem(THEME_KEY);
+                    if (saved) {
+                        const { isDark } = JSON.parse(saved);
+                        return isDark ? DARK : LIGHT;
+                    }
+                } catch (e) {}
+                
+                return matchMedia("(prefers-color-scheme: dark)").matches ? DARK : LIGHT;
+            }
+            
+            // Apply theme to document
+            function applyTheme(theme) {
+                const isDark = theme === DARK;
+                const root = document.documentElement;
+                
+                // Set data attribute for CSS variables
+                root.setAttribute("data-theme", theme);
+                
+                // Set classes for compatibility
+                root.classList.add(theme);
+                root.classList.remove(isDark ? LIGHT : DARK);
+                root.style.colorScheme = theme;
+            }
+            
+            // Initial application
+            const theme = getTheme();
+            applyTheme(theme);
+            
+            // Listen for system preference changes
+            matchMedia("(prefers-color-scheme: dark)").addEventListener("change", ({ matches }) => {
+                // Only update if using system preference (no localStorage entry)
+                if (!localStorage.getItem(THEME_KEY)) {
+                    applyTheme(matches ? DARK : LIGHT);
+                }
+            });
+            
+            // Set body classes once DOM is ready
+            if (document.readyState !== "loading") {
+                document.body.classList.add(theme + "-mode");
+            } else {
+                document.addEventListener("DOMContentLoaded", () => {
+                    document.body.classList.add(theme + "-mode");
+                    document.body.classList.remove((theme === DARK ? LIGHT : DARK) + "-mode");
+                });
+            }
+        })();
+    </script>
+    
+    <!-- Critical CSS to prevent flash -->
+    <style>
+        :root[data-theme="dark"] {
+            --background-color: #202124;
+            --background-color-transparent: rgba(32, 33, 36, 0.6);
+            --second-background-color: #2d2e32;
+            --third-background-color: #34353a;
+            --third-background-color-transparent: rgba(32, 33, 36, 0.6);
+            --primary-color: #0066CC;
+            --first-text-color: #ffffff;
+            --second-text-color: #eeeeee;
+            --third-text-color: #bebec6;
+            --fourth-text-color: #999999;
+            --default-text-color: #bebec6;
+            --invert-text-color: #373D3F;
+            --border-color: rgba(255, 255, 255, 0.08);
+            --selection-color: #0066CC;
+            --shadow-color-1: rgba(255, 255, 255, 0.08);
+            --shadow-color-2: rgba(255, 255, 255, 0.05);
+        }
+        
+        :root[data-theme="light"] {
+            --background-color: #fff;
+            --background-color-transparent: rgba(255, 255, 255, 0.6);
+            --second-background-color: #f8f8f8;
+            --third-background-color: #f2f2f2;
+            --third-background-color-transparent: rgba(241, 241, 241, 0.6);
+            --primary-color: #0066CC;
+            --first-text-color: #16171a;
+            --second-text-color: #2f3037;
+            --third-text-color: #5e5e5e;
+            --fourth-text-color: #eeeeee;
+            --default-text-color: #373D3F;
+            --invert-text-color: #bebec6;
+            --border-color: rgba(0, 0, 0, 0.08);
+            --selection-color: #0066CC;
+            --shadow-color-1: rgba(0, 0, 0, 0.08);
+            --shadow-color-2: rgba(0, 0, 0, 0.05);
+        }
+        
+        body {
+            background-color: var(--background-color);
+            color: var(--default-text-color);
+        }
+        
+        /* Apply body classes as soon as DOM is ready */
+        :root[data-theme="dark"] body {
+            background-color: var(--background-color);
+            color: var(--default-text-color);
+        }
+    </style>
+    
     <!-- preconnect -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -34,7 +144,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://www.leo2011.eu.org/images/g.jpg">
 <meta property="article:published_time" content="2024-07-29T04:56:40.000Z">
-<meta property="article:modified_time" content="2025-06-01T08:59:26.837Z">
+<meta property="article:modified_time" content="2025-07-19T03:49:03.336Z">
 <meta property="article:author" content="Leo2011">
 <meta property="article:tag" content="C艹">
 <meta name="twitter:card" content="summary">
@@ -54,7 +164,7 @@
         
     </title>
 
-    <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.8.2/files/source/fonts/Chillax/chillax.css">
+    <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/fonts/Chillax/chillax.css">
 
     <!--- Inject Part-->
     
@@ -69,11 +179,11 @@
 
 
     
-        <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.8.2/files/source/css/build/tailwind.css">
+        <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/css/build/tailwind.css">
     
 
-    <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.8.2/files/source/fonts/GeistMono/geist-mono.css">
-    <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.8.2/files/source/fonts/Geist/geist.css">
+    <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/fonts/GeistMono/geist-mono.css">
+    <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/fonts/Geist/geist.css">
     <!--- Font Part-->
     
     
@@ -81,32 +191,32 @@
     
     
     
-        <script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.2/files/source/js/build/libs/anime.min.js" ></script>
+        <script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/libs/anime.min.js" ></script>
     
 
     <script id="hexo-configurations">
     window.config = {"hostname":"www.leo2011.eu.org","root":"/","language":"zh-CN","path":"search.xml"};
-    window.theme = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true,"delete_mask":true,"title_alignment":"left","headings_top_spacing":{"h1":"3.2rem","h2":"2.4rem","h3":"1.9rem","h4":"1.6rem","h5":"1.4rem","h6":"1.3rem"}},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":["警示后人"]},"code_block":{"copy":true,"style":"mac","highlight_theme":{"light":"atom-one-light","dark":"vs2015"},"font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":6,"number":true,"expand":true,"init_open":true},"copyright":{"enable":true,"default":"cc_by_nc_sa"},"lazyload":false,"pangu_js":true,"recommendation":{"enable":true,"title":"推荐阅读","limit":6,"mobile_limit":3,"placeholder":null,"skip_dirs":["/_drafts/","/_data/"]}},"colors":{"primary":"#3A84FF","secondary":null,"default_mode":"light"},"global":{"fonts":{"chinese":{"enable":false,"family":"LXGW WenKai GB Medium","url":"/images/LXGWWenKaiGB-Medium.ttf"},"english":{"enable":false,"family":"Monaspace Xenon Frozen Medium","url":"/images/MonaspaceXenonFrozen-Medium.ttf"},"title":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":true},"scroll_progress":{"bar":true,"percentage":true},"website_counter":{"url":"https://cn.vercount.one/js","enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"single_page":true,"preloader":{"enable":true,"custom_message":null},"open_graph":{"enable":true,"image":"/images/g.jpg","description":"Leo2011 的博客——一个蒟蒻的 OI 日记"},"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/background.jpeg","dark":"/images/bgdark.jpg"},"title":"Leo2011 的博客","subtitle":{"text":["不要总是以为你掌握了整个World，因为可能你只会个 Hello World。","学习，就是发现自己越来越菜的过程。——任宝硕","关于 SPFA，它死了，但它还活着。关于 Dijkstra，它还活着，但它已经死了。"],"hitokoto":{"enable":false,"show_author":false,"api":"https://v1.hitokoto.cn"},"typing_speed":210,"backing_speed":10,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":true,"style":"default","links":{"github":"https://github.com/worker2011/","instagram":null,"zhihu":"https://www.zhihu.com/people/leo2011-46","twitter":null,"email":"mailto:admin@leo2011.eu.org","fa fa-rss":"/atom.xml","fas fa-blog":"https://home.cnblogs.com/u/leo2011","fab fa-blogger":"https://www.luogu.com.cn/user/539066","fas fa-train-subway":"https://www.travellings.cn/go-by-clouds.html"},"qrs":{"weixin":null}}},"plugins":{"feed":{"enable":true},"aplayer":{"enable":true,"type":"fixed","audios":[{"name":"像我这样的人","artist":"毛不易","url":"/images/像我这样的人.mp3","cover":"http://puui.qpic.cn/vpic_cover/n0551ux81rf/n0551ux81rf_hz.jpg/1280","lrc":null},{"name":"Something Just Like This","artist":"The Chainsmokers, Coldplay","url":"https://evan.beee.top/music/Something%20Just%20Like%20This%20-%20The%20Chainsmokers%E3%80%81Coldplay.mp3","cover":"/images/Something Just Like This.jfif"},{"name":"青花瓷","artist":"周杰伦","url":"https://npm.elemecdn.com/anzhiyu-music@1.0.4/青花瓷/青花瓷.mp3","cover":"https://y.qq.com/music/photo_new/T002R300x300M000002eFUFm2XYZ7z_2.jpg?max_age=2592000","lrc":"https://npm.elemecdn.com/anzhiyu-music@1.0.4/青花瓷/青花瓷.lrc"},{"name":"听妈妈的话","artist":"周杰伦","url":"https://npm.elemecdn.com/anzhiyu-music@1.0.2/听妈妈的话/听妈妈的话.mp3","cover":"https://y.qq.com/music/photo_new/T002R300x300M000002jLGWe16Tf1H_1.jpg?max_age=2592000","lrc":"https://npm.elemecdn.com/anzhiyu-music@1.0.2/听妈妈的话/听妈妈的话.lrc"},{"name":"龙卷风","artist":"周杰伦","url":"https://npm.elemecdn.com/anzhiyu-music@1.0.4/龙卷风/龙卷风.mp3","cover":"https://y.qq.com/music/photo_new/T002R300x300M000000f01724fd7TH_1.jpg?max_age=2592000","lrc":"https://npm.elemecdn.com/anzhiyu-music@1.0.4/龙卷风/龙卷风.lrc"},{"name":"本草纲目","artist":"周杰伦","url":"https://npm.elemecdn.com/anzhiyu-music@1.0.4/本草纲目/本草纲目.mp3","cover":"https://y.qq.com/music/photo_new/T002R300x300M000002jLGWe16Tf1H_1.jpg?max_age=2592000","lrc":"https://npm.elemecdn.com/anzhiyu-music@1.0.4/本草纲目/本草纲目.lrc"},{"name":"兰亭序","artist":"周杰伦","url":"https://npm.elemecdn.com/anzhiyu-music@1.0.1/周杰伦/兰亭序/兰亭序.mp3","cover":"https://y.qq.com/music/photo_new/T002R300x300M000002Neh8l0uciQZ_1.jpg?max_age=2592000","lrc":"https://npm.elemecdn.com/anzhiyu-music@1.0.1/周杰伦/兰亭序/兰亭序.lrc"}]},"mermaid":{"enable":true,"version":"11.4.1"}},"version":"2.8.2","navbar":{"auto_hide":true,"color":{"left":"#f78736","right":"#367df7","transparency":35},"width":{"home":"1200px","pages":"1000px"},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"},"Archives":{"path":"/archives","icon":"fa-regular fa-archive"},"tags":{"path":"/tags","icon":"fa fa-tags"},"categories":{"path":"/categories","icon":"fa fa-th"},"RSS":{"path":"/atom.xml","icon":"fa fa-rss"},"开往":{"path":"https://www.travellings.cn/go-by-clouds.html","icon":"fas fa-train-subway"},"友情链接":{"path":"/friends","icon":"fas fa-user-group"},"About":{"path":"/about","icon":"fa-regular fa-user"},"Links":{"icon":"fa-regular fa-link","submenus":{"LTC_Augenstern":"https://www.cnblogs.com/Liu-Tao-Chang","popcoount":"https://www.cnblogs.com/popfront","留言板":"/essays","MBTI 测试":"/MBTI","小空调":"/air-conditioner","论坛":"https://leo2011.flarum.cloud/"}}},"search":{"enable":true,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":"许许多多的平凡加在一起，就成了不平凡。","show_on_mobile":true,"links":{"归档":{"path":"/archives","icon":"fa-regular fa-archive"},"标签":{"path":"/tags","icon":"fa-regular fa-tags"},"分类":{"path":"/categories","icon":"fa-regular fa-folder"},"开往":{"path":"https://www.travellings.cn/go-by-clouds.html","icon":"fas fa-train-subway"}}},"article_date_format":"auto","excerpt_length":200,"categories":{"enable":true,"limit":200},"tags":{"enable":true,"limit":200}},"footerStart":"2023/11/15 19:30:15"};
+    window.theme = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true,"delete_mask":false,"title_alignment":"left","headings_top_spacing":{"h1":"3.2rem","h2":"2.4rem","h3":"1.9rem","h4":"1.6rem","h5":"1.4rem","h6":"1.3rem"}},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":["警示后人"]},"code_block":{"copy":true,"style":"mac","highlight_theme":{"light":"atom-one-light","dark":"vs2015"},"font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":6,"number":true,"expand":true,"init_open":true},"copyright":{"enable":true,"default":"cc_by_nc_sa"},"lazyload":false,"pangu_js":true,"recommendation":{"enable":true,"title":"推荐阅读","limit":6,"mobile_limit":3,"placeholder":null,"skip_dirs":["/_drafts/","/_data/"]}},"colors":{"primary":"#3A84FF","secondary":null,"default_mode":"light"},"global":{"fonts":{"chinese":{"enable":false,"family":"LXGW WenKai GB Medium","url":"/images/LXGWWenKaiGB-Medium.ttf"},"english":{"enable":false,"family":"Monaspace Xenon Frozen Medium","url":"/images/MonaspaceXenonFrozen-Medium.ttf"},"title":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":true},"scroll_progress":{"bar":true,"percentage":true},"website_counter":{"url":"https://cn.vercount.one/js","enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"single_page":true,"preloader":{"enable":true,"custom_message":null},"side_tools":{"gear_rotation":true,"auto_expand":false},"open_graph":{"enable":true,"image":"/images/g.jpg","description":"Leo2011 的博客——一个蒟蒻的 OI 日记"},"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/background.jpeg","dark":"/images/bgdark.jpg"},"title":"Leo2011 的博客","subtitle":{"text":["不要总是以为你掌握了整个World，因为可能你只会个 Hello World。","学习，就是发现自己越来越菜的过程。——任宝硕","关于 SPFA，它死了，但它还活着。关于 Dijkstra，它还活着，但它已经死了。"],"hitokoto":{"enable":false,"show_author":false,"api":"https://v1.hitokoto.cn"},"typing_speed":210,"backing_speed":10,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":true,"style":"default","links":{"github":"https://github.com/worker2011/","instagram":null,"zhihu":"https://www.zhihu.com/people/leo2011-46","twitter":null,"email":"mailto:admin@leo2011.eu.org","fa fa-rss":"/atom.xml","fas fa-blog":"https://home.cnblogs.com/u/leo2011","fab fa-blogger":"https://www.luogu.com.cn/user/539066","fas fa-train-subway":"https://www.travellings.cn/go-by-clouds.html"},"qrs":{"weixin":null}}},"plugins":{"feed":{"enable":true},"aplayer":{"enable":true,"type":"fixed","audios":[{"name":"像我这样的人","artist":"毛不易","url":"/images/像我这样的人.mp3","cover":"http://puui.qpic.cn/vpic_cover/n0551ux81rf/n0551ux81rf_hz.jpg/1280","lrc":null},{"name":"Something Just Like This","artist":"The Chainsmokers, Coldplay","url":"https://evan.beee.top/music/Something%20Just%20Like%20This%20-%20The%20Chainsmokers%E3%80%81Coldplay.mp3","cover":"/images/Something Just Like This.jfif"},{"name":"青花瓷","artist":"周杰伦","url":"https://npm.elemecdn.com/anzhiyu-music@1.0.4/青花瓷/青花瓷.mp3","cover":"https://y.qq.com/music/photo_new/T002R300x300M000002eFUFm2XYZ7z_2.jpg?max_age=2592000","lrc":"https://npm.elemecdn.com/anzhiyu-music@1.0.4/青花瓷/青花瓷.lrc"},{"name":"听妈妈的话","artist":"周杰伦","url":"https://npm.elemecdn.com/anzhiyu-music@1.0.2/听妈妈的话/听妈妈的话.mp3","cover":"https://y.qq.com/music/photo_new/T002R300x300M000002jLGWe16Tf1H_1.jpg?max_age=2592000","lrc":"https://npm.elemecdn.com/anzhiyu-music@1.0.2/听妈妈的话/听妈妈的话.lrc"},{"name":"龙卷风","artist":"周杰伦","url":"https://npm.elemecdn.com/anzhiyu-music@1.0.4/龙卷风/龙卷风.mp3","cover":"https://y.qq.com/music/photo_new/T002R300x300M000000f01724fd7TH_1.jpg?max_age=2592000","lrc":"https://npm.elemecdn.com/anzhiyu-music@1.0.4/龙卷风/龙卷风.lrc"},{"name":"本草纲目","artist":"周杰伦","url":"https://npm.elemecdn.com/anzhiyu-music@1.0.4/本草纲目/本草纲目.mp3","cover":"https://y.qq.com/music/photo_new/T002R300x300M000002jLGWe16Tf1H_1.jpg?max_age=2592000","lrc":"https://npm.elemecdn.com/anzhiyu-music@1.0.4/本草纲目/本草纲目.lrc"},{"name":"兰亭序","artist":"周杰伦","url":"https://npm.elemecdn.com/anzhiyu-music@1.0.1/周杰伦/兰亭序/兰亭序.mp3","cover":"https://y.qq.com/music/photo_new/T002R300x300M000002Neh8l0uciQZ_1.jpg?max_age=2592000","lrc":"https://npm.elemecdn.com/anzhiyu-music@1.0.1/周杰伦/兰亭序/兰亭序.lrc"}]},"mermaid":{"enable":true,"version":"11.4.1"}},"version":"2.8.5","navbar":{"auto_hide":true,"color":{"left":"#f78736","right":"#367df7","transparency":35},"width":{"home":"1200px","pages":"1000px"},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"},"Archives":{"path":"/archives","icon":"fa-regular fa-archive"},"tags":{"path":"/tags","icon":"fa fa-tags"},"categories":{"path":"/categories","icon":"fa fa-th"},"RSS":{"path":"/atom.xml","icon":"fa fa-rss"},"开往":{"path":"https://www.travellings.cn/go-by-clouds.html","icon":"fas fa-train-subway"},"友情链接":{"path":"/friends","icon":"fas fa-user-group"},"About":{"path":"/about","icon":"fa-regular fa-user"},"Links":{"icon":"fa-regular fa-link","submenus":{"LTC_Augenstern":"https://www.cnblogs.com/Liu-Tao-Chang","popcoount":"https://www.cnblogs.com/popfront","留言板":"/essays","MBTI 测试":"/MBTI","小空调":"/air-conditioner","论坛":"https://leo2011.flarum.cloud/"}}},"search":{"enable":true,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":"许许多多的平凡加在一起，就成了不平凡。","show_on_mobile":true,"links":{"归档":{"path":"/archives","icon":"fa-regular fa-archive"},"标签":{"path":"/tags","icon":"fa-regular fa-tags"},"分类":{"path":"/categories","icon":"fa-regular fa-folder"},"开往":{"path":"https://www.travellings.cn/go-by-clouds.html","icon":"fas fa-train-subway"}}},"article_date_format":"auto","excerpt_length":200,"categories":{"enable":true,"limit":200},"tags":{"enable":true,"limit":200}},"footerStart":"2023/11/15 19:30:15"};
     window.lang_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"};
     window.data = {"masonry":false};
   </script>
     
     <!--- Fontawesome Part-->
-    <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.8.2/files/source/fontawesome/fontawesome.min.css">
-    <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.8.2/files/source/fontawesome/brands.min.css">
-    <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.8.2/files/source/fontawesome/solid.min.css">
-    <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.8.2/files/source/fontawesome/regular.min.css">
+    <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/fontawesome/fontawesome.min.css">
+    <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/fontawesome/brands.min.css">
+    <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/fontawesome/solid.min.css">
+    <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/fontawesome/regular.min.css">
     
-        <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.8.2/files/source/fontawesome/thin.min.css">
-    
-    
-        <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.8.2/files/source/fontawesome/light.min.css">
+        <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/fontawesome/thin.min.css">
     
     
-        <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.8.2/files/source/fontawesome/duotone.min.css">
+        <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/fontawesome/light.min.css">
     
     
-        <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.8.2/files/source/fontawesome/sharp-solid.min.css">
+        <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/fontawesome/duotone.min.css">
+    
+    
+        <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/fontawesome/sharp-solid.min.css">
     
 <!-- hexo injector head_end start -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
@@ -403,7 +513,7 @@ mjx-container[display="true"] + br {
         <div class="left">
             
                 <a class="logo-image h-8 w-8 sm:w-10 sm:h-10 mr-3" href="/">
-                    <img src="/images/g.jpg" class="w-full h-full rounded-sm">
+                    <img src="/images/g.jpg" class="w-full h-full rounded-xs">
                 </a>
             
             <a class="logo-title" href="/">
@@ -893,11 +1003,11 @@ mjx-container[display="true"] + br {
         <div class="label text-third-text-color text-sm">标签</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">7</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">8</div>
         <div class="label text-third-text-color text-sm">分类</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">47</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">50</div>
         <div class="label text-third-text-color text-sm">文章</div>
     </a>
 </div>
@@ -952,8 +1062,8 @@ mjx-container[display="true"] + br {
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2025-06-01 16:59:26</span>
-            <span class="mobile">2025-06-01 16:59:26</span>
+            <span class="desktop">2025-07-19 11:49:03</span>
+            <span class="mobile">2025-07-19 11:49:03</span>
             <span class="hover-info">更新</span>
         </span>
     
@@ -1015,14 +1125,14 @@ mjx-container[display="true"] + br {
 
 
 		<div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
-			<p><del class="mask">闲着没事儿水篇 tj</del></p>
+			<p><del>闲着没事儿水篇 tj</del></p>
 <span id="more"></span>
 
 <hr>
 <h1 id="题目大意">题目大意</h1>
 <p>题目大意极其粗暴，记得 <span class="math inline"><mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.186ex;" xmlns="http://www.w3.org/2000/svg" width="26.166ex" height="2.14ex" role="img" focusable="false" viewBox="0 -864 11565.3 946"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="msup"><g data-mml-node="mn"><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path><path data-c="30" d="M96 585Q152 666 249 666Q297 666 345 640T423 548Q460 465 460 320Q460 165 417 83Q397 41 362 16T301 -15T250 -22Q224 -22 198 -16T137 16T82 83Q39 165 39 320Q39 494 96 585ZM321 597Q291 629 250 629Q208 629 178 597Q153 571 145 525T137 333Q137 175 145 125T181 46Q209 16 250 16Q290 16 318 46Q347 76 354 130T362 333Q362 478 354 524T321 597Z" transform="translate(500,0)"></path></g><g data-mml-node="mn" transform="translate(1033,393.1) scale(0.707)"><path data-c="38" d="M70 417T70 494T124 618T248 666Q319 666 374 624T429 515Q429 485 418 459T392 417T361 389T335 371T324 363L338 354Q352 344 366 334T382 323Q457 264 457 174Q457 95 399 37T249 -22Q159 -22 101 29T43 155Q43 263 172 335L154 348Q133 361 127 368Q70 417 70 494ZM286 386L292 390Q298 394 301 396T311 403T323 413T334 425T345 438T355 454T364 471T369 491T371 513Q371 556 342 586T275 624Q268 625 242 625Q201 625 165 599T128 534Q128 511 141 492T167 463T217 431Q224 426 228 424L286 386ZM250 21Q308 21 350 55T392 137Q392 154 387 169T375 194T353 216T330 234T301 253T274 270Q260 279 244 289T218 306L210 311Q204 311 181 294T133 239T107 157Q107 98 150 60T250 21Z"></path></g></g><g data-mml-node="mo" transform="translate(1658.8,0)"><path data-c="D7" d="M630 29Q630 9 609 9Q604 9 587 25T493 118L389 222L284 117Q178 13 175 11Q171 9 168 9Q160 9 154 15T147 29Q147 36 161 51T255 146L359 250L255 354Q174 435 161 449T147 471Q147 480 153 485T168 490Q173 490 175 489Q178 487 284 383L389 278L493 382Q570 459 587 475T609 491Q630 491 630 471Q630 464 620 453T522 355L418 250L522 145Q606 61 618 48T630 29Z"></path></g><g data-mml-node="msup" transform="translate(2659,0)"><g data-mml-node="mn"><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path><path data-c="30" d="M96 585Q152 666 249 666Q297 666 345 640T423 548Q460 465 460 320Q460 165 417 83Q397 41 362 16T301 -15T250 -22Q224 -22 198 -16T137 16T82 83Q39 165 39 320Q39 494 96 585ZM321 597Q291 629 250 629Q208 629 178 597Q153 571 145 525T137 333Q137 175 145 125T181 46Q209 16 250 16Q290 16 318 46Q347 76 354 130T362 333Q362 478 354 524T321 597Z" transform="translate(500,0)"></path></g><g data-mml-node="mn" transform="translate(1033,393.1) scale(0.707)"><path data-c="38" d="M70 417T70 494T124 618T248 666Q319 666 374 624T429 515Q429 485 418 459T392 417T361 389T335 371T324 363L338 354Q352 344 366 334T382 323Q457 264 457 174Q457 95 399 37T249 -22Q159 -22 101 29T43 155Q43 263 172 335L154 348Q133 361 127 368Q70 417 70 494ZM286 386L292 390Q298 394 301 396T311 403T323 413T334 425T345 438T355 454T364 471T369 491T371 513Q371 556 342 586T275 624Q268 625 242 625Q201 625 165 599T128 534Q128 511 141 492T167 463T217 431Q224 426 228 424L286 386ZM250 21Q308 21 350 55T392 137Q392 154 387 169T375 194T353 216T330 234T301 253T274 270Q260 279 244 289T218 306L210 311Q204 311 181 294T133 239T107 157Q107 98 150 60T250 21Z"></path></g></g><g data-mml-node="mo" transform="translate(4373.3,0)"><path data-c="3D" d="M56 347Q56 360 70 367H707Q722 359 722 347Q722 336 708 328L390 327H72Q56 332 56 347ZM56 153Q56 168 72 173H708Q722 163 722 153Q722 140 707 133H70Q56 140 56 153Z"></path></g><g data-mml-node="msup" transform="translate(5429.1,0)"><g data-mml-node="mn"><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path><path data-c="30" d="M96 585Q152 666 249 666Q297 666 345 640T423 548Q460 465 460 320Q460 165 417 83Q397 41 362 16T301 -15T250 -22Q224 -22 198 -16T137 16T82 83Q39 165 39 320Q39 494 96 585ZM321 597Q291 629 250 629Q208 629 178 597Q153 571 145 525T137 333Q137 175 145 125T181 46Q209 16 250 16Q290 16 318 46Q347 76 354 130T362 333Q362 478 354 524T321 597Z" transform="translate(500,0)"></path></g><g data-mml-node="TeXAtom" transform="translate(1033,393.1) scale(0.707)" data-mjx-texclass="ORD"><g data-mml-node="mn"><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path><path data-c="36" d="M42 313Q42 476 123 571T303 666Q372 666 402 630T432 550Q432 525 418 510T379 495Q356 495 341 509T326 548Q326 592 373 601Q351 623 311 626Q240 626 194 566Q147 500 147 364L148 360Q153 366 156 373Q197 433 263 433H267Q313 433 348 414Q372 400 396 374T435 317Q456 268 456 210V192Q456 169 451 149Q440 90 387 34T253 -22Q225 -22 199 -14T143 16T92 75T56 172T42 313ZM257 397Q227 397 205 380T171 335T154 278T148 216Q148 133 160 97T198 39Q222 21 251 21Q302 21 329 59Q342 77 347 104T352 209Q352 289 347 316T329 361Q302 397 257 397Z" transform="translate(500,0)"></path></g></g></g><g data-mml-node="mo" transform="translate(7497,0)"><path data-c="3E" d="M84 520Q84 528 88 533T96 539L99 540Q106 540 253 471T544 334L687 265Q694 260 694 250T687 235Q685 233 395 96L107 -40H101Q83 -38 83 -20Q83 -19 83 -17Q82 -10 98 -1Q117 9 248 71Q326 108 378 132L626 250L378 368Q90 504 86 509Q84 513 84 520Z"></path></g><g data-mml-node="msup" transform="translate(8552.8,0)"><g data-mml-node="mn"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"></path></g><g data-mml-node="TeXAtom" transform="translate(533,363) scale(0.707)" data-mjx-texclass="ORD"><g data-mml-node="mn"><path data-c="33" d="M127 463Q100 463 85 480T69 524Q69 579 117 622T233 665Q268 665 277 664Q351 652 390 611T430 522Q430 470 396 421T302 350L299 348Q299 347 308 345T337 336T375 315Q457 262 457 175Q457 96 395 37T238 -22Q158 -22 100 21T42 130Q42 158 60 175T105 193Q133 193 151 175T169 130Q169 119 166 110T159 94T148 82T136 74T126 70T118 67L114 66Q165 21 238 21Q293 21 321 74Q338 107 338 175V195Q338 290 274 322Q259 328 213 329L171 330L168 332Q166 335 166 348Q166 366 174 366Q202 366 232 371Q266 376 294 413T322 525V533Q322 590 287 612Q265 626 240 626Q208 626 181 615T143 592T132 580H135Q138 579 143 578T153 573T165 566T175 555T183 540T186 520Q186 498 172 481T127 463Z"></path><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z" transform="translate(500,0)"></path></g></g></g><g data-mml-node="mo" transform="translate(10065.1,0)"><path data-c="2212" d="M84 237T84 250T98 270H679Q694 262 694 250T679 230H98Q84 237 84 250Z"></path></g><g data-mml-node="mn" transform="translate(11065.3,0)"><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path></g></g></g></svg></mjx-container></span> 会爆 <code>int</code>，开
 <code>long long</code> 就好。</p>
-<p>于是这个题就变成了一个读入输出优化模板题。<del class="mask">这不又回去了</del>。</p>
+<p>于是这个题就变成了一个读入输出优化模板题。<del>这不又回去了</del>。</p>
 <p>另外，输入输出常数优化也很常用，抢最优解和骗分时都可以用上。</p>
 <h1 id="cincout-版本">cin/cout 版本</h1>
 <h2 id="操作">操作</h2>
@@ -1030,10 +1140,11 @@ mjx-container[display="true"] + br {
 
 <p>第一行开启后就不再兼容 stdio 了，也就是说，只能用
 <code>cin</code>、<code>cout</code>，不能用
-<code>scanf</code>、<code>printf</code> 等 C 语言留下的东西了。</p>
+<code>scanf</code>、<code>printf</code> 等 C
+语言留下的东西了（至少不能混用）。</p>
 <h2 id="原理">原理</h2>
 
-  <div class="note p-4 mb-4 rounded-small info">
+  <div class="note p-4 mb-4 rounded-small markdown-body info">
     <p>Q：为什么要保留 C 语言的东西？ A：因为要保证 C++ 语言对 C
 语言的兼容性（注：C 语言相当于 C++ 它爹），所以 C++
 将这两个的读入输出流绑到了一起。这样是线程安全的。但是，兼容性、安全性、效率经常会有矛盾，这行代码就是从兼容性到取效率。所以，此行代码一旦执行，<code>cin</code>、<code>cout</code>
@@ -1048,7 +1159,7 @@ mjx-container[display="true"] + br {
 <code>iostream</code>）。<code>cin.tie()</code> 默认绑定的是
 <code>&amp;std::cout</code>，这不没了？所以这行代码就是在解除绑定。</p>
 
-  <div class="note p-4 mb-4 rounded-small warning">
+  <div class="note p-4 mb-4 rounded-small markdown-body warning">
     <p>注意：解除绑定后一定要及时 <code>flush</code> 刷新缓冲区（或者是用
 <code>endl</code>，它就是 <code>\n</code> 和 <code>flush</code>
 拼出来的）才能保证先输出 <code>cout</code> 里的再输入。</p>
@@ -1061,13 +1172,13 @@ mjx-container[display="true"] + br {
 <div class="code-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> IOS                      \</span></span><br><span class="line"><span class="meta">	ios::sync_with_stdio(false); \  <span class="comment">// 这里的'\'表示换行</span></span></span><br><span class="line">	cin.<span class="built_in">tie</span>(<span class="literal">nullptr</span>);            \</span><br><span class="line">	cout.<span class="built_in">tie</span>(<span class="literal">nullptr</span>);</span><br></pre></td></tr></tbody></table></figure></div>
 
 <p>main 函数直接调用 <code>IOS</code> 就相当于 3
-行一起上了。<del class="mask">但一般还是跑不过 printf/scanf。</del></p>
+行一起上了。<del>但一般还是跑不过 printf/scanf。</del></p>
 <p>另外，不要用 <code>endl</code>，它会刷新缓冲区，因此比
 <code>\n</code> 慢多了。</p>
 <p>不过这里没啥用（字符串时有大用），这题该 TLE 还是 TLE。</p>
 <h1 id="基础版">基础版</h1>
 
-  <div class="note p-4 mb-4 rounded-small info">
+  <div class="note p-4 mb-4 rounded-small markdown-body info">
     <p>Tips：这货搞 <a class="link" target="_blank" rel="noopener" href="https://leo2011.eu.org/2023/11/25/guan-yu-int128-he-short-ni-xu-yao-zhi-dao-de-yi-qie/">__int128<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a>
 时也有用。</p>
 
@@ -1108,7 +1219,7 @@ mjx-container[display="true"] + br {
 <p>使用如下：</p>
 <div class="code-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">n = <span class="built_in">read</span>&lt;<span class="type">int</span>&gt;();  <span class="comment">// read 没有参数，必须要加</span></span><br><span class="line"><span class="built_in">write</span>&lt;<span class="type">int</span>&gt;(n);  <span class="comment">// 注：write 时 “&lt;int&gt;” 写不写一样，不写会自动识别参数类型</span></span><br><span class="line">w = <span class="built_in">read</span>&lt;<span class="type">long</span> <span class="type">long</span>&gt;();</span><br><span class="line"><span class="built_in">write</span>&lt;<span class="type">long</span> <span class="type">long</span>&gt;(w);</span><br></pre></td></tr></tbody></table></figure></div>
 
-<p>一般这么整够了，但是这<del class="mask">破</del>题还是会 TLE
+<p>一般这么整够了，但是这<del>破</del>题还是会 TLE
 一个点，于是，我们需要更快的方案！</p>
 <h1 id="中端版">中端版</h1>
 <p><code>getchar_unlocked</code></p>
@@ -1116,10 +1227,10 @@ mjx-container[display="true"] + br {
 <p>官方管它叫 “getchar 的非线程安全版本”。鉴于 OI
 题目都是单线程程序（多线程那还了得？），安全性不影响。但以后写能赚 $
 的程序时记得注意不要使用。速度比 <code>getchar</code>
-还要快，<del class="mask">果然安全性与性能不可兼得</del>。同理还有
+还要快，<del>果然安全性与性能不可兼得</del>。同理还有
 <code>putchar_unlocked</code>，替换过后就可以 AC 了～。</p>
 
-  <div class="note p-4 mb-4 rounded-small warning">
+  <div class="note p-4 mb-4 rounded-small markdown-body warning">
     <p>这个函数并不通用，实测 Windows <strong>不可用</strong>，请在 Linux
 （如某谷评测姬）使用～</p>
 
@@ -1140,7 +1251,7 @@ mjx-container[display="true"] + br {
 
 <p>这样就可以把<a class="link" target="_blank" rel="noopener" href="https://www.luogu.com.cn/user/3296">毒瘤<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a>造的毒瘤题的毒瘤数据过掉了～</p>
 
-  <div class="note p-4 mb-4 rounded-small warning">
+  <div class="note p-4 mb-4 rounded-small markdown-body warning">
     <p>这种方法速度最快，但相对麻烦，可读性较差，建议不要使用。</p>
 
   </div>
@@ -1161,7 +1272,7 @@ mjx-container[display="true"] + br {
         
             <li>
                 <strong>更新于
-                    :</strong> 2025-06-01 16:59:26
+                    :</strong> 2025-07-19 11:49:03
             </li>
         
         <li>
@@ -1211,12 +1322,12 @@ mjx-container[display="true"] + br {
 </a><a class="recommended-article-item" href="/2024/06/27/yacs-2020-nian-3-yue-yue-sai-bing-zu-shu-zi-jia-mi/" title="【YACS 2020 年 3 月月赛 丙组】 数字加密" rel="bookmark">
   <img src="/images/数字加密.png" alt="【YACS 2020 年 3 月月赛 丙组】 数字加密" class="!max-w-none">
   <span class="title">【YACS 2020 年 3 月月赛 丙组】 数字加密</span>
-</a><a class="recommended-article-item" href="/2024/02/29/p10189-usaco24feb-maximizing-productivity-b-ti-jie/" title="P10189 [USACO24FEB] Maximizing Productivity B 题解" rel="bookmark">
-  <img src="/images/P10189.png" alt="P10189 [USACO24FEB] Maximizing Productivity B 题解" class="!max-w-none">
-  <span class="title">P10189 [USACO24FEB] Maximizing Productivity B 题解</span>
 </a><a class="recommended-article-item" href="/2024/06/27/yacs-2021-nian-5-yue-yue-sai-bing-zu-zhi-shu-zao-lin/" title="【YACS 2021 年 5 月月赛 丙组】植树造林" rel="bookmark">
   <img src="/images/植树造林.png" alt="【YACS 2021 年 5 月月赛 丙组】植树造林" class="!max-w-none">
   <span class="title">【YACS 2021 年 5 月月赛 丙组】植树造林</span>
+</a><a class="recommended-article-item" href="/2024/02/29/p10189-usaco24feb-maximizing-productivity-b-ti-jie/" title="P10189 [USACO24FEB] Maximizing Productivity B 题解" rel="bookmark">
+  <img src="/images/P10189.png" alt="P10189 [USACO24FEB] Maximizing Productivity B 题解" class="!max-w-none">
+  <span class="title">P10189 [USACO24FEB] Maximizing Productivity B 题解</span>
 </a></div>
    </div>
    <div class="recommended-mobile">
@@ -1245,7 +1356,7 @@ mjx-container[display="true"] + br {
 						<i class="fa-solid fa-chevron-left"></i>
 					</span>
 					<span class="title flex justify-center items-center">
-						<span class="post-nav-title-item">题解：AT_abc365_c [ABC365C] Transportation Expenses </span>
+						<span class="post-nav-title-item truncate max-w-48">题解：AT_abc365_c [ABC365C] Transportation Expenses </span>
 						<span class="post-nav-item">上一篇</span>
 					</span>
 				</a>
@@ -1255,7 +1366,7 @@ mjx-container[display="true"] + br {
 			<div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
 				<a class="next" rel="next" href="/2024/07/13/ti-jie-at-abc362-d-abc362d-shortest-path-3/">
 					<span class="title flex justify-center items-center">
-						<span class="post-nav-title-item">题解：AT_abc362_d [ABC362D] Shortest Path 3</span>
+						<span class="post-nav-title-item truncate max-w-48">题解：AT_abc362_d [ABC362D] Shortest Path 3</span>
 						<span class="post-nav-item">下一篇</span>
 					</span>
 					<span class="right arrow-icon flex justify-center items-center">
@@ -1351,11 +1462,11 @@ mjx-container[display="true"] + br {
                                         
                                             <p class="post-count space-x-0.5">
                                                 <span>
-                                                    共撰写了 47 篇文章
+                                                    共撰写了 50 篇文章
                                                 </span>
                                                 
                                                     <span>
-                                                        共 38k 字
+                                                        共 47k 字
                                                     </span>
                                                     
                                             </p>
@@ -1384,7 +1495,7 @@ mjx-container[display="true"] + br {
                             <span class="lg:block text-sm">由 <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg class="relative top-[2px] inline-block align-baseline" version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" class="text-base" href="https://hexo.io">Hexo</a> 驱动</span>
                             <span class="text-sm lg:block">主题&nbsp;<a
                                             class="text-base" target="_blank"
-                                            href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.8.2</a></span>
+                                            href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.8.5</a></span>
                                 
                         </div>
                         
@@ -1460,7 +1571,7 @@ mjx-container[display="true"] + br {
                                         var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
                                         var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) / minutes);
                                         var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours - diffMinutes * minutes) / seconds);
-                                        document.getElementById("sitetime").innerHTML = " 本站已<s>苟</s>安全运行 " + diffYears +" 年 "+diffDays + " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                                        document.getElementById("sitetime").innerHTML = " 本站已<s>苟</s>安全运行 " + diffYears + " 年 " + diffDays + " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
                                     }/*因为建站时间还没有一年，就将之注释掉了。需要的可以取消*/
                                     siteTime();
                                 </script>
@@ -1473,7 +1584,6 @@ mjx-container[display="true"] + br {
 
     </div>
 </footer>
-
 		</div>
 	</div>
 
@@ -1575,7 +1685,7 @@ mjx-container[display="true"] + br {
 </main>
 
 
-<script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.2/files/source/js/build/libs/Swup.min.js" ></script><script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.2/files/source/js/build/libs/SwupSlideTheme.min.js" ></script><script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.2/files/source/js/build/libs/SwupScriptsPlugin.min.js" ></script><script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.2/files/source/js/build/libs/SwupProgressPlugin.min.js" ></script><script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.2/files/source/js/build/libs/SwupScrollPlugin.min.js" ></script><script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.2/files/source/js/build/libs/SwupPreloadPlugin.min.js" ></script>
+<script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/libs/Swup.min.js" ></script><script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/libs/SwupSlideTheme.min.js" ></script><script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/libs/SwupScriptsPlugin.min.js" ></script><script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/libs/SwupProgressPlugin.min.js" ></script><script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/libs/SwupScrollPlugin.min.js" ></script><script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/libs/SwupPreloadPlugin.min.js" ></script>
 <script>
     const swup = new Swup({
         plugins: [
@@ -1598,30 +1708,30 @@ mjx-container[display="true"] + br {
 
 
 
-	<script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.2/files/source/js/build/tools/imageViewer.js" ></script><script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.2/files/source/js/build/utils.js" ></script><script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.2/files/source/js/build/main.js" ></script><script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.2/files/source/js/build/layouts/navbarShrink.js" ></script><script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.2/files/source/js/build/tools/scrollTopBottom.js" ></script><script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.2/files/source/js/build/tools/lightDarkSwitch.js" ></script><script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.2/files/source/js/build/layouts/categoryList.js" ></script>
+	<script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/tools/imageViewer.js" ></script><script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/utils.js" ></script><script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/main.js" ></script><script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/layouts/navbarShrink.js" ></script><script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/tools/scrollTopBottom.js" ></script><script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/tools/lightDarkSwitch.js" ></script><script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/layouts/categoryList.js" ></script>
 
 
-    <script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.2/files/source/js/build/tools/localSearch.js" ></script>
-
-
-
-    <script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.2/files/source/js/build/tools/codeBlock.js" ></script>
+    <script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/tools/localSearch.js" ></script>
 
 
 
+    <script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/tools/codeBlock.js" ></script>
 
 
 
 
-  <script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.2/files/source/js/build/libs/Typed.min.js" ></script>
-  <script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.2/files/source/js/build/plugins/typed.js" ></script>
+
+
+
+  <script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/libs/Typed.min.js" ></script>
+  <script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/plugins/typed.js" ></script>
 
 
 
     
-        <script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.2/files/source/js/build/libs/mermaid.min.js" ></script>
+        <script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/libs/mermaid.min.js" ></script>
     
-    <script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.2/files/source/js/build/plugins/mermaid.js" ></script>
+    <script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/plugins/mermaid.js" ></script>
 
 
 
@@ -1630,21 +1740,21 @@ mjx-container[display="true"] + br {
 
 
 
-    <script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.2/files/source/js/build/tools/tocToggle.js" data-swup-reload-script></script><script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.2/files/source/js/build/layouts/toc.js" data-swup-reload-script></script><script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.2/files/source/js/build/plugins/tabs.js" data-swup-reload-script></script>
+    <script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/tools/tocToggle.js" data-swup-reload-script></script><script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/layouts/toc.js" data-swup-reload-script></script><script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/plugins/tabs.js" data-swup-reload-script></script>
 
 
-<script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.2/files/source/js/build/libs/moment-with-locales.min.js" data-swup-reload-script></script>
-<script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.2/files/source/js/build/layouts/essays.js" data-swup-reload-script></script>
+<script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/libs/moment-with-locales.min.js" data-swup-reload-script></script>
+<script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/layouts/essays.js" data-swup-reload-script></script>
 
 
-    <script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.2/files/source/js/build/libs/pangu.min.js" ></script><script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.2/files/source/js/build/plugins/pangu.js" ></script>
+    <script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/libs/pangu.min.js" ></script><script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/plugins/pangu.js" ></script>
 
 
 
 	
 	<div id="aplayer"></div>
-<script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.2/files/source/js/build/libs/APlayer.min.js" ></script>
-<script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.2/files/source/js/build/plugins/aplayer.js" ></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+<script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/libs/APlayer.min.js" ></script>
+<script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/plugins/aplayer.js" ></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 	
 </body>
