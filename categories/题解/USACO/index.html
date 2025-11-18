@@ -997,15 +997,15 @@ mjx-container[display="true"] + br {
 
         <div class="statistics flex justify-around my-2.5">
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">8</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">12</div>
         <div class="label text-third-text-color text-sm">标签</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">8</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">14</div>
         <div class="label text-third-text-color text-sm">分类</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">50</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">54</div>
         <div class="label text-third-text-color text-sm">文章</div>
     </a>
 </div>
@@ -1036,7 +1036,7 @@ mjx-container[display="true"] + br {
         <section class="archive-item mb-spacing-unit last:mb-0">
             <div class="archive-item-header flex flex-row items-center mb-2">
                 <span class="archive-year font-semibold text-3xl mr-2">2024</span>
-                <span class="archive-year-post-count text-xs md:text-sm font-bold rounded-small bg-third-background-color py-[2px] px-[10px] border border-border-color">1</span>
+                <span class="archive-year-post-count text-xs md:text-sm font-bold rounded-small bg-third-background-color py-[2px] px-[10px] border border-border-color">5</span>
             </div>
             
             <ul class="article-list pl-0 md:pl-8 text-lg leading-[1.5]">
@@ -1044,10 +1044,53 @@ mjx-container[display="true"] + br {
                     
                     
                          <!-- Close the previous LI if not the first item -->
+                        <li class="article-item space-y-2 px-6 pt-10 pb-2 text-xl relative border-l-2 border-border-color" date-is='08-29'>
+                    
+                    <a href="/2024/082953495.html" class="block w-fit">
+                        <span class="article-title my-0.5 text-2xl">题解：P9938 [USACO21OPEN] Acowdemia II B</span>
+                    </a>
+                    
+                
+                    
+                    
+                        
+                            </li>
+                         <!-- Close the previous LI if not the first item -->
+                        <li class="article-item space-y-2 px-6 pt-10 pb-2 text-xl relative border-l-2 border-border-color" date-is='05-25'>
+                    
+                    <a href="/2024/052548112.html" class="block w-fit">
+                        <span class="article-title my-0.5 text-2xl">题解：P8267 [USACO22OPEN] Counting Liars B &amp;  U208878 晴天</span>
+                    </a>
+                    
+                
+                    
+                    
+                        
+                            </li>
+                         <!-- Close the previous LI if not the first item -->
                         <li class="article-item space-y-2 px-6 pt-10 pb-2 text-xl relative border-l-2 border-border-color" date-is='02-29'>
                     
-                    <a href="/2024/02/29/p10189-usaco24feb-maximizing-productivity-b-ti-jie/" class="block w-fit">
+                    <a href="/2024/022950547.html" class="block w-fit">
+                        <span class="article-title my-0.5 text-2xl">P10187 [USACO24FEB] Palindrome Game B 题解</span>
+                    </a>
+                    
+                
+                    
+                    
+                    <a href="/2024/022963250.html" class="block w-fit">
                         <span class="article-title my-0.5 text-2xl">P10189 [USACO24FEB] Maximizing Productivity B 题解</span>
+                    </a>
+                    
+                
+                    
+                    
+                        
+                            </li>
+                         <!-- Close the previous LI if not the first item -->
+                        <li class="article-item space-y-2 px-6 pt-10 pb-2 text-xl relative border-l-2 border-border-color" date-is='01-18'>
+                    
+                    <a href="/2024/011837924.html" class="block w-fit">
+                        <span class="article-title my-0.5 text-2xl">P9012 [USACO23JAN] Moo Operations B 题解</span>
                     </a>
                     
                 
@@ -1100,11 +1143,11 @@ mjx-container[display="true"] + br {
                                         
                                             <p class="post-count space-x-0.5">
                                                 <span>
-                                                    共撰写了 50 篇文章
+                                                    共撰写了 54 篇文章
                                                 </span>
                                                 
                                                     <span>
-                                                        共 47k 字
+                                                        共 58k 字
                                                     </span>
                                                     
                                             </p>
@@ -1209,7 +1252,7 @@ mjx-container[display="true"] + br {
                                         var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
                                         var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) / minutes);
                                         var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours - diffMinutes * minutes) / seconds);
-                                        document.getElementById("sitetime").innerHTML = " 本站已<s>苟</s>安全运行 " + diffYears + " 年 " + diffDays + " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                                        document.getElementById("sitetime").innerHTML = " 本站已<s>苟</s>安全运行 " + diffYears +" 年 "+diffDays + " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
                                     }/*因为建站时间还没有一年，就将之注释掉了。需要的可以取消*/
                                     siteTime();
                                 </script>
@@ -1222,6 +1265,7 @@ mjx-container[display="true"] + br {
 
     </div>
 </footer>
+
 		</div>
 	</div>
 

@@ -1,0 +1,1701 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="C, C++, Python">
+    
+    <meta name="author" content="Leo2011">
+    
+    <!-- Completely eliminate flash of wrong theme -->
+    <script>
+        (function() {
+            const THEME_KEY = "REDEFINE-THEME-STATUS";
+            const DARK = "dark", LIGHT = "light";
+            
+            // Get preferred theme
+            function getTheme() {
+                try {
+                    const saved = localStorage.getItem(THEME_KEY);
+                    if (saved) {
+                        const { isDark } = JSON.parse(saved);
+                        return isDark ? DARK : LIGHT;
+                    }
+                } catch (e) {}
+                
+                return matchMedia("(prefers-color-scheme: dark)").matches ? DARK : LIGHT;
+            }
+            
+            // Apply theme to document
+            function applyTheme(theme) {
+                const isDark = theme === DARK;
+                const root = document.documentElement;
+                
+                // Set data attribute for CSS variables
+                root.setAttribute("data-theme", theme);
+                
+                // Set classes for compatibility
+                root.classList.add(theme);
+                root.classList.remove(isDark ? LIGHT : DARK);
+                root.style.colorScheme = theme;
+            }
+            
+            // Initial application
+            const theme = getTheme();
+            applyTheme(theme);
+            
+            // Listen for system preference changes
+            matchMedia("(prefers-color-scheme: dark)").addEventListener("change", ({ matches }) => {
+                // Only update if using system preference (no localStorage entry)
+                if (!localStorage.getItem(THEME_KEY)) {
+                    applyTheme(matches ? DARK : LIGHT);
+                }
+            });
+            
+            // Set body classes once DOM is ready
+            if (document.readyState !== "loading") {
+                document.body.classList.add(theme + "-mode");
+            } else {
+                document.addEventListener("DOMContentLoaded", () => {
+                    document.body.classList.add(theme + "-mode");
+                    document.body.classList.remove((theme === DARK ? LIGHT : DARK) + "-mode");
+                });
+            }
+        })();
+    </script>
+    
+    <!-- Critical CSS to prevent flash -->
+    <style>
+        :root[data-theme="dark"] {
+            --background-color: #202124;
+            --background-color-transparent: rgba(32, 33, 36, 0.6);
+            --second-background-color: #2d2e32;
+            --third-background-color: #34353a;
+            --third-background-color-transparent: rgba(32, 33, 36, 0.6);
+            --primary-color: #0066CC;
+            --first-text-color: #ffffff;
+            --second-text-color: #eeeeee;
+            --third-text-color: #bebec6;
+            --fourth-text-color: #999999;
+            --default-text-color: #bebec6;
+            --invert-text-color: #373D3F;
+            --border-color: rgba(255, 255, 255, 0.08);
+            --selection-color: #0066CC;
+            --shadow-color-1: rgba(255, 255, 255, 0.08);
+            --shadow-color-2: rgba(255, 255, 255, 0.05);
+        }
+        
+        :root[data-theme="light"] {
+            --background-color: #fff;
+            --background-color-transparent: rgba(255, 255, 255, 0.6);
+            --second-background-color: #f8f8f8;
+            --third-background-color: #f2f2f2;
+            --third-background-color-transparent: rgba(241, 241, 241, 0.6);
+            --primary-color: #0066CC;
+            --first-text-color: #16171a;
+            --second-text-color: #2f3037;
+            --third-text-color: #5e5e5e;
+            --fourth-text-color: #eeeeee;
+            --default-text-color: #373D3F;
+            --invert-text-color: #bebec6;
+            --border-color: rgba(0, 0, 0, 0.08);
+            --selection-color: #0066CC;
+            --shadow-color-1: rgba(0, 0, 0, 0.08);
+            --shadow-color-2: rgba(0, 0, 0, 0.05);
+        }
+        
+        body {
+            background-color: var(--background-color);
+            color: var(--default-text-color);
+        }
+        
+        /* Apply body classes as soon as DOM is ready */
+        :root[data-theme="dark"] body {
+            background-color: var(--background-color);
+            color: var(--default-text-color);
+        }
+    </style>
+    
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    
+        
+        
+        
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="https://www.leo2011.eu.org/2024/09017377.html"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    
+    
+    
+        
+        <meta name="description" content="Leo2011 的博客——一个蒟蒻的 OI 日记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2024&#x2F;09&#x2F;01 开学前夕，发一篇大水文">
+<meta property="og:url" content="https://www.leo2011.eu.org/2024/09017377.html">
+<meta property="og:site_name" content="Leo2011的博客">
+<meta property="og:description" content="Leo2011 的博客——一个蒟蒻的 OI 日记">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://www.leo2011.eu.org/images/g.jpg">
+<meta property="article:published_time" content="2024-09-01T10:32:39.000Z">
+<meta property="article:modified_time" content="2025-11-18T06:51:05.438Z">
+<meta property="article:author" content="Leo2011">
+<meta property="article:tag" content="C, C++, Python">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.leo2011.eu.org/images/g.jpg">
+    
+    
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/images/g.jpg" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/g.jpg">
+    <meta name="theme-color" content="#3A84FF">
+    <link rel="shortcut icon" href="/images/g.jpg">
+    <!--- Page Info-->
+    
+    <title>
+        
+            2024/09/01 开学前夕，发一篇大水文 | Leo2011 的博客
+        
+    </title>
+
+    <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/fonts/Chillax/chillax.css">
+
+    <!--- Inject Part-->
+    
+        
+            
+    
+            
+    
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    
+        <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/css/build/tailwind.css">
+    
+
+    <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/fonts/GeistMono/geist-mono.css">
+    <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/fonts/Geist/geist.css">
+    <!--- Font Part-->
+    
+    
+    
+    
+    
+    
+        <script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/libs/anime.min.js" ></script>
+    
+
+    <script id="hexo-configurations">
+    window.config = {"hostname":"www.leo2011.eu.org","root":"/","language":"zh-CN","path":"search.xml"};
+    window.theme = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true,"delete_mask":false,"title_alignment":"left","headings_top_spacing":{"h1":"3.2rem","h2":"2.4rem","h3":"1.9rem","h4":"1.6rem","h5":"1.4rem","h6":"1.3rem"}},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":["警示后人"]},"code_block":{"copy":true,"style":"mac","highlight_theme":{"light":"atom-one-light","dark":"vs2015"},"font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":6,"number":true,"expand":true,"init_open":true},"copyright":{"enable":true,"default":"cc_by_nc_sa"},"lazyload":false,"pangu_js":true,"recommendation":{"enable":true,"title":"推荐阅读","limit":6,"mobile_limit":3,"placeholder":null,"skip_dirs":["/_drafts/","/_data/"]}},"colors":{"primary":"#3A84FF","secondary":null,"default_mode":"light"},"global":{"fonts":{"chinese":{"enable":false,"family":"LXGW WenKai GB Medium","url":"/images/LXGWWenKaiGB-Medium.ttf"},"english":{"enable":false,"family":"Monaspace Xenon Frozen Medium","url":"/images/MonaspaceXenonFrozen-Medium.ttf"},"title":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":true},"scroll_progress":{"bar":true,"percentage":true},"website_counter":{"url":"https://cn.vercount.one/js","enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"single_page":true,"preloader":{"enable":true,"custom_message":null},"side_tools":{"gear_rotation":true,"auto_expand":false},"open_graph":{"enable":true,"image":"/images/g.jpg","description":"Leo2011 的博客——一个蒟蒻的 OI 日记"},"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/background.jpeg","dark":"/images/bgdark.jpg"},"title":"Leo2011 的博客","subtitle":{"text":["不要总是以为你掌握了整个World，因为可能你只会个 Hello World。","学习，就是发现自己越来越菜的过程。——任宝硕","关于 SPFA，它死了，但它还活着。关于 Dijkstra，它还活着，但它已经死了。"],"hitokoto":{"enable":false,"show_author":false,"api":"https://v1.hitokoto.cn"},"typing_speed":210,"backing_speed":10,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":true,"style":"default","links":{"github":"https://github.com/worker2011/","instagram":null,"zhihu":"https://www.zhihu.com/people/leo2011-46","twitter":null,"email":"mailto:admin@leo2011.eu.org","fa fa-rss":"/atom.xml","fas fa-blog":"https://home.cnblogs.com/u/leo2011","fab fa-blogger":"https://www.luogu.com.cn/user/539066","fas fa-train-subway":"https://www.travellings.cn/go-by-clouds.html"},"qrs":{"weixin":null}}},"plugins":{"feed":{"enable":true},"aplayer":{"enable":true,"type":"fixed","audios":[{"name":"像我这样的人","artist":"毛不易","url":"/images/像我这样的人.mp3","cover":"http://puui.qpic.cn/vpic_cover/n0551ux81rf/n0551ux81rf_hz.jpg/1280","lrc":null},{"name":"Something Just Like This","artist":"The Chainsmokers, Coldplay","url":"https://evan.beee.top/music/Something%20Just%20Like%20This%20-%20The%20Chainsmokers%E3%80%81Coldplay.mp3","cover":"/images/Something Just Like This.jfif"},{"name":"青花瓷","artist":"周杰伦","url":"https://npm.elemecdn.com/anzhiyu-music@1.0.4/青花瓷/青花瓷.mp3","cover":"https://y.qq.com/music/photo_new/T002R300x300M000002eFUFm2XYZ7z_2.jpg?max_age=2592000","lrc":"https://npm.elemecdn.com/anzhiyu-music@1.0.4/青花瓷/青花瓷.lrc"},{"name":"听妈妈的话","artist":"周杰伦","url":"https://npm.elemecdn.com/anzhiyu-music@1.0.2/听妈妈的话/听妈妈的话.mp3","cover":"https://y.qq.com/music/photo_new/T002R300x300M000002jLGWe16Tf1H_1.jpg?max_age=2592000","lrc":"https://npm.elemecdn.com/anzhiyu-music@1.0.2/听妈妈的话/听妈妈的话.lrc"},{"name":"龙卷风","artist":"周杰伦","url":"https://npm.elemecdn.com/anzhiyu-music@1.0.4/龙卷风/龙卷风.mp3","cover":"https://y.qq.com/music/photo_new/T002R300x300M000000f01724fd7TH_1.jpg?max_age=2592000","lrc":"https://npm.elemecdn.com/anzhiyu-music@1.0.4/龙卷风/龙卷风.lrc"},{"name":"本草纲目","artist":"周杰伦","url":"https://npm.elemecdn.com/anzhiyu-music@1.0.4/本草纲目/本草纲目.mp3","cover":"https://y.qq.com/music/photo_new/T002R300x300M000002jLGWe16Tf1H_1.jpg?max_age=2592000","lrc":"https://npm.elemecdn.com/anzhiyu-music@1.0.4/本草纲目/本草纲目.lrc"},{"name":"兰亭序","artist":"周杰伦","url":"https://npm.elemecdn.com/anzhiyu-music@1.0.1/周杰伦/兰亭序/兰亭序.mp3","cover":"https://y.qq.com/music/photo_new/T002R300x300M000002Neh8l0uciQZ_1.jpg?max_age=2592000","lrc":"https://npm.elemecdn.com/anzhiyu-music@1.0.1/周杰伦/兰亭序/兰亭序.lrc"}]},"mermaid":{"enable":true,"version":"11.4.1"}},"version":"2.8.5","navbar":{"auto_hide":true,"color":{"left":"#f78736","right":"#367df7","transparency":35},"width":{"home":"1200px","pages":"1000px"},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"},"Archives":{"path":"/archives","icon":"fa-regular fa-archive"},"tags":{"path":"/tags","icon":"fa fa-tags"},"categories":{"path":"/categories","icon":"fa fa-th"},"RSS":{"path":"/atom.xml","icon":"fa fa-rss"},"开往":{"path":"https://www.travellings.cn/go-by-clouds.html","icon":"fas fa-train-subway"},"友情链接":{"path":"/friends","icon":"fas fa-user-group"},"About":{"path":"/about","icon":"fa-regular fa-user"},"Links":{"icon":"fa-regular fa-link","submenus":{"LTC_Augenstern":"https://www.cnblogs.com/Liu-Tao-Chang","popcoount":"https://www.cnblogs.com/popfront","留言板":"/essays","MBTI 测试":"/MBTI","小空调":"/air-conditioner","论坛":"https://leo2011.flarum.cloud/"}}},"search":{"enable":true,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":"许许多多的平凡加在一起，就成了不平凡。","show_on_mobile":true,"links":{"归档":{"path":"/archives","icon":"fa-regular fa-archive"},"标签":{"path":"/tags","icon":"fa-regular fa-tags"},"分类":{"path":"/categories","icon":"fa-regular fa-folder"},"开往":{"path":"https://www.travellings.cn/go-by-clouds.html","icon":"fas fa-train-subway"}}},"article_date_format":"auto","excerpt_length":200,"categories":{"enable":true,"limit":200},"tags":{"enable":true,"limit":200}},"footerStart":"2023/11/15 19:30:15"};
+    window.lang_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"};
+    window.data = {"masonry":false};
+  </script>
+    
+    <!--- Fontawesome Part-->
+    <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/fontawesome/fontawesome.min.css">
+    <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/fontawesome/brands.min.css">
+    <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/fontawesome/solid.min.css">
+    <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/fontawesome/regular.min.css">
+    
+        <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/fontawesome/thin.min.css">
+    
+    
+        <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/fontawesome/light.min.css">
+    
+    
+        <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/fontawesome/duotone.min.css">
+    
+    
+        <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/fontawesome/sharp-solid.min.css">
+    
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.0.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style><link rel="alternate" href="/atom.xml" title="Leo2011的博客" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+
+
+<body>
+	<!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="progress-bar-container">
+	
+	<span class="scroll-progress-bar"></span>
+	
+
+	
+	<span class="pjax-progress-bar"></span>
+	<!--        <span class="swup-progress-icon">-->
+	<!--            <i class="fa-solid fa-circle-notch fa-spin"></i>-->
+	<!--        </span>-->
+	
+</div>
+
+<style>
+    :root {
+        --preloader-background-color: #fff;
+        --preloader-text-color: #000;
+    }
+
+    @media (prefers-color-scheme: dark) {
+        :root {
+            --preloader-background-color: #202124;
+            --preloader-text-color: #fff;
+        }
+    }
+
+    @media (prefers-color-scheme: light) {
+        :root {
+            --preloader-background-color: #fff;
+            --preloader-text-color: #000;
+        }
+    }
+
+    @media (max-width: 600px) {
+        .ml13 {
+            font-size: 2.6rem !important; /* Adjust this value as needed */
+        }
+    }
+
+    .preloader {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem; /* Tailwind 'gap-4' is 1rem */
+        align-items: center;
+        justify-content: center;
+        position: fixed;
+        padding: 12px;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh; /* 'h-screen' is 100% of the viewport height */
+        background-color: var(--preloader-background-color);
+        z-index: 1100; /* 'z-[1100]' sets the z-index */
+        transition: opacity 0.2s ease-in-out;
+    }
+
+    .ml13 {
+        font-size: 3.2rem;
+        /* text-transform: uppercase; */
+        color: var(--preloader-text-color);
+        letter-spacing: -1px;
+        font-weight: 500;
+        font-family: 'Chillax-Variable', sans-serif;
+        text-align: center;
+    }
+
+    .ml13 .word {
+        display: inline-flex;
+        flex-wrap: wrap;
+        white-space: nowrap;
+    }
+
+    .ml13 .letter {
+        display: inline-block;
+        line-height: 1em;
+    }
+</style>
+
+<div class="preloader">
+    <h2 class="ml13">
+        Leo2011 的博客
+    </h2>
+    <script>
+        var textWrapper = document.querySelector('.ml13');
+        // Split text into words
+        var words = textWrapper.textContent.trim().split(' ');
+
+        // Clear the existing content
+        textWrapper.innerHTML = '';
+
+        // Wrap each word and its letters in spans
+        words.forEach(function(word) {
+            var wordSpan = document.createElement('span');
+            wordSpan.classList.add('word');
+            wordSpan.innerHTML = word.replace(/\S/g, "<span class='letter'>$&</span>");
+            textWrapper.appendChild(wordSpan);
+            textWrapper.appendChild(document.createTextNode(' ')); // Add space between words
+        });
+
+        var animation = anime.timeline({ loop: true })
+            .add({
+                targets: '.ml13 .letter',
+                translateY: [20, 0],
+                translateZ: 0,
+                opacity: [0, 1],
+                filter: ['blur(5px)', 'blur(0px)'],
+                easing: "easeOutExpo",
+                duration: 1200,
+                delay: (el, i) => 300 + 20 * i,
+            })
+            .add({
+                targets: '.ml13 .letter',
+                translateY: [0, -20],
+                opacity: [1, 0],
+                filter: ['blur(0px)', 'blur(5px)'],
+                easing: "easeInExpo",
+                duration: 1000,
+                delay: (el, i) => 15 * i,
+                complete: function() {
+                    hidePreloader();
+                }
+            }, '-=700');
+
+
+        let themeStatus = JSON.parse(localStorage.getItem('REDEFINE-THEME-STATUS'))?.isDark;
+
+        // If the theme status is not found in local storage, check the preferred color scheme
+        if (themeStatus === undefined || themeStatus === null) {
+            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                themeStatus = 'dark';
+            } else {
+                themeStatus = 'light';
+            }
+        }
+
+        // Now you can use the themeStatus variable in your code
+        if (themeStatus) {
+            document.documentElement.style.setProperty('--preloader-background-color', '#202124');
+            document.documentElement.style.setProperty('--preloader-text-color', '#fff');
+        } else {
+            document.documentElement.style.setProperty('--preloader-background-color', '#fff');
+            document.documentElement.style.setProperty('--preloader-text-color', '#000');
+        }
+
+        window.addEventListener('load', function () {
+            setTimeout(hidePreloader, 5000); // Call hidePreloader after 5000 milliseconds if not already called by animation
+        });
+
+        function hidePreloader() {
+            var preloader = document.querySelector('.preloader');
+            preloader.style.opacity = '0';
+            setTimeout(function () {
+                preloader.style.display = 'none';
+            }, 200);
+        }
+    </script>
+</div>
+
+<main class="page-container" id="swup">
+
+	
+
+	<div class="main-content-container flex flex-col justify-between min-h-dvh">
+		<div class="main-content-header">
+			<header class="navbar-container px-6 md:px-12">
+    <div class="navbar-content transition-navbar ">
+        <div class="left">
+            
+                <a class="logo-image h-8 w-8 sm:w-10 sm:h-10 mr-3" href="/">
+                    <img src="/images/g.jpg" class="w-full h-full rounded-xs">
+                </a>
+            
+            <a class="logo-title" href="/">
+                
+                Leo2011 的博客
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/"
+                                        >
+                                    <i class="fa-regular fa-house fa-fw"></i>
+                                    首页
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/archives"
+                                        >
+                                    <i class="fa-regular fa-archive fa-fw"></i>
+                                    归档
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/tags"
+                                        >
+                                    <i class="fa fa-tags fa-fw"></i>
+                                    标签
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/categories"
+                                        >
+                                    <i class="fa fa-th fa-fw"></i>
+                                    分类
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/atom.xml"
+                                        >
+                                    <i class="fa fa-rss fa-fw"></i>
+                                    RSS
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   target="_blank" rel="noopener" href="https://www.travellings.cn/go-by-clouds.html"
+                                        >
+                                    <i class="fas fa-train-subway fa-fw"></i>
+                                    开往
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/friends"
+                                        >
+                                    <i class="fas fa-user-group fa-fw"></i>
+                                    友情链接
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/about"
+                                        >
+                                    <i class="fa-regular fa-user fa-fw"></i>
+                                    关于
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="has-dropdown"
+                                   href="#"
+                                        onClick=&#34;return false;&#34;>
+                                    <i class="fa-regular fa-link fa-fw"></i>
+                                    链接
+                                    <i class="fa-solid fa-chevron-down fa-fw"></i>
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                                    <ul class="sub-menu">
+                                        
+                                            <li>
+                                                <a target="_blank" rel="noopener" href="https://www.cnblogs.com/Liu-Tao-Chang">
+                                                    LTC_AUGENSTERN
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a target="_blank" rel="noopener" href="https://www.cnblogs.com/popfront">
+                                                    POPCOOUNT
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a href="/essays">
+                                                    留言板
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a href="/MBTI">
+                                                    MBTI 测试
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a href="/air-conditioner">
+                                                    小空调
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a target="_blank" rel="noopener" href="https://leo2011.flarum.cloud/">
+                                                    论坛
+                                                </a>
+                                            </li>
+                                        
+                                    </ul>
+                                
+                            </li>
+                    
+                    
+                        <li class="navbar-item search search-popup-trigger">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fa-solid fa-magnifying-glass"></i>
+                    </div>
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile sheet -->
+    <div class="navbar-drawer h-dvh w-full absolute top-0 left-0 bg-background-color flex flex-col justify-between">
+        <ul class="drawer-navbar-list flex flex-col px-4 justify-center items-start">
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/"
+                        >
+                            <span>
+                                首页
+                            </span>
+                            
+                                <i class="fa-regular fa-house fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/archives"
+                        >
+                            <span>
+                                归档
+                            </span>
+                            
+                                <i class="fa-regular fa-archive fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/tags"
+                        >
+                            <span>
+                                标签
+                            </span>
+                            
+                                <i class="fa fa-tags fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/categories"
+                        >
+                            <span>
+                                分类
+                            </span>
+                            
+                                <i class="fa fa-th fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/atom.xml"
+                        >
+                            <span>
+                                RSS
+                            </span>
+                            
+                                <i class="fa fa-rss fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           target="_blank" rel="noopener" href="https://www.travellings.cn/go-by-clouds.html"
+                        >
+                            <span>
+                                开往
+                            </span>
+                            
+                                <i class="fas fa-train-subway fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/friends"
+                        >
+                            <span>
+                                友情链接
+                            </span>
+                            
+                                <i class="fas fa-user-group fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/about"
+                        >
+                            <span>
+                                关于
+                            </span>
+                            
+                                <i class="fa-regular fa-user fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item-sub text-base my-1.5 flex flex-col w-full">
+                        
+                        <div class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary cursor-pointer text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                             navbar-data-toggle="submenu-Links"
+                        >
+                            <span>
+                                链接
+                            </span>
+                            
+                                <i class="fa-solid fa-chevron-right fa-sm fa-fw transition-all"></i>
+                            
+                        </div>
+                        
+
+                        
+                            <div class="flex-col items-start px-2 py-2 hidden" data-target="submenu-Links">
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           target="_blank" rel="noopener" href="https://www.cnblogs.com/Liu-Tao-Chang">LTC_AUGENSTERN</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           target="_blank" rel="noopener" href="https://www.cnblogs.com/popfront">POPCOOUNT</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           href="/essays">留言板</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           href="/MBTI">MBTI 测试</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           href="/air-conditioner">小空调</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           target="_blank" rel="noopener" href="https://leo2011.flarum.cloud/">论坛</a>
+                                    </div>
+                                
+                            </div>
+                        
+                    </li>
+            
+
+            
+            
+                
+                    
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full active"
+                           href="/archives"
+                        >
+                            <span>归档</span>
+                            <i class="fa-regular fa-archive fa-sm fa-fw"></i>
+                        </a>
+                    </li>
+                
+                    
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full active"
+                           href="/tags"
+                        >
+                            <span>标签</span>
+                            <i class="fa-regular fa-tags fa-sm fa-fw"></i>
+                        </a>
+                    </li>
+                
+                    
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full active"
+                           href="/categories"
+                        >
+                            <span>分类</span>
+                            <i class="fa-regular fa-folder fa-sm fa-fw"></i>
+                        </a>
+                    </li>
+                
+                    
+            
+        </ul>
+
+        <div class="statistics flex justify-around my-2.5">
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">12</div>
+        <div class="label text-third-text-color text-sm">标签</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">14</div>
+        <div class="label text-third-text-color text-sm">分类</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">54</div>
+        <div class="label text-third-text-color text-sm">文章</div>
+    </a>
+</div>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+		</div>
+
+		<div class="main-content-body transition-fade-up">
+			
+
+			<div class="main-content">
+				<div class="post-page-container flex relative justify-between box-border w-full h-full">
+	<div class="article-content-container">
+
+		<div class="article-title relative w-full">
+			
+			
+			
+			<img src="http://www.szsy.cn//imgser/images/upload/article/sync/20230428/8bc457584e6d1922f6795c69eb2effec.jpg" alt="2024/09/01 开学前夕，发一篇大水文" class="w-full h-60 sm:h-72 md:h-80 object-cover sm:rounded-t-large dark:brightness-75" />
+			
+			<div class="w-full flex items-center absolute bottom-0 justify-start">
+				<h1 class="article-title-cover text-center mx-6 my-6 text-second-text-color bg-background-color-transparent px-4 py-3 text-3xl sm:text-4xl md:text-5xl font-semibold backdrop-blur-lg rounded-xl border border-border-color ">2024/09/01 开学前夕，发一篇大水文</h1>
+			</div>
+			
+		</div>
+
+		
+		<div class="article-header flex flex-row gap-2 items-center px-2 sm:px-6 md:px-8">
+			<div class="avatar w-[46px] h-[46px] flex-shrink-0 rounded-medium border border-border-color p-[1px]">
+				<img src="/images/g.jpg">
+			</div>
+			<div class="info flex flex-col justify-between">
+				<div class="author flex items-center">
+					<span class="name text-default-text-color text-lg font-semibold">Leo2011</span>
+					
+					<span class="author-label ml-1.5 text-xs px-2 py-0.5 rounded-small text-third-text-color border border-shadow-color-1">警示后人</span>
+					
+				</div>
+				<div class="meta-info">
+					<div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2024-09-01 18:32:39</span>
+        <span class="mobile">2024-09-01 18:32:39</span>
+        <span class="hover-info">创建</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2025-11-18 14:51:05</span>
+            <span class="mobile">2025-11-18 14:51:05</span>
+            <span class="hover-info">更新</span>
+        </span>
+    
+
+    
+        <span class="article-categories article-meta-item">
+            <i class="fa-regular fa-folders"></i>&nbsp;
+            <ul>
+                
+                
+                    
+                        
+                        <li>
+                            <a href="/categories/%E9%97%B2%E8%AF%9D/">闲话</a>&nbsp;
+                        </li>
+                    
+                    
+                
+            </ul>
+        </span>
+    
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>7.6k 字</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fa-regular fa-clock"></i>&nbsp;<span>27 mins. 分钟</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+				</div>
+			</div>
+		</div>
+		
+
+		
+
+
+		<div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
+			<p>笑点解析：封面图不是我们学校是集团在我们学校已有的分布的图片…… 我校甚至还没建好……</p>
+<hr>
+<p>说句闲话：研究珂学的最好方法是</p>
+<p>写一篇水文</p>
+<p>祝你们成功（滑稽</p>
+<span id="more"></span>
+
+<h1 id="关于小升初">关于小升初</h1>
+<p>事情是酱紫的：</p>
+<p>首先，我是个学生，不是老师。</p>
+<p>其次，我是个学生，不是家长。</p>
+<p>最后，我是个学生，不是父母。</p>
+<p>这三点，我都做到了。</p>
+<p>所以，我只能说，我很开心。</p>
+<p>祝大家开学愉快！</p>
+<hr>
+<p>以上内容来自 AI 生成（<del>什么玩意儿，还开心、愉快</del>）。</p>
+<p>其实小 L
+就是一个今年（2024）小升初的一学生，明天开学，赶紧把自己暑假干的那些破事儿记录一下。</p>
+<p><del>话说会不会导致自己 RP-= INF 啊啊啊……</del></p>
+<p>6 月填志愿（但是 TMD 这个 213 jyj
+把父母的房子、户口第一位），然后我报了一个新学校。录取完之后（8
+月了）我父亲拿到通知书，一看学校的老大哥居然变成了市实验学校的某分校，<strong>之前区宣传委都不知道这消息，官方公众号上还说是区某中学的集团的</strong>，逆天，太逆天了……</p>
+<p>报学校送四大？录取率 <span class="math inline"><mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.127ex;" xmlns="http://www.w3.org/2000/svg" width="5.278ex" height="1.824ex" role="img" focusable="false" viewBox="0 -750 2333 806"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mn"><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path><path data-c="30" d="M96 585Q152 666 249 666Q297 666 345 640T423 548Q460 465 460 320Q460 165 417 83Q397 41 362 16T301 -15T250 -22Q224 -22 198 -16T137 16T82 83Q39 165 39 320Q39 494 96 585ZM321 597Q291 629 250 629Q208 629 178 597Q153 571 145 525T137 333Q137 175 145 125T181 46Q209 16 250 16Q290 16 318 46Q347 76 354 130T362 333Q362 478 354 524T321 597Z" transform="translate(500,0)"></path><path data-c="30" d="M96 585Q152 666 249 666Q297 666 345 640T423 548Q460 465 460 320Q460 165 417 83Q397 41 362 16T301 -15T250 -22Q224 -22 198 -16T137 16T82 83Q39 165 39 320Q39 494 96 585ZM321 597Q291 629 250 629Q208 629 178 597Q153 571 145 525T137 333Q137 175 145 125T181 46Q209 16 250 16Q290 16 318 46Q347 76 354 130T362 333Q362 478 354 524T321 597Z" transform="translate(1000,0)"></path></g><g data-mml-node="mi" transform="translate(1500,0)"><path data-c="25" d="M465 605Q428 605 394 614T340 632T319 641Q332 608 332 548Q332 458 293 403T202 347Q145 347 101 402T56 548Q56 637 101 693T202 750Q241 750 272 719Q359 642 464 642Q580 642 650 732Q662 748 668 749Q670 750 673 750Q682 750 688 743T693 726Q178 -47 170 -52Q166 -56 160 -56Q147 -56 142 -45Q137 -36 142 -27Q143 -24 363 304Q469 462 525 546T581 630Q528 605 465 605ZM207 385Q235 385 263 427T292 548Q292 617 267 664T200 712Q193 712 186 709T167 698T147 668T134 615Q132 595 132 548V527Q132 436 165 403Q183 385 203 385H207ZM500 146Q500 234 544 290T647 347Q699 347 737 292T776 146T737 0T646 -56Q590 -56 545 0T500 146ZM651 -18Q679 -18 707 24T736 146Q736 215 711 262T644 309Q637 309 630 306T611 295T591 265T578 212Q577 200 577 146V124Q577 -18 647 -18H651Z"></path></g></g></g></svg></mjx-container></span>？</p>
+<p><img src="/images/lqtzs.jpg" alt="录取通知书"></p>
+<p>《市实验学校的教育集团的一个局，骗过了所有人，包括区政府》。这就是传说中的 “弹射起步” 吧，我保证我们学校明年一定会爆满，但我在没满的时候挤进去了。</p>
+<p>但是捏，学校还没建好呢（说是要明年，学校工地还上了个什么 “水土流失黑名单”），于是只能借址办学，一看借用的学校在我家马路对面，弯儿都不用拐……</p>
+<p>然后 8 月 28
+开学考（卷子用的是我家对面儿那学校的），考一上午，但是配分比较离谱：</p>
+<p>English: 60pts</p>
+<p>语文: 90 分</p>
+<p><span class="math inline"><mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.819ex;" xmlns="http://www.w3.org/2000/svg" width="2.24ex" height="2.856ex" role="img" focusable="false" viewBox="0 -900.3 990.1 1262.1"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mfrac"><g data-mml-node="mrow" transform="translate(220,394) scale(0.707)"><g data-mml-node="mn"><path data-c="37" d="M55 458Q56 460 72 567L88 674Q88 676 108 676H128V672Q128 662 143 655T195 646T364 644H485V605L417 512Q408 500 387 472T360 435T339 403T319 367T305 330T292 284T284 230T278 162T275 80Q275 66 275 52T274 28V19Q270 2 255 -10T221 -22Q210 -22 200 -19T179 0T168 40Q168 198 265 368Q285 400 349 489L395 552H302Q128 552 119 546Q113 543 108 522T98 479L95 458V455H55V458Z"></path></g><g data-mml-node="mo" transform="translate(500,0)"><path data-c="21" d="M78 661Q78 682 96 699T138 716T180 700T199 661Q199 654 179 432T158 206Q156 198 139 198Q121 198 119 206Q118 209 98 431T78 661ZM79 61Q79 89 97 105T141 121Q164 119 181 104T198 61Q198 31 181 16T139 1Q114 1 97 16T79 61Z"></path></g></g><g data-mml-node="mrow" transform="translate(220,-346.3) scale(0.707)"><g data-mml-node="mn"><path data-c="35" d="M164 157Q164 133 148 117T109 101H102Q148 22 224 22Q294 22 326 82Q345 115 345 210Q345 313 318 349Q292 382 260 382H254Q176 382 136 314Q132 307 129 306T114 304Q97 304 95 310Q93 314 93 485V614Q93 664 98 664Q100 666 102 666Q103 666 123 658T178 642T253 634Q324 634 389 662Q397 666 402 666Q410 666 410 648V635Q328 538 205 538Q174 538 149 544L139 546V374Q158 388 169 396T205 412T256 420Q337 420 393 355T449 201Q449 109 385 44T229 -22Q148 -22 99 32T50 154Q50 178 61 192T84 210T107 214Q132 214 148 197T164 157Z"></path></g><g data-mml-node="mo" transform="translate(500,0)"><path data-c="21" d="M78 661Q78 682 96 699T138 716T180 700T199 661Q199 654 179 432T158 206Q156 198 139 198Q121 198 119 206Q118 209 98 431T78 661ZM79 61Q79 89 97 105T141 121Q164 119 181 104T198 61Q198 31 181 16T139 1Q114 1 97 16T79 61Z"></path></g></g><rect width="750.1" height="60" x="120" y="220"></rect></g></g></g></svg></mjx-container></span> 的某科:
+100pts？</p>
+<p>关键是前两科是连考的，加起来 2h，最下面的某科一个占了
+80min。然后，语文作文差点没写完 emm……（ps：那个作文跟觉不像是我喜欢写的风格，但咱也不敢说啊）。语文一考才发现自己 “镶嵌”（看拼音写词语第一题）不会写，小学古诗基本全忘了（<del>我之前甚至有一段时间忘了咏鹅</del>）。</p>
+<p>母亲之前说会有一定的初中知识，但反正我没看出来……</p>
+<p>之后还有 20min，老师说是面试，小 L 很紧张，结果：</p>
+<p>老师：你叫什么名字啊？</p>
+<p>我：jmy。</p>
+<p>老师（低头找了一圈）：你理想的高中是哪所？</p>
+<p>我：SMS、SZSY。</p>
+<p>老师：嗯，你能描述（评价）一下吗？</p>
+<p>我：bla bla bla……</p>
+<p>事后：</p>
+<p>我：一点技术含量没有啊这……</p>
+<p>父亲：这能够区分学生，看看他们是有目标而努力还是专心于当下……</p>
+<p>然后分到了 zdb（<img src="/images/IMG_1005.PNG" alt="dddd"></p>
+<p>老师中有好几个主任（年级主任、教务主任、办公室政府主任……）QwQ。</p>
+<p>另外，已知的信息是，原来小学班里 47 个同学中至少有 9
+个也在我们学校，我们班就 5
+个。<del>说什么九年一贯制，我就没一贯</del>。</p>
+<p>upd on 2024/09/02：校徽至今没发，全校一共 7 个班，小学部只有一年级 4
+个班，初中部只有初一 3 个班，加起来不到 300
+人，校长、主任什么的<del>随处可见</del>平易近人，感觉大家都很熟了。开学仪式我去当<del>门神</del>礼仪兵了（职责：举班牌），上了一天道法课（因为班主任教道法）。所以：有社团吗？怎么上？</p>
+<p>课本感觉变难了，但还好，<del>反正都是翻一遍基本就全会。</del>唉，以后我是永无写完作业之日啊……</p>
+<hr>
+<h1 id="集训">集训</h1>
+<p>SC 省 MY 市 SWUST 内，集训了一个月（555，暑假就这么没了……），非常
+happy （<img src="/images/IMG_1005.PNG" alt="dddd"></p>
+<p>去了成都旅游，辣的嘴唇地震……</p>
+<p>食堂饭不辣（<del>我专门挑的</del>），也不错，还便宜（我妈一个手滑 8
+块钱 20 个馒头……）。</p>
+<p>唉，这年头还有多少几毛钱的东西了……</p>
+<p>然后为了这个集训，我发明了：</p>
+<ol type="1">
+<li><p>图上 dfs</p></li>
+<li><p> 图上 bfs</p></li>
+<li><p> 二分插入排序（独立发明，没有任何参考资料，达到了基于比较的排序的最优时间复杂度且稳定，我还证明了这两点）</p></li>
+<li><p>单调 vector（我原创的一种新的数据结构）</p></li>
+<li><p>... </p></li>
+</ol>
+<p><del>话说我是不是也有潜力搞个图灵奖什么的。</del></p>
+<p>第一天还有入门题，最后一周你给我出省选题？逆天了……</p>
+<p>还有，举办了第一场比赛<del>虽然不是很成功，出锅的两道题都是我出的</del>，名字叫「金坷垃杯」（不是我起的，是
+@<a class="link" target="_blank" rel="noopener" href="https://www.luogu.com.cn/user/872662">mengleo<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a>大哥创办的），欢迎大家持续关注！</p>
+<p>集训队里大佬好多（就我最弱 Qaq。</p>
+<p>另外，集训快结束的时候，我妈突然发现我有一块秃了……</p>
+<p>职业病犯了（</p>
+<hr>
+<h1 id="牙">牙</h1>
+<p>回家第二天，先拔 4
+颗牙。我一晚上没说话，因为咽了俩棉花，还吐了几口血（其实是牙的伤口流出来的，在枕头上待了一个星期），喝了
+2 天粥（糊糊）。</p>
+<p>然后一个星期过去了，我稍微刚好一点，就去戴牙套了，然后继续喝粥……</p>
+<p>现在咬土豆都嫌硬……</p>
+<p>我：我爸这是图啥啊……</p>
+<h1 id="博客">博客</h1>
+<p>回家后重启博客计划，然后建立了这个<del>小破</del>站。三十几篇文章，我搬运了好几天……</p>
+<p>最后我就问一句：TMD
+为什么你们看也看了赞也点了都不评论？我是单机写文人吗……</p>
+<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
+		</div>
+
+		
+		<div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
+			<div class="article-copyright-info-container">
+    <ul>
+        <li><strong>标题:</strong> 2024/09/01 开学前夕，发一篇大水文</li>
+        <li><strong>作者:</strong> Leo2011</li>
+        <li><strong>创建于
+                :</strong> 2024-09-01 18:32:39</li>
+        
+            <li>
+                <strong>更新于
+                    :</strong> 2025-11-18 14:51:05
+            </li>
+        
+        <li>
+            <strong>链接:</strong> https://www.leo2011.eu.org/2024/09017377.html
+        </li>
+        <li>
+            <strong>
+                版权声明:
+            </strong>
+            
+
+            
+                本文章采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0">CC BY-NC-SA 4.0</a> 进行许可。
+            
+        </li>
+    </ul>
+</div>
+
+		</div>
+		
+
+		
+
+		
+  <div class="recommended-article px-2 sm:px-6 md:px-8">
+   <div class="recommended-desktop">
+    <div class="recommended-article-header text-xl md:text-3xl font-bold mt-10">
+     <i aria-hidden="true"></i><span>推荐阅读</span>
+    </div>
+    <div class="recommended-article-group"><a class="recommended-article-item" href="/2024/110944181.html" title="CSP-J/S 2024 游寄" rel="bookmark">
+  <img src="/images/answersheet.png" alt="CSP-J/S 2024 游寄" class="!max-w-none">
+  <span class="title">CSP-J/S 2024 游寄</span>
+</a><a class="recommended-article-item" href="/2025/1003ca440904.html" title="CSP-J/S 2025 游寄" rel="bookmark">
+  <img src="/images/eat.png" alt="CSP-J/S 2025 游寄" class="!max-w-none">
+  <span class="title">CSP-J/S 2025 游寄</span>
+</a><a class="recommended-article-item" href="/2025/050135313.html" title="复出的第一篇文章 & 两场 ACM 竞赛的混合游寄" rel="bookmark">
+  <img src="/images/SZTU.jpg" alt="复出的第一篇文章 & 两场 ACM 竞赛的混合游寄" class="!max-w-none">
+  <span class="title">复出的第一篇文章 & 两场 ACM 竞赛的混合游寄</span>
+</a><a class="recommended-article-item" href="/2024/120838573.html" title="GESP 202412 游记" rel="bookmark">
+  <img src="images/GESP202412.png" alt="GESP 202412 游记" class="!max-w-none">
+  <span class="title">GESP 202412 游记</span>
+</a><a class="recommended-article-item" href="/2024/02039098.html" title="2023 游寄" rel="bookmark">
+  <img src="/images/2024.jpg" alt="2023 游寄" class="!max-w-none">
+  <span class="title">2023 游寄</span>
+</a><a class="recommended-article-item" href="/2025/081239379.html" title="网络是怎样诞生的？—— 简介 OSI 七层模型 & TCP/IP 四（五）层模型" rel="bookmark">
+  <img src="https://cdn.luogu.com.cn/upload/image_hosting/89yolwir.png" alt="网络是怎样诞生的？—— 简介 OSI 七层模型 & TCP/IP 四（五）层模型" class="!max-w-none">
+  <span class="title">网络是怎样诞生的？—— 简介 OSI 七层模型 & TCP/IP 四（五）层模型</span>
+</a></div>
+   </div>
+   <div class="recommended-mobile">
+   <div class="recommended-article-header text-xl md:text-3xl font-bold mt-10">
+     <i aria-hidden="true"></i><span>推荐阅读</span>
+   </div>
+   <div class="recommended-article-group"><a class="recommended-article-item" href="/2024/110944181.html" title="CSP-J/S 2024 游寄" rel="bookmark">
+  <img src="/images/answersheet.png" alt="CSP-J/S 2024 游寄" class="!max-w-none">
+  <span class="title">CSP-J/S 2024 游寄</span>
+</a><a class="recommended-article-item" href="/2025/1003ca440904.html" title="CSP-J/S 2025 游寄" rel="bookmark">
+  <img src="/images/eat.png" alt="CSP-J/S 2025 游寄" class="!max-w-none">
+  <span class="title">CSP-J/S 2025 游寄</span>
+</a><a class="recommended-article-item" href="/2025/050135313.html" title="复出的第一篇文章 & 两场 ACM 竞赛的混合游寄" rel="bookmark">
+  <img src="/images/SZTU.jpg" alt="复出的第一篇文章 & 两场 ACM 竞赛的混合游寄" class="!max-w-none">
+  <span class="title">复出的第一篇文章 & 两场 ACM 竞赛的混合游寄</span>
+</a></div>
+   </div>
+  </div>
+
+		
+		<div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
+			
+			<div class="article-prev border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+				<a class="prev" rel="prev" href="/2024/090748469.html">
+					<span class="left arrow-icon flex justify-center items-center">
+						<i class="fa-solid fa-chevron-left"></i>
+					</span>
+					<span class="title flex justify-center items-center">
+						<span class="post-nav-title-item truncate max-w-48">题解：AT_abc370_c [ABC370C] Word Ladder</span>
+						<span class="post-nav-item">上一篇</span>
+					</span>
+				</a>
+			</div>
+			
+			
+			<div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+				<a class="next" rel="next" href="/2024/08311408.html">
+					<span class="title flex justify-center items-center">
+						<span class="post-nav-title-item truncate max-w-48">Markdown 测试</span>
+						<span class="post-nav-item">下一篇</span>
+					</span>
+					<span class="right arrow-icon flex justify-center items-center">
+						<i class="fa-solid fa-chevron-right"></i>
+					</span>
+				</a>
+			</div>
+			
+		</div>
+		
+
+
+		
+		<div class="comment-container px-2 sm:px-6 md:px-8 pb-8">
+			<div class="comments-container mt-10 w-full ">
+    <div id="comment-anchor" class="w-full h-2.5"></div>
+    <div class="comment-area-title w-full my-1.5 md:my-2.5 text-xl md:text-3xl font-bold">
+        评论
+    </div>
+    
+
+        
+            
+    <div class="twikoo-container">
+        <script data-swup-reload-script
+                src='https://cdnjs.cloudflare.com/ajax/libs/twikoo/1.6.39/twikoo.all.min.js'
+        ></script>
+        <div id="twikoo-comment"></div>
+        <script data-swup-reload-script>
+            function loadTwikoo() {
+                twikoo.init({
+                    el: '#twikoo-comment',
+                    envId: 'https://dancing-muffin-bb3436.netlify.app/.netlify/functions/twikoo',
+                });
+            }
+
+            if ('true') {
+                const loadTwikooTimeout = setTimeout(() => {
+                    loadTwikoo();
+                    clearTimeout(loadTwikooTimeout);
+                }, 1000);
+            } else {
+                window.addEventListener('DOMContentLoaded', loadTwikoo);
+            }
+        </script>
+    </div>
+
+
+        
+        
+    
+</div>
+
+		</div>
+		
+	</div>
+
+	
+	<div class="toc-content-container">
+		<div class="post-toc-wrap">
+	<div class="post-toc">
+		<div class="toc-title">目录</div>
+		<div class="page-title">2024/09/01 开学前夕，发一篇大水文</div>
+		<ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%85%B3%E4%BA%8E%E5%B0%8F%E5%8D%87%E5%88%9D"><span class="nav-number">1.</span> <span class="nav-text">关于小升初</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%9B%86%E8%AE%AD"><span class="nav-number">2.</span> <span class="nav-text">集训</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%89%99"><span class="nav-number">3.</span> <span class="nav-text">牙</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8D%9A%E5%AE%A2"><span class="nav-number">4.</span> <span class="nav-text">博客</span></a></li></ol>
+
+	</div>
+</div>
+	</div>
+	
+</div>
+			</div>
+
+			
+		</div>
+
+		<div class="main-content-footer">
+			<footer class="footer mt-5 py-5 h-auto text-base text-third-text-color relative border-t-2 border-t-border-color">
+    <div class="info-container py-3 text-center">
+        
+                <div class="text-center">
+                    &copy;
+                    
+                        <span>
+                            2023
+                        </span>
+                        -
+                        
+                            2025&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a
+                                        href="/">
+                                        Leo2011
+                                    </a>
+                                    
+                                        
+                                            <p class="post-count space-x-0.5">
+                                                <span>
+                                                    共撰写了 54 篇文章
+                                                </span>
+                                                
+                                                    <span>
+                                                        共 58k 字
+                                                    </span>
+                                                    
+                                            </p>
+                                            
+                </div>
+                
+                    <script data-swup-reload-script src = "https://cn.vercount.one/js"></script>
+                    <div
+                        class="relative text-center lg:absolute lg:right-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-right">
+                        
+                            <span id="busuanzi_container_site_uv" class="lg:!block">
+                                <span class="text-sm">访问人数</span>
+                                <span id="busuanzi_value_site_uv"></span>
+                            </span>
+                            
+                                
+                                    <span id="busuanzi_container_site_pv" class="lg:!block">
+                                        <span class="text-sm">总访问量</span>
+                                        <span id="busuanzi_value_site_pv"></span>
+                                    </span>
+                                    
+                    </div>
+                    
+                        <div
+                            class="relative text-center lg:absolute lg:left-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-left">
+                            <span class="lg:block text-sm">由 <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg class="relative top-[2px] inline-block align-baseline" version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" class="text-base" href="https://hexo.io">Hexo</a> 驱动</span>
+                            <span class="text-sm lg:block">主题&nbsp;<a
+                                            class="text-base" target="_blank"
+                                            href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.8.5</a></span>
+                                
+                        </div>
+                        
+                                <a target="_blank" rel="noopener"
+                                    href="https://www.gyfzlm.com/fanzha/NO-44256470.html"><img
+                                        src="https://www.gyfzlm.com/istatic/image/gyfzlogo.png"
+                                        style='display:inline-block;vertical-align:middle;height: 45px;'></a> <a
+                                    target="_blank" rel="noopener" href="https://www.gyfzlm.com/fanzha/NO-44256470.html"
+                                    title="公益反诈联盟成员单位">公益反诈联盟成员单位</a><br />
+                                <a target="_blank" rel="noopener" href="https://icp.gs/?id=20241704"
+                                    title="岸号:20241704号"><img src="https://icp.gs/assets/images/icp.png" alt="岸号:"
+                                        width="20"
+                                        style='display:inline-block;vertical-align:middle'>岸号:20241704号</a><br />
+                                <a href="https://icp.gov.moe/?keyword=20240681" target="_blank">萌ICP备20240681号 </a><a
+                                    style="text-decoration:none;" href="https://travel.moe/go.html"
+                                    title="异次元之旅-跃迁-我们一起去萌站成员的星球旅行吧！" target="_blank"><img
+                                        src="https://travel.moe/images/icon/icon64.png"
+                                        style="width:24px;height:24px;display:inline-block;vertical-align:middle">异次元之旅</a><br />
+                                <a target="_blank" rel="noopener" href="https://imicp.cn/">IMICP备:20240681号</a><br />
+                                <img style='display:inline-block;vertical-align:middle;width:20px;height:20px;margin-bottom:-4px'
+                                    src="https://postimage.me/images/2024/08/27/Y.gif"><a
+                                    href="https://icp.znzx.cc/?id=20240681" target="_blank">影石ICP备案 20240681号</a><br />
+                                <a href="https://www.travellings.cn/go-by-clouds.html" target="_blank" rel="noopener"
+                                    title="开往-友链接力">
+                                    <img src="https://www.travellings.cn/assets/logo.gif" alt="开往-友链接力" width="120"
+                                        style='display:inline-block;vertical-align:middle;'> </a><br />
+                                <a href="https://blogscn.fun/" title="BLOGS·CN" target="_blank"> <img
+                                        src="https://photo.xiangming.site/img/blogscn.png" alt="本站已加入BLOGS·CN"
+                                        style="width:auto;height:25px;display:inline-block;vertical-align:middle">
+                                </a><br />
+                                <a href="https://ipw.cn/ssl/?site=leo2011.eu.org" title="本站支持SSL安全访问"
+                                    target='_blank'><img style='display:inline-block;vertical-align:middle'
+                                        alt="本站支持SSL安全访问" src="https://static.ipw.cn/icon/ssl-s4.svg"></a>
+                                <a href="https://ipw.cn/ipv6webcheck/?site=leo2011.eu.org" title="本站支持IPv6访问"
+                                    target='_blank'><img style='display:inline-block;vertical-align:middle'
+                                        alt="本站支持IPv6访问" src="https://static.ipw.cn/icon/ipv6-s4.svg"></a><br />
+                                <a target="_blank" rel="noopener" href="https://notbyai.fyi/"><img
+                                        src="/images/Produced-By-Human-Not-By-AI-Badge-black.svg" width="100"
+                                        style='display:inline-block;vertical-align:middle'><img
+                                        src="/images/Written-By-Human-Not-By-AI-Badge-black.svg" width="100"
+                                        style='display:inline-block;vertical-align:middle'></a><br />
+                                <!-- 
+         -->
+                                <span id="sitetime"></span>
+                                <script language=javascript>
+                                    function siteTime() {
+                                        window.setTimeout("siteTime()", 1000);
+                                        var seconds = 1000;
+                                        var minutes = seconds * 60;
+                                        var hours = minutes * 60;
+                                        var days = hours * 24;
+                                        var years = days * 365;
+                                        var today = new Date();
+                                        var todayYear = today.getFullYear();
+                                        var todayMonth = today.getMonth() + 1;
+                                        var todayDate = today.getDate();
+                                        var todayHour = today.getHours();
+                                        var todayMinute = today.getMinutes();
+                                        var todaySecond = today.getSeconds();
+                                        /* Date.UTC() -- 返回date对象距世界标准时间(UTC)1970年1月1日午夜之间的毫秒数(时间戳)
+                                        year - 作为date对象的年份，为4位年份值
+                                        month - 0-11之间的整数，做为date对象的月份
+                                        day - 1-31之间的整数，做为date对象的天数
+                                        hours - 0(午夜24点)-23之间的整数，做为date对象的小时数
+                                        minutes - 0-59之间的整数，做为date对象的分钟数
+                                        seconds - 0-59之间的整数，做为date对象的秒数
+                                        microseconds - 0-999之间的整数，做为date对象的毫秒数 */
+                                        var t1 = Date.UTC(2023, 11, 15, 19, 30, 15); //北京时间2023-11-15 19:30:15
+                                        var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                                        var diff = t2 - t1;
+                                        var diffYears = Math.floor(diff / years);
+                                        var diffDays = Math.floor((diff / days) - diffYears * 365);
+                                        var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+                                        var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) / minutes);
+                                        var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours - diffMinutes * minutes) / seconds);
+                                        document.getElementById("sitetime").innerHTML = " 本站已<s>苟</s>安全运行 " + diffYears +" 年 "+diffDays + " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                                    }/*因为建站时间还没有一年，就将之注释掉了。需要的可以取消*/
+                                    siteTime();
+                                </script>
+                                
+                                    
+                                        
+                                                                
+                                        
+                                                                
+
+    </div>
+</footer>
+
+		</div>
+	</div>
+
+	
+	<div class="post-tools">
+		<div class="post-tools-container">
+	<ul class="article-tools-list">
+		<!-- TOC aside toggle -->
+		
+		<li class="right-bottom-tools page-aside-toggle">
+			<i class="fa-regular fa-outdent"></i>
+		</li>
+		
+
+		<!-- go comment -->
+		
+		<li class="go-comment">
+			<i class="fa-regular fa-comments"></i>
+		</li>
+		
+	</ul>
+</div>
+	</div>
+	
+
+	<div class="right-side-tools-container">
+		<div class="side-tools-container">
+	<ul class="hidden-tools-list">
+		<li class="right-bottom-tools tool-font-adjust-plus flex justify-center items-center">
+			<i class="fa-regular fa-magnifying-glass-plus"></i>
+		</li>
+
+		<li class="right-bottom-tools tool-font-adjust-minus flex justify-center items-center">
+			<i class="fa-regular fa-magnifying-glass-minus"></i>
+		</li>
+
+		<li class="right-bottom-tools tool-dark-light-toggle flex justify-center items-center">
+			<i class="fa-regular fa-moon"></i>
+		</li>
+
+		<!-- rss -->
+		
+		<li class="right-bottom-tools rss flex justify-center items-center">
+			<a class="flex justify-center items-center" href="/atom.xml" target="_blank">
+				<i class="fa-regular fa-rss"></i>
+			</a>
+		</li>
+		
+
+		
+
+		<li class="right-bottom-tools tool-scroll-to-bottom flex justify-center items-center">
+			<i class="fa-regular fa-arrow-down"></i>
+		</li>
+	</ul>
+
+	<ul class="visible-tools-list">
+		<li class="right-bottom-tools toggle-tools-list flex justify-center items-center">
+			<i class="fa-regular fa-cog fa-spin"></i>
+		</li>
+		
+		<li class="right-bottom-tools tool-scroll-to-top flex justify-center items-center">
+			<i class="arrow-up fas fa-arrow-up"></i>
+			<span class="percent"></span>
+		</li>
+		
+		
+	</ul>
+</div>
+	</div>
+
+	<div class="image-viewer-container">
+	<img src="">
+</div>
+
+	
+	<div class="search-pop-overlay">
+	<div class="popup search-popup">
+		<div class="search-header">
+			<span class="search-input-field-pre">
+				<i class="fa-solid fa-keyboard"></i>
+			</span>
+			<div class="search-input-container">
+				<input autocomplete="off" autocorrect="off" autocapitalize="off" placeholder="站内搜索您需要的内容..." spellcheck="false" type="search" class="search-input">
+			</div>
+			<span class="popup-btn-close">
+				<i class="fa-solid fa-times"></i>
+			</span>
+		</div>
+		<div id="search-result">
+			<div id="no-result">
+				<i class="fa-solid fa-spinner fa-spin-pulse fa-5x fa-fw"></i>
+			</div>
+		</div>
+	</div>
+</div>
+	
+
+</main>
+
+
+<script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/libs/Swup.min.js" ></script><script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/libs/SwupSlideTheme.min.js" ></script><script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/libs/SwupScriptsPlugin.min.js" ></script><script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/libs/SwupProgressPlugin.min.js" ></script><script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/libs/SwupScrollPlugin.min.js" ></script><script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/libs/SwupPreloadPlugin.min.js" ></script>
+<script>
+    const swup = new Swup({
+        plugins: [
+            new SwupScriptsPlugin({
+                optin: true,
+            }),
+            new SwupProgressPlugin(),
+            new SwupScrollPlugin({
+                offset: 80,
+            }),
+            new SwupSlideTheme({
+                mainElement: ".main-content-body",
+            }),
+            new SwupPreloadPlugin(),
+        ],
+        containers: ["#swup"],
+    });
+</script>
+
+
+
+
+	<script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/tools/imageViewer.js" ></script><script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/utils.js" ></script><script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/main.js" ></script><script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/layouts/navbarShrink.js" ></script><script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/tools/scrollTopBottom.js" ></script><script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/tools/lightDarkSwitch.js" ></script><script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/layouts/categoryList.js" ></script>
+
+
+    <script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/tools/localSearch.js" ></script>
+
+
+
+    <script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/tools/codeBlock.js" ></script>
+
+
+
+
+
+
+
+  <script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/libs/Typed.min.js" ></script>
+  <script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/plugins/typed.js" ></script>
+
+
+
+    
+        <script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/libs/mermaid.min.js" ></script>
+    
+    <script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/plugins/mermaid.js" ></script>
+
+
+
+
+
+
+
+
+    <script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/tools/tocToggle.js" data-swup-reload-script></script><script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/layouts/toc.js" data-swup-reload-script></script><script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/plugins/tabs.js" data-swup-reload-script></script>
+
+
+<script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/libs/moment-with-locales.min.js" data-swup-reload-script></script>
+<script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/layouts/essays.js" data-swup-reload-script></script>
+
+
+    <script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/libs/pangu.min.js" ></script><script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/plugins/pangu.js" ></script>
+
+
+
+	
+	<div id="aplayer"></div>
+<script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/libs/APlayer.min.js" ></script>
+<script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/plugins/aplayer.js" ></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+	
+</body>
+
+</html>
