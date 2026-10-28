@@ -2,3 +2,73 @@
 	你可以在这个文件中使用HTML内容自定义网站底部的footer
 	You can use html to customize the footer at the bottom of the website in this file. 
 -->
+<a target="_blank" rel="noopener" href="https://icp.gs/?id=20241704" title="岸号:20241704号"><img
+		src="https://icp.gs/assets/images/icp.png" alt="岸号:" width="20"
+		style='display:inline-block;vertical-align:middle'>岸号:20241704号</a><br />
+<a href="https://icp.gov.moe/?keyword=20240681" target="_blank">萌ICP备20240681号 </a><a style="text-decoration:none;"
+	href="https://travel.moe/go.html" title="异次元之旅-跃迁-我们一起去萌站成员的星球旅行吧！" target="_blank"><img
+		src="https://travel.moe/images/icon/icon64.png"
+		style="width:24px;height:24px;display:inline-block;vertical-align:middle">异次元之旅</a><br />
+<a href="https://www.travellings.cn/go-by-clouds.html" target="_blank" rel="noopener" title="开往-友链接力">
+	<img src="https://www.travellings.cn/assets/logo.gif" alt="开往-友链接力" width="120"
+		style='display:inline-block;vertical-align:middle;'> </a><br />
+<a href="https://blogscn.fun/" title="BLOGS·CN" target="_blank"> <img src="https://photo.xiangming.site/img/blogscn.png"
+		alt="本站已加入BLOGS·CN" style="width:auto;height:25px;display:inline-block;vertical-align:middle">
+	<!-- <% if (theme.footer.runtime === true) {%>
+			<div>
+				<%= __('runtime') %> <span class="odometer" id="runtime_days" ></span> <%= __('days') %> <span class="odometer" id="runtime_hours"></span> <%= __('hours') %> <span class="odometer" id="runtime_minutes"></span> <%= __('minutes') %> <span class="odometer" id="runtime_seconds"></span> <%= __('seconds') %>
+			</div>
+		<% } %>
+		<% if (theme.footer.runtime === true) {%>
+			<script <%= theme.global.single_page === true ? 'data-swup-reload-script' : '' %>>
+				try {
+					function odometer_init() {
+					const elements = document.querySelectorAll('.odometer');
+					elements.forEach(el => {
+						new Odometer({
+							el,
+							format: '( ddd).dd',
+							duration: 200
+						});
+					});
+					}
+					odometer_init();
+				} catch (error) {}
+			</script>
+		<% } %> -->
+	<span id="sitetime"></span>
+	<script language=javascript>
+		function siteTime() {
+			window.setTimeout("siteTime()", 1000);
+			var seconds = 1000;
+			var minutes = seconds * 60;
+			var hours = minutes * 60;
+			var days = hours * 24;
+			var years = days * 365;
+			var today = new Date();
+			var todayYear = today.getFullYear();
+			var todayMonth = today.getMonth() + 1;
+			var todayDate = today.getDate();
+			var todayHour = today.getHours();
+			var todayMinute = today.getMinutes();
+			var todaySecond = today.getSeconds();
+			/* Date.UTC() -- 返回date对象距世界标准时间(UTC)1970年1月1日午夜之间的毫秒数(时间戳)
+			year - 作为date对象的年份，为4位年份值
+			month - 0-11之间的整数，做为date对象的月份
+			day - 1-31之间的整数，做为date对象的天数
+			hours - 0(午夜24点)-23之间的整数，做为date对象的小时数
+			minutes - 0-59之间的整数，做为date对象的分钟数
+			seconds - 0-59之间的整数，做为date对象的秒数
+			microseconds - 0-999之间的整数，做为date对象的毫秒数 */
+			var t1 = Date.UTC(2023, 11, 15, 19, 30, 15); //北京时间2023-11-15 19:30:15
+			var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+			var diff = t2 - t1;
+			var diffYears = Math.floor(diff / years);
+			var diffDays = Math.floor((diff / days) - diffYears * 365);
+			var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+			var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) / minutes);
+			var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours - diffMinutes * minutes) / seconds);
+			document.getElementById("sitetime").innerHTML = " 本站已<s>苟</s>安全运行 " + diffYears + " 年 " + diffDays + " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+		}
+		siteTime();
+	</script>
